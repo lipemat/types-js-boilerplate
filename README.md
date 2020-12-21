@@ -1,11 +1,25 @@
-# types-js-boilerplate
-External TypeScript definitions for @lipemat/js-boilerplate and plugins
+# JS Boilerplate TypeScript
+External TypeScript definitions for `@lipemat/js-boilerplate` and plugins.
+
+## Usage
+
+We don't have access to the global `@types` namespace and this library is not complete, so it may be included via
+
+```json
+{
+  "dependencies": {
+    "@types/lipemat-js-boilerplate": "https://github.com/lipemat/types-js-boilerplate.git"
+  }
+}
+
+```
 
 ## Support using PNP with Yarn V2
 
 Currently, paused as there is no way to disable the warnings in Yarn V2 when using loose modules.
 As much as I would like to maintain my own fork of Yarn, I've got higher priority items to 
 maintain right now. :-(
+
 
 ### _*<a href="https://github.com/yarnpkg/berry/blob/7d9b64288d292af1ab147dff6f11f3c59a4b0ed7/packages/yarnpkg-pnp/sources/loader/makeApi.ts#L30">Here is the issue</a>*_
 
