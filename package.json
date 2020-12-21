@@ -1,0 +1,16 @@
+{
+  "name": "@types/lipemat-js-boilerplate",
+  "version": "1.0.0-beta-1",
+  "description": "External TypeScript definitions for @lipemat/js-boilerplate and plugins",
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lipemat/types-js-boilerplate.git"
+  },
+  "author": "Mat Lipe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lipemat/types-js-boilerplate/issues"
+  },
+  "homepage": "https://github.com/lipemat/types-js-boilerplate#readme"
+}
