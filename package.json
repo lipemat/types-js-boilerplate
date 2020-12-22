@@ -12,5 +12,14 @@
   "bugs": {
     "url": "https://github.com/lipemat/types-js-boilerplate/issues"
   },
-  "homepage": "https://github.com/lipemat/types-js-boilerplate#readme"
+  "homepage": "https://github.com/lipemat/types-js-boilerplate#readme",
+  "dependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "^24.0.19",
+    "@types/jquery": "^3.5.5",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.3",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/react-transition-group": "^4.2.4"
+  }
 }
