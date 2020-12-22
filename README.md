@@ -79,7 +79,6 @@ if ( runtimeState.enableTopLevelFallback ) {
 			} else {
 				dependencyReference = reference;
 			}
-			fallbackReference = reference;
 		}
 	}
 }
