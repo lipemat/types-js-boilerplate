@@ -18,6 +18,8 @@ Thumbs.db
 # log files
 *.log
 
+node_modules
+yarn.lock
 
 # PHPStorm files
 # https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
