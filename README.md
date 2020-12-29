@@ -13,7 +13,7 @@ may not be inferred directly from `@lipemat/js-boilerplate` with PNP.
 ```json
 {
   "dependencies": {
-    "@types/lipemat-js-boilerplate": "https://github.com/lipemat/types-js-boilerplate.git"
+    "@types/lipemat-js-boilerplate": "lipemat/types-js-boilerplate"
   }
 }
 
