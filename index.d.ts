@@ -1,4 +1,5 @@
 // WordPress REST API
+import './wordpress__api/ApplicationPasswords';
 import './wordpress__api/Categories';
 import './wordpress__api/Comments';
 import './wordpress__api/Media';

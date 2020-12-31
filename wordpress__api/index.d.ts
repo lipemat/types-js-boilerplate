@@ -7,6 +7,7 @@
  *
  */
 declare module '@wordpress/api' {
+	export * from '@wordpress/api/application-passwords';
 	export * from '@wordpress/api/categories';
 	export * from '@wordpress/api/comments';
 	export * from '@wordpress/api/media';

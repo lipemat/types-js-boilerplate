@@ -1,6 +1,5 @@
+/* eslint-disable camelcase */
 declare module '@wordpress/api/settings' {
-
-	/* eslint camelcase: 0 */
 	/**
 	 * Settings Endpoint.
 	 *
