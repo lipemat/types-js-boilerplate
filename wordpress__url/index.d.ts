@@ -247,6 +247,7 @@ declare module '@wordpress/url' {
 	 * Returns a URL for display.
 	 *
 	 * @param {string} url Original URL.
+	 * @param {string|null} maxLength URL length.
 	 *
 	 * @example
 	 * ```js
@@ -255,7 +256,7 @@ declare module '@wordpress/url' {
 	 *
 	 * @return {string} Displayed URL.
 	 */
-	export function filterURLForDisplay( url: string ): string;
+	export function filterURLForDisplay( url: string, maxLength?: string | null ): string;
 
 	/**
 	 * Performs some basic cleanup of a string for use as a post slug.
