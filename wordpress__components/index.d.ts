@@ -490,6 +490,23 @@ declare module '@wordpress/components' {
 		type?: string;
 	}
 
+	/**
+	 * Truncate is a typography primitive that trims text content.
+	 * For almost all cases, it is recommended that Text, Heading, or Subheading is used to render text content.
+	 *
+	 * However, Truncate is available for custom implementations.
+	 */
+	interface Truncate {
+		// The ellipsis string when truncate is set.
+		ellipsis?: string;
+		// Determines where to truncate. For example, we can truncate text right in the middle. To do this, we need to set ellipsizeMode to middle and a text limit.
+		ellipsizeMode?: 'auto' | 'head' | 'middle' | 'tail';
+		// Determines the max characters when truncate is set.
+		limit?: number;
+		// Clamps the text content to the specifiec numberOfLines, adding the ellipsis at the end.
+		numberOfLines?: number;
+	}
+
 	export interface withSpokenMessages {
 		speak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
 		debouncedSpeak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
@@ -510,6 +527,7 @@ declare module '@wordpress/components' {
 	export const Spinner: ComponentType<{}>;
 	export const TextControl: ComponentType<TextControl>;
 	export const Tooltip: Tooltip;
+	export const Truncate: Truncate;
 
 	export default interface Components {
 		Button: ComponentType<ButtonLink | ButtonButton>;
@@ -527,6 +545,7 @@ declare module '@wordpress/components' {
 		Spinner: ComponentType<{}>;
 		TextControl: ComponentType<TextControl>;
 		Tooltip: ComponentType<Tooltip>;
+		Truncate: Truncate;
 	}
 }
 
