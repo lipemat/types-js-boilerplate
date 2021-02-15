@@ -48,6 +48,7 @@ declare module '@wordpress/blocks' {
 		name: string;
 		title: string;
 		description?: string;
+		category?: string;
 		icon?: Icon;
 		isDefault?: boolean;
 		attributes?: BlockAttributes<Attr>;
