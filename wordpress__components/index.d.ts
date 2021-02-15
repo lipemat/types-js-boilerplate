@@ -1,12 +1,13 @@
 declare module '@wordpress/components' {
 	import {
-		ComponentType,
-		CSSProperties,
-		InputHTMLAttributes,
-		ReactNode,
-		SelectHTMLAttributes,
-		SVGAttributes,
-	} from 'react';
+		ButtonHTMLAttributes,
+	ComponentType,
+	CSSProperties,
+	InputHTMLAttributes,
+	ReactNode,
+	SelectHTMLAttributes,
+	SVGAttributes,
+} from 'react';
 	import {ClassNamesFn} from 'classnames/types';
 	import {SVG} from '@wordpress/primitives';
 
@@ -445,6 +446,7 @@ declare module '@wordpress/components' {
 		initialOpen?: boolean;
 		icon?: string
 		children?: ReactNode[] | ReactNode;
+		buttonProps?: ButtonHTMLAttributes<{}>;
 	}
 
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
