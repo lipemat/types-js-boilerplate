@@ -514,7 +514,7 @@ declare module '@wordpress/components' {
 		debouncedSpeak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
 	}
 
-	export const Button: ButtonLink | ButtonButton;
+	export const Button: ComponentType<ButtonLink | ButtonButton>;
 	export const CheckboxControl: ComponentType<CheckboxControl>;
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPicker: ComponentType<ColorPicker>;
