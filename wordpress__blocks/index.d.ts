@@ -80,7 +80,7 @@ declare module '@wordpress/blocks' {
 		// Specifying a color for the icon
 		foreground?: string;
 		// Specifying a dashicon for the block
-		src: string;
+		src: iconType;
 	}
 
 	/**
