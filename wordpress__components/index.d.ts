@@ -1,13 +1,14 @@
 declare module '@wordpress/components' {
 	import {
 		ButtonHTMLAttributes,
-	ComponentType,
-	CSSProperties,
-	InputHTMLAttributes,
-	ReactNode,
-	SelectHTMLAttributes,
-	SVGAttributes,
-} from 'react';
+		ComponentType,
+		CSSProperties,
+		InputHTMLAttributes,
+		MouseEvent,
+		ReactNode,
+		SelectHTMLAttributes,
+		SVGAttributes,
+	} from 'react';
 	import {ClassNamesFn} from 'classnames/types';
 	import {SVG} from '@wordpress/primitives';
 
@@ -30,6 +31,7 @@ declare module '@wordpress/components' {
 		shortcut?: shortcutText;
 		showTooltip?: boolean;
 		tooltipPosition?: tooltipPosition;
+		children?: ReactNode;
 	}
 
 	export type colorOptions = Array<{
@@ -336,11 +338,14 @@ declare module '@wordpress/components' {
 
 
 	// If href is set, we get a link.
-	interface ButtonLink extends ButtonParams, Omit<HTMLLinkElement, 'className'> {
+	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children'> {
+		href: string;
+		onClick?: MouseEvent<HTMLLinkElement>;
 	}
 
-	// If href is not set, we get a link.
-	interface ButtonButton extends ButtonParams, Omit<HTMLButtonElement, 'className'> {
+	// If href is not set, we get a button.
+	interface ButtonButton extends ButtonParams, Omit<Partial<HTMLButtonElement>, 'className' | 'children'> {
+		onClick?: MouseEvent<HTMLButtonElement>;
 	}
 
 	interface CheckboxControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
