@@ -16,7 +16,7 @@
  *       when available in WP Core.
  */
 declare module '@wordpress/icons' {
-	import {SVGAttributes} from 'react';
+	import {ComponentType, SVGAttributes} from 'react';
 
 	type IconType = JSX.Element;
 
@@ -25,6 +25,7 @@ declare module '@wordpress/icons' {
 		size?: number;
 	}
 
+	export const Icon: ComponentType<Icon>;
 
 	export const alignCenter: IconType
 	export const alignJustify: IconType
@@ -207,11 +208,8 @@ declare module '@wordpress/icons' {
 	export const widget: IconType
 	export const wordpress: IconType
 
-	export const Icon: Icon;
-
 	export default interface Icons {
-		Icon: Icon;
-
+		Icon: ComponentType<Icon>;
 
 		alignCenter: IconType
 		alignJustify: IconType
