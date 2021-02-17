@@ -1,3 +1,6 @@
+// Utilities
+import './mime';
+
 // WordPress REST API
 import './wordpress__api/ApplicationPasswords';
 import './wordpress__api/Categories';
@@ -11,6 +14,7 @@ import './wordpress__api/Types';
 import './wordpress__api/Users';
 import './wordpress__api/index';
 
+// Gutenberg
 import './wordpress__api-fetch/index';
 import './wordpress__block-editor/index';
 import './wordpress__blocks/index';
@@ -28,3 +32,4 @@ import './wordpress__url/index';
 
 // PostCSS modules.
 import './pcss/index';
+
