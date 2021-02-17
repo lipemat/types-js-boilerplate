@@ -340,12 +340,12 @@ declare module '@wordpress/components' {
 	// If href is set, we get a link.
 	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children'> {
 		href: string;
-		onClick?: MouseEvent<HTMLLinkElement>;
+		onClick?: ( ev: MouseEvent<HTMLLinkElement> ) => void;
 	}
 
 	// If href is not set, we get a button.
 	interface ButtonButton extends ButtonParams, Omit<Partial<HTMLButtonElement>, 'className' | 'children'> {
-		onClick?: MouseEvent<HTMLButtonElement>;
+		onClick?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
 	}
 
 	interface CheckboxControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {

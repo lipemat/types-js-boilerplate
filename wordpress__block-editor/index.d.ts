@@ -2,9 +2,10 @@
 // Add them as needed
 
 declare module '@wordpress/block-editor' {
-	import {ComponentType, FunctionComponent, ReactElement} from 'react';
+	import {ComponentClass, ComponentType, FunctionComponent, ReactNode} from 'react';
 	import {colorOptions, ColorPalette as PaletteComponent, PanelBody} from '@wordpress/components';
 	import {subBlocks} from '@wordpress/blocks';
+	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
 	type withColorContext = {
@@ -26,6 +27,24 @@ declare module '@wordpress/block-editor' {
 	interface InspectorControls extends FunctionComponent {
 	}
 
+	/**
+	 * Media manager opener and handler.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/media-upload
+	 */
+	interface MediaUpload {
+		allowedTypes?: Array<ALL_TYPES>;
+		multiple?: boolean;
+		value?: number | number[];
+		onClose?: () => void;
+		onSelect?: ( attachments: object | object[] ) => void;
+		title?: string;
+		modalClass?: string;
+		addToGallery?: boolean;
+		gallery?: boolean;
+		render: ( args: { open: () => void } ) => ReactNode;
+	}
+
 	interface PanelColorSettings extends PanelBody, withColorContext {
 		colorSettings: Array<Partial<ColorPaletteControl> & {
 			colors?: colorOptions;
@@ -34,7 +53,7 @@ declare module '@wordpress/block-editor' {
 
 
 	interface RichText {
-		children?: ReactElement[],
+		children?: ReactNode[],
 		className?: string;
 		value: string;
 		onChange: ( currentValue: string ) => void;
@@ -46,7 +65,7 @@ declare module '@wordpress/block-editor' {
 		// Called when the content can be split, where value is a piece of content being split off. Here you should create a new block with that content and return it. Note that you also need to provide onReplace in order for this to take any effect.
 		onSplit?: ( value: string, content?: string ) => void;
 		// Called when the RichText instance can be replaced with the given blocks.
-		onReplace?: ( blocks: ReactElement[], index?: number ) => void;
+		onReplace?: ( blocks: ReactNode[], index?: number ) => void;
 		// Called when blocks can be merged. forward is true when merging with the next block, false when merging with the previous block.
 		onMerge?: ( forward: boolean ) => void;
 		// Called when the block can be removed. forward is true when the selection is expected to move to the next block, false to the previous block.
@@ -79,6 +98,7 @@ declare module '@wordpress/block-editor' {
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
 	export const getColorClassName: getColorClassName;
 	export const InspectorControls: InspectorControls;
+	export const MediaUpload: ComponentClass<MediaUpload>;
 	export const PanelColorSettings: ComponentType<PanelColorSettings>;
 	export const RichText: ComponentType<RichText>;
 	export const InnerBlocks: InnerBlocks;
@@ -88,6 +108,7 @@ declare module '@wordpress/block-editor' {
 		ColorPaletteControl: ComponentType<ColorPaletteControl>;
 		getColorClassName: getColorClassName;
 		InspectorControls: InspectorControls;
+		MediaUpload: ComponentClass<MediaUpload>;
 		PanelColorSettings: ComponentType<PanelColorSettings>;
 		RichText: ComponentType<RichText>;
 		InnerBlocks: InnerBlocks;
