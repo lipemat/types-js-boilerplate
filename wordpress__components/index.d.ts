@@ -3,6 +3,7 @@ declare module '@wordpress/components' {
 		ButtonHTMLAttributes,
 		ComponentType,
 		CSSProperties,
+		HTMLAttributes,
 		InputHTMLAttributes,
 		MouseEvent,
 		ReactNode,
@@ -454,6 +455,19 @@ declare module '@wordpress/components' {
 		buttonProps?: ButtonHTMLAttributes<{}>;
 	}
 
+	/**
+	 * Gives a block a border an makes it occupy the minimum standard
+	 * amount of space.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/placeholder
+	 */
+	interface Placeholder extends HTMLAttributes<HTMLDivElement> {
+		icon?: iconType | JSX.Element;
+		label?: string | ReactNode;
+		instructions?: string | ReactNode;
+		isColumnLayout?: boolean;
+	}
+
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
 		help?: string;
 		label?: string;
@@ -528,6 +542,7 @@ declare module '@wordpress/components' {
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
 	export const PanelBody: ComponentType<PanelBody>;
+	export const Placeholder: ComponentType<Placeholder>;
 	export const SelectControl: ComponentType<SelectControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
@@ -546,6 +561,7 @@ declare module '@wordpress/components' {
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
 		PanelBody: ComponentType<PanelBody>;
+		Placeholder: ComponentType<Placeholder>;
 		SelectControl: ComponentType<SelectControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
