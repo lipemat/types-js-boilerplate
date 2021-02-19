@@ -1,7 +1,13 @@
 import {WpMedia} from '@lipemat/js-boilerplate/global/wp-media';
 
 /**
- * Adds the global `wp` variable to `window` definitions.
+ * Adds the global `wp` variable to `window` typescript definitions.
+ *
+ * May be accessed via `window.wp` and typescript will
+ * understand the shape.
+ *
+ * @see global/wp-media.d.ts for separate/partial use of the
+ * definitions via the exports.
  *
  * If additional declarations on the `wp` variable are needed
  * simply copy/paste this block into your project and define

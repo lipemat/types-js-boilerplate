@@ -1,6 +1,15 @@
 /**
  * `wp.media` global variable.
  *
+ * The `global.d.ts` includes these definitions as part
+ * of the `window.wp.media` variable and they may be used
+ * directly.
+ *
+ * These definitions may also be used partially or separately,
+ * via the exports.
+ *
+ * @see ../global.d.ts
+ *
  * @link https://codex.wordpress.org/Javascript_Reference/wp.media
  */
 declare module '@lipemat/js-boilerplate/global/wp-media' {
