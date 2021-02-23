@@ -3,11 +3,12 @@
 
 declare module '@wordpress/block-editor' {
 	import {ComponentClass, ComponentType, FunctionComponent, ReactNode} from 'react';
-	import {colorOptions, ColorPalette as PaletteComponent, PanelBody} from '@wordpress/components';
+	import {colorOptions, ColorPalette as PaletteComponent, PanelBody, PopoverProps} from '@wordpress/components';
 	import {subBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
+
 	type withColorContext = {
 		colors?: colorOptions;
 		disableCustomColors?: boolean
@@ -25,6 +26,21 @@ declare module '@wordpress/block-editor' {
 	}
 
 	interface InspectorControls extends FunctionComponent {
+	}
+
+	export type AlignOptions = 'left' | 'center' | 'right' | 'space-between';
+
+	/**
+	 * Justify align options control
+	 *
+	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/justify-toolbar
+	 */
+	interface JustifyToolbar {
+		allowedControls? : Array<AlignOptions>;
+		isCollapsed?: boolean;
+		onChange?: ( align: AlignOptions | undefined ) => void;
+		popoverProps?: PopoverProps;
+		value?: AlignOptions | undefined;
 	}
 
 	/**
@@ -98,6 +114,7 @@ declare module '@wordpress/block-editor' {
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
 	export const getColorClassName: getColorClassName;
 	export const InspectorControls: InspectorControls;
+	export const JustifyToolbar: ComponentType<JustifyToolbar>;
 	export const MediaUpload: ComponentClass<MediaUpload>;
 	export const PanelColorSettings: ComponentType<PanelColorSettings>;
 	export const RichText: ComponentType<RichText>;
@@ -108,6 +125,7 @@ declare module '@wordpress/block-editor' {
 		ColorPaletteControl: ComponentType<ColorPaletteControl>;
 		getColorClassName: getColorClassName;
 		InspectorControls: InspectorControls;
+		JustifyToolbar: ComponentType<JustifyToolbar>;
 		MediaUpload: ComponentClass<MediaUpload>;
 		PanelColorSettings: ComponentType<PanelColorSettings>;
 		RichText: ComponentType<RichText>;
