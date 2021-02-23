@@ -6,6 +6,7 @@ declare module '@wordpress/components' {
 		HTMLAttributes,
 		InputHTMLAttributes,
 		MouseEvent,
+		MutableRefObject,
 		PropsWithChildren,
 		ReactElement,
 		ReactNode,
@@ -471,6 +472,32 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * Floating tooltip of any content type.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/popover
+	 */
+	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+		focusOnMount? : 'firstElement' | 'container' | boolean;
+		position?:
+			'bottom left'
+			| 'bottom center'
+			| 'bottom right'
+			| 'middle left'
+			| 'middle center'
+			| 'middle right'
+			| 'top left'
+			| 'top center'
+			| 'top right';
+		onClose?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
+		onFocusOutside?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
+		expandOnMobile?: boolean;
+		headerTitle?: string;
+		noArrow?: boolean;
+		anchorRef?: MutableRefObject<any>;
+		getAnchorRect?: ( ref: MutableRefObject<any> ) => MutableRefObject<any>;
+	}
+
+	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/radio-control
 	 */
 	interface RadioControl<T> extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
@@ -559,6 +586,7 @@ declare module '@wordpress/components' {
 	export const GuidePage: ComponentType<GuidePage>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const Placeholder: ComponentType<Placeholder>;
+	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
 	export const SelectControl: ComponentType<SelectControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
@@ -579,6 +607,7 @@ declare module '@wordpress/components' {
 		GuidePage: ComponentType<GuidePage>;
 		PanelBody: ComponentType<PanelBody>;
 		Placeholder: ComponentType<Placeholder>;
+		Popover: ComponentType<PopoverProps>;
 		RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
 		SelectControl: ComponentType<SelectControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
