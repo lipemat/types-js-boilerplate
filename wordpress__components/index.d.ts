@@ -6,6 +6,8 @@ declare module '@wordpress/components' {
 		HTMLAttributes,
 		InputHTMLAttributes,
 		MouseEvent,
+		PropsWithChildren,
+		ReactElement,
 		ReactNode,
 		SelectHTMLAttributes,
 		SVGAttributes,
@@ -468,6 +470,20 @@ declare module '@wordpress/components' {
 		isColumnLayout?: boolean;
 	}
 
+	/**
+	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/radio-control
+	 */
+	interface RadioControl<T> extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
+		label?: string;
+		help?: ReactNode;
+		selected?: T,
+		options?: Array<{
+			label: string;
+			value: T
+		}>;
+		onChange?: ( value: T ) => void;
+	}
+
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
 		help?: string;
 		label?: string;
@@ -543,6 +559,7 @@ declare module '@wordpress/components' {
 	export const GuidePage: ComponentType<GuidePage>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const Placeholder: ComponentType<Placeholder>;
+	export const RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
 	export const SelectControl: ComponentType<SelectControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
@@ -562,6 +579,7 @@ declare module '@wordpress/components' {
 		GuidePage: ComponentType<GuidePage>;
 		PanelBody: ComponentType<PanelBody>;
 		Placeholder: ComponentType<Placeholder>;
+		RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
 		SelectControl: ComponentType<SelectControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
