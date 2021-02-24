@@ -8,6 +8,14 @@ declare module '@wordpress/block-editor' {
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
+	/**
+	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor#useBlockDisplayInformation
+	 */
+	type useBlockDisplayInformation = ( blockId: string ) => {
+		title: string;
+		icon: string;
+		description: string;
+	}
 
 	type withColorContext = {
 		colors?: colorOptions;
@@ -119,6 +127,7 @@ declare module '@wordpress/block-editor' {
 	export const PanelColorSettings: ComponentType<PanelColorSettings>;
 	export const RichText: ComponentType<RichText>;
 	export const InnerBlocks: InnerBlocks;
+	export const useBlockDisplayInformation: useBlockDisplayInformation;
 
 	export default interface BlockEditor {
 		ColorPalette: ComponentType<ColorPalette>;
@@ -130,5 +139,6 @@ declare module '@wordpress/block-editor' {
 		PanelColorSettings: ComponentType<PanelColorSettings>;
 		RichText: ComponentType<RichText>;
 		InnerBlocks: InnerBlocks;
+		useBlockDisplayInformation: useBlockDisplayInformation;
 	}
 }
