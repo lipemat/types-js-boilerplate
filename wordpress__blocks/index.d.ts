@@ -56,6 +56,7 @@ declare module '@wordpress/blocks' {
 		example?: BlockExample<Attr>;
 		scope?: Array<'block' | 'inserter' | 'transform'>;
 		keywords?: string[];
+		isActive?: ( attr: BlockAttributes<Attr>, variation: BlockAttributes<Attr> ) => boolean;
 	}
 
 	export type BlockExample<Attr = Object> = {
