@@ -16,7 +16,7 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 
 	export type WpMedia = {
-		( attributes: {
+		<T = ''>( attributes: {
 			frame?: 'select' | 'post' | 'manage' | 'image' | 'audio' | 'video' | 'edit-attachments';
 			title?: string;
 			/**
@@ -27,7 +27,7 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 			library?: {
 				order?: 'ASC' | 'DESC',
 				orderby?: 'name' | 'author' | 'date' | 'title' | 'modified' | 'uploadedTo' | 'id' | 'post__in' | 'menuOrder';
-				type?: ALL_TYPES;
+				type?: ( ALL_TYPES | T ) | Array<ALL_TYPES | T>;
 				search?: string;
 				uploadedTo?: number;
 			};
