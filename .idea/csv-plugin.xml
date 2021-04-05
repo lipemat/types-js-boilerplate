@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\wordpress__edit-post\index.d.ts">
+          <value>
+            <Attribute>
+              <option name="separator" value="&#9;" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\wordpress__icons\index.d.ts">
           <value>
             <Attribute>

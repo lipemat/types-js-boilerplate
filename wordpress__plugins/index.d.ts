@@ -6,6 +6,12 @@
 declare module '@wordpress/plugins' {
 	import {ComponentClass, FunctionComponent, ReactNode} from 'react';
 
+	/**
+	 * Dashicon slug or react element which renders and SVG
+	 * like the @wordpress/icons package.
+	 */
+	export type WPBlockTypeIconRender = string | ReactNode;
+
 	export type WPPlugin = {
 		name: string;
 		icon: ReactNode,
@@ -89,7 +95,7 @@ declare module '@wordpress/plugins' {
 	 *
 	 * @return {WPPlugin} The final plugin settings object.
 	 */
-	export function registerPlugin( name: string, settings: Omit<WPPlugin, 'name'> ): WPPlugin;
+	export function registerPlugin( name: string, settings: Partial<Omit<WPPlugin, 'name'>> ): WPPlugin;
 
 	/**
 	 * Unregisters a plugin by name.
@@ -108,9 +114,9 @@ declare module '@wordpress/plugins' {
 	 */
 	export function unregisterPlugin( name: string ): WPPlugin | undefined;
 
-	export interface withPluginContext {
+	export interface withPluginContextType {
 		name: string,
-		icon: ReactNode,
+		icon: WPBlockTypeIconRender;
 	}
 
 	/**
@@ -121,7 +127,7 @@ declare module '@wordpress/plugins' {
 	 *                                     expected to return object of props to
 	 *                                     merge with the component's own props.
 	 */
-	export function withPluginContext<P extends C, C = withPluginContext>(
+	export function withPluginContext<P extends C, C = withPluginContextType>(
 		mapContextToProps: ( context: C ) => Partial<P>,
 	): ( component: ReactNode ) => FunctionComponent<P>;
 

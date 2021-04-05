@@ -22,6 +22,7 @@ import './wordpress__components/index';
 import './wordpress__compose/index';
 import './wordpress__core-data/index';
 import './wordpress__data/index';
+import './wordpress__edit-post/index';
 import './wordpress__editor/index';
 import './wordpress__element/index';
 import './wordpress__hooks/index';
