@@ -161,10 +161,10 @@ declare module '@wordpress/data' {
 		updatePreferredStyleVariations: ( key?: string ) => any;
 	}
 
-	export type useSelect = <T>( callback: ( selectFunction: typeof select ) => T, deps?: Array<any> ) => T;
-	export type useDispatch = <T>( storeName: string ) => ( newValue: T ) => void;
-	export type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: object, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
-	export type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: object ) => T, component: ComponentType<T> ) => ComponentType<T>;
+	type useSelect = <T>( callback: ( selectFunction: typeof select ) => T, deps?: Array<any> ) => T;
+	type useDispatch = <T>( storeName: string ) => ( newValue: T ) => void;
+	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: object, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
+	type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: object ) => T, component: ComponentType<T> ) => ComponentType<T>;
 
 	export const AsyncModeProvider: ComponentType<{
 		value: boolean
@@ -182,5 +182,7 @@ declare module '@wordpress/data' {
 		select: typeof select;
 		useDispatch: useDispatch;
 		useSelect: useSelect;
+		withDispatch: withDispatch;
+		withSelect: withSelect;
 	}
 }
