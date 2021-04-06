@@ -163,8 +163,8 @@ declare module '@wordpress/data' {
 
 	type useSelect = <T>( callback: ( selectFunction: typeof select ) => T, deps?: Array<any> ) => T;
 	type useDispatch = <T>( storeName: string ) => ( newValue: T ) => void;
-	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: object, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
-	type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: object ) => T, component: ComponentType<T> ) => ComponentType<T>;
+	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
+	type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: T ) => T, component: ComponentType<T> ) => ComponentType<T>;
 
 	export const AsyncModeProvider: ComponentType<{
 		value: boolean
