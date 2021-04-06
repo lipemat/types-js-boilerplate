@@ -5,16 +5,17 @@
  */
 declare module '@wordpress/plugins' {
 	import {ComponentClass, FunctionComponent, ReactNode} from 'react';
+	import {iconType} from '@wordpress/components';
 
 	/**
 	 * Dashicon slug or react element which renders and SVG
 	 * like the @wordpress/icons package.
 	 */
-	export type WPBlockTypeIconRender = string | ReactNode;
+	export type WPBlockTypeIconRender = iconType | ReactNode;
 
 	export type WPPlugin = {
 		name: string;
-		icon: ReactNode,
+		icon: WPBlockTypeIconRender,
 		render: ReactNode,
 		scope: string;
 	}
