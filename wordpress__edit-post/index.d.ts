@@ -6,7 +6,7 @@
 declare module '@wordpress/edit-post' {
 	import {FunctionComponent} from 'react';
 	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
-	import {WPBlockTypeIconRender} from '@wordpress/plugins';
+	import {WPBlockTypeIconRender} from '@wordpress/components';
 
 	export interface EditPostSettings {
 		alignWide: boolean;

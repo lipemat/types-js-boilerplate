@@ -44,6 +44,12 @@ declare module '@wordpress/components' {
 		slug?: string;
 	}>;
 
+	/**
+	 * Dashicon slug or react element which renders and SVG
+	 * like the @wordpress/icons package.
+	 */
+	export type WPBlockTypeIconRender = iconType | ReactElement | null;
+
 	export type iconType =
 		'admin-appearance'
 		| 'admin-collapse'
