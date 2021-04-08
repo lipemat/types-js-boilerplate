@@ -1,3 +1,8 @@
+/**
+ * Definitions for the `@wordpress/components` package.
+ *
+ * @link https://www.npmjs.com/package/@wordpress/components
+ */
 declare module '@wordpress/components' {
 	import {
 		ButtonHTMLAttributes,
@@ -358,6 +363,9 @@ declare module '@wordpress/components' {
 		onClick?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/checkbox-control/
+	 */
 	interface CheckboxControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
 		heading?: string;
 		label?: string;
@@ -456,12 +464,23 @@ declare module '@wordpress/components' {
 	interface GuidePage {
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
+	 */
 	interface PanelBody {
 		title: string;
 		initialOpen?: boolean;
 		icon?: string
 		children?: ReactNode[] | ReactNode;
 		buttonProps?: ButtonHTMLAttributes<{}>;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelrow
+	 */
+	interface PanelRow {
+		className?: string;
+		ref?: MutableRefObject<any>;
 	}
 
 	/**
@@ -591,6 +610,7 @@ declare module '@wordpress/components' {
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
 	export const PanelBody: ComponentType<PanelBody>;
+	export const PanelRow: ComponentType<PanelRow>;
 	export const Placeholder: ComponentType<Placeholder>;
 	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
@@ -612,6 +632,7 @@ declare module '@wordpress/components' {
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
 		PanelBody: ComponentType<PanelBody>;
+		PanelRow: ComponentType<PanelRow>;
 		Placeholder: ComponentType<Placeholder>;
 		Popover: ComponentType<PopoverProps>;
 		RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
