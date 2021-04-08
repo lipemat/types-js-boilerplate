@@ -99,9 +99,9 @@ declare module '@wordpress/edit-post' {
 		className?: string,
 		icon?: WPBlockTypeIconRender,
 		isEnabled?: boolean,
+		name: string,
 		onToggle?: () => void;
 		opened?: boolean,
-		panelName?: string,
 		title: string,
 	}
 
