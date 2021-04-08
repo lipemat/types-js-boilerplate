@@ -98,10 +98,7 @@ declare module '@wordpress/edit-post' {
 	interface PluginDocumentSettingPanel {
 		className?: string,
 		icon?: WPBlockTypeIconRender,
-		isEnabled?: boolean,
 		name: string,
-		onToggle?: () => void;
-		opened?: boolean,
 		title: string,
 	}
 
@@ -164,6 +161,8 @@ declare module '@wordpress/edit-post' {
 	 * ```js
 	 * wp.data.dispatch( 'core/edit-post' ).openGeneralSidebar( 'plugin-name/sidebar-name' );
 	 * ```
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-sidebar/
 	 *
 	 * @see PluginSidebarMoreMenuItem
 	 *
