@@ -596,6 +596,15 @@ declare module '@wordpress/components' {
 		numberOfLines?: number;
 	}
 
+	/**
+	 * Allows replacement of a component using a filter.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/with-filters/
+	 *
+	 * @param hook
+	 */
+	export function withFilters( hook: string ) : ( component: ComponentType ) => void;
+
 	export interface withSpokenMessages {
 		speak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
 		debouncedSpeak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
@@ -643,6 +652,7 @@ declare module '@wordpress/components' {
 		TextControl: ComponentType<TextControl>;
 		Tooltip: ComponentType<Tooltip>;
 		Truncate: Truncate;
+		withFilters: typeof withFilters;
 	}
 }
 
