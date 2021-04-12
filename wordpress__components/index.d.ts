@@ -16,7 +16,6 @@ declare module '@wordpress/components' {
 		ReactElement,
 		ReactNode,
 		SelectHTMLAttributes,
-		SVGAttributes,
 	} from 'react';
 	import {ClassNamesFn} from 'classnames/types';
 	import {SVG} from '@wordpress/primitives';
@@ -391,10 +390,8 @@ declare module '@wordpress/components' {
 		onChangeComplete: ( currentValue: string ) => void;
 	}
 
-	interface Dashicon extends SVGAttributes<SVGElement> {
+	interface Dashicon extends HTMLAttributes<{}> {
 		icon: iconType;
-		size: boolean;
-		className: string;
 	}
 
 	interface Grid {
