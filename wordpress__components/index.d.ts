@@ -375,7 +375,6 @@ declare module '@wordpress/components' {
 	}
 
 	interface ColorPalette {
-		//	disableAlpha?: boolean; // Not available in WP Core yet as of 2019-8-11 96f7d3497e518
 		className?: string;
 		clearable?: boolean
 		disableCustomColors: boolean;
