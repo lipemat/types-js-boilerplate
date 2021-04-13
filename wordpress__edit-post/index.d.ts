@@ -7,7 +7,7 @@ declare module '@wordpress/edit-post' {
 	import {FunctionComponent} from 'react';
 	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {WPBlockTypeIconRender} from '@wordpress/components';
-	import {Post} from '@wordpress/api/posts'
+	import {Post} from '@wordpress/api/posts';
 
 	/**
 	 * Convience interface when working with Post data in the editor.
@@ -22,7 +22,18 @@ declare module '@wordpress/edit-post' {
 		excerpt: string;
 	}
 
-	export interface EditPostSettings {
+	/**
+	 * Settings used to initialize the editor.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-post/#initializeEditor
+	 *
+	 * The default settings passed to the editor may also be
+	 * filtered on the PHP side
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/filters/editor-filters/#block_editor_settings
+	 *
+	 */
+	export interface EditorSettings {
 		alignWide: boolean;
 		availableTemplates: { [ template: string ]: string };
 		allowedBlockTypes: boolean;
@@ -84,8 +95,10 @@ declare module '@wordpress/edit-post' {
 	 * @param {?Object}  initialEdits Programmatic edits to apply initially, to be
 	 *                               considered as non-user-initiated (bypass for
 	 *                               unsaved changes prompt).
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-post/#initializeEditor
 	 */
-	export function initializeEditor( id: string, postType: string, postId: number, settings: Partial<EditPostSettings>, initialEdits?: object ): void;
+	export function initializeEditor( id: string, postType: string, postId: number, settings: Partial<EditorSettings>, initialEdits?: object ): void;
 
 	/**
 	 * Renders a new item in the block settings menu.
@@ -157,6 +170,7 @@ declare module '@wordpress/edit-post' {
 	 * Renders provided content to the pre-publish side panel in the publish flow
 	 * (side panel that opens when a user first pushes "Publish" from the main editor).
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-pre-publish-panel/
 	 */
 	interface PluginPrePublishPanel {
 		className?: string;
@@ -221,8 +235,10 @@ declare module '@wordpress/edit-post' {
 	 * @param {Object}  initialEdits Programmatic edits to apply initially, to be
 	 *                               considered as non-user-initiated (bypass for
 	 *                               unsaved changes prompt).
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-post/#reinitializeEditor
 	 */
-	export function reinitializeEditor( postType: string, postId: number, target: Element, settings: Partial<EditPostSettings>, initialEdits?: object ): void;
+	export function reinitializeEditor( postType: string, postId: number, target: Element, settings: Partial<EditorSettings>, initialEdits?: object ): void;
 
 	export const PluginBlockSettingsMenuItem: FunctionComponent<PluginBlockSettingsMenuItem>;
 	export const PluginDocumentSettingPanel: FunctionComponent<PluginDocumentSettingPanel>;
