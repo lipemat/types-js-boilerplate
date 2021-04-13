@@ -84,10 +84,7 @@ declare module '@wordpress/blocks' {
 		src: iconType;
 	}
 
-	/**
-	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
-	 */
-	export type registerBlockType = <Attr, C = ''>( id: string, settings: {
+	export type BlockSettings<Attr, C = ''> = {
 		title: string;
 		description?: string;
 		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | C
@@ -160,7 +157,12 @@ declare module '@wordpress/blocks' {
 		save: ( attributes?: BlockEditProps<Attr> ) => ReactElement | null;
 		// To opt into version 2 https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 		apiVersion?: 2
-	} ) => void;
+	};
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
+	 */
+	export type registerBlockType = <Attr, C = ''>( id: string, settings: BlockSettings<Attr, C> ) => void;
 
 	/**
 	 * Register a collection to allow organizing blocks into a section based on a plugin/theme/whatever.

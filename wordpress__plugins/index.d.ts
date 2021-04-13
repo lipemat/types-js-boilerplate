@@ -58,6 +58,9 @@ declare module '@wordpress/plugins' {
 		scope: string;
 	}
 
+	export interface PluginSettings extends Partial <Omit<WPPlugin, 'name'>> {
+	}
+
 	/**
 	 * Registers a plugin to the editor.
 	 *
@@ -96,7 +99,7 @@ declare module '@wordpress/plugins' {
 	 *
 	 * @return {WPPlugin} The final plugin settings object.
 	 */
-	export function registerPlugin( name: string, settings: Partial<Omit<WPPlugin, 'name'>> ): WPPlugin;
+	export function registerPlugin( name: string, settings: PluginSettings ): WPPlugin;
 
 	/**
 	 * Unregisters a plugin by name.
