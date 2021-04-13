@@ -197,6 +197,13 @@ declare module '@wordpress/blocks' {
 	export type unregisterBlockStyle = ( blockName: string, styleVariationName: string ) => void;
 
 	/**
+	 * Unregister a block from the editor.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#unregisterBlockType
+	 */
+	export type unregisterBlockType = ( blockName: string ) => registerBlockType | undefined;
+
+	/**
 	 * Registers a new block variation for an existing block type.
 	 *
 	 * @link https://make.wordpress.org/core/2020/02/27/introduce-block-variations-api/
@@ -219,6 +226,7 @@ declare module '@wordpress/blocks' {
 	export const registerBlockStyle: registerBlockStyle;
 	export const unregisterBlockStyle: unregisterBlockStyle;
 	export const registerBlockVariation: registerBlockVariation;
+	export const unregisterBlockType: unregisterBlockType;
 	export const unregisterBlockVariation: unregisterBlockVariation;
 
 	export default interface Blocks {
@@ -227,6 +235,7 @@ declare module '@wordpress/blocks' {
 		registerBlockType: registerBlockType;
 		unregisterBlockStyle: unregisterBlockStyle;
 		registerBlockVariation: registerBlockVariation;
+		unregisterBlockType: unregisterBlockType;
 		unregisterBlockVariation: unregisterBlockVariation;
 	}
 }

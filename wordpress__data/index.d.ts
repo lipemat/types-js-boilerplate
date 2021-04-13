@@ -11,6 +11,15 @@ declare module '@wordpress/data' {
 	import {Media} from '@wordpress/api/media';
 	import {ComponentType} from 'react';
 
+	interface blockCliendId<A = {[key: string]: any}, I = []> {
+		attributes: A;
+		clientId: string;
+		innerBlocks: I | Array<blockCliendId>;
+		isValid: boolean;
+		name: string;
+		originalContent?: string;
+	}
+
 	type editPostPreferences = {
 		editorMode: 'visual' | 'text';
 		features: {
@@ -101,6 +110,13 @@ declare module '@wordpress/data' {
 		 */
 		getEditedPostAttribute: <T = PostEditing, K extends keyof T = keyof T>( attribute: K ) => T[K];
 
+		/**
+		 * Return all blocks currently in the editor.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getBlocks
+		 */
+		getBlocks: <T = Array<blockCliendId>>( state?: object, rootClientId? : string ) => T;
+
 		// @todo properly type the rest of these as needed.
 		canInsertBlockType: () => any;
 		canUserUseUnfilteredHTML: () => any;
@@ -121,7 +137,6 @@ declare module '@wordpress/data' {
 		getBlockRootClientId: () => any;
 		getBlockSelectionEnd: () => any;
 		getBlockSelectionStart: () => any;
-		getBlocks: () => any;
 		getBlocksByClientId: () => any;
 		getCachedResolvers: () => any;
 		getClientIdsOfDescendants: () => any;
@@ -308,6 +323,13 @@ declare module '@wordpress/data' {
 	export function dispatch( store: 'core/editor' ): {
 		editPost: <T = PostEditing>( data: Partial<T> ) => Promise<void>;
 
+		/**
+		 * Select a block in the editor based on id.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
+		 */
+		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number  ) => blockCliendId<A, I>;
+
 		// @todo properly type the rest of these as needed.
 		autosave: () => any;
 		clearSelectedBlock: () => any;
@@ -342,7 +364,6 @@ declare module '@wordpress/data' {
 		resetEditorBlocks: () => any;
 		resetPost: () => any;
 		savePost: () => any;
-		selectBlock: () => any;
 		setTemplateValidity: () => any;
 		setupEditor: () => any;
 		setupEditorState: () => any;
