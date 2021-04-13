@@ -11,7 +11,11 @@ declare module '@wordpress/data' {
 	import {Media} from '@wordpress/api/media';
 	import {ComponentType} from 'react';
 
-	interface blockCliendId<A = {[key: string]: any}, I = []> {
+	/**
+	 * The shape of a block mapped to an id when stored
+	 * in redux state.
+	 */
+	export interface blockCliendId<A = {[key: string]: any}, I = []> {
 		attributes: A;
 		clientId: string;
 		innerBlocks: I | Array<blockCliendId>;
@@ -20,7 +24,25 @@ declare module '@wordpress/data' {
 		originalContent?: string;
 	}
 
-	type editPostPreferences = {
+	/**
+	 * Available editor panels (non exhaustive).
+	 *
+	 * @link https://wordpress.stackexchange.com/a/339437/129914
+	 */
+	export type editorPanels =
+		'discussion-panel' |
+		'featured-image' |
+		'page-attributes' |
+		'post-excerpt' |
+		'post-link' |
+		'taxonomy-panel-category' |
+		'taxonomy-panel-post_tag' |
+		string;
+
+	/**
+	 * Preferences for the active editor.
+	 */
+	export type editPostPreferences = {
 		editorMode: 'visual' | 'text';
 		features: {
 			fixedToolbar: boolean;
@@ -288,6 +310,7 @@ declare module '@wordpress/data' {
 	 */
 	export function dispatch( store: 'core/edit-post' ): {
 		closeGeneralSidebar: () => Promise<{ type: 'CLOSE_GENERAL_SIDEBAR' }>;
+		removeEditorPanel: ( panelName: editorPanels ) => Promise<{panelName: string, type: 'REMOVE_PANEL'}>;
 		toggleFeature: <K extends keyof editPostPreferences['features']>( feature: K ) => Promise<{
 			feature: K;
 			type: 'TOGGLE_FEATURE';
@@ -305,7 +328,6 @@ declare module '@wordpress/data' {
 		openGeneralSidebar: ( key?: string ) => any;
 		openModal: ( key?: string ) => any;
 		openPublishSidebar: ( key?: string ) => any;
-		removeEditorPanel: ( key?: string ) => any;
 		requestMetaBoxUpdates: ( key?: string ) => any;
 		setAvailableMetaBoxesPerLocation: ( key?: string ) => any;
 		showBlockTypes: ( key?: string ) => any;
