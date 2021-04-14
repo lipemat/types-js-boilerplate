@@ -4,44 +4,50 @@ declare module '@wordpress/blocks' {
 
 	type dataTypes = 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
 
+
+	type AttributeShape = {
+		type: dataTypes;
+		source?: 'text' | 'html' | 'query' | 'attribute';
+		default?: any;
+		// jQuery selector of element to extract value from.
+		selector?: string;
+		// Tag to wrap each line when using "html" source and RichText with multiline prop.
+		multiline?: string;
+		// html attribute of selector element if using "attribute" source
+		attribute?: string;
+		// Extract array of values from markup using "selector" and attributes of html tags.
+		query?: {
+			[ key: string ]: {
+				type: 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
+				source: 'text' | 'html' | 'query' | 'attribute' | 'meta';
+				attribute: string;
+			}
+		}
+		// When using array types, this defines sub types.
+		items?: {
+			type: dataTypes
+		}
+		// When using object types, this defines sub types.
+		properties?: {
+			[ key: string ]: {
+				type: dataTypes
+			}
+		}
+	};
 	/**
-	 * Data shape and retrieval for blocks.
+	 * Shape and retrieval type for block data.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
 	 */
 	export type BlockAttributes<Attr> = {
-		[ key in keyof Attr ]: {
-			type: dataTypes;
-			source?: 'text' | 'html' | 'query' | 'attribute' | 'meta';
-			default?: any;
-			// jQuery selector of element to extract value from.
-			selector?: string;
+		[key in keyof Attr]: AttributeShape | Omit<AttributeShape, 'source'> & {
+			// Special meta type with `meta` requirement.
+			source: 'meta';
 			// Meta key to store/retrieve data when using `source:'meta'`.
-			meta?: string;
-			// Tag to wrap each line when using "html" source and RichText with multiline prop.
-			multiline?: string;
-			// html attribute of selector element if using "attribute" source
-			attribute?: string;
-			// Extract array of values from markup using "selector" and attributes of html tags.
-			query?: {
-				[ key: string ]: {
-					type: 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
-					source: 'text' | 'html' | 'query' | 'attribute' | 'meta';
-					attribute: string;
-				}
-			}
-			// When using array types, this defines sub types.
-			items?: {
-				type: dataTypes
-			}
-			// When using object types, this defines sub types.
-			properties?: {
-				[ key: string ]: {
-					type: dataTypes
-				}
-			}
+			meta: keyof Attr;
 		}
-	};
+	}
+
 
 	export type BlockEditProps<Attr> = {
 		className: string;
