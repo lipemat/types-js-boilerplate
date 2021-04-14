@@ -3,13 +3,21 @@ declare module '@wordpress/blocks' {
 	import {iconType} from '@wordpress/components';
 
 	type dataTypes = 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
+
+	/**
+	 * Data shape and retrieval for blocks.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
+	 */
 	export type BlockAttributes<Attr> = {
 		[ key in keyof Attr ]: {
 			type: dataTypes;
-			source?: 'text' | 'html' | 'query' | 'attribute';
+			source?: 'text' | 'html' | 'query' | 'attribute' | 'meta';
 			default?: any;
 			// jQuery selector of element to extract value from.
 			selector?: string;
+			// Meta key to store/retrieve data when using `source:'meta'`.
+			meta?: string;
 			// Tag to wrap each line when using "html" source and RichText with multiline prop.
 			multiline?: string;
 			// html attribute of selector element if using "attribute" source
@@ -153,8 +161,19 @@ declare module '@wordpress/blocks' {
 			// Set to false to Don't allow the block to be converted into a reusable block.
 			reusable?: boolean;
 		}
-		edit: ( attributes: BlockEditProps<Attr> ) => ReactElement;
-		save: ( attributes?: BlockEditProps<Attr> ) => ReactElement | null;
+		/**
+		 * Display content in the editor and make and changes to data.
+		 *
+		 * https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
+		 */
+		edit: ( params: BlockEditProps<Attr> ) => ReactElement;
+		/**
+		 * Save the finished black markup to be rendered on the site.
+		 * Return null to handle rendering on the PHP side.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
+		 */
+		save: ( params: {attributes: Attr} ) => ReactElement | null;
 		// To opt into version 2 https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 		apiVersion?: 2
 	};
