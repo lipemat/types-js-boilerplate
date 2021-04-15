@@ -78,7 +78,6 @@ declare module '@wordpress/data' {
 		hasRedo: () => boolean;
 		hasStartedResolution: () => boolean;
 		hasUndo: () => boolean;
-		hasUploadPermissions: () => boolean;
 		isAutosavingEntityRecord: () => boolean;
 		isPreviewEmbedFallback: () => boolean;
 		isRequestingEmbedPreview: () => boolean;
