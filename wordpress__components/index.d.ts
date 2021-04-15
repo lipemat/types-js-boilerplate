@@ -16,6 +16,7 @@ declare module '@wordpress/components' {
 		ReactElement,
 		ReactNode,
 		SelectHTMLAttributes,
+		TextareaHTMLAttributes,
 	} from 'react';
 	import {ClassNamesFn} from 'classnames/types';
 	import {SVG} from '@wordpress/primitives';
@@ -35,7 +36,7 @@ declare module '@wordpress/components' {
 		isSecondary?: boolean;
 		isSmall?: boolean;
 		isTertiary?: boolean;
-		label?: string;
+		label?: ReactNode;
 		shortcut?: shortcutText;
 		showTooltip?: boolean;
 		tooltipPosition?: tooltipPosition;
@@ -367,8 +368,8 @@ declare module '@wordpress/components' {
 	 */
 	interface CheckboxControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
 		heading?: string;
-		label?: string;
-		help?: string;
+		label?: ReactNode;
+		help?: ReactNode;
 		checked: boolean;
 		className?: string,
 		onChange: ( currentValue: boolean ) => void;
@@ -378,7 +379,7 @@ declare module '@wordpress/components' {
 		className?: string;
 		clearable?: boolean
 		disableCustomColors: boolean;
-		label: string;
+		label: ReactNode;
 		onChange: ( currentValue: string ) => void;
 		value: string;
 	}
@@ -487,8 +488,8 @@ declare module '@wordpress/components' {
 	 */
 	interface Placeholder extends HTMLAttributes<HTMLDivElement> {
 		icon?: iconType | JSX.Element;
-		label?: string | ReactNode;
-		instructions?: string | ReactNode;
+		label?: ReactNode;
+		instructions?: ReactNode;
 		isColumnLayout?: boolean;
 	}
 
@@ -522,7 +523,7 @@ declare module '@wordpress/components' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/radio-control
 	 */
 	interface RadioControl<T> extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
-		label?: string;
+		label?: ReactNode;
 		help?: ReactNode;
 		selected?: T,
 		options?: Array<{
@@ -533,8 +534,8 @@ declare module '@wordpress/components' {
 	}
 
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
-		help?: string;
-		label?: string;
+		help?: ReactNode;
+		label?: ReactNode;
 		multiple?: boolean;
 		onChange: ( currentValue: string ) => void;
 		options?: Array<{
@@ -564,16 +565,32 @@ declare module '@wordpress/components' {
 		shortcut?: shortcutText;
 	}
 
-	interface TextControl extends Omit<InputHTMLAttributes<{}>, 'onChange' | 'onKeyPress'> {
-		label?: string;
-		help?: string;
-		hideLabelFromVision?: boolean
-		value: string | number;
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/text-control/
+	 */
+	interface TextControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
 		className?: string,
+		help?: ReactNode;
+		hideLabelFromVision?: boolean
+		label?: ReactNode;
 		onChange: ( currentValue: string ) => void;
-		onKeyPress?: ( ev: KeyboardEvent ) => void;
 		type?: string;
+		value: string | number;
 	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/textarea-control/
+	 */
+	interface TextareaControl extends Omit<TextareaHTMLAttributes<{}>, 'onChange'> {
+		className?: string,
+		help?: ReactNode;
+		hideLabelFromVision?: boolean
+		label?: ReactNode;
+		onChange: ( currentValue: string ) => void;
+		rows?: number;
+		value: string | number;
+	}
+
 
 	/**
 	 * Truncate is a typography primitive that trims text content.
@@ -624,6 +641,7 @@ declare module '@wordpress/components' {
 	export const Shortcut: ComponentType<Shortcut>;
 	export const Spinner: ComponentType<{}>;
 	export const TextControl: ComponentType<TextControl>;
+	export const TextareaControl: ComponentType<TextareaControl>;
 	export const Tooltip: Tooltip;
 	export const Truncate: Truncate;
 
@@ -646,6 +664,7 @@ declare module '@wordpress/components' {
 		Shortcut: ComponentType<Shortcut>;
 		Spinner: ComponentType<{}>;
 		TextControl: ComponentType<TextControl>;
+		TextareaControl: ComponentType<TextareaControl>;
 		Tooltip: ComponentType<Tooltip>;
 		Truncate: Truncate;
 		withFilters: typeof withFilters;
