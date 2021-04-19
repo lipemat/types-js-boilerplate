@@ -15,7 +15,7 @@ declare module '@wordpress/data' {
 	 * The shape of a block mapped to an id when stored
 	 * in redux state.
 	 */
-	export interface blockCliendId<A = {[key: string]: any}, I = []> {
+	export interface blockCliendId<A = { [ key: string ]: any }, I = []> {
 		attributes: A;
 		clientId: string;
 		innerBlocks: I | Array<blockCliendId>;
@@ -108,9 +108,19 @@ declare module '@wordpress/data' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/
 	 */
 	export function select( store: 'core/editor' ): {
+		/**
+		 * Returns the post currently being edited in its last known saved state, not
+including unsaved edits.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getCurrentPost
+		 */
 		getCurrentPost: <T = PostEditing>() => T;
+		/**
+		 * Returns the post type of the post currently being edited.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getCurrentPostType
+		 */
 		getCurrentPostType: () => string;
-
 		/**
 		 * Returns a property value from the saved post.
 		 * Does not account for current unsaved edits.
@@ -120,9 +130,13 @@ declare module '@wordpress/data' {
 		 * @see getEditedPostAttribute
 		 */
 		getCurrentPostAttribute: <T = PostEditing, K extends keyof T = keyof T>( attribute: K ) => T[K];
-
+		/**
+		 * Returns the ID of the post currently being edited, or null if the post has
+not yet been saved.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getCurrentPostId
+		 */
 		getCurrentPostId: () => number;
-
 		/**
 		 * Returns a property value from post being edited.
 		 * Will return unsaved edits.
@@ -130,13 +144,24 @@ declare module '@wordpress/data' {
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getEditedPostAttribute
 		 */
 		getEditedPostAttribute: <T = PostEditing, K extends keyof T = keyof T>( attribute: K ) => T[K];
-
 		/**
 		 * Return all blocks currently in the editor.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getBlocks
 		 */
-		getBlocks: <T = Array<blockCliendId>>( state?: object, rootClientId? : string ) => T;
+		getBlocks: <T = Array<blockCliendId>>( state?: object, rootClientId?: string ) => T;
+		/**
+		 * Is the current post locked.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#isPostLocked
+		 */
+		isPostLocked: () => boolean;
+		/**
+		 * Is saving locked for the current post?
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#isPostSavingLocked
+		 */
+		isPostSavingLocked: () => boolean;
 
 		// @todo properly type the rest of these as needed.
 		canInsertBlockType: () => any;
@@ -227,8 +252,6 @@ declare module '@wordpress/data' {
 		isPermalinkEditable: () => any;
 		isPostAutosavingLocked: () => any;
 		isPostLockTakeover: () => any;
-		isPostLocked: () => any;
-		isPostSavingLocked: () => any;
 		isPreviewingPost: () => any;
 		isPublishSidebarEnabled: () => any;
 		isPublishingPost: () => any;
@@ -309,7 +332,7 @@ declare module '@wordpress/data' {
 	 */
 	export function dispatch( store: 'core/edit-post' ): {
 		closeGeneralSidebar: () => Promise<{ type: 'CLOSE_GENERAL_SIDEBAR' }>;
-		removeEditorPanel: ( panelName: editorPanels ) => Promise<{panelName: string, type: 'REMOVE_PANEL'}>;
+		removeEditorPanel: ( panelName: editorPanels ) => Promise<{ panelName: string, type: 'REMOVE_PANEL' }>;
 		toggleFeature: <K extends keyof editPostPreferences['features']>( feature: K ) => Promise<{
 			feature: K;
 			type: 'TOGGLE_FEATURE';
@@ -339,17 +362,48 @@ declare module '@wordpress/data' {
 		updatePreferredStyleVariations: ( key?: string ) => any;
 	}
 	/**
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#actions
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#actions
 	 */
 	export function dispatch( store: 'core/editor' ): {
+		/**
+		 * Edit the post within state.
+		 *
+		 * Non persistant until the post is saved.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#editPost
+		 */
 		editPost: <T = PostEditing>( data: Partial<T> ) => Promise<void>;
-
+		/**
+		 * Lock a post to prevent saving.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#lockPostSaving
+		 *
+		 * @param {string} lockName - Used later to unlock saving.
+		 * @see unlockPostSaving
+		 */
+		lockPostSaving: ( lockName: string ) => Promise<{
+			lockName: string;
+			type: 'LOCK_POST_SAVING';
+		}>;
 		/**
 		 * Select a block in the editor based on id.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
 		 */
-		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number  ) => blockCliendId<A, I>;
+		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => blockCliendId<A, I>;
+		/**
+		 * Unlock a post's saving ability.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#unlockPostSaving
+		 *
+		 * @param {string} lockName - Must match name used with `lockPostSaving`.
+		 *
+		 * @see lockPostSaving
+		 */
+		unlockPostSaving: ( lockName: string ) => Promise<{
+			lockName: string;
+			type: 'UNLOCK_POST_SAVING';
+		}>;
 
 		// @todo properly type the rest of these as needed.
 		autosave: () => any;
@@ -368,7 +422,6 @@ declare module '@wordpress/data' {
 		invalidateResolutionForStore: () => any;
 		invalidateResolutionForStoreSelector: () => any;
 		lockPostAutosaving: () => any;
-		lockPostSaving: () => any;
 		mergeBlocks: () => any;
 		moveBlockToPosition: () => any;
 		moveBlocksDown: () => any;
@@ -400,7 +453,6 @@ declare module '@wordpress/data' {
 		trashPost: () => any;
 		undo: () => any;
 		unlockPostAutosaving: () => any;
-		unlockPostSaving: () => any;
 		updateBlock: () => any;
 		updateBlockAttributes: () => any;
 		updateBlockListSettings: () => any;
