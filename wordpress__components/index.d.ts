@@ -215,6 +215,7 @@ declare module '@wordpress/components' {
 		| 'heading'
 		| 'heart'
 		| 'hidden'
+		| 'hourglass'
 		| 'html'
 		| 'id-alt'
 		| 'id'
