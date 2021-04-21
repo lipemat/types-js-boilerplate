@@ -523,25 +523,26 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/radio-control
 	 */
-	interface RadioControl<T> extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
+	interface RadioControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
 		label?: ReactNode;
 		help?: ReactNode;
-		selected?: T,
-		options?: Array<{
+		selected: string | number;
+		options: Array<{
 			label: string;
-			value: T
+			value: string | number;
 		}>;
-		onChange?: ( value: T ) => void;
+		onChange?: ( value: string ) => void;
 	}
 
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
 		help?: ReactNode;
 		label?: ReactNode;
 		multiple?: boolean;
+		value: string | number;
 		onChange: ( currentValue: string ) => void;
-		options?: Array<{
+		options: Array<{
 			label: string;
-			value: string;
+			value: string | number;
 			disabled?: boolean
 		}>;
 		className?: string,
@@ -636,7 +637,7 @@ declare module '@wordpress/components' {
 	export const PanelRow: ComponentType<PanelRow>;
 	export const Placeholder: ComponentType<Placeholder>;
 	export const Popover: ComponentType<PopoverProps>;
-	export const RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
+	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 	export const SelectControl: ComponentType<SelectControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
@@ -659,7 +660,7 @@ declare module '@wordpress/components' {
 		PanelRow: ComponentType<PanelRow>;
 		Placeholder: ComponentType<Placeholder>;
 		Popover: ComponentType<PopoverProps>;
-		RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
+		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 		SelectControl: ComponentType<SelectControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
