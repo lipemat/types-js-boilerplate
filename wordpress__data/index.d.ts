@@ -145,11 +145,13 @@ not yet been saved.
 		 */
 		getEditedPostAttribute: <T = PostEditing, K extends keyof T = keyof T>( attribute: K ) => T[K];
 		/**
-		 * Return all blocks currently in the editor.
-		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getBlocks
+		 * @deprecated
 		 */
 		getBlocks: <T = Array<blockCliendId>>( state?: object, rootClientId?: string ) => T;
+		/**
+		 * @deprecated
+		 */
+		getSelectedBlockClientId: () => null | string;
 		/**
 		 * Is the current post locked.
 		 *
@@ -211,7 +213,6 @@ not yet been saved.
 		getPostLockUser: () => any;
 		getPreviousBlockClientId: () => any;
 		getSelectedBlock: () => any;
-		getSelectedBlockClientId: () => any;
 		getSelectedBlockCount: () => any;
 		getSelectedBlocksInitialCaretPosition: () => any;
 		getSuggestedPostFormat: () => any;
@@ -261,6 +262,108 @@ not yet been saved.
 		isTyping: () => any;
 		isValidTemplate: () => any;
 	}
+
+	/**
+	 * The Block Editor’s Data
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectors
+	 */
+	export function select( store: 'core/block-editor' ) : {
+		/**
+		 * Return all blocks currently in the editor.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getBlocks
+		 */
+		getBlocks: <T = Array<blockCliendId>>( state?: object, rootClientId?: string ) => T;
+		/**
+		 * Returns the currently selected block client ID, or null if there is no
+selected block.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getSelectedBlockClientId
+		 */
+		getSelectedBlockClientId: () => null | string;
+		/**
+		 * Returns the current selection set of block client IDs (multiselection or single selection).
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getSelectedBlockClientIds
+		 */
+		getSelectedBlockClientIds: () => string[];
+
+
+		// @todo properly type the rest of these as needed.
+		areInnerBlocksControlled: () => any;
+		canInsertBlockType: () => any;
+		canInsertBlocks: () => any;
+		didAutomaticChange: () => any;
+		getAdjacentBlockClientId: () => any;
+		getBlock: () => any;
+		getBlockAttributes: () => any;
+		getBlockCount: () => any;
+		getBlockHierarchyRootClientId: () => any;
+		getBlockIndex: () => any;
+		getBlockInsertionPoint: () => any;
+		getBlockListSettings: () => any;
+		getBlockMode: () => any;
+		getBlockName: () => any;
+		getBlockOrder: () => any;
+		getBlockParents: () => any;
+		getBlockParentsByBlockName: () => any;
+		getBlockRootClientId: () => any;
+		getBlockSelectionEnd: () => any;
+		getBlockSelectionStart: () => any;
+		getBlockTransformItems: () => any;
+		getBlocksByClientId: () => any;
+		getCachedResolvers: () => any;
+		getClientIdsOfDescendants: () => any;
+		getClientIdsWithDescendants: () => any;
+		getDraggedBlockClientIds: () => any;
+		getFirstMultiSelectedBlockClientId: () => any;
+		getGlobalBlockCount: () => any;
+		getInserterItems: () => any;
+		getIsResolving: () => any;
+		getLastMultiSelectedBlockClientId: () => any;
+		getLowestCommonAncestorWithSelectedBlock: () => any;
+		getMultiSelectedBlockClientIds: () => any;
+		getMultiSelectedBlocks: () => any;
+		getMultiSelectedBlocksEndClientId: () => any;
+		getMultiSelectedBlocksStartClientId: () => any;
+		getNextBlockClientId: () => any;
+		getPreviousBlockClientId: () => any;
+		getSelectedBlock: () => any;
+		getSelectedBlockCount: () => any;
+		getSelectedBlocksInitialCaretPosition: () => any;
+		getSelectionEnd: () => any;
+		getSelectionStart: () => any;
+		getSettings: () => any;
+		getTemplate: () => any;
+		getTemplateLock: () => any;
+		hasBlockMovingClientId: () => any;
+		hasFinishedResolution: () => any;
+		hasInserterItems: () => any;
+		hasMultiSelection: () => any;
+		hasSelectedBlock: () => any;
+		hasSelectedInnerBlock: () => any;
+		hasStartedResolution: () => any;
+		isAncestorBeingDragged: () => any;
+		isAncestorMultiSelected: () => any;
+		isBlockBeingDragged: () => any;
+		isBlockHighlighted: () => any;
+		isBlockInsertionPointVisible: () => any;
+		isBlockMultiSelected: () => any;
+		isBlockSelected: () => any;
+		isBlockValid: () => any;
+		isBlockWithinSelection: () => any;
+		isCaretWithinFormattedText: () => any;
+		isDraggingBlocks: () => any;
+		isFirstMultiSelectedBlock: () => any;
+		isLastBlockChangePersistent: () => any;
+		isMultiSelecting: () => any;
+		isNavigationMode: () => any;
+		isResolving: () => any;
+		isSelectionEnabled: () => any;
+		isTyping: () => any;
+		isValidTemplate: () => any;
+	}
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-post/
 	 */
@@ -298,6 +401,9 @@ not yet been saved.
 		[ selector: string ]: ( key?: string | number ) => any;
 	}>( store: string ): Methods;
 
+	export function dispatch<Methods extends {
+		[ selector: string ]: ( key?: string | number ) => any;
+	}>( store: string ): Methods;
 
 	export function dispatch( store: 'core' ): {
 		// @todo properly type the rest of these as needed.
@@ -327,6 +433,83 @@ not yet been saved.
 		startResolution: ( key?: string ) => any;
 		undo: ( key?: string ) => any;
 	}
+
+	/**
+	 * The Block Editor’s Data
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#actions
+	 */
+	export function dispatch( store: 'core/block-editor' ): {
+		/**
+		 * Select a block in the editor based on id.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
+		 */
+		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => blockCliendId<A, I>;
+		/**
+		 * Unselect all blocks.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#clearSelectedBlock
+		 */
+		clearSelectedBlock: () => Promise<{
+			type: 'CLEAR_SELECTED_BLOCK';
+		}>;
+
+        // @todo properly type the rest of these as needed.
+		duplicateBlocks: ( key?: string ) => any;
+		enterFormattedText: ( key?: string ) => any;
+		exitFormattedText: ( key?: string ) => any;
+		finishResolution: ( key?: string ) => any;
+		flashBlock: ( key?: string ) => any;
+		hideInsertionPoint: ( key?: string ) => any;
+		insertAfterBlock: ( key?: string ) => any;
+		insertBeforeBlock: ( key?: string ) => any;
+		insertBlock: ( key?: string ) => any;
+		insertBlocks: ( key?: string ) => any;
+		insertDefaultBlock: ( key?: string ) => any;
+		invalidateResolution: ( key?: string ) => any;
+		invalidateResolutionForStore: ( key?: string ) => any;
+		invalidateResolutionForStoreSelector: ( key?: string ) => any;
+		mergeBlocks: ( key?: string ) => any;
+		moveBlockToPosition: ( key?: string ) => any;
+		moveBlocksDown: ( key?: string ) => any;
+		moveBlocksToPosition: ( key?: string ) => any;
+		moveBlocksUp: ( key?: string ) => any;
+		multiSelect: ( key?: string ) => any;
+		receiveBlocks: ( key?: string ) => any;
+		removeBlock: ( key?: string ) => any;
+		removeBlocks: ( key?: string ) => any;
+		replaceBlock: ( key?: string ) => any;
+		replaceBlocks: ( key?: string ) => any;
+		replaceInnerBlocks: ( key?: string ) => any;
+		resetBlocks: ( key?: string ) => any;
+		resetSelection: ( key?: string ) => any;
+		selectNextBlock: ( key?: string ) => any;
+		selectPreviousBlock: ( key?: string ) => any;
+		selectionChange: ( key?: string ) => any;
+		setBlockMovingClientId: ( key?: string ) => any;
+		setHasControlledInnerBlocks: ( key?: string ) => any;
+		setNavigationMode: ( key?: string ) => any;
+		setTemplateValidity: ( key?: string ) => any;
+		showInsertionPoint: ( key?: string ) => any;
+		startDraggingBlocks: ( key?: string ) => any;
+		startMultiSelect: ( key?: string ) => any;
+		startResolution: ( key?: string ) => any;
+		startTyping: ( key?: string ) => any;
+		stopDraggingBlocks: ( key?: string ) => any;
+		stopMultiSelect: ( key?: string ) => any;
+		stopTyping: ( key?: string ) => any;
+		synchronizeTemplate: ( key?: string ) => any;
+		toggleBlockHighlight: ( key?: string ) => any;
+		toggleBlockMode: ( key?: string ) => any;
+		toggleSelection: ( key?: string ) => any;
+		updateBlock: ( key?: string ) => any;
+		updateBlockAttributes: ( key?: string ) => any;
+		updateBlockListSettings: ( key?: string ) => any;
+		updateSettings: ( key?: string ) => any;
+		validateBlocksToTemplate: ( key?: string ) => any;
+	}
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#actions
 	 */
@@ -366,6 +549,12 @@ not yet been saved.
 	 */
 	export function dispatch( store: 'core/editor' ): {
 		/**
+		 * @deprecated
+		 */
+		clearSelectedBlock: () => Promise<{
+			type: 'CLEAR_SELECTED_BLOCK';
+		}>;
+		/**
 		 * Edit the post within state.
 		 *
 		 * Non persistant until the post is saved.
@@ -386,9 +575,7 @@ not yet been saved.
 			type: 'LOCK_POST_SAVING';
 		}>;
 		/**
-		 * Select a block in the editor based on id.
-		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
+		 * @deprecated
 		 */
 		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => blockCliendId<A, I>;
 		/**
@@ -407,7 +594,6 @@ not yet been saved.
 
 		// @todo properly type the rest of these as needed.
 		autosave: () => any;
-		clearSelectedBlock: () => any;
 		createUndoLevel: () => any;
 		disablePublishSidebar: () => any;
 		enablePublishSidebar: () => any;
@@ -459,7 +645,6 @@ not yet been saved.
 		updateEditorSettings: () => any;
 		updatePostLock: () => any;
 	}
-	export function dispatch<T>( store: string ): T;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useSelect
