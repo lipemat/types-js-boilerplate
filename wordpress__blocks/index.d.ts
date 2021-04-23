@@ -3,37 +3,51 @@ declare module '@wordpress/blocks' {
 	import {iconType} from '@wordpress/components';
 
 	type dataTypes = 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
-	export type BlockAttributes<Attr> = {
-		[ key in keyof Attr ]: {
-			type: dataTypes;
-			source?: 'text' | 'html' | 'query' | 'attribute';
-			default?: any;
-			// jQuery selector of element to extract value from.
-			selector?: string;
-			// Tag to wrap each line when using "html" source and RichText with multiline prop.
-			multiline?: string;
-			// html attribute of selector element if using "attribute" source
-			attribute?: string;
-			// Extract array of values from markup using "selector" and attributes of html tags.
-			query?: {
-				[ key: string ]: {
-					type: 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
-					source: 'text' | 'html' | 'query' | 'attribute' | 'meta';
-					attribute: string;
-				}
+
+
+	type AttributeShape = {
+		type: dataTypes;
+		source?: 'text' | 'html' | 'query' | 'attribute';
+		default?: any;
+		// jQuery selector of element to extract value from.
+		selector?: string;
+		// Tag to wrap each line when using "html" source and RichText with multiline prop.
+		multiline?: string;
+		// html attribute of selector element if using "attribute" source
+		attribute?: string;
+		// Extract array of values from markup using "selector" and attributes of html tags.
+		query?: {
+			[ key: string ]: {
+				type: 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
+				source: 'text' | 'html' | 'query' | 'attribute' | 'meta';
+				attribute: string;
 			}
-			// When using array types, this defines sub types.
-			items?: {
+		}
+		// When using array types, this defines sub types.
+		items?: {
+			type: dataTypes
+		}
+		// When using object types, this defines sub types.
+		properties?: {
+			[ key: string ]: {
 				type: dataTypes
-			}
-			// When using object types, this defines sub types.
-			properties?: {
-				[ key: string ]: {
-					type: dataTypes
-				}
 			}
 		}
 	};
+	/**
+	 * Shape and retrieval type for block data.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
+	 */
+	export type BlockAttributes<Attr> = {
+		[key in keyof Attr]: AttributeShape | Omit<AttributeShape, 'source'> & {
+		// Special meta type with `meta` requirement.
+		source: 'meta';
+		// Meta key to store/retrieve data when using `source:'meta'`.
+		meta: keyof Attr;
+	}
+	}
+
 
 	export type BlockEditProps<Attr> = {
 		className: string;
@@ -73,7 +87,7 @@ declare module '@wordpress/blocks' {
 		isDefault?: boolean;
 	};
 
-	export type subBlocks = Array<[ string, Object, subBlocks?]>;
+	export type subBlocks = Array<[ string, Object, subBlocks? ]>;
 
 	type Icon = iconType | {
 		// Specifying a background color to appear with the icon e.g.: in the inserter.
@@ -84,10 +98,7 @@ declare module '@wordpress/blocks' {
 		src: iconType;
 	}
 
-	/**
-	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
-	 */
-	export type registerBlockType = <Attr, C = ''>( id: string, settings: {
+	export type BlockSettings<Attr, C = ''> = {
 		title: string;
 		description?: string;
 		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | C
@@ -156,11 +167,27 @@ declare module '@wordpress/blocks' {
 			// Set to false to Don't allow the block to be converted into a reusable block.
 			reusable?: boolean;
 		}
-		edit: ( attributes: BlockEditProps<Attr> ) => ReactElement;
-		save: ( attributes?: BlockEditProps<Attr> ) => ReactElement | null;
+		/**
+		 * Display content in the editor and make and changes to data.
+		 *
+		 * https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
+		 */
+		edit: ( params: BlockEditProps<Attr> ) => ReactElement;
+		/**
+		 * Save the finished black markup to be rendered on the site.
+		 * Return null to handle rendering on the PHP side.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
+		 */
+		save: ( params: { attributes: Attr } ) => ReactElement | null;
 		// To opt into version 2 https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 		apiVersion?: 2
-	} ) => void;
+	};
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
+	 */
+	export function registerBlockType<Attr, C = ''>( id: string, settings: BlockSettings<Attr, C> ): void;
 
 	/**
 	 * Register a collection to allow organizing blocks into a section based on a plugin/theme/whatever.
@@ -171,10 +198,10 @@ declare module '@wordpress/blocks' {
 	 *                    within this collection. e.g. "lipe"
 	 * @param {Object} settings
 	 */
-	export type registerBlockCollection = ( namespace: string, settings: {
+	export function registerBlockCollection( namespace: string, settings: {
 		title: string;
 		icon?: Icon;
-	} ) => void;
+	} ): void;
 
 	/**
 	 * Registers a new block style variation for the given block.
@@ -184,7 +211,7 @@ declare module '@wordpress/blocks' {
 	 * @param {string} blockName      Name of block (example: “core/latest-posts”).
 	 * @param {Object} styleVariation
 	 */
-	export type registerBlockStyle = ( blockName: string, styleVariation: StyleVariation ) => void;
+	export function registerBlockStyle( blockName: string, styleVariation: StyleVariation ): void;
 
 	/**
 	 * Unregisters a block style variation for the given block.
@@ -194,7 +221,14 @@ declare module '@wordpress/blocks' {
 	 * @param {string} blockName - Name of block (example: “core/latest-posts”).
 	 * @param {string} styleVariationName - Name of CSS class applied to the block.
 	 */
-	export type unregisterBlockStyle = ( blockName: string, styleVariationName: string ) => void;
+	export function unregisterBlockStyle( blockName: string, styleVariationName: string ): void;
+
+	/**
+	 * Unregister a block from the editor.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#unregisterBlockType
+	 */
+	export function unregisterBlockType( blockName: string ): BlockSettings<object> | undefined;
 
 	/**
 	 * Registers a new block variation for an existing block type.
@@ -204,7 +238,7 @@ declare module '@wordpress/blocks' {
 	 * @param blockName - Name of the block (example: “core/columns”).
 	 * @param variation - Object describing a block variation.
 	 */
-	export type registerBlockVariation = <Attr>( blockName: string, variation: BlockVariation<Attr> ) => void;
+	export function registerBlockVariation<Attr>( blockName: string, variation: BlockVariation<Attr> ): void;
 
 	/**
 	 * Unregisters a block variation defined for an existing block type.
@@ -212,21 +246,15 @@ declare module '@wordpress/blocks' {
 	 * @param blockName - Name of the block (example: “core/columns”).
 	 * @param variationName - Name of the variation defined for the block.
 	 */
-	export type unregisterBlockVariation = ( blockName: string, variationName: string ) => void;
-
-	export const registerBlockCollection: registerBlockCollection;
-	export const registerBlockType: registerBlockType;
-	export const registerBlockStyle: registerBlockStyle;
-	export const unregisterBlockStyle: unregisterBlockStyle;
-	export const registerBlockVariation: registerBlockVariation;
-	export const unregisterBlockVariation: unregisterBlockVariation;
+	export function unregisterBlockVariation( blockName: string, variationName: string ): void;
 
 	export default interface Blocks {
-		registerBlockCollection: registerBlockCollection;
-		registerBlockStyle: registerBlockStyle;
-		registerBlockType: registerBlockType;
-		unregisterBlockStyle: unregisterBlockStyle;
-		registerBlockVariation: registerBlockVariation;
-		unregisterBlockVariation: unregisterBlockVariation;
+		registerBlockCollection: typeof registerBlockCollection;
+		registerBlockStyle: typeof registerBlockStyle;
+		registerBlockType: typeof registerBlockType;
+		unregisterBlockStyle: typeof unregisterBlockStyle;
+		registerBlockVariation: typeof registerBlockVariation;
+		unregisterBlockType: typeof unregisterBlockType;
+		unregisterBlockVariation: typeof unregisterBlockVariation;
 	}
 }

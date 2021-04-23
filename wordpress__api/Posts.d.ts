@@ -123,12 +123,17 @@ declare module '@wordpress/api/posts' {
 		before?: string;
 		exclude?: number[];
 		include?: number[];
+		modified_before?: string;
+		modified_after?: string;
 		offset?: number;
 		order?: order;
 		orderby?: 'author' | 'date' | 'id' | 'include' | 'modified' | 'relevance' | 'slug' | 'include_slugs' | 'title';
 		slug?: string;
 		status?: PostStatus;
-		categories?: number[];
+		categories?: number[] | {
+			terms: number[];
+			include_children?: boolean;
+		};
 		categories_exclude?: number[];
 		tags?: number[];
 		tags_exclude?: number[];

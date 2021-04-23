@@ -1,11 +1,16 @@
-// While incomplete, this prevents PHPStorm from finding the rest of the available items.
-// Add them as needed
-
+/**
+ * Block editor elements and utilities.
+ *
+ * Supports stand alone block editors, or work with WP core ones.
+ *
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/
+ */
 declare module '@wordpress/block-editor' {
-	import {ComponentClass, ComponentType, FunctionComponent, ReactNode} from 'react';
+	import {ComponentClass, ComponentType, FunctionComponent, HTMLAttributes, MutableRefObject, ReactNode} from 'react';
 	import {colorOptions, ColorPalette as PaletteComponent, PanelBody, PopoverProps} from '@wordpress/components';
 	import {subBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
+
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
 	/**
@@ -15,6 +20,21 @@ declare module '@wordpress/block-editor' {
 		title: string;
 		icon: string;
 		description: string;
+	}
+
+	type BlockWrapAttributes = HTMLAttributes<HTMLDivElement | HTMLParagraphElement> & {
+		ref?: MutableRefObject<any>;
+	};
+
+	/**
+	 * Receive html props to add to wrapper element when using `apiVersion:2`.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useBlockProps
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
+	 */
+	type useBlockProps = {
+		save: ( props?: BlockWrapAttributes ) => BlockWrapAttributes,
+		( props?: BlockWrapAttributes ): BlockWrapAttributes;
 	}
 
 	type withColorContext = {
@@ -44,7 +64,7 @@ declare module '@wordpress/block-editor' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/justify-toolbar
 	 */
 	interface JustifyToolbar {
-		allowedControls? : Array<AlignOptions>;
+		allowedControls?: Array<AlignOptions>;
 		isCollapsed?: boolean;
 		onChange?: ( align: AlignOptions | undefined ) => void;
 		popoverProps?: PopoverProps;
@@ -128,6 +148,7 @@ declare module '@wordpress/block-editor' {
 	export const RichText: ComponentType<RichText>;
 	export const InnerBlocks: InnerBlocks;
 	export const useBlockDisplayInformation: useBlockDisplayInformation;
+	export const useBlockProps: useBlockProps;
 
 	export default interface BlockEditor {
 		ColorPalette: ComponentType<ColorPalette>;
@@ -140,5 +161,6 @@ declare module '@wordpress/block-editor' {
 		RichText: ComponentType<RichText>;
 		InnerBlocks: InnerBlocks;
 		useBlockDisplayInformation: useBlockDisplayInformation;
+		useBlockProps: useBlockProps;
 	}
 }

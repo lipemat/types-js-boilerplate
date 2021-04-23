@@ -1,3 +1,8 @@
+/**
+ * Definitions for the `@wordpress/components` package.
+ *
+ * @link https://www.npmjs.com/package/@wordpress/components
+ */
 declare module '@wordpress/components' {
 	import {
 		ButtonHTMLAttributes,
@@ -11,7 +16,7 @@ declare module '@wordpress/components' {
 		ReactElement,
 		ReactNode,
 		SelectHTMLAttributes,
-		SVGAttributes,
+		TextareaHTMLAttributes,
 	} from 'react';
 	import {ClassNamesFn} from 'classnames/types';
 	import {SVG} from '@wordpress/primitives';
@@ -31,7 +36,7 @@ declare module '@wordpress/components' {
 		isSecondary?: boolean;
 		isSmall?: boolean;
 		isTertiary?: boolean;
-		label?: string;
+		label?: ReactNode;
 		shortcut?: shortcutText;
 		showTooltip?: boolean;
 		tooltipPosition?: tooltipPosition;
@@ -43,6 +48,12 @@ declare module '@wordpress/components' {
 		name: string;
 		slug?: string;
 	}>;
+
+	/**
+	 * Dashicon slug or react element which renders and SVG
+	 * like the @wordpress/icons package.
+	 */
+	export type WPBlockTypeIconRender = iconType | ReactElement | null;
 
 	export type iconType =
 		'admin-appearance'
@@ -204,6 +215,7 @@ declare module '@wordpress/components' {
 		| 'heading'
 		| 'heart'
 		| 'hidden'
+		| 'hourglass'
 		| 'html'
 		| 'id-alt'
 		| 'id'
@@ -352,21 +364,23 @@ declare module '@wordpress/components' {
 		onClick?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/checkbox-control/
+	 */
 	interface CheckboxControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
 		heading?: string;
-		label?: string;
-		help?: string;
+		label?: ReactNode;
+		help?: ReactNode;
 		checked: boolean;
 		className?: string,
 		onChange: ( currentValue: boolean ) => void;
 	}
 
 	interface ColorPalette {
-		//	disableAlpha?: boolean; // Not available in WP Core yet as of 2019-8-11 96f7d3497e518
 		className?: string;
 		clearable?: boolean
 		disableCustomColors: boolean;
-		label: string;
+		label: ReactNode;
 		onChange: ( currentValue: string ) => void;
 		value: string;
 	}
@@ -377,10 +391,8 @@ declare module '@wordpress/components' {
 		onChangeComplete: ( currentValue: string ) => void;
 	}
 
-	interface Dashicon extends SVGAttributes<SVGElement> {
+	interface Dashicon extends HTMLAttributes<{}> {
 		icon: iconType;
-		size: boolean;
-		className: string;
 	}
 
 	interface Grid {
@@ -450,12 +462,23 @@ declare module '@wordpress/components' {
 	interface GuidePage {
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
+	 */
 	interface PanelBody {
 		title: string;
 		initialOpen?: boolean;
 		icon?: string
 		children?: ReactNode[] | ReactNode;
 		buttonProps?: ButtonHTMLAttributes<{}>;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelrow
+	 */
+	interface PanelRow {
+		className?: string;
+		ref?: MutableRefObject<any>;
 	}
 
 	/**
@@ -466,8 +489,8 @@ declare module '@wordpress/components' {
 	 */
 	interface Placeholder extends HTMLAttributes<HTMLDivElement> {
 		icon?: iconType | JSX.Element;
-		label?: string | ReactNode;
-		instructions?: string | ReactNode;
+		label?: ReactNode;
+		instructions?: ReactNode;
 		isColumnLayout?: boolean;
 	}
 
@@ -500,25 +523,26 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/radio-control
 	 */
-	interface RadioControl<T> extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
-		label?: string;
+	interface RadioControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
+		label?: ReactNode;
 		help?: ReactNode;
-		selected?: T,
-		options?: Array<{
+		selected: string | number;
+		options: Array<{
 			label: string;
-			value: T
+			value: string | number;
 		}>;
-		onChange?: ( value: T ) => void;
+		onChange?: ( value: string ) => void;
 	}
 
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
-		help?: string;
-		label?: string;
+		help?: ReactNode;
+		label?: ReactNode;
 		multiple?: boolean;
+		value: string | number;
 		onChange: ( currentValue: string ) => void;
-		options?: Array<{
+		options: Array<{
 			label: string;
-			value: string;
+			value: string | number;
 			disabled?: boolean
 		}>;
 		className?: string,
@@ -543,16 +567,32 @@ declare module '@wordpress/components' {
 		shortcut?: shortcutText;
 	}
 
-	interface TextControl extends Omit<InputHTMLAttributes<{}>, 'onChange' | 'onKeyPress'> {
-		label?: string;
-		help?: string;
-		hideLabelFromVision?: boolean
-		value: string | number;
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/text-control/
+	 */
+	interface TextControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
 		className?: string,
+		help?: ReactNode;
+		hideLabelFromVision?: boolean
+		label?: ReactNode;
 		onChange: ( currentValue: string ) => void;
-		onKeyPress?: ( ev: KeyboardEvent ) => void;
 		type?: string;
+		value: string | number;
 	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/textarea-control/
+	 */
+	interface TextareaControl extends Omit<TextareaHTMLAttributes<{}>, 'onChange'> {
+		className?: string,
+		help?: ReactNode;
+		hideLabelFromVision?: boolean
+		label?: ReactNode;
+		onChange: ( currentValue: string ) => void;
+		rows?: number;
+		value: string | number;
+	}
+
 
 	/**
 	 * Truncate is a typography primitive that trims text content.
@@ -571,6 +611,15 @@ declare module '@wordpress/components' {
 		numberOfLines?: number;
 	}
 
+	/**
+	 * Allows replacement of a component using a filter.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/with-filters/
+	 *
+	 * @param hook
+	 */
+	export function withFilters( hook: string ) : ( component: ComponentType ) => void;
+
 	export interface withSpokenMessages {
 		speak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
 		debouncedSpeak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
@@ -585,14 +634,16 @@ declare module '@wordpress/components' {
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
 	export const PanelBody: ComponentType<PanelBody>;
+	export const PanelRow: ComponentType<PanelRow>;
 	export const Placeholder: ComponentType<Placeholder>;
 	export const Popover: ComponentType<PopoverProps>;
-	export const RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
+	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 	export const SelectControl: ComponentType<SelectControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
 	export const Spinner: ComponentType<{}>;
 	export const TextControl: ComponentType<TextControl>;
+	export const TextareaControl: ComponentType<TextareaControl>;
 	export const Tooltip: Tooltip;
 	export const Truncate: Truncate;
 
@@ -606,16 +657,19 @@ declare module '@wordpress/components' {
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
 		PanelBody: ComponentType<PanelBody>;
+		PanelRow: ComponentType<PanelRow>;
 		Placeholder: ComponentType<Placeholder>;
 		Popover: ComponentType<PopoverProps>;
-		RadioControl: <T>( props: PropsWithChildren<RadioControl<T>> ) => ReactElement<any, any> | null;
+		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 		SelectControl: ComponentType<SelectControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
 		Spinner: ComponentType<{}>;
 		TextControl: ComponentType<TextControl>;
+		TextareaControl: ComponentType<TextareaControl>;
 		Tooltip: ComponentType<Tooltip>;
 		Truncate: Truncate;
+		withFilters: typeof withFilters;
 	}
 }
 
