@@ -544,7 +544,10 @@ selected block.
 		togglePublishSidebar: ( key?: string ) => any;
 		updatePreferredStyleVariations: ( key?: string ) => any;
 	}
+
 	/**
+	 * The Post Editor’s Data
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#actions
 	 */
 	export function dispatch( store: 'core/editor' ): {
@@ -561,7 +564,7 @@ selected block.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#editPost
 		 */
-		editPost: <T = PostEditing>( data: Partial<T> ) => Promise<void>;
+		editPost: <T = PostEditing>( data: Partial<T> ) => Promise<undefined>;
 		/**
 		 * Lock a post to prevent saving.
 		 *
@@ -574,6 +577,16 @@ selected block.
 			lockName: string;
 			type: 'LOCK_POST_SAVING';
 		}>;
+		/**
+		 * Save post in editor in it's current state.
+		 *
+		 * Will not change a post's status not show success messages unless you call
+		 * `editPost({ status: 'publish' | 'future' | 'draft' | 'pending' | 'private'>}`
+		 * before calling savePost.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#savePost
+		 */
+		savePost: () => Promise<undefined>;
 		/**
 		 * @deprecated
 		 */
@@ -623,7 +636,6 @@ selected block.
 		resetBlocks: () => any;
 		resetEditorBlocks: () => any;
 		resetPost: () => any;
-		savePost: () => any;
 		setTemplateValidity: () => any;
 		setupEditor: () => any;
 		setupEditorState: () => any;
