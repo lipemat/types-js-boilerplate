@@ -28,7 +28,7 @@ declare module '@wordpress/api/search' {
 		page?: number;
 		// Defaults to 10.
 		per_page?: number;
-		search: string;
+		search?: string;
 		// Defaults to 'post'.
 		type?: 'post' | 'term' | 'post-format';
 		subtype?: 'post' | 'page' | 'category' | 'post_tag';
