@@ -1,6 +1,6 @@
 {
   "name": "@types/lipemat__js-boilerplate",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "External TypeScript definitions for @lipemat/js-boilerplate and plugins",
   "typings": "index.d.ts",
   "repository": {
@@ -18,6 +18,7 @@
     "@types/jest": "^24.0.19",
     "@types/jquery": "^3.5.5",
     "@types/js-cookie": "^2.2.4",
+    "@types/lodash": "^4.14.168",
     "@types/react": "^16.14.3",
     "@types/react-dom": "^16.9.10",
     "@types/react-router-dom": "^4.3.4",
