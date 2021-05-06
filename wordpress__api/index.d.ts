@@ -13,6 +13,7 @@ declare module '@wordpress/api' {
 	export * from '@wordpress/api/media';
 	export * from '@wordpress/api/posts';
 	export * from '@wordpress/api/pages';
+	export * from '@wordpress/api/search';
 	export * from '@wordpress/api/settings';
 	export * from '@wordpress/api/taxonomies';
 	export * from '@wordpress/api/types';
@@ -32,10 +33,10 @@ declare module '@wordpress/api' {
 	}
 
 	export interface Links {
-		self: Collection[];
+		self: Collection[] | Embeddable[];
 		collection: Collection[];
 		about: Collection[],
-		curies: [ {
+		curies?: [ {
 			name: string;
 			href: string;
 			templated: boolean;
