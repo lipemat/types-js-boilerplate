@@ -23,7 +23,7 @@ declare module '@wordpress/api/search' {
 	/**
 	 * @link https://developer.wordpress.org/rest-api/reference/search-results/#list-search-results
 	 */
-	export interface SearchQuery extends Global<SearchItem> {
+	export interface SearchQuery extends Omit<Global<SearchItem>, '_embed'> {
 		// Defaults to 1.
 		page?: number;
 		// Defaults to 10.
@@ -32,6 +32,6 @@ declare module '@wordpress/api/search' {
 		// Defaults to 'post'.
 		type?: 'post' | 'term' | 'post-format';
 		subtype?: 'post' | 'page' | 'category' | 'post_tag';
-		embed?: 'self';
+		_embed?: 'self' | true;
 	}
 }
