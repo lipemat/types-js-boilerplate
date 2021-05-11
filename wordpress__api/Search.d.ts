@@ -31,7 +31,7 @@ declare module '@wordpress/api/search' {
 		search?: string;
 		// Defaults to 'post'.
 		type?: 'post' | 'term' | 'post-format';
-		subtype?: 'post' | 'page' | 'category' | 'post_tag';
+		subtype?: 'post' | 'page' | 'category' | 'post_tag' | 'any';
 		_embed?: 'self' | true;
 	}
 }
