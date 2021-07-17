@@ -22,6 +22,9 @@ declare module '@wordpress/api' {
 	export type context = 'view' | 'embed' | 'edit';
 	export type order = 'asc' | 'desc';
 	export type method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'OPTIONS';
+	export type meta = {
+		[ key: string ]: any;
+	}
 
 	export interface Collection {
 		href: string;
