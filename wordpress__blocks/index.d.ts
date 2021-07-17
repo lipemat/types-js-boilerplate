@@ -34,6 +34,7 @@ declare module '@wordpress/blocks' {
 			}
 		}
 	};
+
 	/**
 	 * Shape and retrieval type for block data.
 	 *
@@ -48,7 +49,6 @@ declare module '@wordpress/blocks' {
 	}
 	}
 
-
 	export type BlockEditProps<Attr> = {
 		className: string;
 		setAttributes: ( newValue: {
@@ -58,6 +58,11 @@ declare module '@wordpress/blocks' {
 		isSelected: boolean
 	}
 
+	/**
+	 * Block Variation shape.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/
+	 */
 	export type BlockVariation<Attr = Object> = {
 		name: string;
 		title: string;
@@ -70,7 +75,7 @@ declare module '@wordpress/blocks' {
 		example?: BlockExample<Attr>;
 		scope?: Array<'block' | 'inserter' | 'transform'>;
 		keywords?: string[];
-		isActive?: ( attr: BlockAttributes<Attr>, variation: BlockAttributes<Attr> ) => boolean;
+		isActive?: ( ( attr: BlockAttributes<Attr>, variation: BlockAttributes<Attr> ) => boolean ) | Array<keyof Attr>;
 	}
 
 	export type BlockExample<Attr = Object> = {
@@ -233,7 +238,7 @@ declare module '@wordpress/blocks' {
 	/**
 	 * Registers a new block variation for an existing block type.
 	 *
-	 * @link https://make.wordpress.org/core/2020/02/27/introduce-block-variations-api/
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/
 	 *
 	 * @param blockName - Name of the block (example: “core/columns”).
 	 * @param variation - Object describing a block variation.
