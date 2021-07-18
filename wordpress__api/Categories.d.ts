@@ -52,6 +52,6 @@ declare module '@wordpress/api/categories' {
 		hide_empty?: boolean;
 		parent?: number;
 		post?: number;
-		slug: string | string[];
+		slug?: string | string[];
 	}
 }
