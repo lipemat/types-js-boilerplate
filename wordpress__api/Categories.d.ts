@@ -33,7 +33,7 @@ declare module '@wordpress/api/categories' {
 	/**
 	 * https://developer.wordpress.org/rest-api/reference/categories/#update-a-category
 	 */
-	export interface CategoryUpdate extends CategoryCreate {
+	export interface CategoryUpdate extends Partial<CategoryCreate> {
 		id: number;
 	}
 
