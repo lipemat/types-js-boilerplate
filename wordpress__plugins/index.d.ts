@@ -16,7 +16,7 @@ declare module '@wordpress/plugins' {
 		name: string;
 		icon: WPBlockTypeIconRender,
 		render: ReactNode,
-		// Used for organization purposes like getPlugins().
+		// Used to load only on specific areas.
 		scope: string;
 	}
 
