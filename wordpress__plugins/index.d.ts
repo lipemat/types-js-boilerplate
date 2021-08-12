@@ -11,12 +11,15 @@ declare module '@wordpress/plugins' {
 	 * @notice If `icon` is not set to `null` during `registerPlugin`,
 	 *         using `null` for individual slot fills won't work
 	 *         because `icon` will be inherited from `registerPlugin`.
+	 *
+	 * @notice If a scope is specified, the plugin will only be rendered
+	 *         in a matching PluginArea. Currently, WP core does not provide
+	 *         and scoped areas, so only use `scope` if adding a custom one.
 	 */
 	export type WPPlugin = {
 		name: string;
 		icon: WPBlockTypeIconRender,
 		render: ReactNode,
-		// Used to load only on specific areas.
 		scope: string;
 	}
 
