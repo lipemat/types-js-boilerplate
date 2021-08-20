@@ -27,6 +27,9 @@ declare module '@wordpress/data' {
 	/**
 	 * Available editor panels (non exhaustive).
 	 *
+	 * @notice Meta boxes have a `meta-box-` prefix before
+	 *         their id. (e.g. meta-box-lipe_project_box)
+	 *
 	 * @link https://wordpress.stackexchange.com/a/339437/129914
 	 */
 	export type editorPanels =
