@@ -514,8 +514,19 @@ selected block.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#actions
 	 */
 	export function dispatch( store: 'core/edit-post' ): {
-		closeGeneralSidebar: () => Promise<{ type: 'CLOSE_GENERAL_SIDEBAR' }>;
-		removeEditorPanel: ( panelName: editorPanels ) => Promise<{ panelName: string, type: 'REMOVE_PANEL' }>;
+		closeGeneralSidebar: () => Promise<{
+			type: 'CLOSE_GENERAL_SIDEBAR'
+		}>;
+		// Remove a panel from UI.
+		removeEditorPanel: ( panelName: editorPanels ) => Promise<{
+			panelName: editorPanels,
+			type: 'REMOVE_PANEL'
+		}>;
+		// Hide/Show a panel in the UI, same as toggling panel in preferences.
+		toggleEditorPanelEnabled: ( key: editorPanels ) => Promise<{
+			panelName: editorPanels,
+			type: 'TOGGLE_PANEL_ENABLED',
+		}>;
 		toggleFeature: <K extends keyof editPostPreferences['features']>( feature: K ) => Promise<{
 			feature: K;
 			type: 'TOGGLE_FEATURE';
@@ -538,7 +549,6 @@ selected block.
 		showBlockTypes: ( key?: string ) => any;
 		startResolution: ( key?: string ) => any;
 		switchEditorMode: ( key?: string ) => any;
-		toggleEditorPanelEnabled: ( key?: string ) => any;
 		toggleEditorPanelOpened: ( key?: string ) => any;
 		togglePinnedPluginItem: ( key?: string ) => any;
 		togglePublishSidebar: ( key?: string ) => any;
