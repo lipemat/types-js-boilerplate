@@ -20,6 +20,11 @@ declare module '@wordpress/api/posts' {
 	export type PostMeta = {
 		[ key: string ]: any;
 	}
+	export type TaxQuery = {
+		terms: number[];
+		include_children?: boolean;
+		operator?: 'OR' | 'AND'; // WP 5.8+.
+	}
 
 	/**
 	 * Posts Endpoint.
@@ -130,12 +135,9 @@ declare module '@wordpress/api/posts' {
 		orderby?: 'author' | 'date' | 'id' | 'include' | 'modified' | 'relevance' | 'slug' | 'include_slugs' | 'title';
 		slug?: string;
 		status?: PostStatus;
-		categories?: number[] | {
-			terms: number[];
-			include_children?: boolean;
-		};
+		categories?: number[] | TaxQuery;
 		categories_exclude?: number[];
-		tags?: number[];
+		tags?: number[] | TaxQuery;
 		tags_exclude?: number[];
 		tax_relation?: 'OR' | 'AND';
 		sticky?: boolean;

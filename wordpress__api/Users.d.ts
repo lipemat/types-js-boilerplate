@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 declare module '@wordpress/api/users' {
-	import {Links, order, Global} from '@wordpress/api';
+	import {Global, Links, order} from '@wordpress/api';
 
 	/**
 	 * Users Endpoint.
@@ -41,6 +41,17 @@ declare module '@wordpress/api/users' {
 	}
 
 	/**
+	 * User fields returned when creating, editing, or retrieving a user
+	 * under the 'edit' context.
+	 *
+	 * @link https://developer.wordpress.org/rest-api/reference/users/#schema
+	 */
+	export interface UserEditContext extends Required<UserCreate>, User {
+
+	}
+
+
+	/**
 	 * User Update
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/users/#update-a-user-2
@@ -48,6 +59,7 @@ declare module '@wordpress/api/users' {
 	export interface UserUpdate extends Partial<Omit<UserCreate, 'username'>> {
 		id?: number;
 	}
+
 
 
 	/**

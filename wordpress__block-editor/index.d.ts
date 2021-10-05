@@ -37,6 +37,18 @@ declare module '@wordpress/block-editor' {
 		( props?: BlockWrapAttributes ): BlockWrapAttributes;
 	}
 
+	/**
+	 * Retrieve a setting from the theme.json file.
+	 *
+	 * May retrieve WP core or custom settings.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#usesetting
+	 * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/
+	 */
+	type useSetting = {
+		( path: string ): any;
+	}
+
 	type withColorContext = {
 		colors?: colorOptions;
 		disableCustomColors?: boolean
@@ -149,6 +161,7 @@ declare module '@wordpress/block-editor' {
 	export const InnerBlocks: InnerBlocks;
 	export const useBlockDisplayInformation: useBlockDisplayInformation;
 	export const useBlockProps: useBlockProps;
+	export const useSetting: useSetting;
 
 	export default interface BlockEditor {
 		ColorPalette: ComponentType<ColorPalette>;
@@ -162,5 +175,6 @@ declare module '@wordpress/block-editor' {
 		InnerBlocks: InnerBlocks;
 		useBlockDisplayInformation: useBlockDisplayInformation;
 		useBlockProps: useBlockProps;
+		useSetting: useSetting;
 	}
 }
