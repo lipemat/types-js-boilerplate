@@ -27,9 +27,9 @@ declare module '@wordpress/block-editor' {
 	};
 
 	/**
-	 * Receive html props to add to wrapper element when using `apiVersion:2`.
+	 * Receive HTML props to add to wrapper element when using `apiVersion:2`.
 	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useBlockProps
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
 	 */
 	type useBlockProps = {

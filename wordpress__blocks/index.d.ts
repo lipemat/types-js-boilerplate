@@ -23,11 +23,11 @@ declare module '@wordpress/blocks' {
 				attribute: string;
 			}
 		}
-		// When using array types, this defines sub types.
+		// When using array types, this defines subtypes.
 		items?: {
 			type: dataTypes
 		}
-		// When using object types, this defines sub types.
+		// When using object types, this defines subtypes.
 		properties?: {
 			[ key: string ]: {
 				type: dataTypes
@@ -78,6 +78,11 @@ declare module '@wordpress/blocks' {
 		isActive?: ( ( attr: BlockAttributes<Attr>, variation: BlockAttributes<Attr> ) => boolean ) | Array<keyof Attr>;
 	}
 
+	/**
+	 * Placeholder data for block previews/examples.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/#example-optional
+	 */
 	export type BlockExample<Attr = Object> = {
 		attributes: Attr;
 		innerBlocks?: Array<{
@@ -86,11 +91,79 @@ declare module '@wordpress/blocks' {
 		}>;
 	};
 
+	/**
+	 * Create block shape.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
+	 */
+	export type CreateBlock<Attr = Object> = {
+		attributes: Attr;
+		clientId: string;
+		innerBlocks: Array<CreateBlock>;
+		isValid: boolean;
+		name: string;
+	}
+
 	export type StyleVariation = {
 		name: string;
 		label: string;
 		isDefault?: boolean;
 	};
+
+	/**
+	 * Block transformations configuration.
+	 *
+	 * @since 1.7.0
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-transforms/
+	 */
+	export type Transforms<T, Attr> = {
+		type: 'block';
+		blocks: Array<string | '*'>;
+		transform: ( attributes: T, innerBlocks: subBlocks ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
+		isMatch?: ( attributes: T, block: CreateBlock<Attr> ) => boolean;
+		isMultiBlock?: boolean;
+		priority?: number;
+	}
+
+	/**
+	 * Transforms only available for `from`.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-transforms/
+	 */
+	export type TransformsFrom<Attr> = {
+		type: 'enter';
+		regExp: RegExp;
+		transform: ( value: string ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
+		priority?: number;
+	} | {
+		type: 'files';
+		transform: ( files: Array<string> ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
+		isMatch?: ( files: Array<string> ) => boolean;
+		priority?: number;
+	} | {
+		type: 'prefix';
+		transform: ( content: string ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
+		priority?: number;
+	} | {
+		type: 'raw';
+		transform: ( node: Node ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
+		isMatch?: ( node: Node ) => boolean;
+		schema?: Object | ( () => Object );
+		selector?: string;
+		priority?: number;
+	} | {
+		type: 'shortcode';
+		tag: string | Array<string>;
+		attributes: {
+			[key in keyof Attr]: AttributeShape &
+			{
+				shortcode?: ( attr: Partial<Attr> ) => dataTypes;
+			};
+		};
+		isMatch: ( attr: Partial<Attr> ) => boolean;
+		priority?: number;
+	}
 
 	export type subBlocks = Array<[ string, Object, subBlocks? ]>;
 
@@ -103,7 +176,7 @@ declare module '@wordpress/blocks' {
 		src: iconType;
 	}
 
-	export type BlockSettings<Attr, C = ''> = {
+	export type BlockSettings<Attr, C = '', T = Attr> = {
 		title: string;
 		description?: string;
 		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | C
@@ -119,11 +192,10 @@ declare module '@wordpress/blocks' {
 		attributes?: BlockAttributes<Attr>;
 		example?: BlockExample<Attr>;
 		variations?: Array<BlockVariation<Attr>>;
-		// @todo type this if we end up ever using it.
 		transforms?: {
-			from: any
-			to: any
-		}
+			from?: Array<Transforms<T, Attr> | TransformsFrom<Attr>>;
+			to?: Array<Transforms<T, Attr>>;
+		};
 		// Setting parent lets a block require that it is only available when nested within the specified blocks.
 		parent?: string[];
 		/**
@@ -135,11 +207,11 @@ declare module '@wordpress/blocks' {
 			align?: boolean | [ 'left' | 'right' | 'full' ]
 			// Remove the support for wide alignment.
 			alignWide?: boolean;
-			// Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link.
+			// Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block, and a button to copy the direct link.
 			anchor?: boolean;
-			// Set to false to Remove the support for the custom className.
+			// False removes the support for the custom className.
 			customClassName?: boolean;
-			// Set to false to Remove the support for the generated className.
+			// False removes the support for the generated className.
 			className?: boolean;
 			/**
 			 * Support color selections.
@@ -188,6 +260,13 @@ declare module '@wordpress/blocks' {
 		// To opt into version 2 https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 		apiVersion?: 2
 	};
+
+	/**
+	 * Create a block object from a block's configuration.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblock
+	 */
+	export function createBlock<Attr>( id: string, attributes: Attr, InnerBlocks?: Array<subBlocks> ): CreateBlock<Attr>;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
@@ -254,6 +333,7 @@ declare module '@wordpress/blocks' {
 	export function unregisterBlockVariation( blockName: string, variationName: string ): void;
 
 	export default interface Blocks {
+		createBlock: typeof createBlock;
 		registerBlockCollection: typeof registerBlockCollection;
 		registerBlockStyle: typeof registerBlockStyle;
 		registerBlockType: typeof registerBlockType;

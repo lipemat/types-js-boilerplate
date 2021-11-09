@@ -46,7 +46,7 @@ declare module '@wordpress/api/users' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/users/#schema
 	 */
-	export interface UserEditContext extends Required<UserCreate>, User {
+	export interface UserEditContext extends Required<Omit<UserCreate, 'password'>>, User {
 
 	}
 
