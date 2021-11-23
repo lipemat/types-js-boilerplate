@@ -463,12 +463,26 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/keyboard-shortcuts/
+	 */
+	interface KeyboardShortcuts {
+		bindGlobal?: boolean;
+		children?: ReactNode[] | ReactNode;
+		eventName?: string;
+		shortcuts: {
+			[ command: string ]: ( event: KeyboardEvent & {
+				returnValue: boolean;
+			}, command: string ) => void
+		};
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
 	 */
 	interface PanelBody {
 		title: string;
 		initialOpen?: boolean;
-		icon?: string
+		icon?: string;
 		children?: ReactNode[] | ReactNode;
 		buttonProps?: ButtonHTMLAttributes<{}>;
 	}
@@ -500,7 +514,7 @@ declare module '@wordpress/components' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/popover
 	 */
 	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-		focusOnMount? : 'firstElement' | 'container' | boolean;
+		focusOnMount?: 'firstElement' | 'container' | boolean;
 		position?:
 			'bottom left'
 			| 'bottom center'
@@ -618,7 +632,7 @@ declare module '@wordpress/components' {
 	 *
 	 * @param hook
 	 */
-	export function withFilters( hook: string ) : ( component: ComponentType ) => void;
+	export function withFilters( hook: string ): ( component: ComponentType ) => void;
 
 	export interface withSpokenMessages {
 		speak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
@@ -633,6 +647,7 @@ declare module '@wordpress/components' {
 	export const Grid: ComponentType<Grid>;
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
+	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const PanelRow: ComponentType<PanelRow>;
 	export const Placeholder: ComponentType<Placeholder>;
@@ -656,6 +671,7 @@ declare module '@wordpress/components' {
 		Grid: ComponentType<Grid>;
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
+		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 		PanelBody: ComponentType<PanelBody>;
 		PanelRow: ComponentType<PanelRow>;
 		Placeholder: ComponentType<Placeholder>;
@@ -672,4 +688,3 @@ declare module '@wordpress/components' {
 		withFilters: typeof withFilters;
 	}
 }
-
