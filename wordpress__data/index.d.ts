@@ -1,3 +1,4 @@
+
 /**
  * Definitions for the `@wordpress/data` package.
  *
@@ -9,6 +10,7 @@ declare module '@wordpress/data' {
 	import {Settings} from '@wordpress/api/settings';
 	import {Type} from '@wordpress/api/types';
 	import {Media} from '@wordpress/api/media';
+	import {Action, NoticeOptions, Status} from '@wordpress/notices';
 	import {ComponentType} from 'react';
 
 	/**
@@ -418,13 +420,21 @@ not yet been saved.
 		isPluginItemPinned: ( key?: string ) => any;
 		isResolving: ( key?: string ) => any;
 		isSavingMetaBoxes: ( key?: string ) => any;
-
 	}
-	export function select<Methods extends {
-		[ selector: string ]: ( key?: string | number ) => any;
-	}>( store: string ): Methods;
 
-	export function dispatch<Methods extends {
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-notices/#selectors
+	 */
+	export function select( store: 'core/notices' ): {
+		getCachedResolvers: () => any;
+		getIsResolving: () => any;
+		getNotices: () => any;
+		hasFinishedResolution: () => any;
+		hasStartedResolution: () => any;
+		isResolving: () => any;
+	}
+
+	export function select<Methods extends {
 		[ selector: string ]: ( key?: string | number ) => any;
 	}>( store: string ): Methods;
 
@@ -690,6 +700,32 @@ not yet been saved.
 		updateEditorSettings: () => any;
 		updatePostLock: () => any;
 	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-notices/#actions
+	 */
+	export function dispatch( store: 'core/notices' ): {
+		createNotice: ( status: Status, content: string, options?: NoticeOptions ) => Action;
+		createErrorNotice: ( content: string, options?: NoticeOptions ) => Action;
+		createInfoNotice: ( content: string, options?: NoticeOptions ) => Action;
+		createSuccessNotice: ( content: string, options?: NoticeOptions ) => Action;
+		createWarningNotice: ( content: string, options?: NoticeOptions ) => Action;
+
+		// @todo Define these as needed.
+		finishResolution: ( ...args ) => any;
+		finishResolutions: ( ...args ) => any;
+		invalidateResolution: ( ...args ) => any;
+		invalidateResolutionForStore: ( ...args ) => any;
+		invalidateResolutionForStoreSelector: ( ...args ) => any;
+		removeNotice: ( ...args ) => any;
+		startResolution: ( ...args ) => any;
+		startResolutions: ( ...args ) => any;
+	}
+
+	export function dispatch<Methods extends {
+		[ selector: string ]: ( key?: string | number ) => any;
+	}>( store: string ): Methods;
+
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useSelect

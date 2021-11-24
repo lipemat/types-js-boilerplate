@@ -1,6 +1,7 @@
 declare module '@wordpress/blocks' {
 	import {ReactElement} from 'react';
 	import {iconType} from '@wordpress/components';
+	import {blockCliendId} from '@wordpress/data';
 
 	type dataTypes = 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
 
@@ -261,6 +262,11 @@ declare module '@wordpress/blocks' {
 		apiVersion?: 2
 	};
 
+
+	export type WPBlockSerializationOptions = {
+		isInnerBlocks: boolean;
+	}
+
 	/**
 	 * Create a block object from a block's configuration.
 	 *
@@ -325,6 +331,11 @@ declare module '@wordpress/blocks' {
 	export function registerBlockVariation<Attr>( blockName: string, variation: BlockVariation<Attr> ): void;
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#serialize
+	 */
+	export function serialize( blocks: Array<blockCliendId>, options?: WPBlockSerializationOptions ): string;
+
+	/**
 	 * Unregisters a block variation defined for an existing block type.
 	 *
 	 * @param blockName - Name of the block (example: “core/columns”).
@@ -339,6 +350,7 @@ declare module '@wordpress/blocks' {
 		registerBlockType: typeof registerBlockType;
 		unregisterBlockStyle: typeof unregisterBlockStyle;
 		registerBlockVariation: typeof registerBlockVariation;
+		serialize: typeof serialize;
 		unregisterBlockType: typeof unregisterBlockType;
 		unregisterBlockVariation: typeof unregisterBlockVariation;
 	}
