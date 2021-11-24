@@ -1,3 +1,4 @@
+
 /**
  * Definitions for the `@wordpress/data` package.
  *
@@ -9,6 +10,7 @@ declare module '@wordpress/data' {
 	import {Settings} from '@wordpress/api/settings';
 	import {Type} from '@wordpress/api/types';
 	import {Media} from '@wordpress/api/media';
+	import {Action, NoticeOptions, Status} from '@wordpress/notices';
 	import {ComponentType} from 'react';
 
 	/**
@@ -271,7 +273,7 @@ not yet been saved.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectors
 	 */
-	export function select( store: 'core/block-editor' ) : {
+	export function select( store: 'core/block-editor' ): {
 		/**
 		 * Return all blocks currently in the editor.
 		 *
@@ -279,14 +281,37 @@ not yet been saved.
 		 */
 		getBlocks: <T = Array<blockCliendId>>( state?: object, rootClientId?: string ) => T;
 		/**
-		 * Returns the currently selected block client ID, or null if there is no
-selected block.
+		 * Returns the currently selected block client ID or null
+		 * if no or only one block is selected.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getmultiselectedblockclientids
+		 */
+		getMultiSelectedBlockClientIds: () => null | Array<string>;
+		/**
+		 * Returns the currently selected blocks or null if no or
+		 * only one block is selected.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getmultiselectedblocks
+		 */
+		getMultiSelectedBlocks: () => null | Array<blockCliendId>;
+		/**
+		 * Returns the currently selected block or null if no or
+		 * multiple blocks are selected.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getselectedblock
+		 */
+		getSelectedBlock: () => null | blockCliendId;
+		/**
+		 * Returns the currently selected block client ID, or null
+		 * if there are no or multiple selected blocks.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getSelectedBlockClientId
 		 */
 		getSelectedBlockClientId: () => null | string;
 		/**
-		 * Returns the current selection set of block client IDs (multiselection or single selection).
+		 * Returns the current selection set of block client IDs
+		 * (multiselection or single selection).
+		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getSelectedBlockClientIds
 		 */
 		getSelectedBlockClientIds: () => string[];
@@ -325,13 +350,10 @@ selected block.
 		getIsResolving: () => any;
 		getLastMultiSelectedBlockClientId: () => any;
 		getLowestCommonAncestorWithSelectedBlock: () => any;
-		getMultiSelectedBlockClientIds: () => any;
-		getMultiSelectedBlocks: () => any;
 		getMultiSelectedBlocksEndClientId: () => any;
 		getMultiSelectedBlocksStartClientId: () => any;
 		getNextBlockClientId: () => any;
 		getPreviousBlockClientId: () => any;
-		getSelectedBlock: () => any;
 		getSelectedBlockCount: () => any;
 		getSelectedBlocksInitialCaretPosition: () => any;
 		getSelectionEnd: () => any;
@@ -398,13 +420,21 @@ selected block.
 		isPluginItemPinned: ( key?: string ) => any;
 		isResolving: ( key?: string ) => any;
 		isSavingMetaBoxes: ( key?: string ) => any;
-
 	}
-	export function select<Methods extends {
-		[ selector: string ]: ( key?: string | number ) => any;
-	}>( store: string ): Methods;
 
-	export function dispatch<Methods extends {
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-notices/#selectors
+	 */
+	export function select( store: 'core/notices' ): {
+		getCachedResolvers: () => any;
+		getIsResolving: () => any;
+		getNotices: () => any;
+		hasFinishedResolution: () => any;
+		hasStartedResolution: () => any;
+		isResolving: () => any;
+	}
+
+	export function select<Methods extends {
 		[ selector: string ]: ( key?: string | number ) => any;
 	}>( store: string ): Methods;
 
@@ -458,7 +488,7 @@ selected block.
 			type: 'CLEAR_SELECTED_BLOCK';
 		}>;
 
-        // @todo properly type the rest of these as needed.
+		// @todo properly type the rest of these as needed.
 		duplicateBlocks: ( key?: string ) => any;
 		enterFormattedText: ( key?: string ) => any;
 		exitFormattedText: ( key?: string ) => any;
@@ -670,6 +700,32 @@ selected block.
 		updateEditorSettings: () => any;
 		updatePostLock: () => any;
 	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-notices/#actions
+	 */
+	export function dispatch( store: 'core/notices' ): {
+		createNotice: ( status: Status, content: string, options?: NoticeOptions ) => Action;
+		createErrorNotice: ( content: string, options?: NoticeOptions ) => Action;
+		createInfoNotice: ( content: string, options?: NoticeOptions ) => Action;
+		createSuccessNotice: ( content: string, options?: NoticeOptions ) => Action;
+		createWarningNotice: ( content: string, options?: NoticeOptions ) => Action;
+
+		// @todo Define these as needed.
+		finishResolution: ( ...args ) => any;
+		finishResolutions: ( ...args ) => any;
+		invalidateResolution: ( ...args ) => any;
+		invalidateResolutionForStore: ( ...args ) => any;
+		invalidateResolutionForStoreSelector: ( ...args ) => any;
+		removeNotice: ( ...args ) => any;
+		startResolution: ( ...args ) => any;
+		startResolutions: ( ...args ) => any;
+	}
+
+	export function dispatch<Methods extends {
+		[ selector: string ]: ( key?: string | number ) => any;
+	}>( store: string ): Methods;
+
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useSelect

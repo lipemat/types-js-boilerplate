@@ -6,7 +6,14 @@
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/
  */
 declare module '@wordpress/block-editor' {
-	import {ComponentClass, ComponentType, FunctionComponent, HTMLAttributes, MutableRefObject, ReactNode} from 'react';
+	import {
+		ComponentClass,
+		ComponentType,
+		FunctionComponent,
+		HTMLAttributes,
+		MutableRefObject,
+		ReactNode,
+	} from 'react';
 	import {colorOptions, ColorPalette as PaletteComponent, PanelBody, PopoverProps} from '@wordpress/components';
 	import {subBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
@@ -63,6 +70,10 @@ declare module '@wordpress/block-editor' {
 		label: string;
 		onChange: ( currentValue: string ) => void;
 		value: string;
+	}
+
+	interface CopyHandler {
+		children: ReactNode;
 	}
 
 	interface InspectorControls extends FunctionComponent {
@@ -152,6 +163,7 @@ declare module '@wordpress/block-editor' {
 	// These are needed for mapping the compiler to the global variables when using imports.
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
+	export const CopyHandler: ComponentType<CopyHandler>;
 	export const getColorClassName: getColorClassName;
 	export const InspectorControls: InspectorControls;
 	export const JustifyToolbar: ComponentType<JustifyToolbar>;
@@ -163,9 +175,11 @@ declare module '@wordpress/block-editor' {
 	export const useBlockProps: useBlockProps;
 	export const useSetting: useSetting;
 
+
 	export default interface BlockEditor {
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPaletteControl: ComponentType<ColorPaletteControl>;
+		CopyHandler: ComponentType<CopyHandler>;
 		getColorClassName: getColorClassName;
 		InspectorControls: InspectorControls;
 		JustifyToolbar: ComponentType<JustifyToolbar>;

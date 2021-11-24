@@ -29,6 +29,7 @@ import './wordpress__element/index';
 import './wordpress__hooks/index';
 import './wordpress__i18n/index';
 import './wordpress__icons/index';
+import './wordpress__notices/index';
 import './wordpress__plugins/index';
 import './wordpress__primitives/index';
 import './wordpress__url/index';

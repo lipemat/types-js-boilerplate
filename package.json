@@ -1,6 +1,6 @@
 {
   "name": "@types/lipemat__js-boilerplate",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "External TypeScript definitions for @lipemat/js-boilerplate and plugins",
   "typings": "index.d.ts",
   "repository": {
