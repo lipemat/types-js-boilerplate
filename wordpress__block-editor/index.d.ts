@@ -14,7 +14,13 @@ declare module '@wordpress/block-editor' {
 		MutableRefObject,
 		ReactNode,
 	} from 'react';
-	import {colorOptions, ColorPalette as PaletteComponent, PanelBody, PopoverProps} from '@wordpress/components';
+	import {
+		colorOptions,
+		ColorPalette as PaletteComponent,
+		Control,
+		PanelBody,
+		PopoverProps,
+	} from '@wordpress/components';
 	import {subBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 
@@ -59,6 +65,17 @@ declare module '@wordpress/block-editor' {
 	type withColorContext = {
 		colors?: colorOptions;
 		disableCustomColors?: boolean
+	}
+
+	/**
+	 * Add buttons to toolbar of blocks.
+	 *
+	 * @link https://wordpress.stackexchange.com/a/398663/129914
+	 * @link https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/block-controls-toolbar-and-sidebar/
+	 */
+	interface BlockControls {
+		group?: 'default' | 'block' | 'inline' | 'other' | 'parent';
+		controls?: Array<Control>;
 	}
 
 	interface ColorPalette extends Partial<PaletteComponent>, withColorContext {
@@ -160,7 +177,7 @@ declare module '@wordpress/block-editor' {
 	}
 
 
-	// These are needed for mapping the compiler to the global variables when using imports.
+	export const BlockControls: ComponentType<BlockControls>;
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
 	export const CopyHandler: ComponentType<CopyHandler>;
@@ -177,6 +194,7 @@ declare module '@wordpress/block-editor' {
 
 
 	export default interface BlockEditor {
+		BlockControls: ComponentType<BlockControls>;
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPaletteControl: ComponentType<ColorPaletteControl>;
 		CopyHandler: ComponentType<CopyHandler>;

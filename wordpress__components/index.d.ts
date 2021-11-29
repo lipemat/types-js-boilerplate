@@ -19,14 +19,13 @@ declare module '@wordpress/components' {
 		TextareaHTMLAttributes,
 	} from 'react';
 	import {ClassNamesFn} from 'classnames/types';
-	import {SVG} from '@wordpress/primitives';
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/components/button/
 	 */
 	type ButtonParams = {
 		className?: ClassNamesFn;
-		icon?: Dashicon | SVG;
+		icon?: WPBlockTypeIconRender;
 		iconSize?: number;
 		isBusy?: boolean;
 		isDestructive?: boolean;
@@ -48,6 +47,12 @@ declare module '@wordpress/components' {
 		name: string;
 		slug?: string;
 	}>;
+
+	export type Control = ButtonButton & {
+		isDisabled?: boolean;
+		role?: 'menuitemcheckbox' | 'menuitemradio';
+		title?: string;
+	}
 
 	/**
 	 * Dashicon slug or react element which renders and SVG
@@ -575,6 +580,20 @@ declare module '@wordpress/components' {
 		shortcut?: shortcutText;
 	}
 
+	interface ToolbarButton extends ButtonButton {
+		containerClassName?: string;
+		title?: string;
+		isActive?: boolean;
+		isDisabled?: boolean;
+	}
+
+	interface ToolbarGroup {
+		className: string;
+		controls?: Array<Control>;
+		isCollapsed: boolean;
+		title: string;
+	}
+
 	interface Tooltip {
 		text?: string;
 		position?: tooltipPosition;
@@ -659,6 +678,8 @@ declare module '@wordpress/components' {
 	export const Spinner: ComponentType<{}>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
+	export const ToolbarButton: ComponentType<ToolbarButton>;
+	export const ToolbarGroup: ComponentType<ToolbarGroup>;
 	export const Tooltip: Tooltip;
 	export const Truncate: Truncate;
 
@@ -683,6 +704,8 @@ declare module '@wordpress/components' {
 		Spinner: ComponentType<{}>;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
+		ToolbarButton: ComponentType<ToolbarButton>;
+		ToolbarGroup: ComponentType<ToolbarGroup>;
 		Tooltip: ComponentType<Tooltip>;
 		Truncate: Truncate;
 		withFilters: typeof withFilters;
