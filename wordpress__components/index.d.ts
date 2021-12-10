@@ -594,6 +594,18 @@ declare module '@wordpress/components' {
 		shortcut?: shortcutText;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toggle-control/
+	 */
+	interface ToggleControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
+		checked?: boolean;
+		className?: string,
+		disabled?: boolean;
+		help?: ReactNode;
+		label?: ReactNode;
+		onChange: ( currentValue: boolean ) => void;
+	}
+
 	interface ToolbarButton extends ButtonButton {
 		containerClassName?: string;
 		title?: string;
@@ -693,6 +705,7 @@ declare module '@wordpress/components' {
 	export const Spinner: ComponentType<{}>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
+	export const ToggleControl: ComponentType<ToggleControl>;
 	export const ToolbarButton: ComponentType<ToolbarButton>;
 	export const ToolbarGroup: ComponentType<ToolbarGroup>;
 	export const Tooltip: Tooltip;
@@ -720,6 +733,7 @@ declare module '@wordpress/components' {
 		Spinner: ComponentType<{}>;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
+		ToggleControl: ComponentType<ToggleControl>;
 		ToolbarButton: ComponentType<ToolbarButton>;
 		ToolbarGroup: ComponentType<ToolbarGroup>;
 		Tooltip: ComponentType<Tooltip>;
