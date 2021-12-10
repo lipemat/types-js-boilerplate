@@ -1,11 +1,14 @@
-import {ComponentType, ReactChild} from 'react';
-
 /**
  * ServerSideRender component
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-server-side-render/
  */
 declare module '@wordpress/server-side-render' {
+	import {ComponentType, ReactChild} from 'react';
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-server-side-render/#props
+	 */
 	interface ServerSideRender<A = object, U = object> {
 		block: string;
 		attributes?: A;
