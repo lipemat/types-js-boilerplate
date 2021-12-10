@@ -357,6 +357,17 @@ declare module '@wordpress/components' {
 
 	type tooltipPosition = 'top left' | 'top right' | 'top-center' | 'bottom left' | 'bottom right' | 'bottom center';
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/base-control/
+	 */
+	interface BaseControl {
+		id: string;
+		label?: string;
+		hideLabelFromVision?: boolean;
+		help?: string | ReactNode;
+		className?: string;
+		children: ReactNode;
+	}
 
 	// If href is set, we get a link.
 	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children'> {
@@ -661,6 +672,7 @@ declare module '@wordpress/components' {
 		debouncedSpeak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
 	}
 
+	export const BaseControl: ComponentType<BaseControl>;
 	export const Button: ComponentType<ButtonLink | ButtonButton>;
 	export const CheckboxControl: ComponentType<CheckboxControl>;
 	export const ColorPalette: ComponentType<ColorPalette>;
@@ -687,6 +699,7 @@ declare module '@wordpress/components' {
 	export const Truncate: Truncate;
 
 	export default interface Components {
+		BaseControl: ComponentType<BaseControl>;
 		Button: ComponentType<ButtonLink | ButtonButton>;
 		CheckboxControl: ComponentType<CheckboxControl>;
 		ColorPalette: ComponentType<ColorPalette>;
