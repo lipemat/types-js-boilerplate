@@ -259,7 +259,7 @@ declare module '@wordpress/blocks' {
 		 */
 		save: ( params: { attributes: Attr } ) => ReactElement | null;
 		// To opt into version 2 https://make.wordpress.org/core/2020/11/18/block-api-version-2/
-		apiVersion?: 2
+		apiVersion?: 1 | 2
 	};
 
 
