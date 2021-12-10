@@ -99,6 +99,9 @@ declare module '@lipemat/js-boilerplate/global/wp-code-editor' {
 			onChangeLintingErrors: Function;
 			onUpdateErrorNotice: Function;
 		};
-		initialize: ( textarea: string | JQuery | Element, settings: Partial<WpCodeEditor['defaultSettings']> ) => EditorFromTextArea;
+		initialize: ( textarea: string | JQuery | Element, settings: Partial<WpCodeEditor['defaultSettings']> ) => {
+			codemirror: EditorFromTextArea;
+			settings: WpCodeEditor['defaultSettings']['codemirror'];
+		};
 	}
 }
