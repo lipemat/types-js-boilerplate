@@ -39,5 +39,6 @@ import './wordpress__url/index';
 import './pcss/index';
 
 // Global WP variables.
+import './global/wp-code-editor';
 import './global/wp-media';
 import './global';

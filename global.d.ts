@@ -1,4 +1,5 @@
 import {WpMedia} from '@lipemat/js-boilerplate/global/wp-media';
+import {WpCodeEditor} from '@lipemat/js-boilerplate/global/wp-code-editor';
 
 /**
  * Adds the global `wp` variable to `window` typescript definitions.
@@ -17,6 +18,7 @@ declare global {
 	interface Window {
 		wp: {
 			media: WpMedia;
+			codeEditor: WpCodeEditor;
 		}
 	}
 }
