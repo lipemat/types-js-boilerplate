@@ -14,7 +14,7 @@
  *
  */
 declare module '@lipemat/js-boilerplate/global/wp-code-editor' {
-	import {Editor, EditorConfiguration} from 'codemirror';
+	import {Editor, EditorConfiguration, EditorFromTextArea} from 'codemirror';
 	import 'codemirror/addon/hint/show-hint';
 	import 'codemirror/addon/hint/anyword-hint';
 	import 'codemirror/addon/hint/css-hint';
@@ -88,7 +88,7 @@ declare module '@lipemat/js-boilerplate/global/wp-code-editor' {
 	import 'codemirror/mode/xml/xml';
 	import 'codemirror/mode/yaml/yaml';
 
-	export type WpCodeEditor = {
+	export type WpCodeEditor<T = Editor> = {
 		defaultSettings: {
 			codemirror: EditorConfiguration,
 			csslint: object,
@@ -99,6 +99,6 @@ declare module '@lipemat/js-boilerplate/global/wp-code-editor' {
 			onChangeLintingErrors: Function;
 			onUpdateErrorNotice: Function;
 		};
-		initialize: ( textarea: string | JQuery | Element, settings: Partial<WpCodeEditor['defaultSettings']> ) => Editor;
+		initialize: ( textarea: string | JQuery | Element, settings: Partial<WpCodeEditor['defaultSettings']> ) => EditorFromTextArea;
 	}
 }
