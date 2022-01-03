@@ -11,6 +11,9 @@ declare module '@wordpress/api' {
 	export * from '@wordpress/api/categories';
 	export * from '@wordpress/api/comments';
 	export * from '@wordpress/api/media';
+	export * from '@wordpress/api/menus';
+	export * from '@wordpress/api/menu-items';
+	export * from '@wordpress/api/menu-locations';
 	export * from '@wordpress/api/posts';
 	export * from '@wordpress/api/pages';
 	export * from '@wordpress/api/search';
@@ -36,16 +39,14 @@ declare module '@wordpress/api' {
 	}
 
 	export interface Links {
-		self: Collection[] | Embeddable[];
-		collection: Collection[];
 		about: Collection[],
+		author?: Embeddable[];
+		collection: Collection[];
 		curies?: [ {
 			name: string;
 			href: string;
 			templated: boolean;
 		} ];
-		author?: Embeddable[];
-		'wp:post_type'?: Collection[];
 		replies?: Embeddable[];
 		'version-history'?: [ {
 			count: number;
@@ -55,14 +56,22 @@ declare module '@wordpress/api' {
 			id: number;
 			href: string;
 		} ];
-		'wp:featuredmedia'?: Embeddable[];
+		self: Collection[] | Embeddable[];
 		'wp:attachment'?: Collection[];
+		'wp:featuredmedia'?: Embeddable[];
+		'wp:menu'?: Embeddable[];
+		'wp:menu-location'?: Embeddable[];
+		'wp:menu-item-object'?: [ {
+			post_type: string;
+			embeddable: boolean;
+			href: string;
+		} ];
+		'wp:post_type'?: Collection[];
 		'wp:term'?: [ {
 			taxonomy: string;
 			embeddable: boolean;
 			href: string;
 		} ]
-
 	}
 
 	export interface Global<T> {

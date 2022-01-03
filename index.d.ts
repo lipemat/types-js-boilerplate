@@ -6,6 +6,9 @@ import './wordpress__api/ApplicationPasswords';
 import './wordpress__api/Categories';
 import './wordpress__api/Comments';
 import './wordpress__api/Media';
+import './wordpress__api/Menus';
+import './wordpress__api/MenuItems';
+import './wordpress__api/MenuLocations';
 import './wordpress__api/Pages';
 import './wordpress__api/Posts';
 import './wordpress__api/Search';
@@ -32,13 +35,11 @@ import './wordpress__icons/index';
 import './wordpress__notices/index';
 import './wordpress__plugins/index';
 import './wordpress__primitives/index';
-import './wordpress__server-side-render/index';
 import './wordpress__url/index';
 
 // PostCSS modules.
 import './pcss/index';
 
 // Global WP variables.
-import './global/wp-code-editor';
 import './global/wp-media';
 import './global';
