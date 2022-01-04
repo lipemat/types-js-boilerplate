@@ -1,5 +1,5 @@
 declare module '@wordpress/api/categories' {
-	import {context, Links, meta, order} from '@wordpress/api';
+	import {context, Global, Links, meta, order} from '@wordpress/api';
 
 	/**
 	 * Categories Endpoint.
@@ -40,7 +40,7 @@ declare module '@wordpress/api/categories' {
 	/**
 	 * @link https://developer.wordpress.org/rest-api/reference/categories/#list-categories
 	 */
-	export interface CategoriesQuery {
+	export interface CategoriesQuery extends Global<Category> {
 		context?: context;
 		page?: number;
 		per_page?: number;

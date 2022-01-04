@@ -1,10 +1,12 @@
+import {TaxQuery} from '@wordpress/api/posts';
+
 /**
  * @notice Not available until WP 5.9.
  * @todo Add links to documentation when the WP docs are published.
  */
 declare module '@wordpress/api/menu-items' {
 	import {Links, meta} from '@wordpress/api';
-	import {PostStatus} from '@wordpress/api/posts';
+	import {PostsQuery, PostStatus} from '@wordpress/api/posts';
 
 	export interface MenuItem {
 		attr_title: string;
@@ -41,10 +43,12 @@ declare module '@wordpress/api/menu-items' {
 		id: number;
 	}
 
-	export interface MenuItemsQuery {
+	export interface MenuItemsQuery extends Omit<PostsQuery, 'orderby' | '_fields'> {
+		menus?: number[] | TaxQuery;
 		menu_order?: number;
 		order?: 'asc' | 'desc';
 		orderby?: 'author' | 'date' | 'id' | 'include' | 'modified' | 'parent' | 'relevance' | 'slug' | 'include_slugs' | 'title' | 'menu_order';
 		per_page?: number;
+		_fields?: Array<keyof MenuItem>;
 	}
 }

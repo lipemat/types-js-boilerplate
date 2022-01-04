@@ -24,7 +24,7 @@ declare module '@wordpress/api/menus' {
 		id: number;
 	}
 
-	export interface MenusQuery extends CategoriesQuery {
-
+	export interface MenusQuery extends Omit<CategoriesQuery, '_fields'> {
+		_fields?: Array<keyof Menu>;
 	}
 }
