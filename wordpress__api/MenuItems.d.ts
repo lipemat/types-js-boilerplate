@@ -1,12 +1,10 @@
-import {TaxQuery} from '@wordpress/api/posts';
-
 /**
  * @notice Not available until WP 5.9.
  * @todo Add links to documentation when the WP docs are published.
  */
 declare module '@wordpress/api/menu-items' {
+	import {PostsQuery, PostStatus, TaxQuery} from '@wordpress/api/posts';
 	import {Links, meta} from '@wordpress/api';
-	import {PostsQuery, PostStatus} from '@wordpress/api/posts';
 
 	export interface MenuItem {
 		attr_title: string;
