@@ -18,13 +18,12 @@ declare module '@wordpress/components' {
 		SelectHTMLAttributes,
 		TextareaHTMLAttributes,
 	} from 'react';
-	import {ClassNamesFn} from 'classnames/types';
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/components/button/
 	 */
 	type ButtonParams = {
-		className?: ClassNamesFn;
+		className?: string;
 		icon?: WPBlockTypeIconRender;
 		iconSize?: number;
 		isBusy?: boolean;
@@ -394,7 +393,7 @@ declare module '@wordpress/components' {
 
 	interface ColorPalette {
 		className?: string;
-		clearable?: boolean
+		clearable?: boolean;
 		disableCustomColors: boolean;
 		label: ReactNode;
 		onChange: ( currentValue: string ) => void;
@@ -402,8 +401,14 @@ declare module '@wordpress/components' {
 	}
 
 	interface ColorPicker {
-		disableAlpha: boolean;
 		className: string;
+		copyFormat: 'hex' | 'hsl' | 'rgb';
+		/** @deprecated **/
+		defaultValue: string;
+		disableAlpha: boolean;
+		enableAlpha: boolean;
+		onChange: ( hex8Color: string ) => void;
+		/** @deprecated **/
 		onChangeComplete: ( currentValue: string ) => void;
 	}
 
