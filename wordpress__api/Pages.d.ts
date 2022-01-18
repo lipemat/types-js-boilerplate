@@ -36,6 +36,12 @@ declare module '@wordpress/api/pages' {
 		menu_order?: number;
 	}
 
-
+	/**
+	 * Edit Page.
+	 *
+	 * https://developer.wordpress.org/rest-api/reference/pages/#update-a-page
+	 */
+	export interface PageUpdate extends PageCreate {
+		id: number;
+	}
 }
-
