@@ -1,4 +1,3 @@
-
 /**
  * Definitions for the `@wordpress/data` package.
  *
@@ -76,8 +75,8 @@ declare module '@wordpress/data' {
 		getMediaItems: () => Media[ ];
 		getPostType: ( slug: string ) => Type;
 		getSite: () => Settings;
-		getTaxonomies: () => Taxonomy[];
-		getTaxonomy: ( slug: string ) => Taxonomy;
+		getTaxonomies: () => Taxonomy[] | undefined;
+		getTaxonomy: ( slug: string ) => Taxonomy | undefined;
 		hasFetchedAutosaves: () => boolean;
 		hasFinishedResolution: () => boolean;
 		hasRedo: () => boolean;
