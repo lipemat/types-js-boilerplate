@@ -5,10 +5,10 @@
  *
  */
 declare module '@wordpress/hooks' {
-	type addFilter = ( filter: string, namespace: string, cb: Function, priority?: number ) => void;
+	type AddFilter = ( filter: string, namespace: string, cb: Function, priority?: number ) => void;
 
-	export const addFilter: addFilter;
+	export const addFilter: AddFilter;
 	export default interface Hooks {
-		addFilter: addFilter;
+		addFilter: AddFilter;
 	}
 }
