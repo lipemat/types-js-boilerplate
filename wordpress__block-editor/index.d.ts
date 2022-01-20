@@ -1,3 +1,4 @@
+
 /**
  * Block editor elements and utilities.
  *
@@ -23,7 +24,7 @@ declare module '@wordpress/block-editor' {
 	} from '@wordpress/components';
 	import {subBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
-
+	import {Selected} from '@lipemat/js-boilerplate/global/wp-media';
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
 	/**
@@ -116,17 +117,23 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/media-upload
 	 */
-	interface MediaUpload {
-		allowedTypes?: Array<ALL_TYPES>;
-		multiple?: boolean;
+	interface MediaUploadBase {
+		allowedTypes?: Array<ALL_TYPES> | ALL_TYPES;
 		value?: number | number[];
 		onClose?: () => void;
-		onSelect?: ( attachments: object | object[] ) => void;
 		title?: string;
 		modalClass?: string;
 		addToGallery?: boolean;
 		gallery?: boolean;
 		render: ( args: { open: () => void } ) => ReactNode;
+	}
+
+	export type MediaUpload = MediaUploadBase & {
+		multiple: false,
+		onSelect?: ( attachment: Selected ) => void;
+	} | MediaUploadBase & {
+		multiple: true,
+		onSelect?: ( attachments: Array<Selected> ) => void;
 	}
 
 	interface PanelColorSettings extends PanelBody, withColorContext {

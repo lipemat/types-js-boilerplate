@@ -21,6 +21,7 @@ declare module '@lipemat/js-boilerplate/mime' {
 		| 'image/png'
 		| 'image/bmp'
 		| 'image/tiff'
+		| 'image/webp'
 		| 'image/x-icon'
 		| 'image/heic'
 		| 'video/x-ms-asf'

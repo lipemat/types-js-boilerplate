@@ -21,8 +21,7 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 			title?: string;
 			/**
 			 * Query arguments for retrieve attachments.
-			 *
-			 * Set to 'menuOrder' to enable sorting.
+			 * Set `orderby` to 'menuOrder' to enable sorting.
 			 */
 			library?: {
 				order?: 'ASC' | 'DESC',
@@ -52,56 +51,53 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 	}
 
 	export interface Selected {
+		alt: string;
+		author: string;
+		authorLink: string;
+		authorName: string;
+		caption: string;
+		compat: {
+			item: string;
+			meta: string;
+		};
+		context: string;
+		date: Date;
+		dateFormatted: string;
+		description: string;
+		editLink: string;
+		filename: string;
+		filesizeHumanReadable: string;
+		filesizeInBytes: number;
+		height: number;
+		icon: string;
 		id: number;
-		attributes: {
-			id: number;
-			title: string;
-			filename: string;
+		link: string;
+		menuOrder: number;
+		meta: boolean;
+		mime: string;
+		modified: Date;
+		name: string;
+		nonces: {
+			update: string;
+			delete: string;
+			edit: string;
+		};
+		orientation: string;
+		sizes: Record<'thumbnail' | 'medium' | 'full' | string, {
 			url: string;
-			link: string;
-			alt: string;
-			author: string;
-			description: string;
-			caption: string;
-			name: string;
-			status: string;
-			uploadedTo: number;
-			date: Date;
-			modified: Date;
-			menuOrder: number;
-			mime: string;
-			type: string;
-			subtype: string;
-			icon: string;
-			dateFormatted: string;
-			nonces: {
-				update: string;
-				delete: string;
-				edit: string;
-			};
-			editLink: string;
-			meta: boolean;
-			authorName: string;
-			authorLink: string;
-			uploadedToTitle: string;
-			uploadedToLink: string;
-			filesizeInBytes: number;
-			filesizeHumanReadable: string;
-			context: string;
 			height: number;
 			width: number;
 			orientation: string;
-			sizes: Record<'thumbnail' | 'medium' | 'full', {
-				url: string;
-				height: number;
-				width: number;
-				orientation: string;
-			}>;
-			compat: {
-				item: string;
-				meta: string;
-			}
-		}
+		}>;
+		status: string;
+		subtype: string;
+		title: string;
+		type: string;
+		uploadedTo: number;
+		uploadedToLink: string;
+		uploadedToTitle: string;
+		url: string;
+		width: number;
 	}
 
 	export interface Settings {
@@ -274,4 +270,3 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 	}
 
 }
-
