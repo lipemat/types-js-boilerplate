@@ -9,8 +9,6 @@ declare module '@wordpress/media-utils' {
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {MediaUpload as Base} from '@wordpress/block-editor';
 
-	interface MediaUpload extends Base {
-	}
 
 	interface UploadMedia {
 		allowedTypes?: ALL_TYPES,
@@ -22,11 +20,11 @@ declare module '@wordpress/media-utils' {
 		wpAllowedMimeTypes?: ALL_TYPES,
 	}
 
-	export const MediaUpload: ComponentType<MediaUpload>;
+	export const MediaUpload: ComponentType<Base>;
 	export const uploadMedia: ( args: UploadMedia ) => void;
 
 	export default interface MediaUtils {
-		MediaUpload: ComponentType<MediaUpload>;
+		MediaUpload: ComponentType<Base>;
 		uploadMedia: ( args: UploadMedia ) => void;
 	}
 }

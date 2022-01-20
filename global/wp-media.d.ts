@@ -21,8 +21,7 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 			title?: string;
 			/**
 			 * Query arguments for retrieve attachments.
-			 *
-			 * Set to 'menuOrder' to enable sorting.
+			 * Set `orderby` to 'menuOrder' to enable sorting.
 			 */
 			library?: {
 				order?: 'ASC' | 'DESC',
@@ -91,7 +90,7 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 			height: number;
 			width: number;
 			orientation: string;
-			sizes: Record<'thumbnail' | 'medium' | 'full', {
+			sizes: Record<'thumbnail' | 'medium' | 'full' | string, {
 				url: string;
 				height: number;
 				width: number;
@@ -274,4 +273,3 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 	}
 
 }
-

@@ -1,7 +1,7 @@
 /**
  * Definitions for the `@wordpress/components` package.
  *
- * @link https://www.npmjs.com/package/@wordpress/components
+ * @link https://developer.wordpress.org/block-editor/reference-guides/components/
  */
 declare module '@wordpress/components' {
 	import {
