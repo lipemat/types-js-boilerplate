@@ -71,6 +71,7 @@ declare module '@wordpress/data' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core/
 	 */
 	export function select( store: 'core' ): {
+		canUser: ( action: 'create' | 'read' | 'update' | 'delete', endpoint: string, id?: string ) => boolean;
 		getMedia: ( id: number ) => Media;
 		getMediaItems: () => Media[ ];
 		getPostType: ( slug: string ) => Type;
@@ -89,7 +90,6 @@ declare module '@wordpress/data' {
 		isSavingEntityRecord: () => boolean;
 
 		// @todo properly type the rest of these as needed.
-		canUser: ( capability: string ) => boolean;
 		getIsResolving: () => boolean;
 		getAuthors: () => any;
 		getAutosave: ( id: string ) => any;
