@@ -5,6 +5,7 @@
 .svn
 .cvs
 *.bak
+.ready
 *.swp
 .sass-cache
 .project
