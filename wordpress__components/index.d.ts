@@ -18,6 +18,7 @@ declare module '@wordpress/components' {
 		SelectHTMLAttributes,
 		TextareaHTMLAttributes,
 	} from 'react';
+	import DropEvent = JQuery.DropEvent;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/components/button/
@@ -416,6 +417,27 @@ declare module '@wordpress/components' {
 		icon: iconType;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/drop-zone/
+	 */
+	interface DropZone {
+		className?: string;
+		label?: string;
+		onFilesDrop?: ( files: File[] ) => void;
+		onHTMLDrop?: ( html: string ) => void;
+		onDrop?: ( ev: DropEvent ) => void;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/form-file-upload/
+	 */
+	interface FormFileUpload {
+		accept?: string;
+		icon?: WPBlockTypeIconRender,
+		multiple?: boolean;
+		render?: () => ReactNode;
+	}
+
 	interface Grid {
 		align?: CSSProperties['alignItems'];
 		/**
@@ -695,6 +717,8 @@ declare module '@wordpress/components' {
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPicker: ComponentType<ColorPicker>;
 	export const Dashicon: ComponentType<Dashicon>;
+	export const DropZone: ComponentType<DropZone>;
+	export const FormFileUpload: ComponentType<FormFileUpload>;
 	export const Grid: ComponentType<Grid>;
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
@@ -723,6 +747,8 @@ declare module '@wordpress/components' {
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPicker: ComponentType<ColorPicker>;
 		Dashicon: ComponentType<Dashicon>;
+		DropZone: ComponentType<DropZone>;
+		FormFileUpload: ComponentType<FormFileUpload>;
 		Grid: ComponentType<Grid>;
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;

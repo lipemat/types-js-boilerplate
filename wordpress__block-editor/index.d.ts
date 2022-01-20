@@ -130,10 +130,10 @@ declare module '@wordpress/block-editor' {
 
 	export type MediaUpload = MediaUploadBase & {
 		multiple: false,
-		onSelect?: ( attachment: Selected['attributes'] ) => void;
+		onSelect?: ( attachment: Selected ) => void;
 	} | MediaUploadBase & {
 		multiple: true,
-		onSelect?: ( attachments: Array<Selected['attributes']> ) => void;
+		onSelect?: ( attachments: Array<Selected> ) => void;
 	}
 
 	interface PanelColorSettings extends PanelBody, withColorContext {
