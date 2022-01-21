@@ -11,16 +11,17 @@ declare module '@wordpress/media-utils' {
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {MediaUpload as Base} from '@wordpress/block-editor';
 	import {Selected} from '@lipemat/js-boilerplate/global/wp-media';
+	import {MediaCreate} from '@wordpress/api/media';
 
 
 	interface UploadMedia {
-		allowedTypes?: Array<ALL_TYPES>,
-		additionalData?: { [ key: string ]: any }
-		filesList: File[],
-		maxUploadFileSize?: number,
+		allowedTypes?: Array<ALL_TYPES>;
+		additionalData?: MediaCreate;
+		filesList: File[];
+		maxUploadFileSize?: number;
 		onError?: ( error: Error ) => void;
 		onFileChange: ( files: Array<Selected | { url: string }> ) => void;
-		wpAllowedMimeTypes?: ALL_TYPES,
+		wpAllowedMimeTypes?: ALL_TYPES;
 	}
 
 	export const MediaUpload: ComponentType<Base>;

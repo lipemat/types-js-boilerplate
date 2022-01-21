@@ -1,4 +1,11 @@
-/* eslint camelcase: 0 */
+/* eslint-disable camelcase */
+
+/**
+ * Posts REST endpoint.
+ *
+ * @link https://developer.wordpress.org/rest-api/reference/posts/
+ *
+ */
 declare module '@wordpress/api/posts' {
 	import {Global, Links, order} from '@wordpress/api';
 	import {User} from '@wordpress/api/users';
@@ -27,9 +34,9 @@ declare module '@wordpress/api/posts' {
 	}
 
 	/**
-	 * Posts Endpoint.
+	 * Post Schema.
 	 *
-	 * @link https://developer.wordpress.org/rest-api/reference/posts/
+	 * @link https://developer.wordpress.org/rest-api/reference/posts/#schema
 	 */
 	export interface Post {
 		id: number;
@@ -119,27 +126,27 @@ declare module '@wordpress/api/posts' {
 	 * https://developer.wordpress.org/rest-api/reference/posts/#arguments
 	 */
 	export interface PostsQuery extends Global<Post> {
-		page?: number;
-		per_page?: number;
-		search?: string;
 		after?: string;
 		author?: number | number[];
 		author_exclude?: number | number[];
 		before?: string;
+		categories?: number[] | TaxQuery;
+		categories_exclude?: number[];
 		exclude?: number[];
 		include?: number[];
-		modified_before?: string;
 		modified_after?: string;
+		modified_before?: string;
 		offset?: number;
 		order?: order;
 		orderby?: 'author' | 'date' | 'id' | 'include' | 'modified' | 'relevance' | 'slug' | 'include_slugs' | 'title';
+		page?: number;
+		per_page?: number;
+		search?: string;
 		slug?: string;
 		status?: PostStatus;
-		categories?: number[] | TaxQuery;
-		categories_exclude?: number[];
+		sticky?: boolean;
 		tags?: number[] | TaxQuery;
 		tags_exclude?: number[];
 		tax_relation?: 'OR' | 'AND';
-		sticky?: boolean;
 	}
 }
