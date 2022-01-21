@@ -538,7 +538,7 @@ not yet been saved.
 		updateBlock: ( key?: string ) => any;
 		updateBlockAttributes: ( key?: string ) => any;
 		updateBlockListSettings: ( key?: string ) => any;
-		updateSettings: ( key?: string ) => any;
+		updateSettings: ( settings: { [ key: string ]: any } ) => { [ key: string ]: any };
 		validateBlocksToTemplate: ( key?: string ) => any;
 	}
 
@@ -727,7 +727,7 @@ not yet been saved.
 
 
 	/**
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useSelect
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
 	 */
 	type useSelect = <T>( callback: ( selectFunction: typeof select ) => T, deps?: Array<any> ) => T;
 	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
@@ -736,8 +736,9 @@ not yet been saved.
 	export const AsyncModeProvider: ComponentType<{
 		value: boolean
 	}>;
+
 	/**
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useDispatch
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#usedispatch
 	 */
 	export const useDispatch: typeof dispatch;
 	export const useSelect: useSelect;

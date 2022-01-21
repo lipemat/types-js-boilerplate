@@ -21,6 +21,7 @@ declare module '@wordpress/block-editor' {
 		Control,
 		PanelBody,
 		PopoverProps,
+		WPBlockTypeIconRender,
 	} from '@wordpress/components';
 	import {subBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
@@ -112,28 +113,71 @@ declare module '@wordpress/block-editor' {
 		value?: AlignOptions | undefined;
 	}
 
+	interface MediaUploadBase {
+		addToGallery?: boolean;
+		allowedTypes?: Array<ALL_TYPES> | ALL_TYPES;
+		gallery?: boolean;
+		modalClass?: string;
+		onClose?: () => void;
+		render: ( args: { open: () => void } ) => ReactNode;
+		title?: string;
+		value?: number | number[];
+	}
+
 	/**
 	 * Media manager opener and handler.
 	 *
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/media-upload
 	 */
-	interface MediaUploadBase {
-		allowedTypes?: Array<ALL_TYPES> | ALL_TYPES;
-		value?: number | number[];
-		onClose?: () => void;
-		title?: string;
-		modalClass?: string;
-		addToGallery?: boolean;
-		gallery?: boolean;
-		render: ( args: { open: () => void } ) => ReactNode;
-	}
-
 	export type MediaUpload = MediaUploadBase & {
 		multiple: false,
 		onSelect?: ( attachment: Selected ) => void;
 	} | MediaUploadBase & {
 		multiple: true,
 		onSelect?: ( attachments: Array<Selected> ) => void;
+	} | MediaUploadBase & {
+		multiple: true,
+		handleUpload: false;
+		onSelect?: ( files: File[] ) => void;
+	} | MediaUploadBase & {
+		multiple: false,
+		handleUpload: false;
+		onSelect?: ( files: File ) => void;
+	}
+
+
+	/**
+	 * Edit and display a blocks media.
+	 *
+	 * @notice Will only work in the Gutenberg inteface.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/media-placeholder/README.md
+	 * @see https://github.dev/WordPress/gutenberg/blob/433bd236a9bb207b71abc2edd58390c17cb83eb3/packages/block-library/src/gallery/edit.js#L433
+	 */
+	export type MediaPlaceholder = MediaUpload & {
+		accept?: string;
+		className?: string;
+		disableDropZone?: boolean;
+		disableMediaButtons?: boolean;
+		dropZoneUIOnly?: boolean;
+		handleUpload?: boolean;
+		icon?: WPBlockTypeIconRender;
+		isAppender?: boolean;
+		labels?: {
+			title: string;
+			instructions: string;
+		},
+		mediaLibraryButton?: ReactNode;
+		mediaPreview?: ReactNode;
+		notices?: ReactNode;
+		onCancel?: () => void,
+		onDoubleClick?: () => void,
+		onError?: ( error: Error ) => void;
+		onFilesPreUpload?: ( files: File[] ) => void;
+		onHTMLDrop?: ( html: string ) => void;
+		onSelectURL?: ( src: string ) => void;
+		placeholder?: ReactNode;
+		style?: CSSStyleDeclaration,
 	}
 
 	interface PanelColorSettings extends PanelBody, withColorContext {
@@ -191,6 +235,7 @@ declare module '@wordpress/block-editor' {
 	export const getColorClassName: getColorClassName;
 	export const InspectorControls: InspectorControls;
 	export const JustifyToolbar: ComponentType<JustifyToolbar>;
+	export const MediaPlaceholder: ComponentType<MediaPlaceholder>;
 	export const MediaUpload: ComponentClass<MediaUpload>;
 	export const PanelColorSettings: ComponentType<PanelColorSettings>;
 	export const RichText: ComponentType<RichText>;
@@ -208,7 +253,8 @@ declare module '@wordpress/block-editor' {
 		getColorClassName: getColorClassName;
 		InspectorControls: InspectorControls;
 		JustifyToolbar: ComponentType<JustifyToolbar>;
-		MediaUpload: ComponentClass<MediaUpload>;
+		MediaPlaceholder: ComponentType<MediaPlaceholder>;
+		MediaUpload: ComponentType<MediaUpload>;
 		PanelColorSettings: ComponentType<PanelColorSettings>;
 		RichText: ComponentType<RichText>;
 		InnerBlocks: InnerBlocks;
