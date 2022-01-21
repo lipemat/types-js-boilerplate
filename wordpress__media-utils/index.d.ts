@@ -14,7 +14,7 @@ declare module '@wordpress/media-utils' {
 	import {MediaCreate} from '@wordpress/api/media';
 
 
-	interface UploadMedia {
+	type uploadMedia = ( args: {
 		allowedTypes?: Array<ALL_TYPES>;
 		additionalData?: MediaCreate;
 		filesList: File[];
@@ -22,13 +22,13 @@ declare module '@wordpress/media-utils' {
 		onError?: ( error: Error ) => void;
 		onFileChange: ( files: Array<Selected | { url: string }> ) => void;
 		wpAllowedMimeTypes?: ALL_TYPES;
-	}
+	} ) => void;
 
 	export const MediaUpload: ComponentType<Base>;
-	export const uploadMedia: ( args: UploadMedia ) => void;
+	export const uploadMedia: uploadMedia;
 
 	export default interface MediaUtils {
 		MediaUpload: ComponentType<Base>;
-		uploadMedia: ( args: UploadMedia ) => void;
+		uploadMedia: uploadMedia;
 	}
 }
