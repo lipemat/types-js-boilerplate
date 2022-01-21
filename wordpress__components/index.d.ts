@@ -6,6 +6,7 @@
 declare module '@wordpress/components' {
 	import {
 		ButtonHTMLAttributes,
+		ChangeEvent,
 		ComponentType,
 		CSSProperties,
 		HTMLAttributes,
@@ -433,9 +434,10 @@ declare module '@wordpress/components' {
 	 */
 	interface FormFileUpload {
 		accept?: string;
-		icon?: WPBlockTypeIconRender,
+		icon?: WPBlockTypeIconRender;
 		multiple?: boolean;
-		render?: () => ReactNode;
+		onChange?: ( ev: ChangeEvent<HTMLInputElement> ) => void;
+		render?: ( args: { openFileDialog: () => void } ) => ReactNode;
 	}
 
 	interface Grid {
@@ -549,6 +551,8 @@ declare module '@wordpress/components' {
 		label?: ReactNode;
 		instructions?: ReactNode;
 		isColumnLayout?: boolean;
+		notices?: ReactNode;
+		preview?: ReactNode;
 	}
 
 	/**

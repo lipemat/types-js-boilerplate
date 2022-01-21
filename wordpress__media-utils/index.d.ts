@@ -13,7 +13,11 @@ declare module '@wordpress/media-utils' {
 	import {Selected} from '@lipemat/js-boilerplate/global/wp-media';
 	import {MediaCreate} from '@wordpress/api/media';
 
-
+	/**
+	 * Upload a file to the media library.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-media-utils/#uploadmedia
+	 */
 	type uploadMedia = ( args: {
 		allowedTypes?: Array<ALL_TYPES>;
 		additionalData?: MediaCreate;
@@ -24,6 +28,21 @@ declare module '@wordpress/media-utils' {
 		wpAllowedMimeTypes?: ALL_TYPES;
 	} ) => void;
 
+	/**
+	 * Creates a button or element to open the media manager.
+	 *
+	 * Must be used in conjunction with `@wordpress/block-editor.MediaUpload`.
+	 *
+	 * @example `addFilter(
+	 * 			    'editor.MediaUpload',
+	 *			    'lipe/project/drag-upload/replace-media-upload',
+	 *			    () => MediaUpload // Utils version.
+	 *		    )
+	 *		    <MediaUpload /> // Block editor version`
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-media-utils/#mediaupload
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/media-upload/README.md
+	 */
 	export const MediaUpload: ComponentType<Base>;
 	export const uploadMedia: uploadMedia;
 
