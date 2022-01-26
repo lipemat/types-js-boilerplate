@@ -13,6 +13,8 @@ declare module '@wordpress/media-utils' {
 	import {Selected} from '@lipemat/js-boilerplate/global/wp-media';
 	import {MediaCreate} from '@wordpress/api/media';
 
+	export type SelectedMedia = Selected | { url: string };
+
 	/**
 	 * Upload a file to the media library.
 	 *
@@ -21,10 +23,10 @@ declare module '@wordpress/media-utils' {
 	type uploadMedia = ( args: {
 		allowedTypes?: Array<ALL_TYPES>;
 		additionalData?: MediaCreate;
-		filesList: File[];
+		filesList: File[] | FileList;
 		maxUploadFileSize?: number;
 		onError?: ( error: Error ) => void;
-		onFileChange: ( files: Array<Selected | { url: string }> ) => void;
+		onFileChange: ( files: Array<SelectedMedia> ) => void;
 		wpAllowedMimeTypes?: ALL_TYPES;
 	} ) => void;
 
