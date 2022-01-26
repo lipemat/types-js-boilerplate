@@ -27,23 +27,23 @@ declare module '@wordpress/api/media' {
 	 */
 	export interface Media {
 		alt_text: string;
-		author: number
+		author: number;
 		caption: {
 			raw: string;
 			rendered: string;
-		}
+		};
 		comment_status: 'open' | 'closed';
 		date: string;
 		date_gmt: string;
 		description: {
 			raw: string;
 			rendered: string;
-		}
+		};
 		generated_slug: string;
 		guid: {
 			rendered: string;
 			raw: string;
-		}
+		};
 		id: number;
 		link: string;
 		media_details: {
