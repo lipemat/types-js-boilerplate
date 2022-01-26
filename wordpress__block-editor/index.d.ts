@@ -25,7 +25,7 @@ declare module '@wordpress/block-editor' {
 	} from '@wordpress/components';
 	import {subBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
-	import {Selected} from '@lipemat/js-boilerplate/global/wp-media';
+	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
 	/**
@@ -131,10 +131,10 @@ declare module '@wordpress/block-editor' {
 	 */
 	export type MediaUpload = MediaUploadBase & {
 		multiple: false,
-		onSelect?: ( attachment: Selected ) => void;
+		onSelect?: ( attachment: SelectedMedia ) => void;
 	} | MediaUploadBase & {
 		multiple: true,
-		onSelect?: ( attachments: Array<Selected> ) => void;
+		onSelect?: ( attachments: Array<SelectedMedia> ) => void;
 	} | MediaUploadBase & {
 		multiple: true,
 		handleUpload: false;

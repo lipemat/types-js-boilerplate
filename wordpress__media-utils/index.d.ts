@@ -10,8 +10,14 @@ declare module '@wordpress/media-utils' {
 	import {ComponentType} from 'react';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {MediaUpload as Base} from '@wordpress/block-editor';
-	import {Selected} from '@lipemat/js-boilerplate/global/wp-media';
-	import {MediaCreate} from '@wordpress/api/media';
+	import {Media, MediaCreate} from '@wordpress/api/media';
+
+	export type UploadedMedia = Omit<Media, 'alt_text' | 'source_url' | 'caption'> & {
+		alt: string;
+		url: string;
+		title: string;
+		caption: string;
+	}
 
 	/**
 	 * Upload a file to the media library.
@@ -21,10 +27,12 @@ declare module '@wordpress/media-utils' {
 	type uploadMedia = ( args: {
 		allowedTypes?: Array<ALL_TYPES>;
 		additionalData?: MediaCreate;
-		filesList: File[];
+		filesList: File[] | FileList;
 		maxUploadFileSize?: number;
 		onError?: ( error: Error ) => void;
-		onFileChange: ( files: Array<Selected | { url: string }> ) => void;
+		onFileChange: ( files: Array<UploadedMedia | {
+			url: string;
+		}> ) => void;
 		wpAllowedMimeTypes?: ALL_TYPES;
 	} ) => void;
 

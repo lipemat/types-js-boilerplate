@@ -46,11 +46,11 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 		open: () => void;
 		close: () => void;
 		state: () => {
-			get: ( key: 'selection' ) => Iterable<Selected>;
+			get: ( key: 'selection' ) => Iterable<SelectedMedia>;
 		}
 	}
 
-	export interface Selected {
+	export interface SelectedMedia {
 		alt: string;
 		author: string;
 		authorLink: string;

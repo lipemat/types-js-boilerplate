@@ -432,7 +432,7 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/form-file-upload/
 	 */
-	interface FormFileUpload {
+	export interface FormFileUpload {
 		accept?: string;
 		icon?: WPBlockTypeIconRender;
 		multiple?: boolean;
