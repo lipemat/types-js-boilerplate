@@ -70,10 +70,12 @@ declare module '@wordpress/block-editor' {
 	}
 
 	/**
-	 * Add buttons to toolbar of blocks.
+	 * Add buttons to toolbar of a custom block.
 	 *
-	 * @link https://wordpress.stackexchange.com/a/398663/129914
 	 * @link https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/block-controls-toolbar-and-sidebar/
+	 *
+	 * @notice The slot's fill is behind the 'useDisplayBlockControls' hook, so you
+	 *         may only add buttons to custom block or parent of a custom block.
 	 */
 	interface BlockControls {
 		group?: 'default' | 'block' | 'inline' | 'other' | 'parent';
