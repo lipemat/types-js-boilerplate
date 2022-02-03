@@ -19,6 +19,12 @@ declare module '@wordpress/media-utils' {
 		caption: string;
 	}
 
+	export type UploadError = {
+		code: string;
+		message: [ JSX.Element, string, string ];
+		file: File;
+	}
+
 	/**
 	 * Upload a file to the media library.
 	 *
@@ -29,7 +35,7 @@ declare module '@wordpress/media-utils' {
 		additionalData?: MediaCreate;
 		filesList: File[] | FileList;
 		maxUploadFileSize?: number;
-		onError?: ( error: Error ) => void;
+		onError?: ( error: UploadError ) => void;
 		onFileChange: ( files: Array<UploadedMedia | {
 			url: string;
 		}> ) => void;
