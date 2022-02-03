@@ -25,9 +25,13 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/components/button/
 	 */
 	type ButtonParams = {
+		children?: ReactNode;
 		className?: string;
+		disabled?: boolean;
+		focus?: boolean;
 		icon?: WPBlockTypeIconRender;
 		iconSize?: number;
+		iconPosition?: 'left' | 'right';
 		isBusy?: boolean;
 		isDestructive?: boolean;
 		isLink?: boolean;
@@ -39,8 +43,9 @@ declare module '@wordpress/components' {
 		label?: ReactNode;
 		shortcut?: shortcutText;
 		showTooltip?: boolean;
+		text?: string;
 		tooltipPosition?: tooltipPosition;
-		children?: ReactNode;
+		variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
 	}
 
 	export type colorOptions = Array<{
@@ -371,13 +376,14 @@ declare module '@wordpress/components' {
 	}
 
 	// If href is set, we get a link.
-	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children'> {
+	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children' | 'focus'> {
 		href: string;
+		target?: string;
 		onClick?: ( ev: MouseEvent<HTMLLinkElement> ) => void;
 	}
 
 	// If href is not set, we get a button.
-	interface ButtonButton extends ButtonParams, Omit<Partial<HTMLButtonElement>, 'className' | 'children'> {
+	interface ButtonButton extends ButtonParams, Omit<Partial<HTMLButtonElement>, 'className' | 'children' | 'focus'> {
 		onClick?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
 	}
 
