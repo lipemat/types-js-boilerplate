@@ -38,7 +38,8 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 		view: {
 			l10n: L10n;
 			settings: Settings;
-		}
+		};
+		post: <T = any>( action: string, data: { [ key: string ]: any } ) => Promise<T>;
 	}
 
 	export interface Frame {
