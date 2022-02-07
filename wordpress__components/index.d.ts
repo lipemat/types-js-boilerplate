@@ -436,6 +436,13 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
+	 */
+	export interface Fill {
+		name: string;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/form-file-upload/
 	 */
 	export interface FormFileUpload extends ButtonParams {
@@ -632,6 +639,16 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
+	 */
+	interface Slot {
+		bubblesVirtually?: boolean;
+		children?: ( fills: ReactNode[] ) => ReactNode;
+		className?: string;
+		name: string;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toggle-control/
 	 */
 	interface ToggleControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
@@ -728,6 +745,7 @@ declare module '@wordpress/components' {
 	export const ColorPicker: ComponentType<ColorPicker>;
 	export const Dashicon: ComponentType<Dashicon>;
 	export const DropZone: ComponentType<DropZone>;
+	export const Fill: ComponentType<Fill>;
 	export const FormFileUpload: ComponentType<FormFileUpload>;
 	export const Grid: ComponentType<Grid>;
 	export const Guide: ComponentType<Guide>;
@@ -741,6 +759,7 @@ declare module '@wordpress/components' {
 	export const SelectControl: ComponentType<SelectControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
+	export const Slot: ComponentType<Slot>;
 	export const Spinner: ComponentType<{}>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
@@ -758,6 +777,7 @@ declare module '@wordpress/components' {
 		ColorPicker: ComponentType<ColorPicker>;
 		Dashicon: ComponentType<Dashicon>;
 		DropZone: ComponentType<DropZone>;
+		Fill: ComponentType<Fill>;
 		FormFileUpload: ComponentType<FormFileUpload>;
 		Grid: ComponentType<Grid>;
 		Guide: ComponentType<Guide>;
@@ -771,6 +791,7 @@ declare module '@wordpress/components' {
 		SelectControl: ComponentType<SelectControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
+		Slot: ComponentType<Slot>;
 		Spinner: ComponentType<{}>;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
