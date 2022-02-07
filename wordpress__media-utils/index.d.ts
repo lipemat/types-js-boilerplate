@@ -12,6 +12,10 @@ declare module '@wordpress/media-utils' {
 	import {MediaUpload as Base} from '@wordpress/block-editor';
 	import {Media, MediaCreate} from '@wordpress/api/media';
 
+	export type Upload = UploadedMedia | {
+		url: string;
+	}
+
 	export type UploadedMedia = Omit<Media, 'alt_text' | 'source_url' | 'caption'> & {
 		alt: string;
 		url: string;
@@ -36,9 +40,7 @@ declare module '@wordpress/media-utils' {
 		filesList: File[] | FileList;
 		maxUploadFileSize?: number;
 		onError?: ( error: UploadError ) => void;
-		onFileChange: ( files: Array<UploadedMedia | {
-			url: string;
-		}> ) => void;
+		onFileChange: ( files: Array<Upload> ) => void;
 		wpAllowedMimeTypes?: ALL_TYPES;
 	} ) => void;
 
