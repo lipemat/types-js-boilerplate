@@ -46,13 +46,19 @@ declare global {
 			media?: WpMedia;
 			mediaUtils?: MediaUtils;
 			// wp_enqueue_scripts( 'password-strength-meter' );
-			passwordStrength: {
+			passwordStrength?: {
 				meter: ( value: string, blacklist: string[] ) => number;
 				userInputDisallowedList: () => string[];
 			}
 			plugins?: Plugins;
 			primitives?: Primitives;
 			url?: URL;
+			// wp_enqueue_scripts( 'wp-api-fetch' );
+			wpApiSettings?: {
+				root: string;
+				nonce: string;
+				versionString: string;
+			};
 		}
 	}
 }
