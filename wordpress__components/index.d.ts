@@ -649,6 +649,13 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/spinner/
+	 */
+	interface Spinner {
+		className?: string;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toggle-control/
 	 */
 	interface ToggleControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
@@ -760,7 +767,7 @@ declare module '@wordpress/components' {
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
 	export const Slot: ComponentType<Slot>;
-	export const Spinner: ComponentType<{}>;
+	export const Spinner: ComponentType<Spinner>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
 	export const ToggleControl: ComponentType<ToggleControl>;
@@ -792,7 +799,7 @@ declare module '@wordpress/components' {
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
 		Slot: ComponentType<Slot>;
-		Spinner: ComponentType<{}>;
+		Spinner: ComponentType<Spinner>;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
 		ToggleControl: ComponentType<ToggleControl>;
