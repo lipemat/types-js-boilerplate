@@ -23,9 +23,6 @@ import URL from '@wordpress/url';
  * May be accessed via `window.wp` and typescript will
  * understand the shape.
  *
- * @see global/wp-media.d.ts for separate/partial use of the
- * definitions via the exports.
- *
  * If additional declarations on the `wp` variable are needed
  * simply copy/paste this block into your project and define
  * additional properties.
@@ -48,6 +45,11 @@ declare global {
 			icons?: Icons;
 			media?: WpMedia;
 			mediaUtils?: MediaUtils;
+			// wp_enqueue_scripts( 'password-strength-meter' );
+			passwordStrength: {
+				meter: ( value: string, blacklist: string[] ) => number;
+				userInputDisallowedList: () => string[];
+			}
 			plugins?: Plugins;
 			primitives?: Primitives;
 			url?: URL;
