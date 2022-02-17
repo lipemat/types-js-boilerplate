@@ -194,8 +194,9 @@ declare module '@wordpress/icons' {
 	export const table: IconType
 	export const tag: IconType
 	export const textColor: IconType
-	export const tablet: IconType
-	export const title: IconType
+	export const tablet: IconType;
+	export const tip: IconType;
+	export const title: IconType;
 	export const tool: IconType
 	export const trash: IconType
 	export const typography: IconType
@@ -369,26 +370,27 @@ declare module '@wordpress/icons' {
 		stretchWide: IconType
 		subscript: IconType
 		superscript: IconType
-		tableColumnAfter: IconType
-		tableColumnBefore: IconType
-		tableColumnDelete: IconType
-		tableRowAfter: IconType
-		tableRowBefore: IconType
-		tableRowDelete: IconType
-		table: IconType
-		tag: IconType
-		textColor: IconType
-		tablet: IconType
-		title: IconType
-		tool: IconType
-		trash: IconType
-		typography: IconType
-		undo: IconType
-		update: IconType
-		upload: IconType
-		verse: IconType
-		video: IconType
-		warning: IconType
+		tableColumnAfter: IconType;
+		tableColumnBefore: IconType;
+		tableColumnDelete: IconType;
+		tableRowAfter: IconType;
+		tableRowBefore: IconType;
+		tableRowDelete: IconType;
+		table: IconType;
+		tag: IconType;
+		textColor: IconType;
+		tablet: IconType;
+		tip: IconType;
+		title: IconType;
+		tool: IconType;
+		trash: IconType;
+		typography: IconType;
+		undo: IconType;
+		update: IconType;
+		upload: IconType;
+		verse: IconType;
+		video: IconType;
+		warning: IconType;
 		widget: IconType
 		wordpress: IconType
 	}
