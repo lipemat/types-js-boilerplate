@@ -157,6 +157,7 @@ declare module '@wordpress/icons' {
 	export const postExcerpt: IconType;
 	export const postFeaturedImage: IconType;
 	export const postList: IconType;
+	export const postTerms: IconType;
 	export const postTitle: IconType;
 	export const preformatted: IconType;
 	export const pullLeft: IconType;
@@ -200,6 +201,7 @@ declare module '@wordpress/icons' {
 	export const tool: IconType;
 	export const trash: IconType;
 	export const typography: IconType;
+	export const queryTitle: IconType;
 	export const undo: IconType;
 	export const update: IconType;
 	export const upload: IconType;
@@ -342,6 +344,7 @@ declare module '@wordpress/icons' {
 		postExcerpt: IconType;
 		postFeaturedImage: IconType;
 		postList: IconType;
+		postTerms: IconType;
 		postTitle: IconType;
 		preformatted: IconType;
 		pullLeft: IconType;
@@ -385,6 +388,7 @@ declare module '@wordpress/icons' {
 		tool: IconType;
 		trash: IconType;
 		typography: IconType;
+		queryTitle: IconType;
 		undo: IconType;
 		update: IconType;
 		upload: IconType;
