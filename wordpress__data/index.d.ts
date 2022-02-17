@@ -101,7 +101,6 @@ declare module '@wordpress/data' {
 		getPostTypes: ( slug: string ) => any;
 		getRawEntityRecord: () => any;
 		getRedoEdit: () => any;
-		getReferenceByDistinctEdits: () => any;
 		getThemeSupports: ( support: string ) => any;
 		getUndoEdit: () => any;
 		getUserQueryResults: () => any;

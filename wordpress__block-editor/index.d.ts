@@ -151,7 +151,7 @@ declare module '@wordpress/block-editor' {
 	/**
 	 * Edit and display a blocks media.
 	 *
-	 * @notice Will only work in the Gutenberg inteface.
+	 * @notice Will only work in the Gutenberg interface.
 	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/media-placeholder/README.md
 	 * @see https://github.dev/WordPress/gutenberg/blob/433bd236a9bb207b71abc2edd58390c17cb83eb3/packages/block-library/src/gallery/edit.js#L433
@@ -161,7 +161,6 @@ declare module '@wordpress/block-editor' {
 		className?: string;
 		disableDropZone?: boolean;
 		disableMediaButtons?: boolean;
-		dropZoneUIOnly?: boolean;
 		handleUpload?: boolean;
 		icon?: WPBlockTypeIconRender;
 		isAppender?: boolean;
