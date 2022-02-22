@@ -219,6 +219,8 @@ declare module '@wordpress/components' {
 		| 'format-status'
 		| 'format-video'
 		| 'forms'
+		| 'fullscreen-alt'
+		| 'fullscreen-exit-alt'
 		| 'googleplus'
 		| 'grid-view'
 		| 'groups'
