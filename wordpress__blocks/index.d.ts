@@ -1,7 +1,7 @@
 declare module '@wordpress/blocks' {
 	import {ReactElement} from 'react';
 	import {iconType} from '@wordpress/components';
-	import {blockCliendId} from '@wordpress/data';
+	import {BlockClientId} from '@wordpress/data';
 
 	type dataTypes = 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
 
@@ -50,13 +50,32 @@ declare module '@wordpress/blocks' {
 	}
 	}
 
+	/**
+	 * Props passed to `edit` component of blocks.
+	 * Not well documentet and mostly tracked down via source code.
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/
+	 */
 	export type BlockEditProps<Attr> = {
+		attributes: Attr
 		className: string;
+		clientId: string;
+		context: Object; // @todo
+		insertBlocksAfter: ( blocks: CreateBlock[] ) => void;
+		isSelected: boolean
+		isSelectionEnabled: boolean;
+		mergeBlocks: ( forward: boolean ) => void;
+		name: string;
+		onRemove: () => void;
+		onReplace: (
+			blocks: CreateBlock | CreateBlock[],
+			index: number,
+			initialPosition: 0 | -1 | null,
+		) => void;
+		toggleSelection: ( enabled: boolean ) => void;
 		setAttributes: ( newValue: {
 			[attribute in keyof Attr]?: Attr[attribute]
 		} ) => void;
-		attributes: Attr
-		isSelected: boolean
+
 	}
 
 	/**
@@ -333,7 +352,7 @@ declare module '@wordpress/blocks' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#serialize
 	 */
-	export function serialize( blocks: Array<blockCliendId>, options?: WPBlockSerializationOptions ): string;
+	export function serialize( blocks: Array<BlockClientId>, options?: WPBlockSerializationOptions ): string;
 
 	/**
 	 * Unregisters a block variation defined for an existing block type.
