@@ -11,15 +11,16 @@ declare module '@wordpress/data' {
 	import {Media} from '@wordpress/api/media';
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
 	import {ComponentType} from 'react';
+	import {CreateBlock, createBlock} from '@wordpress/blocks';
 
 	/**
 	 * The shape of a block mapped to an id when stored
 	 * in redux state.
 	 */
-	export interface blockCliendId<A = { [ key: string ]: any }, I = []> {
+	export interface BlockClientId<A = { [ key: string ]: any }, I = []> {
 		attributes: A;
 		clientId: string;
-		innerBlocks: I | Array<blockCliendId>;
+		innerBlocks: I | Array<BlockClientId>;
 		isValid: boolean;
 		name: string;
 		originalContent?: string;
@@ -150,7 +151,7 @@ not yet been saved.
 		/**
 		 * @deprecated
 		 */
-		getBlocks: <T = Array<blockCliendId>>( state?: object, rootClientId?: string ) => T;
+		getBlocks: <T = Array<BlockClientId>>( state?: object, rootClientId?: string ) => T;
 		/**
 		 * @deprecated
 		 */
@@ -277,7 +278,15 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getBlocks
 		 */
-		getBlocks: <T = Array<blockCliendId>>( state?: object, rootClientId?: string ) => T;
+		getBlocks: <T = Array<BlockClientId>>( state?: object, rootClientId?: string ) => T;
+		/**
+		 * Get block objects from a list of client ids.
+		 *
+		 * Supports passing only ids without state as the documenation suggests.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblocksbyclientid
+		 */
+		getBlocksByClientId: ( clientIds: string[] ) => BlockClientId[];
 		/**
 		 * Returns the currently selected block client ID or null
 		 * if no or only one block is selected.
@@ -291,14 +300,14 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getmultiselectedblocks
 		 */
-		getMultiSelectedBlocks: () => null | Array<blockCliendId>;
+		getMultiSelectedBlocks: () => null | Array<BlockClientId>;
 		/**
 		 * Returns the currently selected block or null if no or
 		 * multiple blocks are selected.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getselectedblock
 		 */
-		getSelectedBlock: () => null | blockCliendId;
+		getSelectedBlock: () => null | BlockClientId;
 		/**
 		 * Returns the currently selected block client ID, or null
 		 * if there are no or multiple selected blocks.
@@ -337,7 +346,6 @@ not yet been saved.
 		getBlockSelectionEnd: () => any;
 		getBlockSelectionStart: () => any;
 		getBlockTransformItems: () => any;
-		getBlocksByClientId: () => any;
 		getCachedResolvers: () => any;
 		getClientIdsOfDescendants: () => any;
 		getClientIdsWithDescendants: () => any;
@@ -490,7 +498,7 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
 		 */
-		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => blockCliendId<A, I>;
+		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => BlockClientId<A, I>;
 		/**
 		 * Unselect all blocks.
 		 *
@@ -498,6 +506,75 @@ not yet been saved.
 		 */
 		clearSelectedBlock: () => Promise<{
 			type: 'CLEAR_SELECTED_BLOCK';
+		}>;
+		/**
+		 * Insert a single block into the editor.
+		 *
+		 * @see createBlock
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#insertblock
+		 */
+		insertBlock: ( block: CreateBlock ) => Promise<undefined>;
+		/**
+		 * Insert blocks into the editor.
+		 *
+		 * @see createBlock
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#insertblocks
+		 */
+		insertBlocks: ( blocks: CreateBlock[] ) => Promise<undefined>;
+		/**
+		 * Insert empty block after given block.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#insertafterblock
+		 */
+		insertAfterBlock: ( clientId: string ) => Promise<undefined>;
+		/**
+		 * Insert empty block before given block.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#insertafterblock
+		 */
+		insertBeforeBlock: ( clientId: string ) => Promise<undefined>;
+		/**
+		 * Remove a single block by client id.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#removeblock
+		 */
+		removeBlock: ( clientId: string, selectPrevious: boolean ) => Promise<undefined>;
+		/**
+		 * Remove blocks by client ids.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#removeblocks
+		 */
+		removeBlocks: ( clientId: string[], selectPrevious: boolean ) => Promise<undefined>;
+		/**
+		 * Replace a single block with one or more replacement blocks.
+		 *
+		 * @see createBlock
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#replaceblock
+		 */
+		replaceBlock: ( clientIds: string, blocks: CreateBlock | CreateBlock[] ) => Promise<undefined>;
+		/**
+		 * Replace blocks with other blocks.
+		 *
+		 * @see @see createBlock
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#replaceblocks
+		 */
+		replaceBlocks: (
+			clientIds: string | string[],
+			blocks: CreateBlock | CreateBlock[],
+			index: number,
+			initialPosition: 0 | -1 | null,
+			meta?: { [ key: string ]: any },
+		) => Promise<undefined>;
+		/**
+		 * Enable or disabled block selection.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#toggleselection
+		 */
+		toggleSelection: ( enabled: boolean ) => Promise<{
+			'type': 'TOGGLE_SELECTION',
+			'isSelectionEnabled': boolean
 		}>;
 
 		// @todo properly type the rest of these as needed.
@@ -507,10 +584,6 @@ not yet been saved.
 		finishResolution: ( key?: string ) => any;
 		flashBlock: ( key?: string ) => any;
 		hideInsertionPoint: ( key?: string ) => any;
-		insertAfterBlock: ( key?: string ) => any;
-		insertBeforeBlock: ( key?: string ) => any;
-		insertBlock: ( key?: string ) => any;
-		insertBlocks: ( key?: string ) => any;
 		insertDefaultBlock: ( key?: string ) => any;
 		invalidateResolution: ( key?: string ) => any;
 		invalidateResolutionForStore: ( key?: string ) => any;
@@ -522,10 +595,6 @@ not yet been saved.
 		moveBlocksUp: ( key?: string ) => any;
 		multiSelect: ( key?: string ) => any;
 		receiveBlocks: ( key?: string ) => any;
-		removeBlock: ( key?: string ) => any;
-		removeBlocks: ( key?: string ) => any;
-		replaceBlock: ( key?: string ) => any;
-		replaceBlocks: ( key?: string ) => any;
 		replaceInnerBlocks: ( key?: string ) => any;
 		resetBlocks: ( key?: string ) => any;
 		resetSelection: ( key?: string ) => any;
@@ -547,7 +616,6 @@ not yet been saved.
 		synchronizeTemplate: ( key?: string ) => any;
 		toggleBlockHighlight: ( key?: string ) => any;
 		toggleBlockMode: ( key?: string ) => any;
-		toggleSelection: ( key?: string ) => any;
 		updateBlock: ( key?: string ) => any;
 		updateBlockAttributes: ( key?: string ) => any;
 		updateBlockListSettings: ( key?: string ) => any;
@@ -645,7 +713,7 @@ not yet been saved.
 		/**
 		 * @deprecated
 		 */
-		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => blockCliendId<A, I>;
+		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => BlockClientId<A, I>;
 		/**
 		 * Unlock a post's saving ability.
 		 *
@@ -738,11 +806,6 @@ not yet been saved.
 		[ selector: string ]: ( key?: string | number ) => any;
 	}>( store: string ): Methods;
 
-
-	/**
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
-	 */
-	type useSelect = <T>( callback: ( selectFunction: typeof select ) => T, deps?: Array<any> ) => T;
 	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
 	type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: T ) => T, component: ComponentType<T> ) => ComponentType<T>;
 
@@ -754,7 +817,7 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#usedispatch
 	 */
 	export const useDispatch: typeof dispatch;
-	export const useSelect: useSelect;
+	export const useSelect: typeof select;
 	export const withDispatch: withDispatch;
 	export const withSelect: withSelect;
 
@@ -765,7 +828,7 @@ not yet been saved.
 		dispatch: typeof dispatch;
 		select: typeof select;
 		useDispatch: typeof dispatch;
-		useSelect: useSelect;
+		useSelect: typeof select;
 		withDispatch: withDispatch;
 		withSelect: withSelect;
 	}
