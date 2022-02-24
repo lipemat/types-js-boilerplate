@@ -91,7 +91,7 @@ declare module '@wordpress/blocks' {
 		icon?: Icon;
 		isDefault?: boolean;
 		attributes?: BlockAttributes<Attr>;
-		innerBlocks?: subBlocks;
+		innerBlocks?: ChildBlocks;
 		example?: BlockExample<Attr>;
 		scope?: Array<'block' | 'inserter' | 'transform'>;
 		keywords?: string[];
@@ -140,7 +140,7 @@ declare module '@wordpress/blocks' {
 	export type Transforms<T, Attr> = {
 		type: 'block';
 		blocks: Array<string | '*'>;
-		transform: ( attributes: T, innerBlocks: subBlocks ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
+		transform: ( attributes: T, innerBlocks: ChildBlocks ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
 		isMatch?: ( attributes: T, block: CreateBlock<Attr> ) => boolean;
 		isMultiBlock?: boolean;
 		priority?: number;
@@ -185,7 +185,7 @@ declare module '@wordpress/blocks' {
 		priority?: number;
 	}
 
-	export type subBlocks = Array<[ string, Object, subBlocks? ]>;
+	export type ChildBlocks = Array<[ string, Object, ChildBlocks? ]>;
 
 	type Icon = iconType | {
 		// Specifying a background color to appear with the icon e.g.: in the inserter.
@@ -255,13 +255,13 @@ declare module '@wordpress/blocks' {
 			 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#lineheight
 			 */
 			lineHeight?: boolean;
-			// Set to false to Remove support for an HTML mode.
+			// False removes support for an HTML mode.
 			html?: boolean;
-			// Set to false to Hide this block from the inserter.
+			// False hides this block from the inserter.
 			inserter?: boolean;
-			// Set to false to Use the block just once per post
+			// False allows the block just once per post
 			multiple?: boolean;
-			// Set to false to Don't allow the block to be converted into a reusable block.
+			// False prevents the block to be converted into a reusable block.
 			reusable?: boolean;
 		}
 		/**
@@ -291,7 +291,7 @@ declare module '@wordpress/blocks' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblock
 	 */
-	export function createBlock<Attr>( id: string, attributes: Attr, InnerBlocks?: Array<subBlocks> ): CreateBlock<Attr>;
+	export function createBlock<Attr>( id: string, attributes: Attr, InnerBlocks?: Array<ChildBlocks> ): CreateBlock<Attr>;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/

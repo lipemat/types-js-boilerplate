@@ -23,7 +23,7 @@ declare module '@wordpress/block-editor' {
 		PopoverProps,
 		WPBlockTypeIconRender,
 	} from '@wordpress/components';
-	import {subBlocks} from '@wordpress/blocks';
+	import {ChildBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 
@@ -221,11 +221,13 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/tutorials/block-tutorial/nested-blocks-inner-blocks/
 	 */
-	interface InnerBlocks {
-		allowedBlocks: string[];
-		template: subBlocks;
+	interface InnerBlocks extends ComponentClass<{
+		allowedBlocks?: string[];
+		template?: ChildBlocks;
 		orientation?: 'horizontal';
 		placeholder?: boolean;
+	}> {
+		Content: ComponentType<{}>;
 	}
 
 
