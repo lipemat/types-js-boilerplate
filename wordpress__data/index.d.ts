@@ -432,6 +432,20 @@ not yet been saved.
 		isResolving: () => any;
 	}
 
+	/**
+	 * A special overload for handling `useSelect.
+	 *
+	 * `useSelect` accepts either a string, or a callback function.
+	 * It is impossible to pass `typeof select`, and a callback in a type.
+	 * Instead, we overload the `select` and use it for both.
+	 *
+	 * Technically this creates incorrect types when calling `select` directly
+	 * as it does not support a callback.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
+	 */
+	export function select<T>( callback: ( selectFunction: typeof select ) => T, deps?: Array<any> ): T;
+
 	export function select<Methods extends {
 		[ selector: string ]: ( key?: string | number ) => any;
 	}>( store: string ): Methods;
