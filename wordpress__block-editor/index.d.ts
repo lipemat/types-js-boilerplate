@@ -26,6 +26,7 @@ declare module '@wordpress/block-editor' {
 	import {ChildBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
+	import {BlockClientId} from '@wordpress/data';
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
 	/**
@@ -226,6 +227,8 @@ declare module '@wordpress/block-editor' {
 		template?: ChildBlocks;
 		orientation?: 'horizontal';
 		placeholder?: boolean;
+		value?: BlockClientId[];
+		onChange?: ( blocks: BlockClientId[] ) => void;
 	}> {
 		Content: ComponentType<{}>;
 	}
