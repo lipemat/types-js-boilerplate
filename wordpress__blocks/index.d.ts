@@ -196,6 +196,16 @@ declare module '@wordpress/blocks' {
 		src: iconType;
 	}
 
+	/**
+	 * Parser utility for converting HTML block JSON to finished block objects.
+	 *
+	 * Pass post content with serialized blocks and receive block objects back.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#parse
+	 *
+	 */
+	export function parse( content: string ): BlockClientId[];
+
 	export type BlockSettings<Attr, C = '', T = Attr> = {
 		title: string;
 		description?: string;
@@ -364,12 +374,13 @@ declare module '@wordpress/blocks' {
 
 	export default interface Blocks {
 		createBlock: typeof createBlock;
+		parse: typeof parse;
 		registerBlockCollection: typeof registerBlockCollection;
 		registerBlockStyle: typeof registerBlockStyle;
 		registerBlockType: typeof registerBlockType;
-		unregisterBlockStyle: typeof unregisterBlockStyle;
 		registerBlockVariation: typeof registerBlockVariation;
 		serialize: typeof serialize;
+		unregisterBlockStyle: typeof unregisterBlockStyle;
 		unregisterBlockType: typeof unregisterBlockType;
 		unregisterBlockVariation: typeof unregisterBlockVariation;
 	}
