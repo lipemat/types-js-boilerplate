@@ -576,6 +576,13 @@ not yet been saved.
 			'type': 'TOGGLE_SELECTION',
 			'isSelectionEnabled': boolean
 		}>;
+		/**
+		 * Update a block's properties.
+		 *
+		 * @lin https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#updateblock
+		 */
+		updateBlock: ( clientId: string, updates: Partial<BlockClientId> ) => any;
+
 
 		// @todo properly type the rest of these as needed.
 		duplicateBlocks: ( key?: string ) => any;
@@ -616,7 +623,6 @@ not yet been saved.
 		synchronizeTemplate: ( key?: string ) => any;
 		toggleBlockHighlight: ( key?: string ) => any;
 		toggleBlockMode: ( key?: string ) => any;
-		updateBlock: ( key?: string ) => any;
 		updateBlockAttributes: ( key?: string ) => any;
 		updateBlockListSettings: ( key?: string ) => any;
 		updateSettings: ( settings: { [ key: string ]: any } ) => { [ key: string ]: any };
