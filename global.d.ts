@@ -4,6 +4,7 @@ import ApiFetch from '@wordpress/api-fetch';
 import EditPost from '@wordpress/edit-post';
 import BlockEditor from '@wordpress/block-editor';
 import Blocks from '@wordpress/blocks';
+import BlockSerialize from '@wordpress/block-serialization-default-parser';
 import Components from '@wordpress/components';
 import CoreData from '@wordpress/core-data';
 import Data from '@wordpress/data';
@@ -33,6 +34,7 @@ declare global {
 			apiFetch?: typeof ApiFetch,
 			blockEditor?: BlockEditor;
 			blocks?: Blocks,
+			blockSerializationDefaultParser?: BlockSerialize,
 			codeEditor?: WpCodeEditor;
 			components?: Components;
 			coreData?: CoreData;
