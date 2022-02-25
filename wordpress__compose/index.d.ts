@@ -1,3 +1,8 @@
+/**
+ * Definitions for the `@wordpress/compose` package.
+ *
+ * @link https://www.npmjs.com/package/@wordpress/compose
+ */
 declare module '@wordpress/compose' {
 	import {ComponentType, MutableRefObject} from 'react';
 

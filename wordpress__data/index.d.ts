@@ -11,19 +11,35 @@ declare module '@wordpress/data' {
 	import {Media} from '@wordpress/api/media';
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
 	import {ComponentType} from 'react';
-	import {CreateBlock, createBlock} from '@wordpress/blocks';
+	import {CreateBlock, createBlock, IconObject} from '@wordpress/blocks';
 
 	/**
 	 * The shape of a block mapped to an id when stored
 	 * in redux state.
 	 */
-	export interface BlockClientId<A = { [ key: string ]: any }, I = []> {
-		attributes: A;
+	export interface BlockClientId<Attr = { [ key: string ]: any }, I = []> {
+		attributes: Attr;
 		clientId: string;
 		innerBlocks: I | Array<BlockClientId>;
 		isValid: boolean;
 		name: string;
 		originalContent?: string;
+	}
+
+	/**
+	 * The shape of a blocks' configuration when used in the
+	 * context of the block inserter.
+	 */
+	export interface WPEditorInserterItem<Attr = { [ key: string ]: any }> {
+		id: string;
+		name: string;
+		initialAttributes: Attr;
+		title: string;
+		icon: IconObject;
+		category: string;
+		keywords: string[];
+		isDisabled: boolean;
+		frecency: number;
 	}
 
 	/**
@@ -288,6 +304,12 @@ not yet been saved.
 		 */
 		getBlocksByClientId: ( clientIds: string[] ) => BlockClientId[];
 		/**
+		 * Get full list of blocks shown in the block inserter.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getinserteritems
+		 */
+		getInserterItems: ( clientId?: string ) => WPEditorInserterItem[];
+		/**
 		 * Returns the currently selected block client ID or null
 		 * if no or only one block is selected.
 		 *
@@ -352,7 +374,6 @@ not yet been saved.
 		getDraggedBlockClientIds: () => any;
 		getFirstMultiSelectedBlockClientId: () => any;
 		getGlobalBlockCount: () => any;
-		getInserterItems: () => any;
 		getIsResolving: () => any;
 		getLastMultiSelectedBlockClientId: () => any;
 		getLowestCommonAncestorWithSelectedBlock: () => any;
