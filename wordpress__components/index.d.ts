@@ -11,6 +11,7 @@ declare module '@wordpress/components' {
 		CSSProperties,
 		HTMLAttributes,
 		InputHTMLAttributes,
+		KeyboardEvent,
 		MouseEvent,
 		MutableRefObject,
 		PropsWithChildren,
@@ -626,6 +627,23 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * Seach box and icon.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/search-control/
+	 */
+	interface SearchControl {
+		className?: string;
+		help?: string | ReactNode;
+		hideLabelFromVision?: boolean;
+		label: string;
+		onChange?: ( value: string ) => void;
+		onClose?: () => void;
+		onKeyDown?: ( event: KeyboardEvent<HTMLInputElement> ) => void;
+		placeholder?: string;
+		value: string;
+	}
+
+	/**
 	 * @deprecated in favor of @wordpress/server-side-render
 	 */
 	export interface ServerSideRender<A = object, U = object> {
@@ -766,6 +784,7 @@ declare module '@wordpress/components' {
 	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 	export const SelectControl: ComponentType<SelectControl>;
+	export const SearchControl: ComponentType<SearchControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
 	export const Slot: ComponentType<Slot>;
@@ -798,6 +817,7 @@ declare module '@wordpress/components' {
 		Popover: ComponentType<PopoverProps>;
 		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 		SelectControl: ComponentType<SelectControl>;
+		SearchControl: ComponentType<SearchControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
 		Slot: ComponentType<Slot>;
