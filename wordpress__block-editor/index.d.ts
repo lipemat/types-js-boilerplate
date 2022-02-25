@@ -23,7 +23,7 @@ declare module '@wordpress/block-editor' {
 		PopoverProps,
 		WPBlockTypeIconRender,
 	} from '@wordpress/components';
-	import {ChildBlocks} from '@wordpress/blocks';
+	import {ChildBlocks, Icon} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 	import {BlockClientId} from '@wordpress/data';
@@ -81,6 +81,17 @@ declare module '@wordpress/block-editor' {
 	interface BlockControls {
 		group?: 'default' | 'block' | 'inline' | 'other' | 'parent';
 		controls?: Array<Control>;
+	}
+
+	/**
+	 * Display a blocks icons using its attributes.
+	 *
+	 * https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#blockicon
+	 */
+	interface BlockIcon {
+		icon: Icon;
+		showColors?: boolean;
+		className?: string;
 	}
 
 	interface ColorPalette extends Partial<PaletteComponent>, withColorContext {
@@ -235,6 +246,7 @@ declare module '@wordpress/block-editor' {
 
 
 	export const BlockControls: ComponentType<BlockControls>;
+	export const BlockIcon: ComponentType<BlockIcon>;
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
 	export const CopyHandler: ComponentType<CopyHandler>;
@@ -253,6 +265,7 @@ declare module '@wordpress/block-editor' {
 
 	export default interface BlockEditor {
 		BlockControls: ComponentType<BlockControls>;
+		BlockIcon: ComponentType<BlockIcon>;
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPaletteControl: ComponentType<ColorPaletteControl>;
 		CopyHandler: ComponentType<CopyHandler>;
