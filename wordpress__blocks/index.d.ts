@@ -1,3 +1,8 @@
+/**
+ * Definitions for the `@wordpress/blocks` package.
+ *
+ * @link https://www.npmjs.com/package/@wordpress/blocks
+ */
 declare module '@wordpress/blocks' {
 	import {ReactElement} from 'react';
 	import {iconType} from '@wordpress/components';
@@ -187,14 +192,17 @@ declare module '@wordpress/blocks' {
 
 	export type ChildBlocks = Array<[ string, Object, ChildBlocks? ]>;
 
-	type Icon = iconType | {
+	export type IconObject = {
 		// Specifying a background color to appear with the icon e.g.: in the inserter.
 		background?: string;
 		// Specifying a color for the icon
 		foreground?: string;
-		// Specifying a dashicon for the block
-		src: iconType;
+		// Specifying a dashicon or Svg.
+		src: iconType | SVGElement;
 	}
+
+	export type Icon = iconType | IconObject;
+
 
 	/**
 	 * Parser utility for converting HTML block JSON to finished block objects.
@@ -206,6 +214,9 @@ declare module '@wordpress/blocks' {
 	 */
 	export function parse( content: string ): BlockClientId[];
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
+	 */
 	export type BlockSettings<Attr, C = '', T = Attr> = {
 		title: string;
 		description?: string;
@@ -301,7 +312,14 @@ declare module '@wordpress/blocks' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblock
 	 */
-	export function createBlock<Attr>( id: string, attributes: Attr, InnerBlocks?: Array<ChildBlocks> ): CreateBlock<Attr>;
+	export function createBlock<Attr>( id: string, attributes: Attr, InnerBlocks?: Array<ChildBlocks | CreateBlock> ): CreateBlock<Attr>;
+
+	/**
+	 * Convert block configurations into Block objects
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblocksfrominnerblockstemplate
+	 */
+	export function createBlocksFromInnerBlocksTemplate( blocks: Array<ChildBlocks | CreateBlock> ): CreateBlock[];
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
@@ -374,6 +392,7 @@ declare module '@wordpress/blocks' {
 
 	export default interface Blocks {
 		createBlock: typeof createBlock;
+		createBlocksFromInnerBlocksTemplate: typeof createBlocksFromInnerBlocksTemplate;
 		parse: typeof parse;
 		registerBlockCollection: typeof registerBlockCollection;
 		registerBlockStyle: typeof registerBlockStyle;
