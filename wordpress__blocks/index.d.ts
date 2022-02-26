@@ -200,8 +200,10 @@ declare module '@wordpress/blocks' {
 		// Specifying a dashicon or Svg.
 		src: iconType | SVGElement;
 	}
-
-	export type Icon = iconType | IconObject;
+	/**
+	 * All possible icon types when registering a block.
+	 */
+	export type BlockIcon = iconType | IconObject;
 
 
 	/**
