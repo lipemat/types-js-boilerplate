@@ -596,13 +596,13 @@ not yet been saved.
 		 */
 		insertBlock: ( block: CreateBlock ) => Promise<undefined>;
 		/**
-		 * Insert blocks into the editor.
+		 * Insert blocks into the editor or innerblocks of supplied clientId.
 		 *
 		 * @see createBlock
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#insertblocks
 		 */
-		insertBlocks: ( blocks: CreateBlock[] ) => Promise<undefined>;
+		insertBlocks: ( blocks: CreateBlock[], index?: number, clientId?: string, updateSelection?: boolean, initialPosition?: 0 | -1 | null, meta?: Object ) => Promise<undefined>;
 		/**
 		 * Insert empty block after given block.
 		 *
