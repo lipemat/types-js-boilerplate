@@ -21,16 +21,9 @@ declare module '@wordpress/data' {
 	import {ComponentType} from 'react';
 
 	/**
-	 * The shape of a block mapped to an id when stored
-	 * in redux state.
+	 * @deprecated In favor of CreateBlock;
 	 */
-	export interface BlockClientId<Attr = { [ key: string ]: any }, I = []> {
-		attributes: Attr;
-		clientId: string;
-		innerBlocks: I | Array<BlockClientId>;
-		isValid: boolean;
-		name: string;
-		originalContent?: string;
+	export interface BlockClientId<Attr = { [ key: string ]: any }, I = []> extends CreateBlock {
 	}
 
 	/**
