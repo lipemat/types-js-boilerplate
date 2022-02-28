@@ -228,7 +228,7 @@ declare module '@wordpress/blocks' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#parse
 	 *
 	 */
-	export function parse( content: string ): BlockClientId[];
+	export function parse( content: string ): CreateBlock[];
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/

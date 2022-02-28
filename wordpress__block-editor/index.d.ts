@@ -257,10 +257,10 @@ declare module '@wordpress/block-editor' {
 		onChange?: ( blocks: CreateBlock[] ) => void;
 		orientation?: 'horizontal';
 		placeholder?: boolean;
-		renderAppender?: boolean | ReactNode;
+		renderAppender?: boolean | ( () => ReactNode );
 		template?: ChildBlocks;
 		templateLock?: 'all' | 'insert' | boolean;
-		value?: CreateBlock[ ];
+		value?: CreateBlock[];
 	}
 
 	/**
