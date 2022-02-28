@@ -20,6 +20,7 @@ declare module '@wordpress/components' {
 		SelectHTMLAttributes,
 		TextareaHTMLAttributes,
 	} from 'react';
+	import {Status} from '@wordpress/notices';
 	import DropEvent = JQuery.DropEvent;
 
 	/**
@@ -597,10 +598,30 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/notice/#props
+	 */
+	interface Notice {
+		spokenMessage?: string;
+		status?: Status;
+		onRemove?: () => void;
+		politeness?: 'assertive' | 'polite';
+		isDismissible?: boolean;
+		onDismiss?: () => void;
+		actions?: Array<{
+			label: ReactElement;
+			url?: string;
+			onClick?: () => void;
+			className?: string;
+			neDefaultClasses?: boolean;
+			variant?: 'primary';
+		}>;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
 	 */
 	interface PanelBody {
-		title: string;
+		title?: string;
 		initialOpen?: boolean;
 		icon?: string;
 		children?: ReactNode[] | ReactNode;
@@ -660,14 +681,47 @@ declare module '@wordpress/components' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/radio-control
 	 */
 	interface RadioControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
-		label?: ReactNode;
-		help?: ReactNode;
 		selected: string | number;
 		options: Array<{
 			label: string;
 			value: string | number;
 		}>;
+		label?: ReactNode;
+		help?: ReactNode;
 		onChange?: ( value: string ) => void;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/range-control/#props
+	 */
+	interface RangeControl {
+		onChange: ( value: number ) => void;
+		value: number;
+		afterIcon?: iconType;
+		allowReset?: boolean;
+		beforeIcon?: iconType;
+		disabled?: boolean;
+		help?: ReactNode;
+		icon?: iconType;
+		initialPosition?: number;
+		isShiftStepEnabled?: number;
+		label?: string;
+		marks?: boolean | Array<{
+			value: number;
+			label: string;
+		}>;
+		min?: number;
+		max?: number;
+		railColor?: string;
+		renderTooltipContent?: ( value: number ) => ReactNode;
+		resetFallbackValue?: number;
+		separatorType?: 'none' | 'fullWidth' | 'topFullWidth';
+		showTooltip?: boolean;
+		step?: number | 'any';
+		shiftStep?: number;
+		trackColor?: string;
+		type?: 'slider' | 'stepper';
+		withInputField?: boolean;
 	}
 
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
@@ -837,11 +891,13 @@ declare module '@wordpress/components' {
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+	export const Notice: ComponentType<Notice>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const PanelRow: ComponentType<PanelRow>;
 	export const Placeholder: ComponentType<Placeholder>;
 	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
+	export const RangeControl: ComponentType<RangeControl>;
 	export const SelectControl: ComponentType<SelectControl>;
 	export const SearchControl: ComponentType<SearchControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
@@ -870,11 +926,13 @@ declare module '@wordpress/components' {
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
 		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+		Notice: ComponentType<Notice>;
 		PanelBody: ComponentType<PanelBody>;
 		PanelRow: ComponentType<PanelRow>;
 		Placeholder: ComponentType<Placeholder>;
 		Popover: ComponentType<PopoverProps>;
 		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
+		RangeControl: ComponentType<RangeControl>;
 		SelectControl: ComponentType<SelectControl>;
 		SearchControl: ComponentType<SearchControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
