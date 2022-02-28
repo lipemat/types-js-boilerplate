@@ -450,6 +450,35 @@ not yet been saved.
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/
+	 */
+	export function select( store: 'core/blocks' ): {
+		getActiveBlockVariation: () => any;
+		getBlockStyles: () => any;
+		getBlockSupport: () => any;
+		getBlockType: () => any;
+		getBlockTypes: () => any;
+		getBlockVariations: () => any;
+		getCachedResolvers: () => any;
+		getCategories: () => any;
+		getChildBlockNames: () => any;
+		getCollections: () => any;
+		getDefaultBlockName: () => any;
+		getDefaultBlockVariation: () => any;
+		getFreeformFallbackBlockName: () => any;
+		getGroupingBlockName: () => any;
+		getIsResolving: () => any;
+		getUnregisteredFallbackBlockName: () => any;
+		hasBlockSupport: () => any;
+		hasChildBlocks: () => any;
+		hasChildBlocksWithInserterSupport: () => any;
+		hasFinishedResolution: () => any;
+		hasStartedResolution: () => any;
+		isMatchingSearchTerm: () => any;
+		isResolving: () => any;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-notices/#selectors
 	 */
 	export function select( store: 'core/notices' ): {
@@ -806,6 +835,32 @@ not yet been saved.
 		updateBlockListSettings: () => any;
 		updateEditorSettings: () => any;
 		updatePostLock: () => any;
+	}
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#actions
+	 */
+	export function dispatch( store: 'core/blocks' ): {
+		addBlockCollection: () => any;
+		addBlockStyles: () => any;
+		addBlockTypes: () => any;
+		addBlockVariations: () => any;
+		finishResolution: () => any;
+		finishResolutions: () => any;
+		invalidateResolution: () => any;
+		invalidateResolutionForStore: () => any;
+		invalidateResolutionForStoreSelector: () => any;
+		removeBlockCollection: () => any;
+		removeBlockStyles: () => any;
+		removeBlockTypes: () => any;
+		removeBlockVariations: () => any;
+		setCategories: () => any;
+		setDefaultBlockName: () => any;
+		setFreeformFallbackBlockName: () => any;
+		setGroupingBlockName: () => any;
+		setUnregisteredFallbackBlockName: () => any;
+		startResolution: () => any;
+		startResolutions: () => any;
+		updateCategory: () => any;
 	}
 
 	/**
