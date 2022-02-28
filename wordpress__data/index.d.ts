@@ -302,6 +302,16 @@ not yet been saved.
 		 */
 		getBlockCount: ( clientId?: string ) => number;
 		/**
+		 * Get all block client IDs in the editor or inner blocks in the order they appear.
+		 * they appear
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockorder
+		 */
+		getBlockOrder: ( clientId?: string ) => string[];
+		/**
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockrootclientid
+		 */
+		getBlockRootClientId: ( clientId: string ) => string | undefined;
+		/**
 		 * Get block objects from a list of client ids.
 		 *
 		 * Supports passing only ids without state as the documenation suggests.
@@ -366,10 +376,8 @@ not yet been saved.
 		getBlockListSettings: () => any;
 		getBlockMode: () => any;
 		getBlockName: () => any;
-		getBlockOrder: () => any;
 		getBlockParents: () => any;
 		getBlockParentsByBlockName: () => any;
-		getBlockRootClientId: () => any;
 		getBlockSelectionEnd: () => any;
 		getBlockSelectionStart: () => any;
 		getBlockTransformItems: () => any;
