@@ -4,12 +4,13 @@
  * @link https://www.npmjs.com/package/@wordpress/blocks
  */
 declare module '@wordpress/blocks' {
-	import {ReactElement} from 'react';
+	import {ReactElement, ReactSVGElement} from 'react';
 	import {iconType} from '@wordpress/components';
 	import {BlockClientId} from '@wordpress/data';
 
 	type dataTypes = 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
 
+	export type WPBlockVariationScope = 'block' | 'inserter' | 'transform';
 
 	type AttributeShape = {
 		type: dataTypes;
@@ -93,12 +94,12 @@ declare module '@wordpress/blocks' {
 		title: string;
 		description?: string;
 		category?: string;
-		icon?: Icon;
+		icon?: BlockIcon;
 		isDefault?: boolean;
 		attributes?: BlockAttributes<Attr>;
 		innerBlocks?: ChildBlocks;
 		example?: BlockExample<Attr>;
-		scope?: Array<'block' | 'inserter' | 'transform'>;
+		scope?: Array<WPBlockVariationScope>;
 		keywords?: string[];
 		isActive?: ( ( attr: BlockAttributes<Attr>, variation: BlockAttributes<Attr> ) => boolean ) | Array<keyof Attr>;
 	}
@@ -198,12 +199,12 @@ declare module '@wordpress/blocks' {
 		// Specifying a color for the icon
 		foreground?: string;
 		// Specifying a dashicon or Svg.
-		src: iconType | SVGElement;
+		src: iconType | ReactSVGElement;
 	}
 	/**
 	 * All possible icon types when registering a block.
 	 */
-	export type BlockIcon = iconType | IconObject;
+	export type BlockIcon = iconType | IconObject | ReactSVGElement;
 
 
 	/**
@@ -224,7 +225,7 @@ declare module '@wordpress/blocks' {
 		description?: string;
 		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | C
 		// Svg | dashicon | configuration
-		icon: Icon;
+		icon: BlockIcon;
 		keywords?: string[];
 		styles?: Array<StyleVariation>;
 		/**
@@ -247,7 +248,7 @@ declare module '@wordpress/blocks' {
 		 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/
 		 */
 		supports?: {
-			align?: boolean | [ 'left' | 'right' | 'full' ]
+			align?: boolean | Array<'left' | 'right' | 'full' | 'wide'>;
 			// Remove the support for wide alignment.
 			alignWide?: boolean;
 			// Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block, and a button to copy the direct link.
@@ -262,9 +263,10 @@ declare module '@wordpress/blocks' {
 			 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#color
 			 */
 			color?: {
-				background: boolean; // Enable background color UI control.
-				gradient: boolean; // Enable gradient color UI control.
-				text: boolean; // Enable text color UI control.
+				background?: boolean; // Enable background color UI control.
+				gradients?: boolean; // Enable gradient color UI control.
+				text?: boolean; // Enable text color UI control.
+				link?: boolean; // Enable link color UI control.
 			};
 			/**
 			 * Enable font size UI control.
@@ -286,6 +288,16 @@ declare module '@wordpress/blocks' {
 			multiple?: boolean;
 			// False prevents the block to be converted into a reusable block.
 			reusable?: boolean;
+			/**
+			 * Enable CSS spacing UI controls
+			 *
+			 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#spacing
+			 */
+			spacing?: {
+				blockGap?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+				margin?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+				padding?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+			}
 		}
 		/**
 		 * Display content in the editor and make and changes to data.
@@ -314,14 +326,14 @@ declare module '@wordpress/blocks' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblock
 	 */
-	export function createBlock<Attr>( id: string, attributes: Attr, InnerBlocks?: Array<ChildBlocks | CreateBlock> ): CreateBlock<Attr>;
+	export function createBlock<Attr>( id: string, attributes?: Attr, InnerBlocks?: Array<ChildBlocks | CreateBlock> ): CreateBlock<Attr>;
 
 	/**
 	 * Convert block configurations into Block objects
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblocksfrominnerblockstemplate
 	 */
-	export function createBlocksFromInnerBlocksTemplate( blocks: Array<ChildBlocks | CreateBlock> ): CreateBlock[];
+	export function createBlocksFromInnerBlocksTemplate( blocks: ChildBlocks | CreateBlock[] ): CreateBlock[];
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
@@ -339,7 +351,7 @@ declare module '@wordpress/blocks' {
 	 */
 	export function registerBlockCollection( namespace: string, settings: {
 		title: string;
-		icon?: Icon;
+		icon?: BlockIcon;
 	} ): void;
 
 	/**
