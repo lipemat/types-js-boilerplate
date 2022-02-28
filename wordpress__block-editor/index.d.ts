@@ -24,10 +24,9 @@ declare module '@wordpress/block-editor' {
 		PopoverProps,
 		WPBlockTypeIconRender,
 	} from '@wordpress/components';
-	import {BlockIcon as Icon, ChildBlocks} from '@wordpress/blocks';
+	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
-	import {BlockClientId} from '@wordpress/data';
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
 	/**
@@ -255,12 +254,13 @@ declare module '@wordpress/block-editor' {
 
 	type InnerBlock = {
 		allowedBlocks?: string[];
-		template?: ChildBlocks;
+		onChange?: ( blocks: CreateBlock[] ) => void;
 		orientation?: 'horizontal';
 		placeholder?: boolean;
-		value?: BlockClientId[ ];
-		onChange?: ( blocks: BlockClientId[] ) => void;
-		renderAppender?: boolean;
+		renderAppender?: boolean | ReactNode;
+		template?: ChildBlocks;
+		templateLock?: 'all' | 'insert' | boolean;
+		value?: CreateBlock[ ];
 	}
 
 	/**
@@ -269,6 +269,8 @@ declare module '@wordpress/block-editor' {
 	 * @link https://developer.wordpress.org/block-editor/tutorials/block-tutorial/nested-blocks-inner-blocks/
 	 */
 	interface InnerBlocks extends ComponentClass<InnerBlock> {
+		ButtonBlockAppender: ComponentType<{}>;
+		DefaultBlockAppender: ComponentType<{}>;
 		Content: ComponentType<{}>;
 	}
 

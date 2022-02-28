@@ -19,10 +19,14 @@ declare module '@wordpress/blocks' {
 
 	export type WPBlockVariationScope = 'block' | 'inserter' | 'transform';
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
+	 */
 	type AttributeShape = {
-		type: dataTypes;
+		type: dataTypes | dataTypes[];
 		source?: 'text' | 'html' | 'query' | 'attribute';
 		default?: any;
+		enum?: Array<string | boolean | number>;
 		// jQuery selector of element to extract value from.
 		selector?: string;
 		// Tag to wrap each line when using "html" source and RichText with multiline prop.
@@ -125,16 +129,18 @@ declare module '@wordpress/blocks' {
 	};
 
 	/**
-	 * Create block shape.
+	 * The shape of a block mapped to an id when stored
+	 * in redux state.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
 	 */
-	export type CreateBlock<Attr = Object> = {
+	export type CreateBlock<Attr = { [ key: string ]: any }, I = []> = {
 		attributes: Attr;
 		clientId: string;
-		innerBlocks: Array<CreateBlock>;
+		innerBlocks: I | Array<CreateBlock>;
 		isValid: boolean;
 		name: string;
+		originalContent?: string;
 	}
 
 	export type StyleVariation = {
