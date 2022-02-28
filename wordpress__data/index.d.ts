@@ -476,7 +476,7 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getblockvariations;
 		 */
-		getBlockVariations: <Attr = Object>( name: string, scope?: WPBlockVariationScope) => Array<BlockVariation<Attr> | undefined>;
+		getBlockVariations: <Attr = Object>( name: string, scope?: WPBlockVariationScope ) => Array<BlockVariation<Attr> | undefined>;
 		/**
 		 * Get a blocks default variation by name.
 		 *
