@@ -1,4 +1,3 @@
-
 /**
  * Block editor elements and utilities.
  *
@@ -13,7 +12,9 @@ declare module '@wordpress/block-editor' {
 		FunctionComponent,
 		HTMLAttributes,
 		MutableRefObject,
+		ReactElement,
 		ReactNode,
+		RefCallback,
 	} from 'react';
 	import {
 		colorOptions,
@@ -23,7 +24,7 @@ declare module '@wordpress/block-editor' {
 		PopoverProps,
 		WPBlockTypeIconRender,
 	} from '@wordpress/components';
-	import {ChildBlocks, Icon} from '@wordpress/blocks';
+	import {BlockIcon as Icon, ChildBlocks} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 	import {BlockClientId} from '@wordpress/data';
@@ -51,6 +52,19 @@ declare module '@wordpress/block-editor' {
 	type useBlockProps = {
 		save: ( props?: BlockWrapAttributes ) => BlockWrapAttributes,
 		( props?: BlockWrapAttributes ): BlockWrapAttributes;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useinnerblocksprops
+	 */
+	type useInnerBlocksProps = {
+		( props?: BlockWrapAttributes, options?: InnerBlock ): BlockWrapAttributes & {
+			className: string;
+			children: ReactElement;
+			ref: RefCallback<any>;
+		}
+		save: ( props?: BlockWrapAttributes ) => BlockWrapAttributes,
+		Content: ComponentType<{}>;
 	}
 
 	/**
@@ -92,6 +106,17 @@ declare module '@wordpress/block-editor' {
 		icon: Icon;
 		showColors?: boolean;
 		className?: string;
+	}
+
+	/**
+	 *
+	 * https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#blockverticalalignmenttoolbar
+	 */
+	interface BlockVerticalAlignmentToolbar {
+		value: 'top' | 'center' | 'bottom' | undefined;
+		onChange: ( align: 'top' | 'center' | 'bottom' | undefined ) => void;
+		isCollapsed?: boolean;
+		isToolbar?: boolean;
 	}
 
 	interface ColorPalette extends Partial<PaletteComponent>, withColorContext {
@@ -228,25 +253,29 @@ declare module '@wordpress/block-editor' {
 
 	}
 
+	type InnerBlock = {
+		allowedBlocks?: string[];
+		template?: ChildBlocks;
+		orientation?: 'horizontal';
+		placeholder?: boolean;
+		value?: BlockClientId[ ];
+		onChange?: ( blocks: BlockClientId[] ) => void;
+		renderAppender?: boolean;
+	}
+
 	/**
 	 * Support blocks inside your block.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/tutorials/block-tutorial/nested-blocks-inner-blocks/
 	 */
-	interface InnerBlocks extends ComponentClass<{
-		allowedBlocks?: string[];
-		template?: ChildBlocks;
-		orientation?: 'horizontal';
-		placeholder?: boolean;
-		value?: BlockClientId[];
-		onChange?: ( blocks: BlockClientId[] ) => void;
-	}> {
+	interface InnerBlocks extends ComponentClass<InnerBlock> {
 		Content: ComponentType<{}>;
 	}
 
 
 	export const BlockControls: ComponentType<BlockControls>;
 	export const BlockIcon: ComponentType<BlockIcon>;
+	export const BlockVerticalAlignmentToolbar: ComponentType<BlockVerticalAlignmentToolbar>;
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
 	export const CopyHandler: ComponentType<CopyHandler>;
@@ -260,12 +289,14 @@ declare module '@wordpress/block-editor' {
 	export const InnerBlocks: InnerBlocks;
 	export const useBlockDisplayInformation: useBlockDisplayInformation;
 	export const useBlockProps: useBlockProps;
+	export const useInnerBlocksProps: useInnerBlocksProps;
 	export const useSetting: useSetting;
 
 
 	export default interface BlockEditor {
 		BlockControls: ComponentType<BlockControls>;
 		BlockIcon: ComponentType<BlockIcon>;
+		BlockVerticalAlignmentToolbar: ComponentType<BlockVerticalAlignmentToolbar>;
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPaletteControl: ComponentType<ColorPaletteControl>;
 		CopyHandler: ComponentType<CopyHandler>;
@@ -279,6 +310,7 @@ declare module '@wordpress/block-editor' {
 		InnerBlocks: InnerBlocks;
 		useBlockDisplayInformation: useBlockDisplayInformation;
 		useBlockProps: useBlockProps;
+		useInnerBlocksProps: useInnerBlocksProps;
 		useSetting: useSetting;
 	}
 }
