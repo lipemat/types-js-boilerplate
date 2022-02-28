@@ -4,6 +4,14 @@
  * @link https://www.npmjs.com/package/@wordpress/data
  */
 declare module '@wordpress/data' {
+	import {
+		BlockSettings,
+		BlockVariation,
+		CreateBlock,
+		createBlock,
+		IconObject,
+		WPBlockVariationScope,
+	} from '@wordpress/blocks';
 	import {PostEditing} from '@wordpress/edit-post';
 	import {Taxonomy} from '@wordpress/api/taxonomies';
 	import {Settings} from '@wordpress/api/settings';
@@ -11,7 +19,6 @@ declare module '@wordpress/data' {
 	import {Media} from '@wordpress/api/media';
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
 	import {ComponentType} from 'react';
-	import {CreateBlock, createBlock, IconObject} from '@wordpress/blocks';
 
 	/**
 	 * The shape of a block mapped to an id when stored
@@ -296,6 +303,12 @@ not yet been saved.
 		 */
 		getBlocks: <T = Array<BlockClientId>>( state?: object, rootClientId?: string ) => T;
 		/**
+		 * Get number of blocks in post or inner blocks within a block
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockcount
+		 */
+		getBlockCount: ( clientId?: string ) => number;
+		/**
 		 * Get block objects from a list of client ids.
 		 *
 		 * Supports passing only ids without state as the documenation suggests.
@@ -354,7 +367,6 @@ not yet been saved.
 		getAdjacentBlockClientId: () => any;
 		getBlock: () => any;
 		getBlockAttributes: () => any;
-		getBlockCount: () => any;
 		getBlockHierarchyRootClientId: () => any;
 		getBlockIndex: () => any;
 		getBlockInsertionPoint: () => any;
@@ -453,18 +465,35 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/
 	 */
 	export function select( store: 'core/blocks' ): {
+		/**
+		 * Get full block registration by name.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getblocktype
+		 */
+		getBlockType: <Attr = Object>( name: string ) => BlockSettings<Attr>;
+		/**
+		 * Get a blocks variations.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getblockvariations;
+		 */
+		getBlockVariations: <Attr = Object>( name: string, scope?: WPBlockVariationScope) => Array<BlockVariation<Attr> | undefined>;
+		/**
+		 * Get a blocks default variation by name.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getdefaultblockvariation
+		 */
+		getDefaultBlockVariation: <Attr = Object>( name: string, scope?: WPBlockVariationScope ) => BlockVariation<Attr> | undefined;
+
+		// @todo properly type the rest of these as needed.
 		getActiveBlockVariation: () => any;
 		getBlockStyles: () => any;
 		getBlockSupport: () => any;
-		getBlockType: () => any;
 		getBlockTypes: () => any;
-		getBlockVariations: () => any;
 		getCachedResolvers: () => any;
 		getCategories: () => any;
 		getChildBlockNames: () => any;
 		getCollections: () => any;
 		getDefaultBlockName: () => any;
-		getDefaultBlockVariation: () => any;
 		getFreeformFallbackBlockName: () => any;
 		getGroupingBlockName: () => any;
 		getIsResolving: () => any;
@@ -618,21 +647,48 @@ not yet been saved.
 			meta?: { [ key: string ]: any },
 		) => Promise<undefined>;
 		/**
+		 * Replace innerblocks by client id.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#replaceinnerblocks
+		 */
+		replaceInnerBlocks: ( clientId: string, blocks: CreateBlock | CreateBlock[], updateSelection?: boolean, initialPosition?: 0 | -1 | null ) => Promise<{
+			blocks: typeof blocks;
+			initialPosition: typeof initialPosition
+			rootClientId: string;
+			time: number;
+			type: 'REPLACE_INNER_BLOCKS'
+			updateSelection: boolean;
+		}>
+		/**
 		 * Enable or disabled block selection.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#toggleselection
 		 */
 		toggleSelection: ( enabled: boolean ) => Promise<{
-			'type': 'TOGGLE_SELECTION',
-			'isSelectionEnabled': boolean
+			type: 'TOGGLE_SELECTION',
+			isSelectionEnabled: boolean
 		}>;
 		/**
 		 * Update a block's properties.
 		 *
-		 * @lin https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#updateblock
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#updateblock
 		 */
-		updateBlock: ( clientId: string, updates: Partial<BlockClientId> ) => any;
-
+		updateBlock: ( clientId: string, updates: Partial<BlockClientId> ) => Promise<{
+			clientId: string;
+			type: 'UPDATE_BLOCK';
+			updates: typeof updates;
+		}>;
+		/**
+		 * Change attributes of one more blocks.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#updateblockattributes
+		 */
+		updateBlockAttributes: <A = Object>( clientId: string | string[], attributes: A, uniqueByBlock?: boolean ) => Promise<{
+			attributes: A,
+			clientIds: string[];
+			type: 'UPDATE_BLOCK_ATTRIBUTES',
+			uniqueByBlock: boolean
+		}>;
 
 		// @todo properly type the rest of these as needed.
 		duplicateBlocks: ( key?: string ) => any;
@@ -652,7 +708,6 @@ not yet been saved.
 		moveBlocksUp: ( key?: string ) => any;
 		multiSelect: ( key?: string ) => any;
 		receiveBlocks: ( key?: string ) => any;
-		replaceInnerBlocks: ( key?: string ) => any;
 		resetBlocks: ( key?: string ) => any;
 		resetSelection: ( key?: string ) => any;
 		selectNextBlock: ( key?: string ) => any;
@@ -673,7 +728,6 @@ not yet been saved.
 		synchronizeTemplate: ( key?: string ) => any;
 		toggleBlockHighlight: ( key?: string ) => any;
 		toggleBlockMode: ( key?: string ) => any;
-		updateBlockAttributes: ( key?: string ) => any;
 		updateBlockListSettings: ( key?: string ) => any;
 		updateSettings: ( settings: { [ key: string ]: any } ) => { [ key: string ]: any };
 		validateBlocksToTemplate: ( key?: string ) => any;
@@ -840,6 +894,7 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#actions
 	 */
 	export function dispatch( store: 'core/blocks' ): {
+		// @todo properly type the rest of these as needed.
 		addBlockCollection: () => any;
 		addBlockStyles: () => any;
 		addBlockTypes: () => any;
