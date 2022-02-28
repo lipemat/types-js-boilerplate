@@ -4,11 +4,18 @@
  * @link https://www.npmjs.com/package/@wordpress/blocks
  */
 declare module '@wordpress/blocks' {
-	import {ReactElement, ReactSVGElement} from 'react';
+	import {ReactElement, SVGProps} from 'react';
 	import {iconType} from '@wordpress/components';
 	import {BlockClientId} from '@wordpress/data';
 
-	type dataTypes = 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
+	type dataTypes =
+		'null'
+		| 'boolean'
+		| 'object'
+		| 'array'
+		| 'number'
+		| 'string'
+		| 'integer';
 
 	export type WPBlockVariationScope = 'block' | 'inserter' | 'transform';
 
@@ -199,12 +206,12 @@ declare module '@wordpress/blocks' {
 		// Specifying a color for the icon
 		foreground?: string;
 		// Specifying a dashicon or Svg.
-		src: iconType | ReactSVGElement;
+		src: iconType | SVGProps<SVGSVGElement>;
 	}
 	/**
 	 * All possible icon types when registering a block.
 	 */
-	export type BlockIcon = iconType | IconObject | ReactSVGElement;
+	export type BlockIcon = iconType | IconObject | SVGProps<SVGSVGElement>;
 
 
 	/**
