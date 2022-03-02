@@ -18,6 +18,7 @@ declare module '@wordpress/components' {
 		ReactElement,
 		ReactNode,
 		SelectHTMLAttributes,
+		SVGProps,
 		TextareaHTMLAttributes,
 	} from 'react';
 	import {Status} from '@wordpress/notices';
@@ -636,6 +637,10 @@ declare module '@wordpress/components' {
 		ref?: MutableRefObject<any>;
 	}
 
+	interface Path extends SVGProps<SVGPathElement> {
+
+	}
+	
 	/**
 	 * Gives a block a border an makes it occupy the minimum standard
 	 * amount of space.
@@ -788,6 +793,10 @@ declare module '@wordpress/components' {
 		className?: string;
 	}
 
+	interface SVG extends SVGProps<SVGSVGElement> {
+
+	}
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toggle-control/
 	 */
@@ -894,6 +903,7 @@ declare module '@wordpress/components' {
 	export const Notice: ComponentType<Notice>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const PanelRow: ComponentType<PanelRow>;
+	export const Path: ComponentType<Path>;
 	export const Placeholder: ComponentType<Placeholder>;
 	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
@@ -904,6 +914,7 @@ declare module '@wordpress/components' {
 	export const Shortcut: ComponentType<Shortcut>;
 	export const Slot: ComponentType<Slot>;
 	export const Spinner: ComponentType<Spinner>;
+	export const SVG: ComponentType<SVG>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
 	export const ToggleControl: ComponentType<ToggleControl>;
@@ -929,6 +940,7 @@ declare module '@wordpress/components' {
 		Notice: ComponentType<Notice>;
 		PanelBody: ComponentType<PanelBody>;
 		PanelRow: ComponentType<PanelRow>;
+		Path: ComponentType<Path>;
 		Placeholder: ComponentType<Placeholder>;
 		Popover: ComponentType<PopoverProps>;
 		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
@@ -939,6 +951,7 @@ declare module '@wordpress/components' {
 		Shortcut: ComponentType<Shortcut>;
 		Slot: ComponentType<Slot>;
 		Spinner: ComponentType<Spinner>;
+		SVG: ComponentType<SVG>;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
 		ToggleControl: ComponentType<ToggleControl>;
