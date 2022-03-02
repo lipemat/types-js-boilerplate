@@ -294,7 +294,7 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getBlocks
 		 */
-		getBlocks: <T = Array<BlockClientId>>( state?: object, rootClientId?: string ) => T;
+		getBlocks: <T = CreateBlock[]>( rootClientId?: string ) => T;
 		/**
 		 * Get number of blocks in post or inner blocks within a block
 		 *
