@@ -296,6 +296,12 @@ not yet been saved.
 		 */
 		getBlocks: <T = CreateBlock[]>( rootClientId?: string ) => T;
 		/**
+		 * Return all block attributes by block client id.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockattributes
+		 */
+		getBlockAttributes: <Att>( clientId: string ) => null | Att;
+		/**
 		 * Get number of blocks in post or inner blocks within a block
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockcount
@@ -369,7 +375,6 @@ not yet been saved.
 		didAutomaticChange: () => any;
 		getAdjacentBlockClientId: () => any;
 		getBlock: () => any;
-		getBlockAttributes: () => any;
 		getBlockHierarchyRootClientId: () => any;
 		getBlockIndex: () => any;
 		getBlockInsertionPoint: () => any;

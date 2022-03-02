@@ -22,6 +22,7 @@ declare module '@wordpress/components' {
 		TextareaHTMLAttributes,
 	} from 'react';
 	import {Status} from '@wordpress/notices';
+	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
 
 	/**
@@ -64,10 +65,10 @@ declare module '@wordpress/components' {
 	}
 
 	/**
-	 * Dashicon slug or react element which renders and SVG
+	 * Dashicon slug or react element which renders a SVG.
 	 * like the @wordpress/icons package.
 	 */
-	export type WPBlockTypeIconRender = iconType | ReactElement | null;
+	export type WPBlockTypeIconRender = BlockIcon | ReactElement | null;
 
 	/**
 	 * List of all availble Dashicons.

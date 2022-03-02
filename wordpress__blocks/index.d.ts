@@ -204,7 +204,7 @@ declare module '@wordpress/blocks' {
 		priority?: number;
 	}
 
-	export type ChildBlocks = Array<[ string, Object?, ChildBlocks? ]>;
+	export type ChildBlocks = Array<[ string, { [ key: string ]: any }?, ChildBlocks? ]>;
 
 	export type IconObject = {
 		// Specifying a background color to appear with the icon e.g.: in the inserter.
