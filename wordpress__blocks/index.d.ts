@@ -1,15 +1,32 @@
+/**
+ * Definitions for the `@wordpress/blocks` package.
+ *
+ * @link https://www.npmjs.com/package/@wordpress/blocks
+ */
 declare module '@wordpress/blocks' {
-	import {ReactElement} from 'react';
+	import {ReactElement, SVGProps} from 'react';
 	import {iconType} from '@wordpress/components';
-	import {blockCliendId} from '@wordpress/data';
+	import {BlockClientId} from '@wordpress/data';
 
-	type dataTypes = 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
+	type dataTypes =
+		'null'
+		| 'boolean'
+		| 'object'
+		| 'array'
+		| 'number'
+		| 'string'
+		| 'integer';
 
+	export type WPBlockVariationScope = 'block' | 'inserter' | 'transform';
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
+	 */
 	type AttributeShape = {
-		type: dataTypes;
+		type: dataTypes | dataTypes[];
 		source?: 'text' | 'html' | 'query' | 'attribute';
 		default?: any;
+		enum?: Array<string | boolean | number>;
 		// jQuery selector of element to extract value from.
 		selector?: string;
 		// Tag to wrap each line when using "html" source and RichText with multiline prop.
@@ -50,13 +67,32 @@ declare module '@wordpress/blocks' {
 	}
 	}
 
+	/**
+	 * Props passed to `edit` component of blocks.
+	 * Not well documentet and mostly tracked down via source code.
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/
+	 */
 	export type BlockEditProps<Attr> = {
+		attributes: Attr
 		className: string;
+		clientId: string;
+		context: Object; // @todo
+		insertBlocksAfter: ( blocks: CreateBlock[] ) => void;
+		isSelected: boolean
+		isSelectionEnabled: boolean;
+		mergeBlocks: ( forward: boolean ) => void;
+		name: string;
+		onRemove: () => void;
+		onReplace: (
+			blocks: CreateBlock | CreateBlock[],
+			index: number,
+			initialPosition: 0 | -1 | null,
+		) => void;
+		toggleSelection: ( enabled: boolean ) => void;
 		setAttributes: ( newValue: {
 			[attribute in keyof Attr]?: Attr[attribute]
 		} ) => void;
-		attributes: Attr
-		isSelected: boolean
+
 	}
 
 	/**
@@ -69,12 +105,12 @@ declare module '@wordpress/blocks' {
 		title: string;
 		description?: string;
 		category?: string;
-		icon?: Icon;
+		icon?: BlockIcon;
 		isDefault?: boolean;
 		attributes?: BlockAttributes<Attr>;
-		innerBlocks?: subBlocks;
+		innerBlocks?: ChildBlocks;
 		example?: BlockExample<Attr>;
-		scope?: Array<'block' | 'inserter' | 'transform'>;
+		scope?: Array<WPBlockVariationScope>;
 		keywords?: string[];
 		isActive?: ( ( attr: BlockAttributes<Attr>, variation: BlockAttributes<Attr> ) => boolean ) | Array<keyof Attr>;
 	}
@@ -93,16 +129,18 @@ declare module '@wordpress/blocks' {
 	};
 
 	/**
-	 * Create block shape.
+	 * The shape of a block mapped to an id when stored
+	 * in redux state.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
 	 */
-	export type CreateBlock<Attr = Object> = {
+	export type CreateBlock<Attr = { [ key: string ]: any }, I = []> = {
 		attributes: Attr;
 		clientId: string;
-		innerBlocks: Array<CreateBlock>;
+		innerBlocks: I | Array<CreateBlock>;
 		isValid: boolean;
 		name: string;
+		originalContent?: string;
 	}
 
 	export type StyleVariation = {
@@ -121,7 +159,7 @@ declare module '@wordpress/blocks' {
 	export type Transforms<T, Attr> = {
 		type: 'block';
 		blocks: Array<string | '*'>;
-		transform: ( attributes: T, innerBlocks: subBlocks ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
+		transform: ( attributes: T, innerBlocks: ChildBlocks ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
 		isMatch?: ( attributes: T, block: CreateBlock<Attr> ) => boolean;
 		isMultiBlock?: boolean;
 		priority?: number;
@@ -166,23 +204,41 @@ declare module '@wordpress/blocks' {
 		priority?: number;
 	}
 
-	export type subBlocks = Array<[ string, Object, subBlocks? ]>;
+	export type ChildBlocks = Array<[ string, { [ key: string ]: any }?, ChildBlocks? ]>;
 
-	type Icon = iconType | {
+	export type IconObject = {
 		// Specifying a background color to appear with the icon e.g.: in the inserter.
 		background?: string;
 		// Specifying a color for the icon
 		foreground?: string;
-		// Specifying a dashicon for the block
-		src: iconType;
+		// Specifying a dashicon or Svg.
+		src: iconType | SVGProps<SVGSVGElement>;
 	}
+	/**
+	 * All possible icon types when registering a block.
+	 */
+	export type BlockIcon = iconType | IconObject | SVGProps<SVGSVGElement>;
 
+
+	/**
+	 * Parser utility for converting HTML block JSON to finished block objects.
+	 *
+	 * Pass post content with serialized blocks and receive block objects back.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#parse
+	 *
+	 */
+	export function parse( content: string ): CreateBlock[];
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
+	 */
 	export type BlockSettings<Attr, C = '', T = Attr> = {
 		title: string;
 		description?: string;
 		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | C
 		// Svg | dashicon | configuration
-		icon: Icon;
+		icon: BlockIcon;
 		keywords?: string[];
 		styles?: Array<StyleVariation>;
 		/**
@@ -205,7 +261,7 @@ declare module '@wordpress/blocks' {
 		 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/
 		 */
 		supports?: {
-			align?: boolean | [ 'left' | 'right' | 'full' ]
+			align?: boolean | Array<'left' | 'right' | 'full' | 'wide'>;
 			// Remove the support for wide alignment.
 			alignWide?: boolean;
 			// Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block, and a button to copy the direct link.
@@ -220,9 +276,10 @@ declare module '@wordpress/blocks' {
 			 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#color
 			 */
 			color?: {
-				background: boolean; // Enable background color UI control.
-				gradient: boolean; // Enable gradient color UI control.
-				text: boolean; // Enable text color UI control.
+				background?: boolean; // Enable background color UI control.
+				gradients?: boolean; // Enable gradient color UI control.
+				text?: boolean; // Enable text color UI control.
+				link?: boolean; // Enable link color UI control.
 			};
 			/**
 			 * Enable font size UI control.
@@ -236,14 +293,24 @@ declare module '@wordpress/blocks' {
 			 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#lineheight
 			 */
 			lineHeight?: boolean;
-			// Set to false to Remove support for an HTML mode.
+			// False removes support for an HTML mode.
 			html?: boolean;
-			// Set to false to Hide this block from the inserter.
+			// False hides this block from the inserter.
 			inserter?: boolean;
-			// Set to false to Use the block just once per post
+			// False allows the block just once per post
 			multiple?: boolean;
-			// Set to false to Don't allow the block to be converted into a reusable block.
+			// False prevents the block to be converted into a reusable block.
 			reusable?: boolean;
+			/**
+			 * Enable CSS spacing UI controls
+			 *
+			 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#spacing
+			 */
+			spacing?: {
+				blockGap?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+				margin?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+				padding?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+			}
 		}
 		/**
 		 * Display content in the editor and make and changes to data.
@@ -272,7 +339,14 @@ declare module '@wordpress/blocks' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblock
 	 */
-	export function createBlock<Attr>( id: string, attributes: Attr, InnerBlocks?: Array<subBlocks> ): CreateBlock<Attr>;
+	export function createBlock<Attr>( id: string, attributes?: Attr, InnerBlocks?: Array<ChildBlocks | CreateBlock> ): CreateBlock<Attr>;
+
+	/**
+	 * Convert block configurations into Block objects
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblocksfrominnerblockstemplate
+	 */
+	export function createBlocksFromInnerBlocksTemplate( blocks: ChildBlocks | CreateBlock[] ): CreateBlock[];
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
@@ -290,7 +364,7 @@ declare module '@wordpress/blocks' {
 	 */
 	export function registerBlockCollection( namespace: string, settings: {
 		title: string;
-		icon?: Icon;
+		icon?: BlockIcon;
 	} ): void;
 
 	/**
@@ -333,7 +407,7 @@ declare module '@wordpress/blocks' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#serialize
 	 */
-	export function serialize( blocks: Array<blockCliendId>, options?: WPBlockSerializationOptions ): string;
+	export function serialize( blocks: Array<BlockClientId>, options?: WPBlockSerializationOptions ): string;
 
 	/**
 	 * Unregisters a block variation defined for an existing block type.
@@ -345,12 +419,14 @@ declare module '@wordpress/blocks' {
 
 	export default interface Blocks {
 		createBlock: typeof createBlock;
+		createBlocksFromInnerBlocksTemplate: typeof createBlocksFromInnerBlocksTemplate;
+		parse: typeof parse;
 		registerBlockCollection: typeof registerBlockCollection;
 		registerBlockStyle: typeof registerBlockStyle;
 		registerBlockType: typeof registerBlockType;
-		unregisterBlockStyle: typeof unregisterBlockStyle;
 		registerBlockVariation: typeof registerBlockVariation;
 		serialize: typeof serialize;
+		unregisterBlockStyle: typeof unregisterBlockStyle;
 		unregisterBlockType: typeof unregisterBlockType;
 		unregisterBlockVariation: typeof unregisterBlockVariation;
 	}

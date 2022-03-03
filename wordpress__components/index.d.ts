@@ -11,14 +11,18 @@ declare module '@wordpress/components' {
 		CSSProperties,
 		HTMLAttributes,
 		InputHTMLAttributes,
+		KeyboardEvent,
 		MouseEvent,
 		MutableRefObject,
 		PropsWithChildren,
 		ReactElement,
 		ReactNode,
 		SelectHTMLAttributes,
+		SVGProps,
 		TextareaHTMLAttributes,
 	} from 'react';
+	import {Status} from '@wordpress/notices';
+	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
 
 	/**
@@ -61,13 +65,18 @@ declare module '@wordpress/components' {
 	}
 
 	/**
-	 * Dashicon slug or react element which renders and SVG
+	 * Dashicon slug or react element which renders a SVG.
 	 * like the @wordpress/icons package.
 	 */
-	export type WPBlockTypeIconRender = iconType | ReactElement | null;
+	export type WPBlockTypeIconRender = BlockIcon | ReactElement | null;
 
+	/**
+	 * List of all availble Dashicons.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/dashicon/types.ts
+	 */
 	export type iconType =
-		'admin-appearance'
+		| 'admin-appearance'
 		| 'admin-collapse'
 		| 'admin-comments'
 		| 'admin-customizer'
@@ -87,6 +96,7 @@ declare module '@wordpress/components' {
 		| 'admin-site'
 		| 'admin-tools'
 		| 'admin-users'
+		| 'airplane'
 		| 'album'
 		| 'align-center'
 		| 'align-full-width'
@@ -96,6 +106,7 @@ declare module '@wordpress/components' {
 		| 'align-pull-right'
 		| 'align-right'
 		| 'align-wide'
+		| 'amazon'
 		| 'analytics'
 		| 'archive'
 		| 'arrow-down-alt'
@@ -110,9 +121,13 @@ declare module '@wordpress/components' {
 		| 'arrow-up-alt'
 		| 'arrow-up-alt2'
 		| 'arrow-up'
+		| 'arrow-up-duplicate'
 		| 'art'
 		| 'awards'
 		| 'backup'
+		| 'bank'
+		| 'beer'
+		| 'bell'
 		| 'block-default'
 		| 'book-alt'
 		| 'book'
@@ -129,7 +144,12 @@ declare module '@wordpress/components' {
 		| 'buddicons-tracking'
 		| 'building'
 		| 'businessman'
+		| 'businessperson'
+		| 'businesswoman'
 		| 'button'
+		| 'calculator'
+		| 'camera-alt'
+		| 'car'
 		| 'calendar-alt'
 		| 'calendar'
 		| 'camera'
@@ -146,6 +166,9 @@ declare module '@wordpress/components' {
 		| 'cloud-upload'
 		| 'cloud'
 		| 'columns'
+		| 'code-standards'
+		| 'coffee'
+		| 'color-picker'
 		| 'controls-back'
 		| 'controls-forward'
 		| 'controls-pause'
@@ -157,16 +180,26 @@ declare module '@wordpress/components' {
 		| 'controls-volumeon'
 		| 'cover-image'
 		| 'dashboard'
+		| 'database'
+		| 'database-add'
+		| 'database-export'
+		| 'database-import'
+		| 'database-remove'
+		| 'database-view'
 		| 'desktop'
 		| 'dismiss'
 		| 'download'
+		| 'drumstick'
 		| 'edit'
+		| 'edit-large'
+		| 'edit-page'
 		| 'editor-aligncenter'
 		| 'editor-alignleft'
 		| 'editor-alignright'
 		| 'editor-bold'
 		| 'editor-break'
 		| 'editor-code'
+		| 'editor-code-duplicate'
 		| 'editor-contract'
 		| 'editor-customchar'
 		| 'editor-expand'
@@ -184,6 +217,7 @@ declare module '@wordpress/components' {
 		| 'editor-paste-text'
 		| 'editor-paste-word'
 		| 'editor-quote'
+		| 'editor-removeformatting'
 		| 'editor-rtl'
 		| 'editor-spellcheck'
 		| 'editor-strikethrough'
@@ -210,6 +244,7 @@ declare module '@wordpress/components' {
 		| 'feedback'
 		| 'filter'
 		| 'flag'
+		| 'food'
 		| 'format-aside'
 		| 'format-audio'
 		| 'format-chat'
@@ -219,6 +254,10 @@ declare module '@wordpress/components' {
 		| 'format-status'
 		| 'format-video'
 		| 'forms'
+		| 'fullscreen-alt'
+		| 'fullscreen-exit-alt'
+		| 'games'
+		| 'google'
 		| 'googleplus'
 		| 'grid-view'
 		| 'groups'
@@ -252,8 +291,10 @@ declare module '@wordpress/components' {
 		| 'leftright'
 		| 'lightbulb'
 		| 'list-view'
+		| 'linkedin'
 		| 'location-alt'
 		| 'location'
+		| 'lock-duplicate'
 		| 'lock'
 		| 'marker'
 		| 'media-archive'
@@ -267,7 +308,10 @@ declare module '@wordpress/components' {
 		| 'media-video'
 		| 'megaphone'
 		| 'menu-alt'
+		| 'menu-alt2'
+		| 'menu-alt3'
 		| 'menu'
+		| 'money-alt'
 		| 'microphone'
 		| 'migrate'
 		| 'minus'
@@ -277,21 +321,32 @@ declare module '@wordpress/components' {
 		| 'networking'
 		| 'no-alt'
 		| 'no'
+		| 'open-folder'
 		| 'palmtree'
 		| 'paperclip'
 		| 'performance'
+		| 'pets'
+		| 'pdf'
 		| 'phone'
+		| 'pinterest'
 		| 'playlist-audio'
 		| 'playlist-video'
 		| 'plus-alt'
-		| 'plus-alt2'
+		| 'plus-light'
 		| 'plus'
 		| 'portfolio'
 		| 'post-status'
 		| 'pressthis'
 		| 'products'
+		| 'plugins-checked'
+		| 'plus-alt2'
+		| 'podio'
+		| 'printer'
+		| 'privacy'
 		| 'randomize'
+		| 'reddit'
 		| 'redo'
+		| 'remove'
 		| 'rest-api'
 		| 'rss'
 		| 'saved'
@@ -314,6 +369,9 @@ declare module '@wordpress/components' {
 		| 'star-half'
 		| 'sticky'
 		| 'store'
+		| 'spotify'
+		| 'superhero'
+		| 'superhero-alt'
 		| 'table-col-after'
 		| 'table-col-before'
 		| 'table-col-delete'
@@ -325,6 +383,7 @@ declare module '@wordpress/components' {
 		| 'tagcloud'
 		| 'testimonial'
 		| 'text'
+		| 'text-page'
 		| 'thumbs-down'
 		| 'thumbs-up'
 		| 'tickets-alt'
@@ -332,11 +391,14 @@ declare module '@wordpress/components' {
 		| 'tide'
 		| 'translation'
 		| 'trash'
+		| 'twitch'
 		| 'twitter'
+		| 'twitter-alt'
 		| 'undo'
 		| 'universal-access-alt'
 		| 'universal-access'
 		| 'unlock'
+		| 'update-alt'
 		| 'update'
 		| 'upload'
 		| 'vault'
@@ -351,10 +413,13 @@ declare module '@wordpress/components' {
 		| 'welcome-view-site'
 		| 'welcome-widgets-menus'
 		| 'welcome-write-blog'
+		| 'whatsapp'
 		| 'wordpress-alt'
 		| 'wordpress'
+		| 'xing'
 		| 'yes-alt'
-		| 'yes';
+		| 'yes'
+		| 'youtube';
 
 	type shortcutText = string | {
 		display: string;
@@ -535,10 +600,30 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/notice/#props
+	 */
+	interface Notice {
+		spokenMessage?: string;
+		status?: Status;
+		onRemove?: () => void;
+		politeness?: 'assertive' | 'polite';
+		isDismissible?: boolean;
+		onDismiss?: () => void;
+		actions?: Array<{
+			label: ReactElement;
+			url?: string;
+			onClick?: () => void;
+			className?: string;
+			neDefaultClasses?: boolean;
+			variant?: 'primary';
+		}>;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
 	 */
 	interface PanelBody {
-		title: string;
+		title?: string;
 		initialOpen?: boolean;
 		icon?: string;
 		children?: ReactNode[] | ReactNode;
@@ -553,6 +638,10 @@ declare module '@wordpress/components' {
 		ref?: MutableRefObject<any>;
 	}
 
+	interface Path extends SVGProps<SVGPathElement> {
+
+	}
+	
 	/**
 	 * Gives a block a border an makes it occupy the minimum standard
 	 * amount of space.
@@ -598,14 +687,47 @@ declare module '@wordpress/components' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/radio-control
 	 */
 	interface RadioControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
-		label?: ReactNode;
-		help?: ReactNode;
 		selected: string | number;
 		options: Array<{
 			label: string;
 			value: string | number;
 		}>;
+		label?: ReactNode;
+		help?: ReactNode;
 		onChange?: ( value: string ) => void;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/range-control/#props
+	 */
+	interface RangeControl {
+		onChange: ( value: number ) => void;
+		value: number;
+		afterIcon?: iconType;
+		allowReset?: boolean;
+		beforeIcon?: iconType;
+		disabled?: boolean;
+		help?: ReactNode;
+		icon?: iconType;
+		initialPosition?: number;
+		isShiftStepEnabled?: number;
+		label?: string;
+		marks?: boolean | Array<{
+			value: number;
+			label: string;
+		}>;
+		min?: number;
+		max?: number;
+		railColor?: string;
+		renderTooltipContent?: ( value: number ) => ReactNode;
+		resetFallbackValue?: number;
+		separatorType?: 'none' | 'fullWidth' | 'topFullWidth';
+		showTooltip?: boolean;
+		step?: number | 'any';
+		shiftStep?: number;
+		trackColor?: string;
+		type?: 'slider' | 'stepper';
+		withInputField?: boolean;
 	}
 
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
@@ -621,6 +743,23 @@ declare module '@wordpress/components' {
 		}>;
 		className?: string,
 		hideLabelFromVision?: boolean
+	}
+
+	/**
+	 * Seach box and icon.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/search-control/
+	 */
+	interface SearchControl {
+		className?: string;
+		help?: string | ReactNode;
+		hideLabelFromVision?: boolean;
+		label: string;
+		onChange?: ( value: string ) => void;
+		onClose?: () => void;
+		onKeyDown?: ( event: KeyboardEvent<HTMLInputElement> ) => void;
+		placeholder?: string;
+		value: string;
 	}
 
 	/**
@@ -646,6 +785,17 @@ declare module '@wordpress/components' {
 		children?: ( fills: ReactNode[] ) => ReactNode;
 		className?: string;
 		name: string;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/spinner/
+	 */
+	interface Spinner {
+		className?: string;
+	}
+
+	interface SVG extends SVGProps<SVGSVGElement> {
+
 	}
 
 	/**
@@ -751,16 +901,21 @@ declare module '@wordpress/components' {
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+	export const Notice: ComponentType<Notice>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const PanelRow: ComponentType<PanelRow>;
+	export const Path: ComponentType<Path>;
 	export const Placeholder: ComponentType<Placeholder>;
 	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
+	export const RangeControl: ComponentType<RangeControl>;
 	export const SelectControl: ComponentType<SelectControl>;
+	export const SearchControl: ComponentType<SearchControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
 	export const Slot: ComponentType<Slot>;
-	export const Spinner: ComponentType<{}>;
+	export const Spinner: ComponentType<Spinner>;
+	export const SVG: ComponentType<SVG>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
 	export const ToggleControl: ComponentType<ToggleControl>;
@@ -783,16 +938,21 @@ declare module '@wordpress/components' {
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
 		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+		Notice: ComponentType<Notice>;
 		PanelBody: ComponentType<PanelBody>;
 		PanelRow: ComponentType<PanelRow>;
+		Path: ComponentType<Path>;
 		Placeholder: ComponentType<Placeholder>;
 		Popover: ComponentType<PopoverProps>;
 		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
+		RangeControl: ComponentType<RangeControl>;
 		SelectControl: ComponentType<SelectControl>;
+		SearchControl: ComponentType<SearchControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
 		Slot: ComponentType<Slot>;
-		Spinner: ComponentType<{}>;
+		Spinner: ComponentType<Spinner>;
+		SVG: ComponentType<SVG>;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
 		ToggleControl: ComponentType<ToggleControl>;
