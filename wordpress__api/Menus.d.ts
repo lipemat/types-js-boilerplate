@@ -18,6 +18,8 @@ declare module '@wordpress/api/menus' {
 	}
 
 	export interface MenuCreate extends Omit<CategoryCreate, 'parent'> {
+		auto_add?: boolean;
+		locations?: string[];
 	}
 
 	export interface MenuUpdate extends Partial<MenuCreate> {
