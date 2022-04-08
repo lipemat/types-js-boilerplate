@@ -10,12 +10,13 @@ declare module '@wordpress/api' {
 	export * from '@wordpress/api/application-passwords';
 	export * from '@wordpress/api/categories';
 	export * from '@wordpress/api/comments';
+	export * from '@wordpress/api/editor-blocks';
 	export * from '@wordpress/api/media';
-	export * from '@wordpress/api/menus';
 	export * from '@wordpress/api/menu-items';
 	export * from '@wordpress/api/menu-locations';
-	export * from '@wordpress/api/posts';
+	export * from '@wordpress/api/menus';
 	export * from '@wordpress/api/pages';
+	export * from '@wordpress/api/posts';
 	export * from '@wordpress/api/search';
 	export * from '@wordpress/api/settings';
 	export * from '@wordpress/api/taxonomies';
