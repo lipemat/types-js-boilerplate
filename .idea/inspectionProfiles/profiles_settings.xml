@@ -1,6 +1,7 @@
 <component name="InspectionProjectProfileManager">
   <settings>
-    <option name="PROJECT_PROFILE" value="Project" />
+    <option name="PROJECT_PROFILE" value="Types - JS Boilerplate" />
+    <version value="1.0" />
     <info color="525229">
       <option name="myName" value="Ignored" />
       <option name="myVal" value="50" />
