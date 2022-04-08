@@ -5,6 +5,7 @@ import './mime';
 import './wordpress__api/ApplicationPasswords';
 import './wordpress__api/Categories';
 import './wordpress__api/Comments';
+import './wordpress__api/EditorBlocks';
 import './wordpress__api/Media';
 import './wordpress__api/Menus';
 import './wordpress__api/MenuItems';

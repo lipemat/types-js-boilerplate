@@ -32,7 +32,6 @@ declare module '@wordpress/api/menu-items' {
 	}
 
 	export interface MenuItemCreate extends Partial<Omit<MenuItem, 'title'>> {
-		'menu-id': number;
 		title: string;
 		type: 'taxonomy' | 'post_type' | 'post_type_archive' | 'custom';
 	}

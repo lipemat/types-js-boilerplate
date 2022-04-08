@@ -600,6 +600,25 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/modal/#props
+	 */
+	interface Modal {
+		'aria.describedby'?: string;
+		'aria.labelledby'?: string;
+		className?: string;
+		contentLabel?: string;
+		focusOnMount?: boolean;
+		isDismissible?: boolean;
+		isFullScreen?: boolean;
+		onRequestClose: () => void;
+		overlayClassName?: string;
+		role?: string;
+		shouldCloseOnClickOutside?: boolean;
+		shouldCloseOnEsc?: boolean;
+		title?: string;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/notice/#props
 	 */
 	interface Notice {
@@ -901,6 +920,7 @@ declare module '@wordpress/components' {
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+	export const Modal: ComponentType<Modal>;
 	export const Notice: ComponentType<Notice>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const PanelRow: ComponentType<PanelRow>;
@@ -938,6 +958,7 @@ declare module '@wordpress/components' {
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
 		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+		Modal: ComponentType<Modal>;
 		Notice: ComponentType<Notice>;
 		PanelBody: ComponentType<PanelBody>;
 		PanelRow: ComponentType<PanelRow>;
