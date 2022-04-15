@@ -252,6 +252,9 @@ declare module '@wordpress/block-editor' {
 
 	}
 
+	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/inner-blocks/README.md
+	 */
 	type InnerBlock = {
 		allowedBlocks?: string[];
 		onChange?: ( blocks: CreateBlock[] ) => void;
