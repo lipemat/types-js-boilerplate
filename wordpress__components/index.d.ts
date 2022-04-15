@@ -426,7 +426,18 @@ declare module '@wordpress/components' {
 		ariaLabel: string;
 	};
 
-	type tooltipPosition = 'top left' | 'top right' | 'top-center' | 'bottom left' | 'bottom right' | 'bottom center';
+	type tooltipPosition =
+		'top'
+		| 'bottom'
+		| 'left'
+		| 'center'
+		| 'right'
+		| 'top left'
+		| 'top right'
+		| 'top-center'
+		| 'bottom left'
+		| 'bottom right'
+		| 'bottom center';
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/base-control/
