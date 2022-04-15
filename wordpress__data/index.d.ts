@@ -196,6 +196,7 @@ not yet been saved.
 		getBlockAttributes: () => any;
 		getBlockCount: () => any;
 		getBlockHierarchyRootClientId: () => any;
+		/** @deprecated **/
 		getBlockIndex: () => any;
 		getBlockInsertionPoint: () => any;
 		getBlockListSettings: () => any;
@@ -308,6 +309,13 @@ not yet been saved.
 		 */
 		getBlockCount: ( clientId?: string ) => number;
 		/**
+		 * Get index of a root block in the editor or the index
+		 * of an inner block within inner blocks.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getblockindex
+		 */
+		getBlockIndex: ( clientId?: string ) => number;
+		/**
 		 * Get all block client IDs in the editor or inner blocks in the order they appear.
 		 * they appear
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockorder
@@ -376,7 +384,6 @@ not yet been saved.
 		getAdjacentBlockClientId: () => any;
 		getBlock: () => any;
 		getBlockHierarchyRootClientId: () => any;
-		getBlockIndex: () => any;
 		getBlockInsertionPoint: () => any;
 		getBlockListSettings: () => any;
 		getBlockMode: () => any;
