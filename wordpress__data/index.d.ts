@@ -542,6 +542,9 @@ not yet been saved.
 	 * Technically this creates incorrect types when calling `select` directly
 	 * as it does not support a callback.
 	 *
+	 * @notice The object returned from the callback is used for memo cache and
+	 *         must not contain anonymous functions.
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
 	 */
 	export function select<T>( callback: ( selectFunction: typeof select ) => T, deps?: Array<any> ): T;
