@@ -848,10 +848,10 @@ declare module '@wordpress/components' {
 	}
 
 	interface ToolbarGroup {
-		className: string;
+		className?: string;
 		controls?: Array<Control>;
-		isCollapsed: boolean;
-		title: string;
+		isCollapsed?: boolean;
+		title?: string;
 	}
 
 	/**
