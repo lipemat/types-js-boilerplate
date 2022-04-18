@@ -854,7 +854,11 @@ declare module '@wordpress/components' {
 		title: string;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/tooltip/
+	 */
 	interface Tooltip {
+		delay?: number;
 		text?: string;
 		position?: tooltipPosition;
 		shortcut?: shortcutText;
@@ -888,8 +892,8 @@ declare module '@wordpress/components' {
 
 
 	/**
-	 * Truncate is a typography primitive that trims text content.
-	 * For almost all cases, it is recommended that Text or Heading is used to render text content.
+	 * Truncate is a typography primitive, which trims text content.
+	 * For almost all cases, we recommend Text or Heading is used to render text content.
 	 *
 	 * However, Truncate is available for custom implementations.
 	 */
@@ -952,8 +956,8 @@ declare module '@wordpress/components' {
 	export const ToggleControl: ComponentType<ToggleControl>;
 	export const ToolbarButton: ComponentType<ToolbarButton>;
 	export const ToolbarGroup: ComponentType<ToolbarGroup>;
-	export const Tooltip: Tooltip;
-	export const Truncate: Truncate;
+	export const Tooltip: ComponentType<Tooltip>;
+	export const Truncate: ComponentType<Truncate>;
 
 	export default interface Components {
 		BaseControl: ComponentType<BaseControl>;
@@ -991,7 +995,7 @@ declare module '@wordpress/components' {
 		ToolbarButton: ComponentType<ToolbarButton>;
 		ToolbarGroup: ComponentType<ToolbarGroup>;
 		Tooltip: ComponentType<Tooltip>;
-		Truncate: Truncate;
+		Truncate: ComponentType<Truncate>;
 		withFilters: typeof withFilters;
 	}
 }
