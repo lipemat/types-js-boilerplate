@@ -328,11 +328,11 @@ not yet been saved.
 		/**
 		 * Get block objects from a list of client ids.
 		 *
-		 * Supports passing only ids without state as the documenation suggests.
+		 * Supports passing only ids without state as the documentation suggests.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblocksbyclientid
 		 */
-		getBlocksByClientId: ( clientIds: string[] ) => BlockClientId[];
+		getBlocksByClientId: <Attr = { [ key: string ]: any }, I = []>( clientIds: string[] ) => Array<CreateBlock<Attr, I>>;
 		/**
 		 * Get full list of blocks shown in the block inserter.
 		 *
