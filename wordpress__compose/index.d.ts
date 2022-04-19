@@ -4,7 +4,7 @@
  * @link https://www.npmjs.com/package/@wordpress/compose
  */
 declare module '@wordpress/compose' {
-	import {ComponentType, MutableRefObject} from 'react';
+	import {ComponentType, Ref} from 'react';
 
 	// @note displayName is assigned directly to component, not a prop.
 	export interface createHigherOrderComponentProps {
@@ -18,7 +18,7 @@ declare module '@wordpress/compose' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-compose/#usecopytoclipboard
 	 */
-	type useCopyToClipboard = ( text: string | ( () => string ), onSuccess: () => void ) => MutableRefObject<string>;
+	type useCopyToClipboard = <T = HTMLButtonElement>( text: string | ( () => string ), onSuccess: () => void ) => Ref<T>;
 
 
 	export interface withInstanceIdProps {
