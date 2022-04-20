@@ -11,14 +11,20 @@ declare module '@wordpress/compose' {
 		displayName?: string;
 	}
 
-	type createHigherOrderComponent = <P>( WrappedComponent: ComponentType<P> ) => ComponentType<P> & createHigherOrderComponentProps;
+	/**
+	 * Given a function mapping a component to an enhanced component and modifier
+	 * name, returns the enhanced component augmented with a generated displayName.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-compose/#createhigherordercomponent
+	 */
+	type createHigherOrderComponent = <P>( WrappedComponent: ComponentType<P>, modifierName: string ) => ComponentType<P> & createHigherOrderComponentProps;
 
 	/**
 	 * Copy text to clipboard.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-compose/#usecopytoclipboard
 	 */
-	type useCopyToClipboard = <T = HTMLButtonElement>( text: string | ( () => string ), onSuccess: () => void ) => Ref<T>;
+	type useCopyToClipboard = <T = HTMLButtonElement>( text: string | (() => string), onSuccess: () => void ) => Ref<T>;
 
 
 	export interface withInstanceIdProps {
