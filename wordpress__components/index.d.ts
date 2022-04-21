@@ -4,23 +4,7 @@
  * @link https://developer.wordpress.org/block-editor/reference-guides/components/
  */
 declare module '@wordpress/components' {
-	import {
-		ButtonHTMLAttributes,
-		ChangeEvent,
-		ComponentType,
-		CSSProperties,
-		HTMLAttributes,
-		InputHTMLAttributes,
-		KeyboardEvent,
-		MouseEvent,
-		MutableRefObject,
-		PropsWithChildren,
-		ReactElement,
-		ReactNode,
-		SelectHTMLAttributes,
-		SVGProps,
-		TextareaHTMLAttributes,
-	} from 'react';
+	import {ButtonHTMLAttributes, ChangeEvent, ComponentType, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, TextareaHTMLAttributes} from 'react';
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
@@ -728,14 +712,15 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * Range slider input control.
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/range-control/#props
 	 */
 	interface RangeControl {
-		onChange: ( value: number ) => void;
-		value: number;
 		afterIcon?: iconType;
 		allowReset?: boolean;
 		beforeIcon?: iconType;
+		className?: string;
 		disabled?: boolean;
 		help?: ReactNode;
 		icon?: iconType;
@@ -746,17 +731,19 @@ declare module '@wordpress/components' {
 			value: number;
 			label: string;
 		}>;
-		min?: number;
 		max?: number;
+		min?: number;
+		onChange: ( value: number ) => void;
 		railColor?: string;
 		renderTooltipContent?: ( value: number ) => ReactNode;
 		resetFallbackValue?: number;
 		separatorType?: 'none' | 'fullWidth' | 'topFullWidth';
+		shiftStep?: number;
 		showTooltip?: boolean;
 		step?: number | 'any';
-		shiftStep?: number;
 		trackColor?: string;
 		type?: 'slider' | 'stepper';
+		value: number;
 		withInputField?: boolean;
 	}
 

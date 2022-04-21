@@ -69,7 +69,8 @@ declare module '@wordpress/blocks' {
 
 	/**
 	 * Props passed to `edit` component of blocks.
-	 * Not well documentet and mostly tracked down via source code.
+	 * Not well documented and mostly tracked down via source code.
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/
 	 */
 	export type BlockEditProps<Attr> = {
