@@ -6,24 +6,8 @@
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/
  */
 declare module '@wordpress/block-editor' {
-	import {
-		ComponentClass,
-		ComponentType,
-		FunctionComponent,
-		HTMLAttributes,
-		MutableRefObject,
-		ReactElement,
-		ReactNode,
-		RefCallback,
-	} from 'react';
-	import {
-		colorOptions,
-		ColorPalette as PaletteComponent,
-		Control,
-		PanelBody,
-		PopoverProps,
-		WPBlockTypeIconRender,
-	} from '@wordpress/components';
+	import {ComponentClass, ComponentType, FunctionComponent, MutableRefObject, ReactElement, ReactNode, RefCallback} from 'react';
+	import {colorOptions, ColorPalette as PaletteComponent, Control, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
@@ -38,7 +22,7 @@ declare module '@wordpress/block-editor' {
 		description: string;
 	}
 
-	type BlockWrapAttributes = HTMLAttributes<HTMLDivElement | HTMLParagraphElement> & {
+	type BlockWrapAttributes = JSX.IntrinsicElements['div'] & {
 		ref?: MutableRefObject<any>;
 	};
 
