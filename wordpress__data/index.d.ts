@@ -4,21 +4,14 @@
  * @link https://www.npmjs.com/package/@wordpress/data
  */
 declare module '@wordpress/data' {
-	import {
-		BlockSettings,
-		BlockVariation,
-		CreateBlock,
-		createBlock,
-		IconObject,
-		WPBlockVariationScope,
-	} from '@wordpress/blocks';
+	import {BlockSettings, BlockVariation, CreateBlock, createBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
 	import {PostEditing} from '@wordpress/edit-post';
 	import {Taxonomy} from '@wordpress/api/taxonomies';
 	import {Settings} from '@wordpress/api/settings';
 	import {Type} from '@wordpress/api/types';
 	import {Media} from '@wordpress/api/media';
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
-	import {ComponentType} from 'react';
+	import {ComponentType, DependencyList} from 'react';
 
 	/**
 	 * @deprecated In favor of CreateBlock;
@@ -547,7 +540,7 @@ not yet been saved.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
 	 */
-	export function select<T>( callback: ( selectFunction: typeof select ) => T, deps?: Array<any> ): T;
+	export function select<T>( callback: ( selectFunction: typeof select ) => T, deps?: DependencyList ): T;
 
 	export function select<Methods extends {
 		[ selector: string ]: ( key?: string | number ) => any;
@@ -970,6 +963,9 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#usedispatch
 	 */
 	export const useDispatch: typeof dispatch;
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
+	 */
 	export const useSelect: typeof select;
 	export const withDispatch: withDispatch;
 	export const withSelect: withSelect;
