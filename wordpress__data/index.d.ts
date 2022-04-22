@@ -596,15 +596,16 @@ not yet been saved.
 			type: 'CLEAR_SELECTED_BLOCK';
 		}>;
 		/**
-		 * Insert a single block into the editor.
+		 * Insert a single block into the editor or inner blocks of
+		 * supplied clientId.
 		 *
 		 * @see createBlock
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#insertblock
 		 */
-		insertBlock: ( block: CreateBlock ) => Promise<undefined>;
+		insertBlock: ( block: CreateBlock, index?: number, clientId?: string, updateSelection?: boolean, meta?: Object ) => Promise<undefined>;
 		/**
-		 * Insert blocks into the editor or innerblocks of supplied clientId.
+		 * Insert blocks into the editor or inner blocks of supplied clientId.
 		 *
 		 * @see createBlock
 		 *
