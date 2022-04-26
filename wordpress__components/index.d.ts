@@ -49,13 +49,13 @@ declare module '@wordpress/components' {
 	}
 
 	/**
-	 * Dashicon slug or react element which renders a SVG.
+	 * Dashicon slug or react element, which renders a SVG.
 	 * like the @wordpress/icons package.
 	 */
 	export type WPBlockTypeIconRender = BlockIcon | ReactElement | null;
 
 	/**
-	 * List of all availble Dashicons.
+	 * List of all available Dashicons.
 	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/dashicon/types.ts
 	 */
