@@ -207,7 +207,9 @@ declare module '@wordpress/block-editor' {
 		}>;
 	}
 
-
+	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/rich-text/README.md
+	 */
 	interface RichText {
 		children?: ReactNode[],
 		className?: string;
@@ -233,7 +235,8 @@ declare module '@wordpress/block-editor' {
 		// Whether to show the input is selected or not in order to show the formatting controls. By default it renders the controls when the block is selected.
 		isSelected?: boolean;
 		autocompleters?: string[];
-
+		// Show format controls inline instead of within block toolbar.
+		inlineToolbar?: boolean;
 	}
 
 	/**
