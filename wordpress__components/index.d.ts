@@ -54,6 +54,8 @@ declare module '@wordpress/components' {
 	 */
 	export type WPBlockTypeIconRender = BlockIcon | ReactElement | null;
 
+	export type FocusOnMount = 'firstElement' | 'container' | boolean;
+
 	/**
 	 * List of all available Dashicons.
 	 *
@@ -496,6 +498,42 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/dropdown/#props
+	 */
+	interface Dropdown {
+		className?: string;
+		contentClassName?: string;
+		expandOnMobile?: boolean;
+		focusOnMount?: FocusOnMount;
+		headerTitle?: string;
+		onClose?: () => void;
+		onToggle?: ( open: boolean ) => void;
+		popoverProps?: PopoverProps;
+		position?: tooltipPosition;
+		renderContent: ( args: Dropdown['renderToggle'] ) => ReactNode;
+		renderToggle: ( args: {
+			isOpen: boolean;
+			onToggle: () => void;
+			onClose: () => void;
+		} ) => ReactNode;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/dropdown-menu/#props
+	 */
+	interface DropdownMenu {
+		children?: ( args: Dropdown['renderToggle'] ) => ReactNode;
+		className?: string;
+		controls?: Control[];
+		disableOpenOnArrowDown?: boolean;
+		icon?: iconType;
+		label: string;
+		menuProps?: Dropdown;
+		popoverProps?: PopoverProps;
+		toggleProps?: ButtonButton;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
 	 */
 	export interface Fill {
@@ -510,7 +548,7 @@ declare module '@wordpress/components' {
 		icon?: WPBlockTypeIconRender;
 		multiple?: boolean;
 		onChange?: ( ev: ChangeEvent<HTMLInputElement> ) => void;
-		render?: ( args: { openFileDialog: () => void } ) => ReactNode;
+		render?: ( args: {openFileDialog: () => void} ) => ReactNode;
 	}
 
 	interface Grid {
@@ -655,7 +693,7 @@ declare module '@wordpress/components' {
 	interface Path extends SVGProps<SVGPathElement> {
 
 	}
-	
+
 	/**
 	 * Gives a block a border an makes it occupy the minimum standard
 	 * amount of space.
@@ -677,7 +715,7 @@ declare module '@wordpress/components' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/popover
 	 */
 	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-		focusOnMount?: 'firstElement' | 'container' | boolean;
+		focusOnMount?: FocusOnMount;
 		position?:
 			'bottom left'
 			| 'bottom center'
@@ -827,6 +865,9 @@ declare module '@wordpress/components' {
 		onChange: ( currentValue: boolean ) => void;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toolbar-button/
+	 */
 	interface ToolbarButton extends ButtonButton {
 		containerClassName?: string;
 		title?: string;
@@ -834,12 +875,25 @@ declare module '@wordpress/components' {
 		isDisabled?: boolean;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toolbar-group/
+	 */
 	interface ToolbarGroup {
 		className?: string;
 		controls?: Array<Control>;
 		isCollapsed?: boolean;
 		title?: string;
 	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toolbar-item/
+	 */
+	type ToolbarItem = {
+		                   as: string | ComponentType<DropdownMenu['toggleProps']>;
+		                   children: ReactNode;
+	                   } | {
+		                   children: ( props: DropdownMenu['toggleProps'] ) => ReactNode
+	                   }
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/tooltip/
@@ -915,6 +969,8 @@ declare module '@wordpress/components' {
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPicker: ComponentType<ColorPicker>;
 	export const Dashicon: ComponentType<Dashicon>;
+	export const Dropdown: ComponentType<Dropdown>;
+	export const DropdownMenu: ComponentType<DropdownMenu>;
 	export const DropZone: ComponentType<DropZone>;
 	export const Fill: ComponentType<Fill>;
 	export const FormFileUpload: ComponentType<FormFileUpload>;
@@ -943,6 +999,7 @@ declare module '@wordpress/components' {
 	export const ToggleControl: ComponentType<ToggleControl>;
 	export const ToolbarButton: ComponentType<ToolbarButton>;
 	export const ToolbarGroup: ComponentType<ToolbarGroup>;
+	export const ToolbarItem: ComponentType<ToolbarItem>;
 	export const Tooltip: ComponentType<Tooltip>;
 	export const Truncate: ComponentType<Truncate>;
 
@@ -953,6 +1010,8 @@ declare module '@wordpress/components' {
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPicker: ComponentType<ColorPicker>;
 		Dashicon: ComponentType<Dashicon>;
+		Dropdown: ComponentType<Dropdown>;
+		DropdownMenu: ComponentType<DropdownMenu>;
 		DropZone: ComponentType<DropZone>;
 		Fill: ComponentType<Fill>;
 		FormFileUpload: ComponentType<FormFileUpload>;
@@ -981,6 +1040,7 @@ declare module '@wordpress/components' {
 		ToggleControl: ComponentType<ToggleControl>;
 		ToolbarButton: ComponentType<ToolbarButton>;
 		ToolbarGroup: ComponentType<ToolbarGroup>;
+		ToolbarItem: ComponentType<ToolbarItem>;
 		Tooltip: ComponentType<Tooltip>;
 		Truncate: ComponentType<Truncate>;
 		withFilters: typeof withFilters;
