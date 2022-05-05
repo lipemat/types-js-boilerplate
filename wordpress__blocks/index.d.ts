@@ -298,6 +298,8 @@ declare module '@wordpress/blocks' {
 			html?: boolean;
 			// False hides this block from the inserter.
 			inserter?: boolean;
+			// False hides the lock options from block options dropdown.
+			lock?: boolean;
 			// False allows the block just once per post
 			multiple?: boolean;
 			// False prevents the block to be converted into a reusable block.
@@ -311,6 +313,15 @@ declare module '@wordpress/blocks' {
 				blockGap?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
 				margin?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
 				padding?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+			}
+			/**
+			 * Enable typography controls and attributes.
+			 *
+			 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#typography
+			 */
+			typography?: {
+				fontSize: boolean;
+				lineHeight: boolean;
 			}
 		}
 		/**
