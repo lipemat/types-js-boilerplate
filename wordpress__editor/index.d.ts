@@ -1,7 +1,7 @@
 declare module '@wordpress/editor' {
 	import {ComponentType} from 'react';
 	import {withInstanceIdProps} from '@wordpress/compose';
-	import {withSpokenMessages} from '@wordpress/components'
+	import {withSpokenMessages} from '@wordpress/components';
 	import {Settings} from 'tinymce';
 
 	/**
@@ -14,11 +14,8 @@ declare module '@wordpress/editor' {
 		tinymce: Settings;
 	} | false ) => void;
 
-
 	/**
-	 * @notice Not publicly available yet!!
-	 *
-	 * @issue https://github.com/WordPress/gutenberg/issues/17476
+	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/editor/src/components/post-taxonomies
 	 */
 	interface HierarchicalTermSelector extends withInstanceIdProps, withSpokenMessages {
 		hasCreateAction?: boolean;
