@@ -4,7 +4,14 @@
  * @link https://www.npmjs.com/package/@wordpress/data
  */
 declare module '@wordpress/data' {
-	import {BlockSettings, BlockVariation, CreateBlock, createBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
+	import {
+		BlockSettings,
+		BlockVariation,
+		CreateBlock,
+		createBlock,
+		IconObject,
+		WPBlockVariationScope
+	} from '@wordpress/blocks';
 	import {PostEditing} from '@wordpress/edit-post';
 	import {Taxonomy} from '@wordpress/api/taxonomies';
 	import {Settings} from '@wordpress/api/settings';
@@ -18,6 +25,10 @@ declare module '@wordpress/data' {
 	 */
 	export interface BlockClientId<Attr = { [ key: string ]: any }, I = []> extends CreateBlock {
 	}
+
+	export type StateValue =
+		| { status: 'resolving' | 'finished' }
+		| { status: 'error'; error: Error | unknown }
 
 	/**
 	 * The shape of a blocks' configuration when used in the
@@ -78,9 +89,26 @@ declare module '@wordpress/data' {
 	}
 
 	/**
+	 * Selectors shared by all stores.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/data/src/redux-store/metadata/selectors.js
+	 */
+	export type SelectShared<T> = {
+		getCachedResolvers: () => T;
+		getIsResolving: ( selector: keyof T, args?: Array<any> ) => boolean;
+		getResolutionError: ( property: keyof T ) => Error | null;
+		getResolutionState: ( property: keyof T ) => StateValue;
+		hasFinishedResolution: ( selector: keyof T, args?: Array<any> ) => boolean;
+		hasResolutionFailed: ( property: keyof T ) => boolean;
+		hasStartedResolution: ( selector: keyof T, args?: Array<any> ) => any;
+		isResolving: ( selector: keyof T, args?: Array<any> ) => any;
+	}
+
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core/
 	 */
-	export function select( store: 'core' ): {
+	type Core = {
 		canUser: ( action: 'create' | 'read' | 'update' | 'delete', endpoint: string, id?: string ) => boolean;
 		getMedia: ( id: number ) => Media;
 		getMediaItems: () => Media[ ];
@@ -89,22 +117,17 @@ declare module '@wordpress/data' {
 		getTaxonomies: () => Taxonomy[] | undefined;
 		getTaxonomy: ( slug: string ) => Taxonomy | undefined;
 		hasFetchedAutosaves: () => boolean;
-		hasFinishedResolution: () => boolean;
 		hasRedo: () => boolean;
-		hasStartedResolution: () => boolean;
 		hasUndo: () => boolean;
 		isAutosavingEntityRecord: () => boolean;
 		isPreviewEmbedFallback: () => boolean;
 		isRequestingEmbedPreview: () => boolean;
-		isResolving: () => boolean;
 		isSavingEntityRecord: () => boolean;
 
 		// @todo properly type the rest of these as needed.
-		getIsResolving: () => boolean;
 		getAuthors: () => any;
 		getAutosave: ( id: string ) => any;
 		getAutosaves: () => any;
-		getCachedResolvers: () => any;
 		getCurrentUser: () => any;
 		getEmbedPreview: ( id: number ) => any;
 		getLastEntitySaveError: () => any;
@@ -117,10 +140,13 @@ declare module '@wordpress/data' {
 		getWidgetArea: ( slug: string ) => any;
 		getWidgetAreas: () => any;
 	};
+
+	export function select( store: 'core' ): Core & SelectShared<Core>;
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/
 	 */
-	export function select( store: 'core/editor' ): {
+	type CoreEditor = {
 		/**
 		 * Returns the post currently being edited in its last known saved state, not
 including unsaved edits.
@@ -214,7 +240,6 @@ not yet been saved.
 		getFirstMultiSelectedBlockClientId: () => any;
 		getGlobalBlockCount: () => any;
 		getInserterItems: () => any;
-		getIsResolving: () => any;
 		getLastMultiSelectedBlockClientId: () => any;
 		getMultiSelectedBlockClientIds: () => any;
 		getMultiSelectedBlocks: () => any;
@@ -235,13 +260,11 @@ not yet been saved.
 		hasChangedContent: () => any;
 		hasEditorRedo: () => any;
 		hasEditorUndo: () => any;
-		hasFinishedResolution: () => any;
 		hasInserterItems: () => any;
 		hasMultiSelection: () => any;
 		hasNonPostEntityChanges: () => any;
 		hasSelectedBlock: () => any;
 		hasSelectedInnerBlock: () => any;
-		hasStartedResolution: () => any;
 		isAncestorMultiSelected: () => any;
 		isAutosavingPost: () => any;
 		isBlockInsertionPointVisible: () => any;
@@ -270,19 +293,20 @@ not yet been saved.
 		isPreviewingPost: () => any;
 		isPublishSidebarEnabled: () => any;
 		isPublishingPost: () => any;
-		isResolving: () => any;
 		isSavingPost: () => any;
 		isSelectionEnabled: () => any;
 		isTyping: () => any;
 		isValidTemplate: () => any;
 	}
 
+	export function select( store: 'core/editor' ): CoreEditor & SelectShared<CoreEditor>;
+
 	/**
 	 * The Block Editor’s Data
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectors
 	 */
-	export function select( store: 'core/block-editor' ): {
+	type CoreBlockEditor = {
 		/**
 		 * Return all blocks currently in the editor.
 		 *
@@ -368,7 +392,6 @@ not yet been saved.
 		 */
 		getSelectedBlockClientIds: () => string[];
 
-
 		// @todo properly type the rest of these as needed.
 		areInnerBlocksControlled: () => any;
 		canInsertBlockType: () => any;
@@ -392,7 +415,6 @@ not yet been saved.
 		getDraggedBlockClientIds: () => any;
 		getFirstMultiSelectedBlockClientId: () => any;
 		getGlobalBlockCount: () => any;
-		getIsResolving: () => any;
 		getLastMultiSelectedBlockClientId: () => any;
 		getLowestCommonAncestorWithSelectedBlock: () => any;
 		getMultiSelectedBlocksEndClientId: () => any;
@@ -407,12 +429,10 @@ not yet been saved.
 		getTemplate: () => any;
 		getTemplateLock: () => any;
 		hasBlockMovingClientId: () => any;
-		hasFinishedResolution: () => any;
 		hasInserterItems: () => any;
 		hasMultiSelection: () => any;
 		hasSelectedBlock: () => any;
 		hasSelectedInnerBlock: () => any;
-		hasStartedResolution: () => any;
 		isAncestorBeingDragged: () => any;
 		isAncestorMultiSelected: () => any;
 		isBlockBeingDragged: () => any;
@@ -428,16 +448,17 @@ not yet been saved.
 		isLastBlockChangePersistent: () => any;
 		isMultiSelecting: () => any;
 		isNavigationMode: () => any;
-		isResolving: () => any;
 		isSelectionEnabled: () => any;
 		isTyping: () => any;
 		isValidTemplate: () => any;
 	}
 
+	export function select( store: 'core/block-editor' ): CoreBlockEditor & SelectShared<CoreBlockEditor>;
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-post/
 	 */
-	export function select( store: 'core/edit-post' ): {
+	type CoreEditPost = {
 		getEditorMode: () => 'visual' | 'text';
 		getPreference: <K extends keyof editPostPreferences>( kee: K ) => editPostPreferences[K];
 		getPreferences: () => editPostPreferences;
@@ -450,12 +471,8 @@ not yet been saved.
 		getActiveGeneralSidebarName: ( key?: string ) => any;
 		getActiveMetaBoxLocations: ( key?: string ) => any;
 		getAllMetaBoxes: ( key?: string ) => any;
-		getCachedResolvers: ( key?: string ) => any;
-		getIsResolving: ( key?: string ) => any;
 		getMetaBoxesPerLocation: ( key?: string ) => any;
-		hasFinishedResolution: ( key?: string ) => any;
 		hasMetaBoxes: ( key?: string ) => any;
-		hasStartedResolution: ( key?: string ) => any;
 		isEditorPanelEnabled: ( key?: string ) => any;
 		isEditorPanelOpened: ( key?: string ) => any;
 		isEditorPanelRemoved: ( key?: string ) => any;
@@ -463,14 +480,15 @@ not yet been saved.
 		isMetaBoxLocationVisible: ( key?: string ) => any;
 		isModalActive: ( key?: string ) => any;
 		isPluginItemPinned: ( key?: string ) => any;
-		isResolving: ( key?: string ) => any;
 		isSavingMetaBoxes: ( key?: string ) => any;
 	}
+
+	export function select( store: 'core/edit-post' ): CoreEditPost & SelectShared<CoreEditPost>;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/
 	 */
-	export function select( store: 'core/blocks' ): {
+	type CoreBlocks = {
 		/**
 		 * Get full block registration by name.
 		 *
@@ -495,35 +513,29 @@ not yet been saved.
 		getBlockStyles: () => any;
 		getBlockSupport: () => any;
 		getBlockTypes: () => any;
-		getCachedResolvers: () => any;
 		getCategories: () => any;
 		getChildBlockNames: () => any;
 		getCollections: () => any;
 		getDefaultBlockName: () => any;
 		getFreeformFallbackBlockName: () => any;
 		getGroupingBlockName: () => any;
-		getIsResolving: () => any;
 		getUnregisteredFallbackBlockName: () => any;
 		hasBlockSupport: () => any;
 		hasChildBlocks: () => any;
 		hasChildBlocksWithInserterSupport: () => any;
-		hasFinishedResolution: () => any;
-		hasStartedResolution: () => any;
 		isMatchingSearchTerm: () => any;
-		isResolving: () => any;
 	}
+
+	export function select( store: 'core/blocks' ): CoreBlocks & SelectShared<CoreBlocks>;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-notices/#selectors
 	 */
-	export function select( store: 'core/notices' ): {
-		getCachedResolvers: () => any;
-		getIsResolving: () => any;
+	type CoreNotices = {
 		getNotices: () => any;
-		hasFinishedResolution: () => any;
-		hasStartedResolution: () => any;
-		isResolving: () => any;
-	}
+	};
+
+	export function select( store: 'core/notices' ): CoreNotices & SelectShared<CoreNotices>;
 
 	/**
 	 * A special overload for handling `useSelect.
