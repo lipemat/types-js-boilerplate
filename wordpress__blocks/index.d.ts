@@ -254,7 +254,9 @@ declare module '@wordpress/blocks' {
 			from?: Array<Transforms<T, Attr> | TransformsFrom<Attr>>;
 			to?: Array<Transforms<T, Attr>>;
 		};
-		// Setting parent lets a block require that it is only available when nested within the specified blocks.
+		// Allow this block to only be used as a child or grandchild of specified blocks.
+		ancestor?: string[];
+		// Allow this block to only be used as a direct child of specified blocks.
 		parent?: string[];
 		/**
 		 * Features this block supports.
