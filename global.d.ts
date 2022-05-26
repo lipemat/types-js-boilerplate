@@ -10,7 +10,7 @@ import CoreData from '@wordpress/core-data';
 import Data from '@wordpress/data';
 import Editor from '@wordpress/editor';
 import Element from '@wordpress/element';
-import {Hook} from '@wordpress/hooks';
+import Hooks from '@wordpress/hooks';
 import I18N from '@wordpress/i18n';
 import Icons from '@wordpress/icons';
 import MediaUtils from '@wordpress/media-utils';
@@ -42,7 +42,7 @@ declare global {
 			editPost?: EditPost,
 			editor?: Editor;
 			element?: Element;
-			hooks?: Hook;
+			hooks?: Hooks;
 			i18n?: I18N;
 			icons?: Icons;
 			media?: WpMedia;
