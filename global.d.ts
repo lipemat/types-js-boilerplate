@@ -11,6 +11,7 @@ import Data from '@wordpress/data';
 import Editor from '@wordpress/editor';
 import Element from '@wordpress/element';
 import Hooks from '@wordpress/hooks';
+import HtmlEntities from '@wordpress/html-entities';
 import I18N from '@wordpress/i18n';
 import Icons from '@wordpress/icons';
 import MediaUtils from '@wordpress/media-utils';
@@ -43,6 +44,7 @@ declare global {
 			editor?: Editor;
 			element?: Element;
 			hooks?: Hooks;
+			htmlEntities?: HtmlEntities;
 			i18n?: I18N;
 			icons?: Icons;
 			media?: WpMedia;
