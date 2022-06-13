@@ -123,7 +123,7 @@ declare module '@wordpress/api/posts' {
 	/**
 	 * Update a Post.
 	 *
-	 * @link https://developer.wordpress.org/rest-api/reference/posts/#arguments-4
+	 * @link https://developer.wordpress.org/rest-api/reference/posts/#update-a-post
 	 */
 	export interface PostUpdate extends PostCreate {
 		id: number;
