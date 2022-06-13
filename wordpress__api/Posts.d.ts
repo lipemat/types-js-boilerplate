@@ -121,6 +121,15 @@ declare module '@wordpress/api/posts' {
 	}
 
 	/**
+	 * Update a Post.
+	 *
+	 * @link https://developer.wordpress.org/rest-api/reference/posts/#arguments-4
+	 */
+	export interface PostUpdate extends PostCreate {
+		id: number;
+	}
+
+	/**
 	 * List Posts.
 	 *
 	 * https://developer.wordpress.org/rest-api/reference/posts/#arguments
