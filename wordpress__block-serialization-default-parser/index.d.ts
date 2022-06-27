@@ -5,6 +5,7 @@
  * in `@wordpress/blocks.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-serialization-default-parser/
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__block-serialization-spec-parser/index.d.ts
  */
 declare module '@wordpress/block-serialization-default-parser' {
 

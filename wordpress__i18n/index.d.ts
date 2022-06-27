@@ -1,5 +1,7 @@
 /**
- * @link https://github.com/WordPress/gutenberg/blob/master/packages/i18n/src/index.js
+ * Translation support vis JS.
+ *
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 declare module '@wordpress/i18n' {
 	type single = string;

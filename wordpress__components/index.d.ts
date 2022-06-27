@@ -2,9 +2,26 @@
  * Definitions for the `@wordpress/components` package.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/components/
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__components/index.d.ts
  */
 declare module '@wordpress/components' {
-	import {ButtonHTMLAttributes, ChangeEvent, ComponentType, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, TextareaHTMLAttributes} from 'react';
+	import {
+		ButtonHTMLAttributes,
+		ChangeEvent,
+		ComponentType,
+		CSSProperties,
+		HTMLAttributes,
+		InputHTMLAttributes,
+		KeyboardEvent,
+		MouseEvent,
+		MutableRefObject,
+		PropsWithChildren,
+		ReactElement,
+		ReactNode,
+		SelectHTMLAttributes,
+		SVGProps,
+		TextareaHTMLAttributes
+	} from 'react';
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;

@@ -4,7 +4,7 @@
  * Currently not available as a global variable and must
  * be used from the package directly.
  *
- * @link https://www.npmjs.com/package/@wordpress/primitives
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-primitives/
  *
  * @todo Adjust configurations to use webpack external and remove
  *       direct package access and package.json dependency

@@ -1,7 +1,8 @@
 /**
  * Definitions for the `@wordpress/blocks` package.
  *
- * @link https://www.npmjs.com/package/@wordpress/blocks
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__blocks/index.d.ts
  */
 declare module '@wordpress/blocks' {
 	import {ReactElement, SVGProps} from 'react';

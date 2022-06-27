@@ -1,7 +1,8 @@
 /**
  * Definitions for the `@wordpress/plugins` package.
  *
- * @link https://www.npmjs.com/package/@wordpress/plugins
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__plugins/index.d.ts
  */
 declare module '@wordpress/plugins' {
 	import {ComponentClass, FunctionComponent, ReactNode} from 'react';

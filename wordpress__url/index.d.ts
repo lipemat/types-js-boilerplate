@@ -1,3 +1,8 @@
+/**
+ * URL utility functions.
+ *
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-url/
+ */
 declare module '@wordpress/url' {
 	export type QueryArgObject = {
 		[ key: string ]: string | string[] | any;

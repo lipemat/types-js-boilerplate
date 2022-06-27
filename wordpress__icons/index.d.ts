@@ -9,7 +9,7 @@
  * attributes use it like so.
  * `<Icon icon={ check } size={48} />`
  *
- * @link https://www.npmjs.com/package/@wordpress/icons
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/
  *
  * @todo Adjust configurations to use webpack external and remove
  *       direct package access and package.json dependency

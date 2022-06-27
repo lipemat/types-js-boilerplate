@@ -1,7 +1,8 @@
 /**
  * Definitions for the `@wordpress/compose` package.
  *
- * @link https://www.npmjs.com/package/@wordpress/compose
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-compose/
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__compose/index.d.ts
  */
 declare module '@wordpress/compose' {
 	import {ComponentType, Ref} from 'react';

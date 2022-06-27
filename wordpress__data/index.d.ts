@@ -1,7 +1,11 @@
 /**
  * Definitions for the `@wordpress/data` package.
  *
- * @link https://www.npmjs.com/package/@wordpress/data
+ * Some are included in global types for individual packages,
+ * however the definitions are not always right or complete, so we
+ * have to keep our overrides indefinitely.
+ *
+ * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/data
  */
 declare module '@wordpress/data' {
 	import {
@@ -305,6 +309,7 @@ not yet been saved.
 	 * The Block Editor’s Data
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectors
+	 * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__block-editor/store/selectors.d.ts
 	 */
 	type CoreBlockEditor = {
 		/**
@@ -590,7 +595,9 @@ not yet been saved.
 	/**
 	 * The Block Editor’s Data
 	 *
+	 * @notice The Global types have incorrect non-promise returns.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#actions
+	 * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__block-editor/store/actions.d.ts
 	 */
 	export function dispatch( store: 'core/block-editor' ): {
 		/**
@@ -598,7 +605,7 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
 		 */
-		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => BlockClientId<A, I>;
+		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => CreateBlock<A, I>;
 		/**
 		 * Unselect all blocks.
 		 *

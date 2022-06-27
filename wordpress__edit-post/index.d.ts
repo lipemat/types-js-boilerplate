@@ -1,7 +1,8 @@
 /**
- * Definitions for the `@wordpress/edit-post` package.
+ * Edit Post Module for WordPress.
  *
- * @link https://www.npmjs.com/package/@wordpress/edit-post
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-post/
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__edit-post/index.d.ts
  */
 declare module '@wordpress/edit-post' {
 	import {FunctionComponent} from 'react';

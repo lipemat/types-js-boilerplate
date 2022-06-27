@@ -1,7 +1,8 @@
 /**
  * Definitions for the `@wordpress/notices` package.
  *
- * @link https://www.npmjs.com/package/@wordpress/notices
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-notices/
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__notices/index.d.ts
  */
 declare module '@wordpress/notices' {
 	import {ReactNode} from 'react';

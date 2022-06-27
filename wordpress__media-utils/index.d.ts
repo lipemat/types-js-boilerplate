@@ -1,10 +1,8 @@
 /**
- * Definitions for the `@wordpress/media-utils` package.
- *
  * Utilities for facilitating media uploads.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-media-utils/
- *
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__media-utils/index.d.ts
  */
 declare module '@wordpress/media-utils' {
 	import {ComponentType} from 'react';
@@ -33,6 +31,7 @@ declare module '@wordpress/media-utils' {
 	 * Upload a file to the media library.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-media-utils/#uploadmedia
+	 * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__media-utils/utils/upload-media.d.ts
 	 */
 	type uploadMedia = ( args: {
 		allowedTypes?: Array<ALL_TYPES>;
@@ -47,7 +46,7 @@ declare module '@wordpress/media-utils' {
 	/**
 	 * Creates a button or element to open the media manager.
 	 *
-	 * Must be used in conjunction with `@wordpress/block-editor.MediaUpload`.
+	 * Must be used with `@wordpress/block-editor.MediaUpload`.
 	 *
 	 * @example `addFilter(
 	 * 			    'editor.MediaUpload',

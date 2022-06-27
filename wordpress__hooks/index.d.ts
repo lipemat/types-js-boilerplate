@@ -1,8 +1,7 @@
 /**
  * Actions and filters via JS.
  *
- * @link https://github.com/WordPress/gutenberg/tree/master/packages/hooks
- *
+ * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/
  */
 declare module '@wordpress/hooks' {
 	export interface Hook {

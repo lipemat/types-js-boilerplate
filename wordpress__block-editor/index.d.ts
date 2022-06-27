@@ -1,13 +1,29 @@
 /**
  * Block editor elements and utilities.
  *
- * Supports stand alone block editors, or work with WP core ones.
+ * Supports stand-alone block editors, or work with WP core ones.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/wordpress__block-editor
  */
 declare module '@wordpress/block-editor' {
-	import {ComponentClass, ComponentType, FunctionComponent, MutableRefObject, ReactElement, ReactNode, RefCallback} from 'react';
-	import {colorOptions, ColorPalette as PaletteComponent, Control, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
+	import {
+		ComponentClass,
+		ComponentType,
+		FunctionComponent,
+		MutableRefObject,
+		ReactElement,
+		ReactNode,
+		RefCallback
+	} from 'react';
+	import {
+		colorOptions,
+		ColorPalette as PaletteComponent,
+		Control,
+		PanelBody,
+		PopoverProps,
+		WPBlockTypeIconRender
+	} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
