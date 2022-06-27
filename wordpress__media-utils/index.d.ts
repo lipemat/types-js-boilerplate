@@ -10,6 +10,13 @@ declare module '@wordpress/media-utils' {
 	import {MediaUpload as Base} from '@wordpress/block-editor';
 	import {Media, MediaCreate} from '@wordpress/api/media';
 
+	export type UploadMediaErrorCode =
+		| 'MIME_TYPE_NOT_ALLOWED_FOR_USER'
+		| 'MIME_TYPE_NOT_SUPPORTED'
+		| 'SIZE_ABOVE_LIMIT'
+		| 'EMPTY_FILE'
+		| 'GENERAL';
+
 	export type Upload = UploadedMedia | {
 		url: string;
 	}
@@ -22,7 +29,7 @@ declare module '@wordpress/media-utils' {
 	}
 
 	export type UploadError = {
-		code: string;
+		code: UploadMediaErrorCode;
 		message: [ JSX.Element, string, string ];
 		file: File;
 	}
@@ -36,12 +43,12 @@ declare module '@wordpress/media-utils' {
 	type uploadMedia = ( args: {
 		allowedTypes?: Array<ALL_TYPES>;
 		additionalData?: MediaCreate;
-		filesList: File[] | FileList;
+		filesList: ArrayLike<File>;
 		maxUploadFileSize?: number;
 		onError?: ( error: UploadError ) => void;
 		onFileChange: ( files: Array<Upload> ) => void;
 		wpAllowedMimeTypes?: ALL_TYPES;
-	} ) => void;
+	} ) => Promise<void>;
 
 	/**
 	 * Creates a button or element to open the media manager.
