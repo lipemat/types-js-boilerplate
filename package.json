@@ -14,7 +14,6 @@
   },
   "homepage": "https://github.com/lipemat/types-js-boilerplate#readme",
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/codemirror": "^5.60.5",
     "@types/jest": "^24.0.19",
     "@types/jquery": "^3.5.5",

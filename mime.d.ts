@@ -1,7 +1,7 @@
 declare module '@lipemat/js-boilerplate/mime' {
 	export type ALL_TYPES = GENERAL_TYPES | MIME_TYPES;
 	/**
-	 * General types which include all subset mimes.
+	 * General types, which include all subset mimes.
 	 */
 	export type GENERAL_TYPES =
 		'image'

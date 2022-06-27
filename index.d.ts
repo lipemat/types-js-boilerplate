@@ -1,6 +1,9 @@
 // Utilities
 import './mime';
 
+// classnames
+import './classnames';
+
 // WordPress REST API
 import './wordpress__api/ApplicationPasswords';
 import './wordpress__api/Categories';

@@ -5,7 +5,7 @@
  */
 declare module '@wordpress/primitives' {
 	import {ComponentType, SVGAttributes} from 'react';
-	import {ClassValue} from 'classnames/types';
+	import {ClassValue} from 'classnames';
 
 
 	interface BlockQuotation extends HTMLQuoteElement {
