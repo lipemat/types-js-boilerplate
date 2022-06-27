@@ -22,4 +22,6 @@ declare module 'classnames' {
 		| undefined
 		| null
 		| boolean;
+
+	export default function classNames( ...args: ClassValue[] ): string;
 }
