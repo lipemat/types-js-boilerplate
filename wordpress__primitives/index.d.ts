@@ -1,14 +1,7 @@
 /**
- * Definitions for the `@wordpress/primitives` package.
- *
- * Currently not available as a global variable and must
- * be used from the package directly.
+ * Primitives to be used cross-platform.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-primitives/
- *
- * @todo Adjust configurations to use webpack external and remove
- *       direct package access and package.json dependency
- *       when available in WP Core.
  */
 declare module '@wordpress/primitives' {
 	import {ComponentType, SVGAttributes} from 'react';
