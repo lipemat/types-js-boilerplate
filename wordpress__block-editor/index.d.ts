@@ -4,7 +4,7 @@
  * Supports stand-alone block editors, or work with WP core ones.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/
- * @link https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/wordpress__block-editor
+ * @link https://github.com/DefinitelyTyped/DefinitelyTyped/tree/trunk/types/wordpress__block-editor
  */
 declare module '@wordpress/block-editor' {
 	import {
@@ -30,7 +30,7 @@ declare module '@wordpress/block-editor' {
 
 	type getColorClassName = ( prefix: string, slug: string ) => string;
 	/**
-	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor#useBlockDisplayInformation
+	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor#useBlockDisplayInformation
 	 */
 	type useBlockDisplayInformation = ( blockId: string ) => {
 		title: string;
@@ -133,6 +133,17 @@ declare module '@wordpress/block-editor' {
 		children: ReactNode;
 	}
 
+	/**
+	 * Appear in the post settings sidebar when a block is being edited.
+	 * The controls appear in both HTML and visual editing modes, and thus
+	 * should contain settings that affect the entire block.
+	 *
+	 * Used commonly with `@wordpress/components.PanelBody`.
+	 *
+	 * @see module:@wordpress/components.PanelBody
+	 *
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/inspector-controls/README.md
+	 */
 	interface InspectorControls extends FunctionComponent {
 	}
 
@@ -141,7 +152,7 @@ declare module '@wordpress/block-editor' {
 	/**
 	 * Justify align options control
 	 *
-	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/justify-toolbar
+	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/justify-content-control
 	 */
 	interface JustifyToolbar {
 		allowedControls?: Array<AlignOptions>;
@@ -165,7 +176,7 @@ declare module '@wordpress/block-editor' {
 	/**
 	 * Media manager opener and handler.
 	 *
-	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/media-upload
+	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/media-upload
 	 */
 	export type MediaUpload = MediaUploadBase & {
 		multiple: false,

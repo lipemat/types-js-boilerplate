@@ -689,6 +689,10 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * Panel commonly used within InspectorControls.
+	 *
+	 * @see @wordpress/block-editor.InspectorControls
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
 	 */
 	interface PanelBody {
