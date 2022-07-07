@@ -478,16 +478,31 @@ declare module '@wordpress/components' {
 		onChange: ( currentValue: boolean ) => void;
 	}
 
+	/**
+	 * Display a swatch, which opens the ColorPicker
+	 * and displays the selected value and color.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/color-palette/
+	 *
+	 * @see @wordpress/block-editor.PanelColorSettings
+	 */
 	interface ColorPalette {
 		className?: string;
 		clearable?: boolean;
-		disableCustomColors: boolean;
-		label: ReactNode;
+		colors?: colorOptions;
+		disableCustomColors?: boolean;
+		label?: ReactNode;
 		onChange: ( currentValue: string ) => void;
-		value: string;
+		value?: string;
 	}
 
 	/**
+	 * Part of a color picker, which allows picking the color.
+	 * Does not contain input of buttons for triggering or
+	 * displaying selected value.
+	 *
+	 * @see ColorPalette
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/color-picker/
 	 */
 	interface ColorPicker {

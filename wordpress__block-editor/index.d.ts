@@ -123,10 +123,13 @@ declare module '@wordpress/block-editor' {
 	interface ColorPalette extends Partial<PaletteComponent>, withColorContext {
 	}
 
+	/**
+	 * @see PanelColorSettings
+	 */
 	interface ColorPaletteControl {
-		colors: colorOptions;
-		disableCustomColors: boolean;
-		label: string;
+		colors?: colorOptions;
+		disableCustomColors?: boolean;
+		label?: string;
 		onChange: ( currentValue: string ) => void;
 		value: string;
 	}
@@ -230,6 +233,13 @@ declare module '@wordpress/block-editor' {
 		style?: CSSStyleDeclaration,
 	}
 
+	/**
+	 * Displays a panel with a list of colors settings to choose.
+	 * Preferred method of offering custom color options.
+	 *
+	 * Default method used by WP core when a block supports colors.
+	 *
+	 */
 	interface PanelColorSettings extends PanelBody, withColorContext {
 		colorSettings: Array<Partial<ColorPaletteControl> & {
 			colors?: colorOptions;
