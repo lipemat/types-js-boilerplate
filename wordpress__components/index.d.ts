@@ -737,7 +737,6 @@ declare module '@wordpress/components' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/popover
 	 */
 	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-		focusOnMount?: FocusOnMount;
 		position?:
 			'bottom left'
 			| 'bottom center'
@@ -748,13 +747,16 @@ declare module '@wordpress/components' {
 			| 'top left'
 			| 'top center'
 			| 'top right';
+		anchorRef?: MutableRefObject<any>;
+		animate?: boolean;
+		expandOnMobile?: boolean;
+		focusOnMount?: FocusOnMount;
+		getAnchorRect?: ( ref: MutableRefObject<any> ) => MutableRefObject<any>;
+		headerTitle?: string;
+		isAlternate?: boolean;
+		noArrow?: boolean;
 		onClose?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
 		onFocusOutside?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
-		expandOnMobile?: boolean;
-		headerTitle?: string;
-		noArrow?: boolean;
-		anchorRef?: MutableRefObject<any>;
-		getAnchorRect?: ( ref: MutableRefObject<any> ) => MutableRefObject<any>;
 	}
 
 	/**
