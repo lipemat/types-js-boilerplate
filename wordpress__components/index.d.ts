@@ -887,9 +887,12 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * Button from within the `BlockControls` toolbars.
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toolbar-button/
 	 */
 	interface ToolbarButton extends ButtonButton {
+		// Only used if not in toolbar context, otherwise use preferred `className`.
 		containerClassName?: string;
 		title?: string;
 		isActive?: boolean;

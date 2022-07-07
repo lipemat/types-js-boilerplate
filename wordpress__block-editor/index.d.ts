@@ -88,6 +88,8 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/block-controls-toolbar-and-sidebar/
 	 *
+	 * @see `@wordpress/components.ToolbarButton`
+	 *
 	 * @notice The slot's fill is behind the 'useDisplayBlockControls' hook, so you
 	 *         may only add buttons to custom block or parent of a custom block.
 	 */
