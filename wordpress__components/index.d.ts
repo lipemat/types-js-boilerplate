@@ -487,16 +487,17 @@ declare module '@wordpress/components' {
 		value: string;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/color-picker/
+	 */
 	interface ColorPicker {
-		className: string;
-		copyFormat: 'hex' | 'hsl' | 'rgb';
+		className?: string;
+		color?: string;
+		copyFormat?: 'hex' | 'hsl' | 'rgb';
 		/** @deprecated **/
-		defaultValue: string;
-		disableAlpha: boolean;
-		enableAlpha: boolean;
-		onChange: ( hex8Color: string ) => void;
-		/** @deprecated **/
-		onChangeComplete: ( currentValue: string ) => void;
+		defaultValue?: string | undefined;
+		enableAlpha?: boolean;
+		onChange?: ( hex8Color: string ) => void;
 	}
 
 	interface Dashicon extends HTMLAttributes<{}> {
