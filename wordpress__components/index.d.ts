@@ -893,6 +893,13 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
+	 */
+	interface SlotFillProvider {
+
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/spinner/
 	 */
 	interface Spinner {
@@ -1044,6 +1051,7 @@ declare module '@wordpress/components' {
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
 	export const Slot: ComponentType<Slot>;
+	export const SlotFillProvider: ComponentType<SlotFillProvider>;
 	export const Spinner: ComponentType<Spinner>;
 	export const SVG: ComponentType<SVG>;
 	export const TextControl: ComponentType<TextControl>;
@@ -1086,6 +1094,7 @@ declare module '@wordpress/components' {
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
 		Slot: ComponentType<Slot>;
+		SlotFillProvider: ComponentType<SlotFillProvider>;
 		Spinner: ComponentType<Spinner>;
 		SVG: ComponentType<SVG>;
 		TextControl: ComponentType<TextControl>;
