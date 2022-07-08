@@ -581,7 +581,7 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
 	 */
 	export interface Fill {
-		name: string;
+		name?: string;
 	}
 
 	/**
@@ -889,7 +889,7 @@ declare module '@wordpress/components' {
 		bubblesVirtually?: boolean;
 		children?: ( fills: ReactNode[] ) => ReactNode;
 		className?: string;
-		name: string;
+		name?: string;
 	}
 
 	/**
