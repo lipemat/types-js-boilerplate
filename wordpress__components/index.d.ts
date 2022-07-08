@@ -66,6 +66,17 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * Create a Slot and Fill pair.
+	 *
+	 * @link https://github.dev/WordPress/gutenberg/blob/trunk/packages/components/src/slot-fill/slot.js
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/
+	 */
+	export function createSlotFill( name: string ): {
+		Fill: ComponentType<Fill>;
+		Slit: ComponentType<Slot>;
+	}
+
+	/**
 	 * Dashicon slug or react element, which renders a SVG.
 	 * like the @wordpress/icons package.
 	 */
@@ -1051,6 +1062,7 @@ declare module '@wordpress/components' {
 		CheckboxControl: ComponentType<CheckboxControl>;
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPicker: ComponentType<ColorPicker>;
+		createSlotFill: typeof createSlotFill;
 		Dashicon: ComponentType<Dashicon>;
 		Dropdown: ComponentType<Dropdown>;
 		DropdownMenu: ComponentType<DropdownMenu>;
