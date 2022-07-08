@@ -1003,13 +1003,12 @@ declare module '@wordpress/components' {
 	}
 
 	/**
-	 * Allows replacement of a component using a filter.
+	 * Allows replacement or extending of a component using a filter.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/with-filters/
 	 *
-	 * @param hook
 	 */
-	export function withFilters( hook: string ): ( component: ComponentType ) => void;
+	export function withFilters<T>( hook: string ): ( component: ComponentType<T> ) => ComponentType<T>;
 
 	export interface withSpokenMessages {
 		speak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;

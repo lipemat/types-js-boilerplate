@@ -21,8 +21,12 @@ declare module '@wordpress/hooks' {
 		}
 	};
 
-	type addAction = ( action: string, namespace: string, cb: Function, priority?: number ) => void;
-	type addFilter = ( filter: string, namespace: string, cb: Function, priority?: number ) => void;
+	type Callback<P, R> = ( props: P ) => R;
+
+	export function addAction<P, R = any>( action: string, namespace: string, cb: Callback<P, R>, priority?: number ): void;
+
+	export function addFilter<P, R = any>( filter: string, namespace: string, cb: Callback<P, R>, priority?: number ): void;
+
 	type applyFilters = <T = any>( filter: string, content: any, ...args: any ) => T;
 	type createHooks = () => void;
 	type doAction = ( action: string, ...args: any ) => void;
@@ -40,8 +44,6 @@ declare module '@wordpress/hooks' {
 	type removeAllFilters = ( filter: string ) => void;
 
 	export const actions: actions;
-	export const addFilter: addFilter;
-	export const addAction: addAction;
 	export const applyFilters: applyFilters;
 	export const createHooks: createHooks;
 	export const doAction: doAction;
@@ -59,8 +61,8 @@ declare module '@wordpress/hooks' {
 
 	export default interface Hooks {
 		actions: actions;
-		addFilter: addFilter;
-		addAction: addAction;
+		addFilter: typeof addFilter;
+		addAction: typeof addAction;
 		applyFilters: applyFilters;
 		createHooks: createHooks;
 		doAction: doAction;
