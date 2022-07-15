@@ -836,6 +836,11 @@ declare module '@wordpress/components' {
 		withInputField?: boolean;
 	}
 
+	/**
+	 * Select Control
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/select-control/
+	 */
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
 		help?: ReactNode;
 		label?: ReactNode;
