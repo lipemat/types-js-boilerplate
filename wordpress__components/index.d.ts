@@ -723,11 +723,12 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
 	 */
 	interface PanelBody {
-		title?: string;
-		initialOpen?: boolean;
-		icon?: string;
-		children?: ReactNode[] | ReactNode;
 		buttonProps?: ButtonHTMLAttributes<{}>;
+		children?: ReactNode[] | ReactNode;
+		className?: string;
+		icon?: string;
+		initialOpen?: boolean;
+		title?: string;
 	}
 
 	/**
