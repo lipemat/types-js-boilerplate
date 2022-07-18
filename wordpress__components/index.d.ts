@@ -844,6 +844,7 @@ declare module '@wordpress/components' {
 	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
 		help?: ReactNode;
 		label?: ReactNode;
+		labelPosition?: 'top' | 'side' | 'bottom';
 		multiple?: boolean;
 		value: string | number;
 		onChange: ( currentValue: string ) => void;
