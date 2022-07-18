@@ -111,7 +111,7 @@ declare module '@wordpress/blocks' {
 		isDefault?: boolean;
 		attributes?: BlockAttributes<Attr>;
 		innerBlocks?: ChildBlocks;
-		example?: BlockExample<Attr>;
+		example?: BlockExample<Partial<Attr>>;
 		scope?: Array<WPBlockVariationScope>;
 		keywords?: string[];
 		isActive?: ( ( attr: BlockAttributes<Attr>, variation: BlockAttributes<Attr> ) => boolean ) | Array<keyof Attr>;
@@ -249,7 +249,7 @@ declare module '@wordpress/blocks' {
 		 * @link https://github.com/WordPress/gutenberg/blob/master/docs/designers-developers/developers/block-api/block-metadata.md
 		 */
 		attributes?: BlockAttributes<Attr>;
-		example?: BlockExample<Attr>;
+		example?: BlockExample<Partial<Attr>>;
 		variations?: Array<BlockVariation<Attr>>;
 		transforms?: {
 			from?: Array<Transforms<T, Attr> | TransformsFrom<Attr>>;
