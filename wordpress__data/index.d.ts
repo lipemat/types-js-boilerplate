@@ -134,6 +134,11 @@ declare module '@wordpress/data' {
 		getAutosaves: () => any;
 		getCurrentUser: () => any;
 		getEmbedPreview: ( id: number ) => any;
+		getEntitiesConfig: ( kind: string ) => any[];
+		getEntityConfig: ( kind: string, name: string ) => any;
+		getEntityRecord: ( kind: string, name: string, key: string ) => any;
+		getEntityRecords: ( kind: string, name: string, query: object ) => any;
+		getEntityRecordEdits: ( kind: string, name: string, id: string ) => any;
 		getLastEntitySaveError: () => any;
 		getPostTypes: ( slug: string ) => any;
 		getRawEntityRecord: () => any;
