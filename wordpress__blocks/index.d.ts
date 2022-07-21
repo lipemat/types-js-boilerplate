@@ -21,6 +21,23 @@ declare module '@wordpress/blocks' {
 	export type WPBlockVariationScope = 'block' | 'inserter' | 'transform';
 
 	/**
+	 * Pass to `Transform` when transforming a legacy widget
+	 * to a block.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/how-to-guides/widgets/legacy-widget-block/#2-add-a-block-transform
+	 */
+	export type LegacyWidget<Attr> = {
+		idBase: string;
+		instance: {
+			encoded: string;
+			hash: string;
+			raw: Attr;
+		};
+		__internalWidgetId?: string;
+	}
+
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
 	 */
 	type AttributeShape = {
@@ -235,7 +252,7 @@ declare module '@wordpress/blocks' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
 	 */
-	export type BlockSettings<Attr, C = '', T = Attr> = {
+	export type BlockSettings<Attr, C = '', Transform = Attr> = {
 		title: string;
 		description?: string;
 		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | C
@@ -252,8 +269,8 @@ declare module '@wordpress/blocks' {
 		example?: BlockExample<Partial<Attr>>;
 		variations?: Array<BlockVariation<Attr>>;
 		transforms?: {
-			from?: Array<Transforms<T, Attr> | TransformsFrom<Attr>>;
-			to?: Array<Transforms<T, Attr>>;
+			from?: Array<Transforms<Transform, Attr> | TransformsFrom<Attr>>;
+			to?: Array<Transforms<Transform, Attr>>;
 		};
 		// Allow this block to only be used as a child or grandchild of specified blocks.
 		ancestor?: string[];
