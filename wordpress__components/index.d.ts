@@ -981,7 +981,6 @@ declare module '@wordpress/components' {
 		hideLabelFromVision?: boolean
 		label?: ReactNode;
 		onChange: ( currentValue: string ) => void;
-		type?: string;
 		value: string | number;
 	}
 

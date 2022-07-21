@@ -117,6 +117,7 @@ declare module '@wordpress/data' {
 		getMedia: ( id: number ) => Media;
 		getMediaItems: () => Media[ ];
 		getPostType: ( slug: string ) => Type;
+		getPostTypes: () => Type[];
 		getSite: () => Settings;
 		getTaxonomies: () => Taxonomy[] | undefined;
 		getTaxonomy: ( slug: string ) => Taxonomy | undefined;
@@ -140,7 +141,6 @@ declare module '@wordpress/data' {
 		getEntityRecords: ( kind: string, name: string, query: object ) => any;
 		getEntityRecordEdits: ( kind: string, name: string, id: string ) => any;
 		getLastEntitySaveError: () => any;
-		getPostTypes: ( slug: string ) => any;
 		getRawEntityRecord: () => any;
 		getRedoEdit: () => any;
 		getThemeSupports: ( support: string ) => any;
