@@ -91,11 +91,13 @@ declare module '@wordpress/blocks' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/
 	 */
-	export type BlockEditProps<Attr> = {
+	export type BlockEditProps<Attr, Context = {}> = {
 		attributes: Attr
 		className: string;
 		clientId: string;
-		context: Object; // @todo
+		context: {
+			[reference in keyof Context]: Context[reference];
+		}
 		insertBlocksAfter: ( blocks: CreateBlock[] ) => void;
 		isSelected: boolean
 		isSelectionEnabled: boolean;
@@ -252,10 +254,10 @@ declare module '@wordpress/blocks' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
 	 */
-	export type BlockSettings<Attr, C = '', Transform = Attr> = {
+	export type BlockSettings<Attr, Category = '', Transform = Attr, Context = {}> = {
 		title: string;
 		description?: string;
-		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | C
+		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | Category
 		// Svg | dashicon | configuration
 		icon: BlockIcon;
 		keywords?: string[];
@@ -272,6 +274,15 @@ declare module '@wordpress/blocks' {
 			from?: Array<Transforms<Transform, Attr> | TransformsFrom<Attr>>;
 			to?: Array<Transforms<Transform, Attr>>;
 		};
+		/**
+		 * Use context to pass attribute values to inner blocks.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-context/
+		 */
+		providesContext?: {
+			[reference in keyof Context]: keyof Attr;
+		},
+		usesContext?: Array<keyof Context>;
 		// Allow this block to only be used as a child or grandchild of specified blocks.
 		ancestor?: string[];
 		// Allow this block to only be used as a direct child of specified blocks.
@@ -349,7 +360,7 @@ declare module '@wordpress/blocks' {
 		 *
 		 * https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
 		 */
-		edit: ( params: BlockEditProps<Attr> ) => ReactElement;
+		edit: ( params: BlockEditProps<Attr, Context> ) => ReactElement;
 		/**
 		 * Save the finished black markup to be rendered on the site.
 		 * Return null to handle rendering on the PHP side.
