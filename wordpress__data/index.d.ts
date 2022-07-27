@@ -92,6 +92,55 @@ declare module '@wordpress/data' {
 		preferredStyleVariations: {}
 	}
 
+
+	type ActionValue = { [ key: string ]: any } & { type: string };
+	type ActionFunctions = { [ name: string ]: ( ...params: any ) => ActionValue };
+	type SelectFunctions<State> = { [ name: string ]: ( ...params: any ) => any }
+	// Selectors receive a prepended `state` parameter.
+	type SelectorFactory<State, S extends ( ...params: any ) => any> = Parameters<S> extends []
+		? ( state: State ) => ReturnType<S>
+		: ( state: State, ...params: Parameters<S> ) => ReturnType<S>;
+
+	interface StoreDescriptor<State, Selectors, Actions> {
+		name: string;
+		instantiate: () => StoreInstance<State, Selectors, Actions>;
+	}
+
+	interface StoreInstance<State, Selectors, Actions> {
+		actions: Actions;
+		dispatch: ( action: ActionValue ) => State;
+		getActions: () => Actions;
+		getResolveSelectors: () => Partial<Selectors>;
+		getSelectors: () => Selectors;
+		reducer: ( state: State, action: ActionValue ) => State;
+		resolvers: Partial<Selectors> | undefined;
+		selectors: Selectors;
+		store: {
+			dispatch: ( action: ActionValue ) => State;
+			getState: () => State;
+			subscribe: ( listener: () => void ) => () => void;
+		};
+		subscribe: ( listener: () => void ) => () => void;
+	}
+
+	/**
+	 * Register a custom store
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#registering-a-store
+	 */
+	export function createReduxStore<State, Actions extends ActionFunctions, Selectors extends SelectFunctions<State>>( store: string, config: {
+		initialState?: State;
+		reducer: ( state: State, action: ActionValue ) => State;
+		actions?: Actions;
+		resolvers?: Partial<Selectors>;
+		selectors?: {
+			[Property in keyof Selectors]: SelectorFactory<State, Selectors[Property]>
+		};
+		controls?: Action;
+	} ): StoreDescriptor<State, Selectors, Actions>
+
+	export function register<State, Actions extends ActionFunctions, Selectors extends SelectFunctions<State>>( store: StoreDescriptor<State, Selectors, Actions> ): void;
+
 	/**
 	 * Selectors shared by all stores.
 	 *
@@ -564,9 +613,7 @@ not yet been saved.
 	 */
 	export function select<T>( callback: ( selectFunction: typeof select ) => T, deps?: DependencyList ): T;
 
-	export function select<Methods extends {
-		[ selector: string ]: ( key?: string | number ) => any;
-	}>( store: string ): Methods;
+	export function select<State, Methods extends SelectFunctions<State>>( store: string ): Methods;
 
 	export function dispatch( store: 'core' ): {
 		// @todo properly type the rest of these as needed.
@@ -973,9 +1020,7 @@ not yet been saved.
 		startResolutions: ( ...args ) => any;
 	}
 
-	export function dispatch<Methods extends {
-		[ selector: string ]: ( key?: string | number ) => any;
-	}>( store: string ): Methods;
+	export function dispatch<Methods extends ActionFunctions>( store: string ): Methods;
 
 	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
 	type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: T ) => T, component: ComponentType<T> ) => ComponentType<T>;
@@ -995,12 +1040,24 @@ not yet been saved.
 	export const withDispatch: withDispatch;
 	export const withSelect: withSelect;
 
+	/**
+	 * Subscribe to any state change.
+	 *
+	 * Returns an `unsubscribe` function.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#subscribe
+	 */
+	export function subscribe(): () => void;
+
 	export default interface Data {
 		AsyncModeProvider: ComponentType<{
 			value: boolean
 		}>;
+		createReduxStore: typeof createReduxStore;
 		dispatch: typeof dispatch;
+		register: typeof register;
 		select: typeof select;
+		subscribe: typeof subscribe;
 		useDispatch: typeof dispatch;
 		useSelect: typeof select;
 		withDispatch: withDispatch;
