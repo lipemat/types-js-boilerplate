@@ -95,10 +95,11 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#usesetting
 	 * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/
+	 * @link https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/theme.json
 	 */
-	type useSetting = {
-		( path: string ): any;
-	}
+	export function useSetting( path: string ): any;
+	export function useSetting( path: 'color.palette' ): colorOptions[];
+	export function useSetting( path: 'color.gradients' ): colorOptions[];
 
 	type withColorContext = {
 		colors?: colorOptions;
@@ -345,7 +346,6 @@ declare module '@wordpress/block-editor' {
 	export const useBlockDisplayInformation: useBlockDisplayInformation;
 	export const useBlockProps: useBlockProps;
 	export const useInnerBlocksProps: useInnerBlocksProps;
-	export const useSetting: useSetting;
 
 
 	export default interface BlockEditor {
@@ -368,6 +368,6 @@ declare module '@wordpress/block-editor' {
 		useBlockDisplayInformation: useBlockDisplayInformation;
 		useBlockProps: useBlockProps;
 		useInnerBlocksProps: useInnerBlocksProps;
-		useSetting: useSetting;
+		useSetting: typeof useSetting;
 	}
 }
