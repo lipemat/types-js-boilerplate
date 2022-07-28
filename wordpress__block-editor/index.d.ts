@@ -256,8 +256,8 @@ declare module '@wordpress/block-editor' {
 		icon?: WPBlockTypeIconRender;
 		isAppender?: boolean;
 		labels?: {
-			title: string;
-			instructions: string;
+			title?: string;
+			instructions?: string;
 		},
 		mediaLibraryButton?: ReactNode;
 		mediaPreview?: ReactNode;
