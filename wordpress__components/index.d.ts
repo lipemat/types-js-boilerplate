@@ -982,11 +982,11 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toolbar-item/
 	 */
 	type ToolbarItem = {
-		                   as: string | ComponentType<DropdownMenu['toggleProps']>;
-		                   children: ReactNode;
-	                   } | {
-		                   children: ( props: DropdownMenu['toggleProps'] ) => ReactNode
-	                   }
+		as: string | ComponentType<DropdownMenu['toggleProps']>;
+		children: ReactNode;
+	} | {
+		children: ( props: DropdownMenu['toggleProps'] ) => ReactNode
+	}
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/tooltip/
@@ -1010,8 +1010,9 @@ declare module '@wordpress/components' {
 		value: string | number;
 	}
 
-	type Tab = {
-		name: string;
+
+	type Tab<T extends string> = {
+		name: T;
 		title: string;
 		className?: string;
 	}
@@ -1019,15 +1020,16 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/tab-panel/
 	 */
-	interface TabPanel {
+	export function TabPanel<T extends string>( props: PropsWithChildren<{
 		activeClass?: string;
-		children: ( tab: Tab ) => ReactElement;
+		children: ( tab: Tab<T> ) => ReactElement;
 		className?: string;
 		initialTabName?: string;
-		onSelect?: ( tab: Tab ) => void;
+		onSelect?: ( tab: string ) => void;
 		orientation?: 'vertical' | 'horizontal';
-		tabs: Tab[];
-	}
+		tabs: Array<Tab<T>>;
+	}>, context?: any ): ReactElement<any, any> | null;
+
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/textarea-control/
@@ -1106,7 +1108,6 @@ declare module '@wordpress/components' {
 	export const SlotFillProvider: ComponentType<SlotFillProvider>;
 	export const Spinner: ComponentType<Spinner>;
 	export const SVG: ComponentType<SVG>;
-	export const TabPanel: ComponentType<TabPanel>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
 	export const ToggleControl: ComponentType<ToggleControl>;
@@ -1151,7 +1152,7 @@ declare module '@wordpress/components' {
 		SlotFillProvider: ComponentType<SlotFillProvider>;
 		Spinner: ComponentType<Spinner>;
 		SVG: ComponentType<SVG>;
-		TabPanel: ComponentType<TabPanel>;
+		TabPanel: typeof TabPanel;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
 		ToggleControl: ComponentType<ToggleControl>;
