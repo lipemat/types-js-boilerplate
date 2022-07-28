@@ -28,7 +28,29 @@ declare module '@wordpress/block-editor' {
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 
-	type getColorClassName = ( prefix: string, slug: string ) => string;
+	/**
+	 * Returns a class based on the context a color is being used and its slug.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getcolorclassname
+	 */
+	export function getColorClassName( colorContextName: string, colorSlug: string ): string;
+
+	/**
+	 * Provided an array of color objects as set by the theme or by the editor defaults,
+	 * and the values of the defined color or custom color returns a color object describing the color.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getcolorobjectbyattributevalues
+	 */
+	export function getColorObjectByAttributeValues( colors: colorOptions[], colorSlug?: string, colorValue?: string ): colorOptions | { color: string };
+
+	/**
+	 * Provided an array of color objects as set by the theme or by the editor defaults,
+	 * and a color value returns the color object matching that value or undefined.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getcolorobjectbycolorvalue
+	 */
+	export function getColorObjectByColorValue( colors: colorOptions[], colorValue?: string ): colorOptions | undefined;
+
 	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor#useBlockDisplayInformation
 	 */
@@ -310,7 +332,6 @@ declare module '@wordpress/block-editor' {
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
 	export const CopyHandler: ComponentType<CopyHandler>;
-	export const getColorClassName: getColorClassName;
 	export const InspectorControls: InspectorControls;
 	export const JustifyToolbar: ComponentType<JustifyToolbar>;
 	export const MediaPlaceholder: ComponentType<MediaPlaceholder>;
@@ -331,7 +352,9 @@ declare module '@wordpress/block-editor' {
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPaletteControl: ComponentType<ColorPaletteControl>;
 		CopyHandler: ComponentType<CopyHandler>;
-		getColorClassName: getColorClassName;
+		getColorClassName: typeof getColorClassName;
+		getColorObjectByAttributeValues: typeof getColorObjectByAttributeValues;
+		getColorObjectByColorValue: typeof getColorObjectByColorValue;
 		InspectorControls: InspectorControls;
 		JustifyToolbar: ComponentType<JustifyToolbar>;
 		MediaPlaceholder: ComponentType<MediaPlaceholder>;
