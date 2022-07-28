@@ -1010,13 +1010,32 @@ declare module '@wordpress/components' {
 		value: string | number;
 	}
 
+	type Tab = {
+		name: string;
+		title: string;
+		className?: string;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/tab-panel/
+	 */
+	interface TabPanel {
+		activeClass?: string;
+		children: ( tab: Tab ) => ReactElement;
+		className?: string;
+		initialTabName?: string;
+		onSelect?: ( tab: Tab ) => void;
+		orientation?: 'vertical' | 'horizontal';
+		tabs: Tab[];
+	}
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/textarea-control/
 	 */
 	interface TextareaControl extends Omit<TextareaHTMLAttributes<{}>, 'onChange'> {
-		className?: string,
+		className?: string;
 		help?: ReactNode;
-		hideLabelFromVision?: boolean
+		hideLabelFromVision?: boolean;
 		label?: ReactNode;
 		onChange: ( currentValue: string ) => void;
 		rows?: number;
@@ -1087,6 +1106,7 @@ declare module '@wordpress/components' {
 	export const SlotFillProvider: ComponentType<SlotFillProvider>;
 	export const Spinner: ComponentType<Spinner>;
 	export const SVG: ComponentType<SVG>;
+	export const TabPanel: ComponentType<TabPanel>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
 	export const ToggleControl: ComponentType<ToggleControl>;
@@ -1131,6 +1151,7 @@ declare module '@wordpress/components' {
 		SlotFillProvider: ComponentType<SlotFillProvider>;
 		Spinner: ComponentType<Spinner>;
 		SVG: ComponentType<SVG>;
+		TabPanel: ComponentType<TabPanel>;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
 		ToggleControl: ComponentType<ToggleControl>;
