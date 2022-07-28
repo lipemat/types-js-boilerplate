@@ -51,6 +51,21 @@ declare module '@wordpress/block-editor' {
 	 */
 	export function getColorObjectByColorValue( colors: colorOptions[], colorValue?: string ): colorOptions | undefined;
 
+
+	/**
+	 * Retrieves the gradient slug per slug.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getgradientslugbyvalue
+	 */
+	export function getGradientSlugByValue( gradients: colorOptions[], value: string ): string;
+
+	/**
+	 * Retrieves the gradient value per slug.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getgradientvaluebyslug
+	 */
+	export function getGradientValueBySlug( gradients: colorOptions[], value: string ): string;
+
 	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor#useBlockDisplayInformation
 	 */
@@ -358,6 +373,8 @@ declare module '@wordpress/block-editor' {
 		getColorClassName: typeof getColorClassName;
 		getColorObjectByAttributeValues: typeof getColorObjectByAttributeValues;
 		getColorObjectByColorValue: typeof getColorObjectByColorValue;
+		getGradientSlugByValue: typeof getGradientSlugByValue;
+		getGradientValueBySlug: typeof getGradientValueBySlug;
 		InspectorControls: InspectorControls;
 		JustifyToolbar: ComponentType<JustifyToolbar>;
 		MediaPlaceholder: ComponentType<MediaPlaceholder>;
