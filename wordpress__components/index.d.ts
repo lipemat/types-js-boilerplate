@@ -513,6 +513,8 @@ declare module '@wordpress/components' {
 	 * displaying selected value.
 	 *
 	 * @see ColorPalette
+	 * @see ColorEdit in packages/block-editor/src/hooks/color.js for retrieving
+	 *      and saving color values.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/color-picker/
 	 */

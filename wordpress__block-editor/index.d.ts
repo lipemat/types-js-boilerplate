@@ -261,6 +261,9 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * Default method used by WP core when a block supports colors.
 	 *
+	 * @see ColorEdit in packages/block-editor/src/hooks/color.js for retrieving
+	 *      and saving custom color values outside this component.
+	 *
 	 */
 	interface PanelColorSettings extends PanelBody, withColorContext {
 		colorSettings: Array<Partial<ColorPaletteControl> & {
