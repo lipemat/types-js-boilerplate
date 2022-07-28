@@ -1,3 +1,5 @@
+import {MouseEvent} from 'react';
+
 /**
  * Block editor elements and utilities.
  *
@@ -238,7 +240,6 @@ declare module '@wordpress/block-editor' {
 		onSelect?: ( files: File ) => void;
 	}
 
-
 	/**
 	 * Edit and display a blocks media.
 	 *
@@ -268,6 +269,8 @@ declare module '@wordpress/block-editor' {
 		onFilesPreUpload?: ( files: File[] ) => void;
 		onHTMLDrop?: ( html: string ) => void;
 		onSelectURL?: ( src: string ) => void;
+		// Enabled featured image select.
+		onToggleFeaturedImage?: ( ev: MouseEvent<HTMLButtonElement> ) => void
 		placeholder?: ReactNode;
 		style?: CSSStyleDeclaration,
 	}
