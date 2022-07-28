@@ -341,7 +341,7 @@ declare module '@wordpress/blocks' {
 			 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#spacing
 			 */
 			spacing?: {
-				blockGap?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+				blockGap?: boolean | Array<'horizontal' | 'vertical'>;
 				margin?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
 				padding?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
 			}
