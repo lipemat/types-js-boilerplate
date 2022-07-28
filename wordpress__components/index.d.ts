@@ -53,11 +53,35 @@ declare module '@wordpress/components' {
 		variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
 	}
 
-	export type colorOptions = Array<{
+	export type ColorOption = {
 		color: string;
 		name: string;
 		slug?: string;
-	}>;
+	}
+
+	/** @deprecated in favor of ColorOption[] **/
+	export type colorOptions = Array<ColorOption>;
+
+	export type GradientOption = {
+		gradient: string;
+		name: string;
+		slug: string;
+	};
+
+	/**
+	 * Gradient picker component
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/gradient-picker/
+	 */
+	export interface GradientPicker {
+		className?: string;
+		// If provided, will render swatches.
+		clearable?: boolean;
+		disableCustomGradients?: boolean;
+		gradients?: GradientOption[];
+		onChange: ( value: string ) => void;
+		value?: string | null;
+	}
 
 	export type Control = ButtonButton & {
 		isDisabled?: boolean;
@@ -500,7 +524,7 @@ declare module '@wordpress/components' {
 	interface ColorPalette {
 		className?: string;
 		clearable?: boolean;
-		colors?: colorOptions;
+		colors?: ColorOption[];
 		disableCustomColors?: boolean;
 		label?: ReactNode;
 		onChange: ( currentValue: string ) => void;
@@ -1041,6 +1065,7 @@ declare module '@wordpress/components' {
 	export const DropZone: ComponentType<DropZone>;
 	export const Fill: ComponentType<Fill>;
 	export const FormFileUpload: ComponentType<FormFileUpload>;
+	export const GradientPicker: ComponentType<GradientPicker>;
 	export const Grid: ComponentType<Grid>;
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
@@ -1084,6 +1109,7 @@ declare module '@wordpress/components' {
 		DropZone: ComponentType<DropZone>;
 		Fill: ComponentType<Fill>;
 		FormFileUpload: ComponentType<FormFileUpload>;
+		GradientPicker: ComponentType<GradientPicker>;
 		Grid: ComponentType<Grid>;
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;

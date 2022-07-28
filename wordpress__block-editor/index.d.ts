@@ -17,9 +17,10 @@ declare module '@wordpress/block-editor' {
 		RefCallback
 	} from 'react';
 	import {
-		colorOptions,
+		ColorOption,
 		ColorPalette as PaletteComponent,
 		Control,
+		GradientOption,
 		PanelBody,
 		PopoverProps,
 		WPBlockTypeIconRender
@@ -41,7 +42,7 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getcolorobjectbyattributevalues
 	 */
-	export function getColorObjectByAttributeValues( colors: colorOptions[], colorSlug?: string, colorValue?: string ): colorOptions | { color: string };
+	export function getColorObjectByAttributeValues( colors: ColorOption[], colorSlug?: string, colorValue?: string ): ColorOption | { color: string };
 
 	/**
 	 * Provided an array of color objects as set by the theme or by the editor defaults,
@@ -49,7 +50,7 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getcolorobjectbycolorvalue
 	 */
-	export function getColorObjectByColorValue( colors: colorOptions[], colorValue?: string ): colorOptions | undefined;
+	export function getColorObjectByColorValue( colors: ColorOption[], colorValue?: string ): ColorOption | undefined;
 
 
 	/**
@@ -57,14 +58,14 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getgradientslugbyvalue
 	 */
-	export function getGradientSlugByValue( gradients: colorOptions[], value: string ): string;
+	export function getGradientSlugByValue( gradients: GradientOption[], value: string ): string;
 
 	/**
 	 * Retrieves the gradient value per slug.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getgradientvaluebyslug
 	 */
-	export function getGradientValueBySlug( gradients: colorOptions[], value: string ): string;
+	export function getGradientValueBySlug( gradients: GradientOption[], value: string ): string;
 
 	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor#useBlockDisplayInformation
@@ -112,12 +113,12 @@ declare module '@wordpress/block-editor' {
 	 * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/
 	 * @link https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/theme.json
 	 */
-	export function useSetting( path: string ): any;
-	export function useSetting( path: 'color.palette' ): colorOptions[];
-	export function useSetting( path: 'color.gradients' ): colorOptions[];
+	export function useSetting<T = any>( path: string ): T;
+	export function useSetting( path: 'color.palette' ): ColorOption[];
+	export function useSetting( path: 'color.gradients' ): GradientOption[];
 
 	type withColorContext = {
-		colors?: colorOptions;
+		colors?: ColorOption[];
 		disableCustomColors?: boolean
 	}
 
@@ -165,7 +166,7 @@ declare module '@wordpress/block-editor' {
 	 * @see PanelColorSettings
 	 */
 	interface ColorPaletteControl {
-		colors?: colorOptions;
+		colors?: ColorOption[];
 		disableCustomColors?: boolean;
 		label?: string;
 		onChange: ( currentValue: string ) => void;
@@ -283,7 +284,7 @@ declare module '@wordpress/block-editor' {
 	 */
 	interface PanelColorSettings extends PanelBody, withColorContext {
 		colorSettings: Array<Partial<ColorPaletteControl> & {
-			colors?: colorOptions;
+			colors?: ColorOption[];
 		}>;
 	}
 
