@@ -867,13 +867,13 @@ declare module '@wordpress/components' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/select-control/
 	 */
-	interface SelectControl extends Omit<SelectHTMLAttributes<{}>, 'onChange'> {
+	export function SelectControl<T extends string>( props: PropsWithChildren<{
 		help?: ReactNode;
 		label?: ReactNode;
 		labelPosition?: 'top' | 'side' | 'bottom';
 		multiple?: boolean;
 		value: string | number;
-		onChange: ( currentValue: string ) => void;
+		onChange: ( currentValue: T ) => void;
 		options: Array<{
 			label: string;
 			value: string | number;
@@ -881,7 +881,7 @@ declare module '@wordpress/components' {
 		}>;
 		className?: string,
 		hideLabelFromVision?: boolean
-	}
+	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
 
 	/**
 	 * Seach box and icon.
@@ -1100,7 +1100,6 @@ declare module '@wordpress/components' {
 	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 	export const RangeControl: ComponentType<RangeControl>;
-	export const SelectControl: ComponentType<SelectControl>;
 	export const SearchControl: ComponentType<SearchControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
@@ -1144,7 +1143,7 @@ declare module '@wordpress/components' {
 		Popover: ComponentType<PopoverProps>;
 		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 		RangeControl: ComponentType<RangeControl>;
-		SelectControl: ComponentType<SelectControl>;
+		SelectControl: typeof SelectControl;
 		SearchControl: ComponentType<SearchControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
