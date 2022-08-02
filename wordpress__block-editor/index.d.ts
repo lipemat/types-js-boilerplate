@@ -1,5 +1,3 @@
-import {MouseEvent} from 'react';
-
 /**
  * Block editor elements and utilities.
  *
@@ -13,6 +11,7 @@ declare module '@wordpress/block-editor' {
 		ComponentClass,
 		ComponentType,
 		FunctionComponent,
+		MouseEvent,
 		MutableRefObject,
 		ReactElement,
 		ReactNode,
