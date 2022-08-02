@@ -96,8 +96,8 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/
 	 */
 	export function createSlotFill( name: string ): {
-		Fill: ComponentType<Fill>;
-		Slot: ComponentType<Slot>;
+		Fill: typeof Fill;
+		Slot: typeof Slot;
 	}
 
 	/**
@@ -606,9 +606,10 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
 	 */
-	export interface Fill {
+	export function Fill<P = {}>( props: PropsWithChildren<{
+		children?: ReactNode | ( ( fillProps: P ) => ReactNode )
 		name?: string;
-	}
+	}>, context?: any ): ReactElement<any, any> | null;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/form-file-upload/
@@ -918,12 +919,14 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
 	 */
-	interface Slot {
+	export function Slot<P = {}>( props: PropsWithChildren<{
 		bubblesVirtually?: boolean;
 		children?: ( fills: ReactNode[] ) => ReactNode;
 		className?: string;
+		// Fill props are passed to fills using function children.
+		fillProps?: P
 		name?: string;
-	}
+	}>, context?: any ): ReactElement<any, any> | null;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
@@ -1084,7 +1087,6 @@ declare module '@wordpress/components' {
 	export const Dropdown: ComponentType<Dropdown>;
 	export const DropdownMenu: ComponentType<DropdownMenu>;
 	export const DropZone: ComponentType<DropZone>;
-	export const Fill: ComponentType<Fill>;
 	export const FormFileUpload: ComponentType<FormFileUpload>;
 	export const GradientPicker: ComponentType<GradientPicker>;
 	export const Grid: ComponentType<Grid>;
@@ -1103,7 +1105,6 @@ declare module '@wordpress/components' {
 	export const SearchControl: ComponentType<SearchControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
-	export const Slot: ComponentType<Slot>;
 	export const SlotFillProvider: ComponentType<SlotFillProvider>;
 	export const Spinner: ComponentType<Spinner>;
 	export const SVG: ComponentType<SVG>;
@@ -1127,7 +1128,7 @@ declare module '@wordpress/components' {
 		Dropdown: ComponentType<Dropdown>;
 		DropdownMenu: ComponentType<DropdownMenu>;
 		DropZone: ComponentType<DropZone>;
-		Fill: ComponentType<Fill>;
+		Fill: typeof Fill;
 		FormFileUpload: ComponentType<FormFileUpload>;
 		GradientPicker: ComponentType<GradientPicker>;
 		Grid: ComponentType<Grid>;
@@ -1147,7 +1148,7 @@ declare module '@wordpress/components' {
 		SearchControl: ComponentType<SearchControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
-		Slot: ComponentType<Slot>;
+		Slot: typeof Slot;
 		SlotFillProvider: ComponentType<SlotFillProvider>;
 		Spinner: ComponentType<Spinner>;
 		SVG: ComponentType<SVG>;
