@@ -97,7 +97,7 @@ declare module '@wordpress/components' {
 	 */
 	export function createSlotFill( name: string ): {
 		Fill: ComponentType<Fill>;
-		Slit: ComponentType<Slot>;
+		Slot: ComponentType<Slot>;
 	}
 
 	/**
