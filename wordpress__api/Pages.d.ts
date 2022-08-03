@@ -7,7 +7,7 @@
  *
  */
 declare module '@wordpress/api/pages' {
-	import {Global} from '@wordpress/api';
+	import {Context, Global} from '@wordpress/api';
 	import {Post, PostCreate, PostsQuery} from '@wordpress/api/posts';
 
 	/**
@@ -15,7 +15,9 @@ declare module '@wordpress/api/pages' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/pages/#schema
 	 */
-	export interface Page extends Omit<Post, 'categories' | 'tags' | 'format'> {
+	export type Page<C extends Context = 'view'> =
+		Omit<Post<C>, 'categories' | 'tags' | 'format'>
+		& {
 		parent: number;
 		menu_order: number;
 	}
