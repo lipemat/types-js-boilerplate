@@ -15,6 +15,25 @@ declare module '@lipemat/js-boilerplate/utility' {
 	export type AtLeast<T, K extends keyof T> = Partial<T> & Pick<T, K>;
 
 	/**
+	 * Removes all the properties of type never, even the deeply nested ones.
+	 *
+	 * Used to provider different types based on context by assigning
+	 * some properties to never.
+	 *
+	 * @example OmitNever<{foo: number; bar: never}> - {foo: number}
+	 */
+	export type OmitNever<T, Converted = {
+		[K in keyof T]:
+		// If the type of this property (excluding | undefined) is never set it to never.
+		Exclude<T[ K ], undefined> extends never ? never :
+			// If the type of this property is an object, send it through again.
+			T[ K ] extends Record<string, unknown> ? OmitNever<T[ K ]> : T[ K ];
+	}> = Pick<Converted, {
+		// List all properties, which were not set to never above.
+		[K in keyof Converted]: Converted[ K ] extends never ? never : K;
+	}[ keyof Converted ]>;
+
+	/**
 	 * Make specified properties on a type optional.
 	 *
 	 * @example Optional<Post, 'post_title'|'author'> - post_title and author will be optional.
