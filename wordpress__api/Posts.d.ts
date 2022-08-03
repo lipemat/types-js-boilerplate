@@ -7,10 +7,21 @@
  *
  */
 declare module '@wordpress/api/posts' {
-	import {Global, Links, order} from '@wordpress/api';
+	import {
+		CommentingStatus,
+		Context,
+		ContextualField,
+		Editing,
+		Global,
+		Links,
+		Order,
+		PingStatus,
+		RenderedText
+	} from '@wordpress/api';
 	import {User} from '@wordpress/api/users';
 	import {Media} from '@wordpress/api/media';
 	import {Category} from '@wordpress/api/categories';
+	import {OmitNever} from '@lipemat/js-boilerplate/utility';
 
 	export type PostFormat =
 		'standard'
@@ -38,86 +49,53 @@ declare module '@wordpress/api/posts' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/posts/#schema
 	 */
-	export interface Post {
-		id: number;
-		date: string;
-		date_gmt: string;
-		guid: {
-			raw?: string;
-			rendered: string;
-		}
-		modified: string;
-		modified_gmt: string;
-		slug: string;
-		status: PostStatus;
-		type: 'post' | string;
-		password?: string;
-		permalink_template?: string;
-		generated_slug?: string;
-		link: string;
-		title: {
-			raw?: string;
-			rendered: string;
-		}
-		content: {
+	export type Post<C extends Context = 'view'> = OmitNever<{
+		author: number;
+		categories: ContextualField<number[], 'view' | 'edit', C>;
+		comment_status: ContextualField<CommentingStatus, 'view' | 'edit', C>;
+		content: ContextualField<RenderedText<C> & {
 			block_version?: number;
 			protected: boolean;
-			raw?: string;
-			rendered: string;
-		}
-		excerpt: {
-			raw?: string;
-			rendered: string;
+		}, 'view' | 'edit', C>;
+		date: string | null;
+		date_gmt: ContextualField<string | null, 'view' | 'edit', C>;
+		excerpt: RenderedText<C> & {
 			protected: boolean;
-		}
-		author: number;
+		};
 		featured_media: number;
-		meta: PostMeta;
-		comment_status: 'open' | 'closed';
-		ping_status: 'open' | 'closed';
-		sticky: boolean;
-		template: string;
 		format: PostFormat;
-		categories: number[];
-		tags: number[];
+		generated_slug: ContextualField<string, 'edit', C>;
+		guid: ContextualField<RenderedText<C>, 'view' | 'edit', C>;
+		id: number;
+		link: string;
+		meta: ContextualField<PostMeta, 'view' | 'edit', C>;
+		modified: ContextualField<string, 'view' | 'edit', C>;
+		modified_gmt: ContextualField<string, 'view' | 'edit', C>;
+		password: ContextualField<string, 'edit', C>;
+		permalink_template: ContextualField<string, 'edit', C>;
+		ping_status: ContextualField<PingStatus, 'view' | 'edit', C>;
+		slug: string;
+		status: ContextualField<PostStatus, 'view' | 'edit', C>;
+		sticky: ContextualField<boolean, 'view' | 'edit', C>;
+		tags: ContextualField<number[], 'view' | 'edit', C>;
+		template: ContextualField<string, 'view' | 'edit', C>;
+		title: RenderedText<C>;
+		type: 'post' | string;
 		_links: Links;
 		_embedded?: {
 			author: User[];
 			'wp:featuredmedia'?: Media[];
 			'wp:term'?: Category[];
-		}
-	}
+		};
+	}>;
+
 
 	/**
 	 * Create Post.
 	 *
 	 * https://developer.wordpress.org/rest-api/reference/posts/#create-a-post
 	 */
-	export interface PostCreate {
-		date?: string;
-		date_gmt?: string;
-		slug?: string;
-		status?: PostStatus;
-		password?: string;
-		title?: string | {
-			raw: string;
-		};
-		content?: string | {
-			raw: string;
-		};
-		author?: number;
-		excerpt?: string | {
-			raw: string;
-		};
-		featured_media?: number;
-		comment_status?: 'open' | 'closed';
-		ping_status?: 'open' | 'closed';
-		format?: PostFormat;
-		meta?: PostMeta;
-		sticky?: boolean;
-		template?: string;
-		categories?: number[];
-		tags?: number[];
+	export interface PostCreate extends Partial<Editing<Post<'edit'>>> {
 	}
 
 	/**
@@ -146,7 +124,7 @@ declare module '@wordpress/api/posts' {
 		modified_after?: string;
 		modified_before?: string;
 		offset?: number;
-		order?: order;
+		order?: Order;
 		orderby?: 'author' | 'date' | 'id' | 'include' | 'modified' | 'relevance' | 'slug' | 'include_slugs' | 'title';
 		page?: number;
 		per_page?: number;
