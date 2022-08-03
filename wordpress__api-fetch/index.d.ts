@@ -1,5 +1,5 @@
 declare module '@wordpress/api-fetch' {
-	import {method} from '@wordpress/api';
+	import {Method} from '@wordpress/api';
 
 	export type Middleware<D> = ( options: FetchOptions<D>, next: Middleware<D> ) => D;
 
@@ -13,7 +13,7 @@ declare module '@wordpress/api-fetch' {
 	 */
 	export interface FetchOptions<D> extends RequestInit {
 		data?: D; // Data passed as JSON body.
-		method?: method; // Defaults to false.
+		method?: Method; // Defaults to false.
 		parse?: boolean; // Return items, or entire request.
 		path: string; // Path relative to provided root.
 		url?: string; // Absolute url of request.

@@ -4,7 +4,7 @@
  */
 declare module '@wordpress/api/menu-items' {
 	import {PostsQuery, PostStatus, TaxQuery} from '@wordpress/api/posts';
-	import {Links, meta} from '@wordpress/api';
+	import {Links, Meta} from '@wordpress/api';
 
 	export interface MenuItem {
 		attr_title: string;
@@ -14,7 +14,7 @@ declare module '@wordpress/api/menu-items' {
 		invalid: boolean;
 		menu_order: number;
 		menus: number;
-		meta: meta;
+		meta: Meta;
 		object: string;
 		object_id: number;
 		parent: number;

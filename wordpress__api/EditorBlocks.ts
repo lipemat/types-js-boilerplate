@@ -7,7 +7,7 @@
  *
  */
 declare module '@wordpress/api/editor-blocks' {
-	import {context, Global, Links, order} from '@wordpress/api';
+	import {Context, Global, Links, Order} from '@wordpress/api';
 	import {Media} from '@wordpress/api/media';
 	import {Category} from '@wordpress/api/categories';
 	import {PostStatus} from '@wordpress/api/posts';
@@ -73,11 +73,11 @@ declare module '@wordpress/api/editor-blocks' {
 	export interface EditorBlocksQuery extends Global<EditorBlock> {
 		after?: string;
 		before?: string;
-		context?: context;
+		context?: Context;
 		exclude?: number[];
 		include?: number[];
 		offset?: number;
-		order?: order;
+		order?: Order;
 		orderby?: 'author' | 'date' | 'id' | 'include' | 'modified' | 'parent' | 'relevance' | 'slug' | 'include_slugs' | 'title';
 		page?: number;
 		per_page?: number;

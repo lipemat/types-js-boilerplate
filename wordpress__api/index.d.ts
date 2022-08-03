@@ -5,6 +5,8 @@
  *
  * @link https://developer.wordpress.org/rest-api/reference/
  *
+ * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/core-data/src/entity-types
+ *
  */
 declare module '@wordpress/api' {
 	export * from '@wordpress/api/application-passwords';
@@ -23,10 +25,9 @@ declare module '@wordpress/api' {
 	export * from '@wordpress/api/types';
 	export * from '@wordpress/api/users';
 
-	export type context = 'view' | 'embed' | 'edit';
-	export type order = 'asc' | 'desc';
-	export type method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'OPTIONS';
-	export type meta = {
+	export type Order = 'asc' | 'desc';
+	export type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'OPTIONS';
+	export type Meta = {
 		[ key: string ]: any;
 	}
 
@@ -34,9 +35,48 @@ declare module '@wordpress/api' {
 		href: string;
 	}
 
+	export type CommentingStatus = 'open' | 'closed';
+	export type Context = 'view' | 'edit' | 'embed';
+	export type PingStatus = 'open' | 'closed';
+
+	/**
+	 * ContextualField makes the field available only in the specified given contexts.
+	 *
+	 * If the current context is not found in available, the type will
+	 * be set to `never`.
+	 *
+	 * Used with `OmitNever` and properties not in this context will be removed.
+	 */
+	export type ContextualField<T, AvailableIn extends Context, Current extends Context> = AvailableIn extends Current ? T : never;
+
+	/**
+	 * Convert all RenderedText values to string.
+	 *
+	 * If we are editing an item the `RenderedText` fields
+	 * only accept `string` not the full `{raw:string,rendered:string}` objects.
+	 *
+	 * @see RenderedText
+	 */
+	export type Editing<T> = Partial<{
+		[K in keyof T]: T[ K ] extends RenderedText<any> ? string : T[ K ];
+	}>;
+
+
 	export interface Embeddable {
 		embeddable: boolean;
 		href: string;
+	}
+
+	/**
+	 * Text fields, which include a `raw` in edit context,
+	 * and a `rendered` in all other context.
+	 *
+	 * Used with `Editing` this field is converted
+	 * to `string` when making edits.
+	 */
+	export interface RenderedText<C extends Context> {
+		raw: ContextualField<string, 'edit', C>;
+		rendered: string;
 	}
 
 	export interface Links {
@@ -78,6 +118,6 @@ declare module '@wordpress/api' {
 	export interface Global<T> {
 		_embed?: true | 'author' | 'replies' | 'wp:featuredmedia' | 'wp:attachment' | 'wp:term';
 		_fields?: Array<keyof T>;
-		context?: context;
+		context?: Context;
 	}
 }

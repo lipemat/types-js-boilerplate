@@ -3,7 +3,7 @@
  * @todo Add links to documentation when the WP docs are published.
  */
 declare module '@wordpress/api/menus' {
-	import {Links, meta} from '@wordpress/api';
+	import {Links, Meta} from '@wordpress/api';
 	import {CategoriesQuery, CategoryCreate} from '@wordpress/api/categories';
 
 	export interface Menu {
@@ -11,7 +11,7 @@ declare module '@wordpress/api/menus' {
 		description: string;
 		id: number;
 		locations: string[];
-		meta: meta;
+		meta: Meta;
 		name: string;
 		slug: string;
 		_links: Links;

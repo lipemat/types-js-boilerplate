@@ -1,5 +1,5 @@
 declare module '@wordpress/api/categories' {
-	import {context, Global, Links, meta, order} from '@wordpress/api';
+	import {Context, Global, Links, Meta, Order} from '@wordpress/api';
 
 	/**
 	 * Categories Endpoint.
@@ -16,7 +16,7 @@ declare module '@wordpress/api/categories' {
 		taxonomy: string;
 		parent: number;
 		_links: Links;
-		meta: meta;
+		meta: Meta;
 	}
 
 	/**
@@ -27,7 +27,7 @@ declare module '@wordpress/api/categories' {
 		name: string;
 		slug?: string;
 		parent?: number;
-		meta?: meta;
+		meta?: Meta;
 	}
 
 	/**
@@ -41,13 +41,13 @@ declare module '@wordpress/api/categories' {
 	 * @link https://developer.wordpress.org/rest-api/reference/categories/#list-categories
 	 */
 	export interface CategoriesQuery extends Global<Category> {
-		context?: context;
+		context?: Context;
 		page?: number;
 		per_page?: number;
 		search?: string;
 		exclude?: number[];
 		include?: number[];
-		order?: order;
+		order?: Order;
 		orderby?: 'id' | 'include' | 'name' | 'slug' | 'include_slugs' | 'term_group' | 'description' | 'count';
 		hide_empty?: boolean;
 		parent?: number;
