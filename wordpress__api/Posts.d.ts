@@ -54,7 +54,7 @@ declare module '@wordpress/api/posts' {
 		categories: ContextualField<number[], 'view' | 'edit', C>;
 		comment_status: ContextualField<CommentingStatus, 'view' | 'edit', C>;
 		content: ContextualField<RenderedText<C> & {
-			block_version?: number;
+			block_version: ContextualField<string, 'edit', C>;
 			protected: boolean;
 		}, 'view' | 'edit', C>;
 		date: string | null;
@@ -81,12 +81,12 @@ declare module '@wordpress/api/posts' {
 		template: ContextualField<string, 'view' | 'edit', C>;
 		title: RenderedText<C>;
 		type: 'post' | string;
-		_links: Links;
-		_embedded?: {
-			author: User[];
+		_links: ContextualField<Links, 'view', C>;
+		_embedded?: ContextualField<{
+			author?: User[];
 			'wp:featuredmedia'?: Media[];
 			'wp:term'?: Category[];
-		};
+		}, 'view', C>;
 	}>;
 
 
