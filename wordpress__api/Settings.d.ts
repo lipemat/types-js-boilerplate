@@ -1,11 +1,16 @@
 /* eslint-disable camelcase */
+/**
+ * Settings API.
+ */
 declare module '@wordpress/api/settings' {
+	import {Context} from '@wordpress/api';
+
 	/**
 	 * Settings Endpoint.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/settings/
 	 */
-	export interface Settings {
+	export interface Settings<C extends Context = 'view'> {
 		date_format: string;
 		default_category: number;
 		default_comment_status: 'open' | 'closed';

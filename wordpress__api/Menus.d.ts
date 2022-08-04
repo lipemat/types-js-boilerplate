@@ -3,10 +3,10 @@
  * @todo Add links to documentation when the WP docs are published.
  */
 declare module '@wordpress/api/menus' {
-	import {Links, Meta} from '@wordpress/api';
+	import {Context, Links, Meta} from '@wordpress/api';
 	import {CategoriesQuery, CategoryCreate} from '@wordpress/api/categories';
 
-	export interface Menu {
+	export interface Menu<C extends Context = 'view'> {
 		auto_add: boolean;
 		description: string;
 		id: number;

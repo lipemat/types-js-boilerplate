@@ -3,9 +3,9 @@
  * @todo Add links to documentation when the WP docs are published.
  */
 declare module '@wordpress/api/menu-locations' {
-	import {Links} from '@wordpress/api';
+	import {Context, Links} from '@wordpress/api';
 
-	export interface MenuLocation {
+	export interface MenuLocation<C extends Context = 'view'> {
 		description: string;
 		menu: number;
 		name: string;

@@ -7,7 +7,7 @@
  *
  */
 declare module '@wordpress/api/media' {
-	import {Global, Links} from '@wordpress/api';
+	import {Context, Global, Links} from '@wordpress/api';
 	import {PostMeta, PostStatus} from '@wordpress/api/posts';
 	import {PageCreate, PagesQuery} from '@wordpress/api/pages';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
@@ -25,7 +25,7 @@ declare module '@wordpress/api/media' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/media/#schema
 	 */
-	export interface Media {
+	export interface Media<C extends Context = 'view'> {
 		alt_text: string;
 		author: number;
 		caption: {

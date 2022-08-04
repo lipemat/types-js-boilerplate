@@ -37,6 +37,7 @@ declare module '@wordpress/api' {
 
 	export type CommentingStatus = 'open' | 'closed';
 	export type Context = 'view' | 'edit' | 'embed';
+	export type MediaType = 'image' | 'file';
 	export type PingStatus = 'open' | 'closed';
 
 	/**

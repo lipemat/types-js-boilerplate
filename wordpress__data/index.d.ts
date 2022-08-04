@@ -23,6 +23,7 @@ declare module '@wordpress/data' {
 	import {Media} from '@wordpress/api/media';
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
 	import {ComponentType, DependencyList} from 'react';
+	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
 
 	/**
 	 * @deprecated In favor of CreateBlock;
@@ -163,6 +164,8 @@ declare module '@wordpress/data' {
 	 */
 	type Core = {
 		canUser: ( action: 'create' | 'read' | 'update' | 'delete', endpoint: string, id?: string ) => boolean;
+		getEntityRecord: getEntityRecord;
+		getEntityRecords: getEntityRecords;
 		getMedia: ( id: number ) => Media;
 		getMediaItems: () => Media[ ];
 		getPostType: ( slug: string ) => Type;
@@ -186,8 +189,6 @@ declare module '@wordpress/data' {
 		getEmbedPreview: ( id: number ) => any;
 		getEntitiesConfig: ( kind: string ) => any[];
 		getEntityConfig: ( kind: string, name: string ) => any;
-		getEntityRecord: ( kind: string, name: string, key: string ) => any;
-		getEntityRecords: ( kind: string, name: string, query: object ) => any;
 		getEntityRecordEdits: ( kind: string, name: string, id: string ) => any;
 		getLastEntitySaveError: () => any;
 		getRawEntityRecord: () => any;

@@ -1,6 +1,8 @@
-
+/**
+ * Comments endpoint.
+ */
 declare module '@wordpress/api/comments' {
-	import {Links} from '@wordpress/api';
+	import {Context, Links} from '@wordpress/api';
 
 	/* eslint camelcase: 0 */
 
@@ -9,7 +11,7 @@ declare module '@wordpress/api/comments' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/comments/
 	 */
-	export interface Comment {
+	export interface Comment<C extends Context = 'view'> {
 		id: number;
 		post: number;
 		parent: number;

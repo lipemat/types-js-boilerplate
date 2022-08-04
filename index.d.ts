@@ -29,6 +29,8 @@ import './wordpress__blocks/index';
 import './wordpress__block-serialization-default-parser/index';
 import './wordpress__components/index';
 import './wordpress__compose/index';
+import './wordpress__core-data/entity-types';
+import './wordpress__core-data/entities';
 import './wordpress__core-data/index';
 import './wordpress__data/index';
 import './wordpress__edit-post/index';

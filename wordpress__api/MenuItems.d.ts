@@ -4,9 +4,9 @@
  */
 declare module '@wordpress/api/menu-items' {
 	import {PostsQuery, PostStatus, TaxQuery} from '@wordpress/api/posts';
-	import {Links, Meta} from '@wordpress/api';
+	import {Context, Links, Meta} from '@wordpress/api';
 
-	export interface MenuItem {
+	export interface MenuItem<C extends Context = 'view'> {
 		attr_title: string;
 		classes: string[];
 		description: string;

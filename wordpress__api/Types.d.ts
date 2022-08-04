@@ -1,13 +1,16 @@
 /* eslint-disable camelcase */
+/**
+ * Post Type API.
+ */
 declare module '@wordpress/api/types' {
-	import {Links} from '@wordpress/api';
+	import {Context, Links} from '@wordpress/api';
 
 	/**
 	 * Post Type Endpoint.
 	 *
 	 * https://developer.wordpress.org/rest-api/reference/post-types/#retrieve-a-type-2
 	 */
-	export interface Type {
+	export interface Type<C extends Context = 'view'> {
 		capabilities?: {
 			create_posts: string;
 			delete_others_posts: string;

@@ -1,3 +1,7 @@
+/**
+ * Categories API.
+ *
+ */
 declare module '@wordpress/api/categories' {
 	import {Context, Global, Links, Meta, Order} from '@wordpress/api';
 
@@ -6,7 +10,7 @@ declare module '@wordpress/api/categories' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/categories/
 	 */
-	export interface Category {
+	export interface Category<C extends Context = 'view'> {
 		id: number;
 		count: number;
 		description: string;

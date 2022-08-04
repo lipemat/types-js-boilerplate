@@ -1,12 +1,15 @@
+/**
+ * Taxonomy API.
+ */
 declare module '@wordpress/api/taxonomies' {
-	import {Links} from '@wordpress/api';
+	import {Context, Links} from '@wordpress/api';
 
 	/**
 	 * Taxonomies Endpoint.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/taxonomies/
 	 */
-	export interface Taxonomy {
+	export interface Taxonomy<C extends Context = 'view'> {
 		name: string;
 		slug: string;
 		capabilities?: {

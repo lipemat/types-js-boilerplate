@@ -1,13 +1,16 @@
 /* eslint-disable camelcase */
+/**
+ * Users API
+ */
 declare module '@wordpress/api/users' {
-	import {Global, Links, Order} from '@wordpress/api';
+	import {Context, Global, Links, Order} from '@wordpress/api';
 
 	/**
 	 * Users Endpoint.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/users/
 	 */
-	export interface User {
+	export interface User<C extends Context = 'view'> {
 		id: number;
 		name: string;
 		url: string;

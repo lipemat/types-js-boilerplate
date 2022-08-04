@@ -9,18 +9,17 @@
 declare module '@wordpress/api/pages' {
 	import {Context, Global} from '@wordpress/api';
 	import {Post, PostCreate, PostsQuery} from '@wordpress/api/posts';
+	import {OmitNever} from '@lipemat/js-boilerplate/utility';
 
 	/**
 	 * Pages Schema.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/pages/#schema
 	 */
-	export type Page<C extends Context = 'view'> =
-		Omit<Post<C>, 'categories' | 'tags' | 'format'>
-		& {
+	export type Page<C extends Context = 'view'> = OmitNever<Omit<Post<C>, 'categories' | 'tags' | 'format'> & {
 		parent: number;
 		menu_order: number;
-	}
+	}>
 
 
 	/**
