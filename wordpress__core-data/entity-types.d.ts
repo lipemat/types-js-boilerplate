@@ -54,7 +54,7 @@ declare module '@wordpress/core-data/entity-types' {
 			 * The requested fields. If specified, the REST API will remove from the response
 			 * any fields not on that list.
 			 */
-			_fields?: Array<KeyOf<R>>;
+			_fields?: Array<keyof R>;
 		};
 
 		/**
@@ -127,34 +127,9 @@ declare module '@wordpress/core-data/entity-types' {
 	}
 
 	/**
-	 * An interface that may be extended to add types for new entities.
-	 *
-	 * Example registering a custom taxonomy.
-	 *
-	 * ```ts
-	 * declare module '@wordpress/core-data/entity-types' {
-	 *      type TermEntity<C extends Context = Context> = EntityType<{
-	 * 		    name: 'product';
-	 * 		    kind: 'taxonomy';
-	 * 		    key: 'id';
-	 * 		    baseURLParams: { context: 'edit' };
-	 * 		    queryParams: CategoriesQuery
-	 * 	    }, Term<C>, C>;
-	 *      export interface PerPackageEntities<C extends Context> {
-	 *         myPlugin: TermEntity
-	 *     }
-	 * }
-	 *
-	 * ```
-	 */
-	export interface PerPackageEntityConfig<C extends Context> {
-		core: CoreEntities<C>;
-	}
-
-	/**
 	 * A union of all the registered entities.
 	 */
-	type AllEntities<C extends Context = any> = PerPackageEntityConfig<C>[ keyof PerPackageEntityConfig<C> ];
+	type AllEntities<C extends Context = any> = CoreEntities<C>;
 
 
 	/**
@@ -166,7 +141,7 @@ declare module '@wordpress/core-data/entity-types' {
 	/**
 	 * An entity corresponding to a specified record type.
 	 */
-	export type EntityTypeOf<RecordOrKind extends AllEntityRecords | Kind,
+	export type EntityOf<RecordOrKind extends AllEntityRecords | Kind,
 		N extends Name | undefined = undefined> = RecordOrKind extends AllEntityRecords
 		? Extract<AllEntities, { record: RecordOrKind }>
 		: Extract<AllEntities, { config: { kind: RecordOrKind; name: N } }>;
@@ -175,7 +150,7 @@ declare module '@wordpress/core-data/entity-types' {
 	 * Config of requested entity.
 	 */
 	export type EntityConfigOf<RecordOrKind extends AllEntityRecords | Kind,
-		N extends Name | undefined = undefined> = EntityTypeOf<RecordOrKind, N>[ 'config' ];
+		N extends Name | undefined = undefined> = EntityOf<RecordOrKind, N>[ 'config' ];
 
 
 	/**
@@ -191,13 +166,16 @@ declare module '@wordpress/core-data/entity-types' {
 		EntityConfigOf<R>[ 'kind' ];
 
 	/**
-	 * Primary key type of the requested entity, sourced from PerPackageEntities.
+	 * Primary key type of the requested entity.
 	 *
-	 * For core entities, the key type is computed using the entity configuration in entities.js.
+	 * Translates the `key` value (e.g. "id") to the
+	 * type of the record's field matching the key.
+	 *
+	 * For instance a `Category` key type would be `number` because it's
+	 * its config `key` is "id" and "id" field is of type "number".
 	 */
-	export type KeyOf<RecordOrKind extends AllEntityRecords | Kind,
-		N extends Name | undefined = undefined,
-		E extends AllEntities = EntityTypeOf<RecordOrKind, N>> =
+	export type KeyType<RecordOrKind extends AllEntityRecords | Kind, N extends Name,
+		E extends AllEntities = EntityOf<RecordOrKind, N>> =
 		( E[ 'key' ] extends keyof E[ 'record' ] ? E[ 'record' ][ E[ 'key' ] ] : never )
 		& ( number | string );
 
@@ -208,7 +186,7 @@ declare module '@wordpress/core-data/entity-types' {
 	 * in entities.js.
 	 */
 	export type DefaultContextOf<RecordOrKind extends AllEntityRecords | Kind,
-		N extends Name | undefined = undefined> = EntityTypeOf<RecordOrKind, N>[ 'defaultContext' ];
+		N extends Name | undefined = undefined> = EntityOf<RecordOrKind, N>[ 'defaultContext' ];
 
 	/**
 	 * An entity record type associated with specified kind and name, sourced from PerPackageEntities.
