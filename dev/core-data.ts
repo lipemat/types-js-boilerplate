@@ -7,6 +7,12 @@ const X = select( 'core' ).getEntityRecords( 'taxonomy', 'product' as 'category'
 	order: 'asc',
 } );
 
+const T = select( 'core' ).getEntityRecords( 'postType', 'page', {
+	parent: 0,
+	orderby: 'title',
+	order: 'asc',
+} );
+
 console.log( X[ 0 ].parent );
 
 const V = select( 'core' ).getEntityRecords( 'postType', 'wp_template', {

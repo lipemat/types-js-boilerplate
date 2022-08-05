@@ -1,3 +1,7 @@
+/**
+ * Entity types handling for the Core Data package.
+ *
+ */
 declare module '@wordpress/core-data/entity-types' {
 	import {CategoriesQuery, Context, PostsQuery} from '@wordpress/api';
 
@@ -23,6 +27,7 @@ declare module '@wordpress/core-data/entity-types' {
 		WpTemplate,
 		WpTemplatePart
 	} from '@wordpress/core-data/entities';
+	import {PagesQuery} from '@wordpress/api/pages';
 
 	/**
 	 * Helper type that transforms "raw" entity configuration.
@@ -333,7 +338,10 @@ declare module '@wordpress/core-data/entity-types' {
 
 	type PostEntity<C extends Context = Context> = EntityType<PostTypeConfig & { name: 'post' }, Post<C>, C>;
 
-	type PageEntity<C extends Context = Context> = EntityType<PostTypeConfig & { name: 'page' }, Page<C>, C>;
+	type PageEntity<C extends Context = Context> = EntityType<PostTypeConfig & {
+		name: 'page';
+		queryParams: PagesQuery
+	}, Page<C>, C>;
 
 	type WpTemplateEntity<C extends Context> = EntityType<PostTypeConfig & { name: 'wp_template' }, WpTemplate<C>, C>;
 
