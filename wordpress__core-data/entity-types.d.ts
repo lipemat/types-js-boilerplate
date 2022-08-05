@@ -200,14 +200,14 @@ declare module '@wordpress/core-data/entity-types' {
 
 
 	export type EntityQuery<C extends Context, R extends AllEntityRecords, WithFields extends boolean> =
-		EntityConfigOf<R>['queryParams'] extends undefined ? Omit<Record<string, any>, '_fields'> : EntityConfigOf<R>['queryParams'] & {
+		EntityConfigOf<R>['queryParams'] extends undefined ? Omit<Record<string, any>, '_fields'> : Omit<EntityConfigOf<R>['queryParams'], '_fields'> & {
 			context?: C;
 		} & ( WithFields extends true ? {
 			/**
 			 * The requested fields. If specified, the REST API will remove from the response
 			 * any fields not on that list.
 			 */
-			_fields: string[];
+			_fields: Array<keyof R>;
 		} : {} );
 
 	/**

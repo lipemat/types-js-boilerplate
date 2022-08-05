@@ -11,7 +11,7 @@ console.log( X[ 0 ].parent );
 
 const V = select( 'core' ).getEntityRecords( 'postType', 'wp_template', {
 	order: 'asc',
-	_fields: [ 'comment_status' ]
+	_fields: [ 'is_custom' ]
 } );
 
 console.log( V[ 0 ].type );
@@ -19,3 +19,10 @@ console.log( V[ 0 ].type );
 const W = select( 'core' ).getEntityRecords( 'root', 'menu', {} );
 
 console.log( W );
+
+const S = select( 'core' ).getEntityRecord( 'postType', 'wp_template', '4', {
+	order: 'asc',
+	_fields: [ 'is_custom' ]
+} );
+
+console.log( S );
