@@ -174,8 +174,8 @@ declare module '@wordpress/core-data/entity-types' {
 	 * For instance a `Category` key type would be `number` because it's
 	 * its config `key` is "id" and "id" field is of type "number".
 	 */
-	export type KeyType<RecordOrKind extends AllEntityRecords | Kind, N extends Name,
-		E extends AllEntities = EntityOf<RecordOrKind, N>> =
+	export type KeyType<R extends AllEntityRecords, N extends Name,
+		E extends AllEntities = EntityOf<R, N>> =
 		( E[ 'key' ] extends keyof E[ 'record' ] ? E[ 'record' ][ E[ 'key' ] ] : never )
 		& ( number | string );
 

@@ -46,7 +46,7 @@ declare module '@wordpress/core-data' {
 		(
 			kind: K,
 			name: N,
-			key: Plural extends true ? EntityQuery<C, R, true> : KeyType<K, N>,
+			key: Plural extends true ? EntityQuery<C, R, true> : KeyType<R, N>,
 			query?: Plural extends true ? never : EntityQuery<C, R, true>
 		): Plural extends true ? Partial<EntityRecordOf<K, N, C>>[] : Partial<EntityRecordOf<K, N, C>> | null | undefined;
 
@@ -57,7 +57,7 @@ declare module '@wordpress/core-data' {
 		(
 			kind: K,
 			name: N,
-			key: Plural extends true ? EntityQuery<C, R, false> : KeyType<K, N>,
+			key: Plural extends true ? EntityQuery<C, R, false> : KeyType<R, N>,
 			query?: Plural extends true ? never : EntityQuery<C, R, false>
 		): Plural extends true ? EntityRecordOf<K, N, C>[] : EntityRecordOf<K, N, C> | null | undefined;
 	}
@@ -76,10 +76,10 @@ declare module '@wordpress/core-data' {
 		kind: K,
 		name: N,
 		key: P,
-		id: KeyType<K, N>
+		id: KeyType<R, N>
 	) => [
 		Editing<EntityRecordOf<K, N, 'edit'>>[P], // Getter.
-		( value: Editing<EntityRecordOf<K, N, 'edit'>>[P] ) => void, // Setter.
+		( value: Required<Editing<EntityRecordOf<K, N, 'edit'>>>[P] ) => void, // Setter.
 		EntityRecordOf<K, N, 'edit'>[P] // Raw.
 	];
 
@@ -92,7 +92,7 @@ declare module '@wordpress/core-data' {
 	(
 		kind: K,
 		name: N,
-		id: KeyType<K, N>,
+		id: KeyType<R, N>,
 	) => EntityRecordResolution<EntityRecordOf<K, N>>;
 
 	/**
