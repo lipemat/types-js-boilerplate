@@ -56,4 +56,13 @@ declare module '@lipemat/js-boilerplate/utility' {
 	 *
 	 */
 	export type Subtract<T extends K, K> = Omit<T, keyof K>;
+
+	/**
+	 * Union from array elements.
+	 *
+	 * Useful for passing to `Pick`.
+	 *
+	 * @example UnionOfArray<['one', 2, 'three']> - `'one' | 2 | 'three'`.
+	 */
+	export type UnionOfArray<A extends Readonly<unknown[]>> = A[number];
 }
