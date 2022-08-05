@@ -68,22 +68,25 @@ declare module '@wordpress/core-data' {
 	/**
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/core-data/src/entity-provider.js#85
 	 */
-	type useEntityProp = <R extends EntityRecordOf<K, N>,
-		P extends keyof EntityRecordOf<K, N, C>,
+	type UseEntityProp = <R extends EntityRecordOf<K, N, 'edit'>,
+		P extends keyof EntityRecordOf<K, N, 'edit'>,
 		K extends Kind = KindOf<R>,
-		N extends Name = NameOf<R>,
-		C extends Context = DefaultContextOf<R>>
+		N extends Name = NameOf<R>>
 	(
 		kind: K,
 		name: N,
 		key: P,
 		id: KeyType<K, N>
-	) => [ EntityRecordOf<K, N, C>[P], ( value: Editing<EntityRecordOf<K, N, C>>[P] ) => void ];
+	) => [
+		Editing<EntityRecordOf<K, N, 'edit'>>[P], // Getter.
+		( value: Editing<EntityRecordOf<K, N, 'edit'>>[P] ) => void, // Setter.
+		EntityRecordOf<K, N, 'edit'>[P] // Raw.
+	];
 
 	/**
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/core-data/src/hooks/use-entity-record.ts
 	 */
-	type useEntityRecord = <R extends EntityRecordOf<K, N>,
+	type UseEntityRecord = <R extends EntityRecordOf<K, N>,
 		K extends Kind = KindOf<R>,
 		N extends Name = NameOf<R>>
 	(
@@ -120,18 +123,18 @@ declare module '@wordpress/core-data' {
 		): EntityRecordResolution<EntityRecordOf<K, N, C>[]>;
 	}
 
-	export const useEntityProp: useEntityProp;
+	export const useEntityProp: UseEntityProp;
 	/**
 	 * @internal Not yet available until WP core 6.1.0.
 	 */
-	export const useEntityRecord: useEntityRecord;
+	export const useEntityRecord: UseEntityRecord;
 	/**
 	 * @internal Not yet available until WP core 6.1.0.
 	 */
 	export const useEntityRecords: UseEntityRecords;
 	export default interface CoreData {
-		useEntityProp: useEntityProp;
-		seEntityRecord: useEntityRecord;
+		useEntityProp: UseEntityProp;
+		seEntityRecord: UseEntityRecord;
 		useEntityRecords: UseEntityRecords;
 	}
 }
