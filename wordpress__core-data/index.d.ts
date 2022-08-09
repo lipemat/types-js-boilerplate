@@ -48,7 +48,7 @@ declare module '@wordpress/core-data' {
 			name: N,
 			key: Plural extends true ? EntityQuery<C, R, true> : KeyType<R, N>,
 			query?: Plural extends true ? never : EntityQuery<C, R, true>
-		): Plural extends true ? Partial<EntityRecordOf<K, N, C>>[] : Partial<EntityRecordOf<K, N, C>> | null | undefined;
+		): ( Plural extends true ? Partial<EntityRecordOf<K, N, C>>[] : Partial<EntityRecordOf<K, N, C>> ) | null | undefined;
 
 		<R extends EntityRecordOf<K, N>,
 			C extends Context = DefaultContextOf<R>,
@@ -59,7 +59,7 @@ declare module '@wordpress/core-data' {
 			name: N,
 			key: Plural extends true ? EntityQuery<C, R, false> : KeyType<R, N>,
 			query?: Plural extends true ? never : EntityQuery<C, R, false>
-		): Plural extends true ? EntityRecordOf<K, N, C>[] : EntityRecordOf<K, N, C> | null | undefined;
+		): ( Plural extends true ? EntityRecordOf<K, N, C>[] : EntityRecordOf<K, N, C> ) | null | undefined;
 	}
 
 	export type getEntityRecord = GetEntityRecord<false>;
