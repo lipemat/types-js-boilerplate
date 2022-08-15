@@ -472,7 +472,7 @@ declare module '@wordpress/components' {
 		| 'right'
 		| 'top left'
 		| 'top right'
-		| 'top-center'
+		| 'top center'
 		| 'bottom left'
 		| 'bottom right'
 		| 'bottom center';
