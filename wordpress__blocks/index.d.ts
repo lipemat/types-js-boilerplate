@@ -43,6 +43,11 @@ declare module '@wordpress/blocks' {
 	type AttributeShape = {
 		type: dataTypes | dataTypes[];
 		source?: 'text' | 'html' | 'query' | 'attribute';
+		/**
+		 * Default values won't be sent during render, so they must be either
+		 * registered via `register_block_type` with PHP or the template must
+		 * fall back to known defaults if no value is sent.
+		 */
 		default?: any;
 		enum?: Array<string | boolean | number>;
 		// jQuery selector of element to extract value from.
