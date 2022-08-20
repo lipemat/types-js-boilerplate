@@ -8,19 +8,16 @@ declare module '@wordpress/edit-post' {
 	import {FunctionComponent} from 'react';
 	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {WPBlockTypeIconRender} from '@wordpress/components';
-	import {Post} from '@wordpress/api/posts';
+	import {Page} from '@wordpress/api/pages';
+	import {Optional} from '@lipemat/js-boilerplate/utility';
 
 	/**
-	 * Convience interface when working with Post data in the editor.
+	 * Convenience interface when working with Post data in the editor.
 	 *
 	 * The post data mirrors the REST api except it flattens
 	 * a few of the keys to one level.
 	 */
-	export interface PostEditing extends Omit<Post, 'guid' | 'title' | 'content' | 'excerpt'> {
-		guid: string;
-		title: string;
-		content: string;
-		excerpt: string;
+	export interface PostEditing extends Optional<Page<'edit'>, 'parent' | 'menu_order'> {
 	}
 
 	/**

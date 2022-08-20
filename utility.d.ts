@@ -36,7 +36,7 @@ declare module '@lipemat/js-boilerplate/utility' {
 	/**
 	 * Make specified properties on a type optional.
 	 *
-	 * @example Optional<Post, 'post_title'|'author'> - post_title and author will be optional.
+	 * @example `Optional<Post, 'post_title'|'author'>` - `post_title` and `author` will be optional.
 	 */
 	export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
