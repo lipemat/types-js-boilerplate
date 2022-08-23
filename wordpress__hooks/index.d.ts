@@ -21,11 +21,11 @@ declare module '@wordpress/hooks' {
 		}
 	};
 
-	type Callback<P, R> = ( props: P ) => R;
+	type Callback<Value, Return, Extra extends []> = ( value: Value, ...extra: Extra ) => Return;
 
-	export function addAction<P, R = any>( action: string, namespace: string, cb: Callback<P, R>, priority?: number ): void;
+	export function addAction<Value, Extra extends [] = any>( action: string, namespace: string, cb: Callback<Value, void, Extra>, priority?: number ): void;
 
-	export function addFilter<P, R = any>( filter: string, namespace: string, cb: Callback<P, R>, priority?: number ): void;
+	export function addFilter<Value, Return = any, Extra extends [] = any>( filter: string, namespace: string, cb: Callback<Value, Return, Extra>, priority?: number ): void;
 
 	type applyFilters = <T = any>( filter: string, content: any, ...args: any ) => T;
 	type createHooks = () => void;
