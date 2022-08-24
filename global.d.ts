@@ -1,6 +1,7 @@
 import {WpMedia} from '@lipemat/js-boilerplate/global/wp-media';
 import {WpCodeEditor} from '@lipemat/js-boilerplate/global/wp-code-editor';
 import ApiFetch from '@wordpress/api-fetch';
+import Autop from '@wordpress/autop';
 import EditPost from '@wordpress/edit-post';
 import BlockEditor from '@wordpress/block-editor';
 import Blocks from '@wordpress/blocks';
@@ -33,6 +34,7 @@ declare global {
 	interface Window {
 		wp: {
 			apiFetch?: typeof ApiFetch,
+			autop?: Autop;
 			blockEditor?: BlockEditor;
 			blocks?: Blocks,
 			blockSerializationDefaultParser?: BlockSerialize,
