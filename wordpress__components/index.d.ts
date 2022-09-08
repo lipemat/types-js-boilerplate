@@ -5,23 +5,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__components/index.d.ts
  */
 declare module '@wordpress/components' {
-	import {
-		ButtonHTMLAttributes,
-		ChangeEvent,
-		ComponentType,
-		CSSProperties,
-		HTMLAttributes,
-		InputHTMLAttributes,
-		KeyboardEvent,
-		MouseEvent,
-		MutableRefObject,
-		PropsWithChildren,
-		ReactElement,
-		ReactNode,
-		SelectHTMLAttributes,
-		SVGProps,
-		TextareaHTMLAttributes
-	} from 'react';
+	import {ButtonHTMLAttributes, ChangeEvent, ComponentType, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, TextareaHTMLAttributes} from 'react';
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
@@ -477,6 +461,20 @@ declare module '@wordpress/components' {
 		| 'bottom right'
 		| 'bottom center';
 
+	type Placement =
+		'top'
+		| 'top-start'
+		| 'top-end'
+		| 'right'
+		| 'right-start'
+		| 'right-end'
+		| 'bottom'
+		| 'bottom-start'
+		| 'bottom-end'
+		| 'left'
+		| 'left-start'
+		| 'left-end'
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/base-control/
 	 */
@@ -786,11 +784,12 @@ declare module '@wordpress/components' {
 	}
 
 	/**
-	 * Floating tooltip of any content type.
+	 * A floating tooltip of any content type.
 	 *
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/popover
 	 */
 	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+		// @note: Use the `placement` prop instead when possible.
 		position?:
 			'bottom left'
 			| 'bottom center'
@@ -810,7 +809,9 @@ declare module '@wordpress/components' {
 		isAlternate?: boolean;
 		noArrow?: boolean;
 		onClose?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
+		offset?: number;
 		onFocusOutside?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
+		placement?: Placement;
 	}
 
 	/**
