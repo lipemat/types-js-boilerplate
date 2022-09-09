@@ -52,11 +52,11 @@ declare module '@wordpress/blocks' {
 		enum?: Array<string | boolean | number>;
 		// jQuery selector of element to extract value from.
 		selector?: string;
-		// Tag to wrap each line when using "html" source and RichText with multiline prop.
+		// Tag to wrap each line when using "HTML" source and RichText with multiline prop.
 		multiline?: string;
 		// html attribute of selector element if using "attribute" source
 		attribute?: string;
-		// Extract array of values from markup using "selector" and attributes of html tags.
+		// Extract array of values from the markup using "selector" and attributes of HTML tags.
 		query?: {
 			[ key: string ]: {
 				type: 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
@@ -82,12 +82,13 @@ declare module '@wordpress/blocks' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
 	 */
 	export type BlockAttributes<Attr> = {
-		[key in keyof Attr]: AttributeShape | Omit<AttributeShape, 'source'> & {
-		// Special meta type with `meta` requirement.
-		source: 'meta';
-		// Meta key to store/retrieve data when using `source:'meta'`.
-		meta: keyof Attr;
-	}
+		[key in keyof Attr]: AttributeShape | Omit<AttributeShape, 'source'> &
+		{
+			// Special meta type with `meta` requirement.
+			source: 'meta';
+			// Meta key to store/retrieve data when using `source:'meta'`.
+			meta: keyof Attr;
+		}
 	}
 
 	/**
@@ -233,7 +234,7 @@ declare module '@wordpress/blocks' {
 	export type ChildBlocks = Array<[ string, { [ key: string ]: any }?, ChildBlocks? ]>;
 
 	export type IconObject = {
-		// Specifying a background color to appear with the icon e.g.: in the inserter.
+		// Specifying a background color to appear with the icon e.g.,: in the inserter.
 		background?: string;
 		// Specifying a color for the icon
 		foreground?: string;
@@ -372,7 +373,7 @@ declare module '@wordpress/blocks' {
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
 		 */
-		save: ( params: { attributes: Attr } ) => ReactElement | null;
+		save: <C = ChildBlocks>( params: { attributes: Attr, innerBlocks: C } ) => ReactElement | null;
 		// To opt into version 2 https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 		apiVersion?: 1 | 2
 	};
@@ -407,7 +408,7 @@ declare module '@wordpress/blocks' {
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#block-collections
 	 *
 	 * @param namespace - Any blocks matching this namespace will automatically be included
-	 *                    within this collection. e.g. "lipe"
+	 *                    within this collection. e.g., "lipe"
 	 * @param {Object} settings
 	 */
 	export function registerBlockCollection( namespace: string, settings: {
