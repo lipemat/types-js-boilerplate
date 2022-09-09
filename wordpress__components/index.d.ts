@@ -1024,15 +1024,15 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/tab-panel/
 	 */
-	export function TabPanel<T extends string>( props: PropsWithChildren<{
+	export function TabPanel<TabKeys extends string>( props: PropsWithChildren<{
 		activeClass?: string;
-		children: ( tab: Tab<T> ) => ReactElement;
+		children: ( tab: Tab<TabKeys> ) => ReactElement;
 		className?: string;
-		initialTabName?: string;
-		onSelect?: ( tab: string ) => void;
+		initialTabName?: TabKeys;
+		onSelect?: ( tab: TabKeys ) => void;
 		orientation?: 'vertical' | 'horizontal';
-		tabs: Array<Tab<T>>;
-	}>, context?: any ): ReactElement<any, any> | null;
+		tabs: Array<Tab<TabKeys>>;
+	}>, context?: any ): ReactElement | null;
 
 
 	/**
