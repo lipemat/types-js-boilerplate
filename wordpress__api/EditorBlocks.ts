@@ -20,6 +20,7 @@ declare module '@wordpress/api/editor-blocks' {
 	export type EditorBlock<C extends Context = 'view'> = OmitNever<{
 		content: ContextualField<RenderedText<C> & {
 			protected: boolean;
+			block_version: ContextualField<number, 'edit', C>;
 		}, 'view' | 'edit', C>;
 		date: string | null;
 		date_gmt: ContextualField<string | null, 'view' | 'edit', C>;
@@ -31,7 +32,9 @@ declare module '@wordpress/api/editor-blocks' {
 		slug: string;
 		status: ContextualField<PostStatus, 'view' | 'edit', C>;
 		template: ContextualField<string, 'view' | 'edit', C>;
-		title: RenderedText<C>;
+		title: {
+			raw: string;
+		};
 		type: 'wp_block' | string;
 		_links: Links;
 		_embedded?: {
@@ -45,7 +48,8 @@ declare module '@wordpress/api/editor-blocks' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/blocks/#create-a-editor-block
 	 */
-	export interface EditorBlockCreate extends Partial<Editing<Omit<EditorBlock<'edit'>, PostReadOnly>>> {
+	export interface EditorBlockCreate extends Partial<Editing<Omit<EditorBlock<'edit'>, PostReadOnly | 'title'>>> {
+		title: string;
 	}
 
 	/**
