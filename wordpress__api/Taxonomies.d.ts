@@ -1,25 +1,27 @@
 /**
  * Taxonomy API.
+ *
+ * @link https://developer.wordpress.org/rest-api/reference/taxonomies/
  */
 declare module '@wordpress/api/taxonomies' {
-	import {Context, Links} from '@wordpress/api';
+	import {Context, ContextualField, Links} from '@wordpress/api';
+	import {OmitNever} from '@lipemat/js-boilerplate/utility';
 
 	/**
 	 * Taxonomies Endpoint.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/taxonomies/
 	 */
-	export interface Taxonomy<C extends Context = 'view'> {
-		name: string;
-		slug: string;
-		capabilities?: {
+	export type Taxonomy<C extends Context = 'view'> = OmitNever<{
+		capabilities: ContextualField<{
 			manage_terms: string;
 			edit_terms: string;
 			delete_terms: string;
 			assign_terms: string;
-		};
-		description: string;
-		labels?: {
+		}, 'edit', C>;
+		description: ContextualField<string, 'view' | 'edit', C>;
+		hierarchical: ContextualField<boolean, 'view' | 'edit', C>;
+		labels: ContextualField<{
 			name: string;
 			singular_name: string;
 			search_items: string;
@@ -50,21 +52,29 @@ declare module '@wordpress/api/taxonomies' {
 			item_link_description: string;
 			menu_name: string;
 			name_admin_bar: string;
-		};
-		types: Array<string>;
-		show_cloud?: boolean;
-		hierarchical: boolean;
-		// eslint-disable-next-line camelcase
+		}, 'edit', C>;
+		name: string;
+		slug: string;
+		show_cloud: ContextualField<boolean, 'edit', C>;
+		types: ContextualField<string[], 'view' | 'edit', C>;
 		rest_base: string;
 		rest_namespace: string;
-		visibility?: {
+		visibility: ContextualField<{
 			public: boolean;
 			publicly_queryable: boolean;
 			show_admin_column: boolean;
 			show_in_nav_menus: boolean;
 			show_in_quick_edit: boolean;
 			show_ui: boolean;
-		};
+		}, 'edit', C>;
 		_links: Links;
+	}>
+
+	/**
+	 * @link https://developer.wordpress.org/rest-api/reference/taxonomies/#arguments
+	 */
+	export interface TaxonomiesQuery {
+		content?: Context;
+		type?: string;
 	}
 }

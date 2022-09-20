@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 /**
  * Media REST endpoint.
  *
@@ -7,10 +5,11 @@
  *
  */
 declare module '@wordpress/api/media' {
-	import {Context, Global, Links} from '@wordpress/api';
-	import {PostMeta, PostStatus} from '@wordpress/api/posts';
-	import {PageCreate, PagesQuery} from '@wordpress/api/pages';
+	import {Context, ContextualField, Editing, Global, Links, PingStatus, RenderedText} from '@wordpress/api';
+	import {PostMeta, PostReadOnly, PostStatus} from '@wordpress/api/posts';
+	import {PagesQuery} from '@wordpress/api/pages';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
+	import {OmitNever} from '@lipemat/js-boilerplate/utility';
 
 	type Details = {
 		file: string;
@@ -25,25 +24,16 @@ declare module '@wordpress/api/media' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/media/#schema
 	 */
-	export interface Media<C extends Context = 'view'> {
+	export type Media<C extends Context = 'view'> = OmitNever<{
 		alt_text: string;
 		author: number;
-		caption: {
-			raw: string;
-			rendered: string;
-		};
-		comment_status: 'open' | 'closed';
-		date: string;
-		date_gmt: string;
-		description: {
-			raw: string;
-			rendered: string;
-		};
-		generated_slug: string;
-		guid: {
-			rendered: string;
-			raw: string;
-		};
+		caption: RenderedText<C>;
+		comment_status: ContextualField<'open' | 'closed', 'view' | 'edit', C>;
+		date: string | null;
+		date_gmt: ContextualField<string | null, 'view' | 'edit', C>;
+		description: ContextualField<RenderedText<C>, 'view' | 'edit', C>;
+		generated_slug: ContextualField<string, 'edit', C>;
+		guid: ContextualField<RenderedText<C>, 'view' | 'edit', C>;
 		id: number;
 		link: string;
 		media_details: {
@@ -54,7 +44,7 @@ declare module '@wordpress/api/media' {
 				full: Details;
 				medium: Details;
 				thumbnail: Details;
-				[size: string]: Details;
+				[ size: string ]: Details;
 			},
 			image_meta: {
 				aperture?: string;
@@ -72,25 +62,22 @@ declare module '@wordpress/api/media' {
 			}
 		}
 		media_type: 'application' | 'audio' | 'image' | 'video';
-		meta: PostMeta;
+		meta: ContextualField<PostMeta, 'view' | 'edit', C>;
 		mime_type: string;
-		missing_image_sizes: [];
-		modified: string;
-		modified_gmt: string;
-		permalink_template: string;
-		ping_status: 'open' | 'closed';
-		post: number;
+		missing_image_sizes: ContextualField<string[], 'edit', C>;
+		modified: ContextualField<string, 'view' | 'edit', C>;
+		modified_gmt: ContextualField<string, 'view' | 'edit', C>;
+		permalink_template: ContextualField<string, 'edit', C>;
+		ping_status: ContextualField<PingStatus, 'view' | 'edit', C>;
+		post: ContextualField<number, 'view' | 'edit', C>;
 		slug: string;
 		source_url: string;
-		status: PostStatus | 'inherit';
-		template: string;
-		title: {
-			raw: string;
-			rendered: string;
-		};
-		type: 'attachment';
+		status: ContextualField<PostStatus | 'inherit', 'view' | 'edit', C>;
+		template: ContextualField<string, 'view' | 'edit', C>;
+		title: RenderedText<C>;
+		type: 'attachment' | string;
 		_links: Links;
-	}
+	}>
 
 
 	/**
@@ -99,12 +86,8 @@ declare module '@wordpress/api/media' {
 	 * @link https://developer.wordpress.org/rest-api/reference/media/#create-a-media-item
 	 * @see `@wordpress/media-utils.uploadMedia`
 	 */
-	export interface MediaCreate extends PageCreate {
-		alt_text?: string;
-		caption?: string;
-		description?: string;
+	export interface MediaCreate extends Partial<Editing<Omit<Media<'edit'>, PostReadOnly>>> {
 		file?: Blob;
-		post?: number;
 	}
 
 	/**
@@ -126,5 +109,6 @@ declare module '@wordpress/api/media' {
 		media_type?: 'application' | 'audio' | 'image' | 'video';
 		mime_type?: ALL_TYPES;
 		status?: PostStatus | 'inherit';
+		_embed?: true | 'author' | 'replies';
 	}
 }

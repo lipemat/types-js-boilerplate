@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 /**
  * Pages REST endpoint.
  *
@@ -7,20 +5,13 @@
  *
  */
 declare module '@wordpress/api/pages' {
-	import {
-		CommentingStatus,
-		Context,
-		ContextualField,
-		Global,
-		Links,
-		PingStatus,
-		RenderedText
-	} from '@wordpress/api';
-	import {PostCreate, PostMeta, PostsQuery, PostStatus} from '@wordpress/api/posts';
+	import {CommentingStatus, Context, ContextualField, Editing, Global, Links, PingStatus, RenderedText} from '@wordpress/api';
+	import {PostMeta, PostReadOnly, PostsQuery, PostStatus} from '@wordpress/api/posts';
 	import {OmitNever} from '@lipemat/js-boilerplate/utility';
 	import {User} from '@wordpress/api/users';
 	import {Media} from '@wordpress/api/media';
 	import {Category} from '@wordpress/api/categories';
+
 	/**
 	 * Pages Schema.
 	 *
@@ -67,25 +58,11 @@ declare module '@wordpress/api/pages' {
 
 
 	/**
-	 * List Pages.
-	 *
-	 * @link https://developer.wordpress.org/rest-api/reference/pages/#list-pages
-	 */
-	export interface PagesQuery extends Omit<PostsQuery, 'orderby' | 'categories' | 'tags' | '_fields' | 'sticky'>, Global<Page> {
-		menu_order?: number;
-		orderby?: 'author' | 'date' | 'id' | 'include' | 'modified' | 'parent' | 'relevance' | 'slug' | 'include_slugs' | 'title' | 'menu_order';
-		parent?: number;
-		parent_exclude?: number[];
-	}
-
-	/**
 	 * Create Page.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/pages/#create-a-page
 	 */
-	export interface PageCreate extends Omit<PostCreate, 'categories' | 'tags' | 'sticky'> {
-		parent?: number;
-		menu_order?: number;
+	export interface PageCreate extends Partial<Editing<Omit<Page<'edit'>, PostReadOnly>>> {
 	}
 
 	/**
@@ -95,5 +72,17 @@ declare module '@wordpress/api/pages' {
 	 */
 	export interface PageUpdate extends PageCreate {
 		id: number;
+	}
+
+	/**
+	 * List Pages.
+	 *
+	 * @link https://developer.wordpress.org/rest-api/reference/pages/#list-pages
+	 */
+	export interface PagesQuery extends Omit<PostsQuery, 'orderby' | 'categories' | 'tags' | '_fields' | 'sticky'>, Global<Page> {
+		menu_order?: number;
+		orderby?: 'author' | 'date' | 'id' | 'include' | 'modified' | 'parent' | 'relevance' | 'slug' | 'include_slugs' | 'title' | 'menu_order';
+		parent?: number;
+		parent_exclude?: number[];
 	}
 }

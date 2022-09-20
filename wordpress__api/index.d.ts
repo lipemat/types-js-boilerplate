@@ -101,6 +101,9 @@ declare module '@wordpress/api' {
 		self: Collection[] | Embeddable[];
 		'wp:attachment'?: Collection[];
 		'wp:featuredmedia'?: Embeddable[];
+		'wp:items'?: [ {
+			href: string;
+		} ]
 		'wp:menu'?: Embeddable[];
 		'wp:menu-location'?: Embeddable[];
 		'wp:menu-item-object'?: [ {

@@ -1,17 +1,17 @@
-/* eslint-disable camelcase */
 /**
  * Post Type API.
  */
 declare module '@wordpress/api/types' {
-	import {Context, Links} from '@wordpress/api';
+	import {Context, ContextualField, Global, Links} from '@wordpress/api';
+	import {OmitNever} from '@lipemat/js-boilerplate/utility';
 
 	/**
-	 * Post Type Endpoint.
+	 * Post Type Schema
 	 *
-	 * https://developer.wordpress.org/rest-api/reference/post-types/#retrieve-a-type-2
+	 * @link https://developer.wordpress.org/rest-api/reference/post-types/#schema
 	 */
-	export interface Type<C extends Context = 'view'> {
-		capabilities?: {
+	export type Type<C extends Context = 'view'> = OmitNever<{
+		capabilities: ContextualField<{
 			create_posts: string;
 			delete_others_posts: string;
 			delete_post: string;
@@ -27,11 +27,11 @@ declare module '@wordpress/api/types' {
 			read: string;
 			read_post: string;
 			read_private_posts: string;
-		}
-		description: string;
-		hierarchical: boolean;
-		viewable?: boolean;
-		labels?: {
+		}, 'edit', C>;
+		description: ContextualField<string, 'view' | 'edit', C>;
+		hierarchical: ContextualField<boolean, 'view' | 'edit', C>;
+		viewable: ContextualField<boolean, 'edit', C>;
+		labels: ContextualField<{
 			add_new: string;
 			add_new_item: string;
 			all_items: string;
@@ -63,10 +63,10 @@ declare module '@wordpress/api/types' {
 			use_featured_image: string;
 			view_item: string;
 			view_items: string;
-		}
+		}, 'edit', C>;
 		name: string,
 		slug: string,
-		supports?: {
+		supports: ContextualField<{
 			author?: boolean;
 			comments?: boolean;
 			'custom-fields'?: boolean;
@@ -78,9 +78,17 @@ declare module '@wordpress/api/types' {
 			title?: boolean;
 			trackbacks?: boolean;
 			[ support: string ]: boolean | undefined;
-		}
-		taxonomies: Array<string>,
+		}, 'edit', C>;
+		taxonomies: ContextualField<Array<string>, 'view' | 'edit', C>;
 		rest_base: string,
-		_links: Links;
+		_links: Pick<Links, 'collection' | 'curies' | 'wp:items'>;
+	}>
+
+	/**
+	 * List Types.
+	 *
+	 * @link https://developer.wordpress.org/rest-api/reference/post-types/#retrieve-a-type-2
+	 */
+	export interface TypesQuery extends Global<Type> {
 	}
 }

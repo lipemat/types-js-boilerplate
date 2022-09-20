@@ -1,43 +1,41 @@
 /**
  * Categories API.
  *
+ * @link https://developer.wordpress.org/rest-api/reference/categories/
+ *
  */
 declare module '@wordpress/api/categories' {
-	import {Context, Global, Links, Meta, Order} from '@wordpress/api';
+	import {Context, ContextualField, Global, Links, Meta, Order} from '@wordpress/api';
+	import {OmitNever} from '@lipemat/js-boilerplate/utility';
 
 	/**
 	 * Categories Endpoint.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/categories/
 	 */
-	export interface Category<C extends Context = 'view'> {
+	export type Category<C extends Context = 'view'> = OmitNever<{
 		id: number;
-		count: number;
-		description: string;
+		count: ContextualField<number, 'view' | 'edit', C>;
+		description: ContextualField<string, 'view' | 'edit', C>;
 		link: string;
 		name: string;
 		slug: string;
 		taxonomy: string;
-		parent: number;
+		parent: ContextualField<number, 'view' | 'edit', C>;
 		_links: Links;
-		meta: Meta;
-	}
+		meta: ContextualField<Meta, 'view' | 'edit', C>;
+	}>
 
 	/**
 	 * https://developer.wordpress.org/rest-api/reference/categories/#create-a-category
 	 */
-	export interface CategoryCreate {
-		description?: string;
-		name: string;
-		slug?: string;
-		parent?: number;
-		meta?: Meta;
+	export interface CategoryCreate extends Partial<Category<'edit'>> {
 	}
 
 	/**
 	 * https://developer.wordpress.org/rest-api/reference/categories/#update-a-category
 	 */
-	export interface CategoryUpdate extends Partial<CategoryCreate> {
+	export interface CategoryUpdate extends CategoryCreate {
 		id: number;
 	}
 

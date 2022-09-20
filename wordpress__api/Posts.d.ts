@@ -7,17 +7,7 @@
  *
  */
 declare module '@wordpress/api/posts' {
-	import {
-		CommentingStatus,
-		Context,
-		ContextualField,
-		Editing,
-		Global,
-		Links,
-		Order,
-		PingStatus,
-		RenderedText
-	} from '@wordpress/api';
+	import {CommentingStatus, Context, ContextualField, Editing, Global, Links, Order, PingStatus, RenderedText} from '@wordpress/api';
 	import {User} from '@wordpress/api/users';
 	import {Media} from '@wordpress/api/media';
 	import {Category} from '@wordpress/api/categories';
@@ -43,6 +33,15 @@ declare module '@wordpress/api/posts' {
 		include_children?: boolean;
 		operator?: 'OR' | 'AND'; // WP 5.8+.
 	}
+	export type PostReadOnly =
+		'guid'
+		| 'id'
+		| 'link'
+		| 'modified'
+		| 'modified_gmt'
+		| 'type'
+		| 'permalink_template'
+		| 'generated_slug';
 
 	/**
 	 * Post Schema.
@@ -95,7 +94,7 @@ declare module '@wordpress/api/posts' {
 	 *
 	 * https://developer.wordpress.org/rest-api/reference/posts/#create-a-post
 	 */
-	export interface PostCreate extends Partial<Editing<Post<'edit'>>> {
+	export interface PostCreate extends Partial<Editing<Omit<Post<'edit'>, PostReadOnly>>> {
 	}
 
 	/**

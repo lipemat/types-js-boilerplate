@@ -1,9 +1,23 @@
-/* eslint-disable camelcase */
 /**
  * Users API
  */
 declare module '@wordpress/api/users' {
-	import {Context, Global, Links, Order} from '@wordpress/api';
+	import {Context, ContextualField, Links, Order} from '@wordpress/api';
+	import {PostMeta} from '@wordpress/api/posts';
+
+	export interface AvatarUrls {
+		'24': string;
+		'48': string;
+		'96': string;
+	}
+
+	export type UserReadOnly =
+		'id'
+		| 'link'
+		| 'registered_date'
+		| 'capabilities'
+		| 'extra_capabilities'
+		| 'avatar_urls';
 
 	/**
 	 * Users Endpoint.
@@ -12,45 +26,34 @@ declare module '@wordpress/api/users' {
 	 */
 	export interface User<C extends Context = 'view'> {
 		id: number;
+		username: ContextualField<string, 'edit', C>;
 		name: string;
+		first_name: ContextualField<string, 'edit', C>;
+		last_name: ContextualField<string, 'edit', C>;
+		email: ContextualField<string, 'edit', C>;
 		url: string;
 		description: string;
 		link: string;
+		locale: ContextualField<string, 'edit', C>;
+		nickname: ContextualField<string, 'edit', C>;
 		slug: string;
-		avatar_urls: { [ key: string ]: string };
-		meta: { [ key: string ]: any };
-		_links: Links;
+		registered_date: ContextualField<string, 'edit', C>;
+		roles: ContextualField<string[], 'edit', C>;
+		capabilities: ContextualField<{ [ cap: string ]: string }, 'edit', C>;
+		extra_capabilities: ContextualField<{ [ cap: string ]: string }, 'edit', C>;
+		avatar_urls: AvatarUrls;
+		meta: ContextualField<PostMeta, 'view' | 'edit', C>;
+		_links: Pick<Links, 'self' | 'collection'>;
 	}
+
 
 	/**
 	 * User Create.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/users/#create-a-user
 	 */
-	export interface UserCreate {
-		username: string;
-		name?: string;
-		first_name?: string;
-		last_name?: string;
-		email: string;
-		url?: string;
-		description?: string;
-		locale?: string;
-		nickname?: string;
-		slug?: string;
-		roles?: string[];
-		password: string;
-		meta?: { [ key: string ]: any };
-	}
-
-	/**
-	 * User fields returned when creating, editing, or retrieving a user
-	 * under the 'edit' context.
-	 *
-	 * @link https://developer.wordpress.org/rest-api/reference/users/#schema
-	 */
-	export interface UserEditContext extends Required<Omit<UserCreate, 'password'>>, User {
-
+	export interface UserCreate extends Partial<Omit<User<'edit'>, UserReadOnly>> {
+		password?: string;
 	}
 
 
@@ -59,7 +62,7 @@ declare module '@wordpress/api/users' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/users/#update-a-user-2
 	 */
-	export interface UserUpdate extends Partial<Omit<UserCreate, 'username'>> {
+	export interface UserUpdate extends UserCreate {
 		id?: number;
 	}
 
@@ -69,7 +72,7 @@ declare module '@wordpress/api/users' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/users/#arguments
 	 */
-	export interface UsersQuery extends Global<User> {
+	export interface UsersQuery {
 		page?: number | 1;
 		per_page?: number | 10;
 		search?: string;
@@ -81,5 +84,8 @@ declare module '@wordpress/api/users' {
 		slug?: string;
 		roles?: string[];
 		who?: 'authors';
+		_fields?: Array<keyof User>;
+		context?: Context;
+		_embed?: boolean;
 	}
 }
