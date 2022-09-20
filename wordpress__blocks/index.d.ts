@@ -373,7 +373,7 @@ declare module '@wordpress/blocks' {
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
 		 */
-		save: <C = ChildBlocks>( params: { attributes: Attr, innerBlocks: C } ) => ReactElement | null;
+		save: <C extends Array<any> = ChildBlocks>( params: { attributes: Attr, innerBlocks: C } ) => ReactElement | null;
 		// To opt into version 2 https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 		apiVersion?: 1 | 2
 	};
