@@ -2,13 +2,14 @@ import {WpMedia} from '@lipemat/js-boilerplate/global/wp-media';
 import {WpCodeEditor} from '@lipemat/js-boilerplate/global/wp-code-editor';
 import ApiFetch from '@wordpress/api-fetch';
 import Autop from '@wordpress/autop';
-import EditPost from '@wordpress/edit-post';
 import BlockEditor from '@wordpress/block-editor';
-import Blocks from '@wordpress/blocks';
 import BlockSerialize from '@wordpress/block-serialization-default-parser';
+import Blocks from '@wordpress/blocks';
 import Components from '@wordpress/components';
 import CoreData from '@wordpress/core-data';
 import Data from '@wordpress/data';
+import DomReady from '@wordpress/dom-ready';
+import EditPost from '@wordpress/edit-post';
 import Editor from '@wordpress/editor';
 import Element from '@wordpress/element';
 import Hooks from '@wordpress/hooks';
@@ -45,6 +46,7 @@ declare global {
 			editPost?: EditPost,
 			editor?: Editor;
 			element?: Element;
+			domReady?: DomReady;
 			hooks?: Hooks;
 			htmlEntities?: HtmlEntities;
 			i18n?: I18N;

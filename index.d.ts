@@ -34,6 +34,7 @@ import './wordpress__core-data/entity-types';
 import './wordpress__core-data/entities';
 import './wordpress__core-data/index';
 import './wordpress__data/index';
+import './wordpress__dom-ready/index';
 import './wordpress__edit-post/index';
 import './wordpress__editor/index';
 import './wordpress__element/index';
