@@ -9,16 +9,7 @@
 declare module '@wordpress/core-data' {
 	import {Context, Editing} from '@wordpress/api';
 
-	import {
-		DefaultContextOf,
-		EntityQuery,
-		EntityRecordOf,
-		KeyType,
-		Kind,
-		KindOf,
-		Name,
-		NameOf
-	} from '@wordpress/core-data/entity-types';
+	import {DefaultContextOf, EntityQuery, EntityRecordOf, KeyType, Kind, KindOf, Name, NameOf} from '@wordpress/core-data/entity-types';
 
 
 	interface EntityRecordResolution<RecordType> {
@@ -132,9 +123,42 @@ declare module '@wordpress/core-data' {
 	 * @internal Not yet available until WP core 6.1.0.
 	 */
 	export const useEntityRecords: UseEntityRecords;
+
+
+	export enum Status {
+		Idle = 'IDLE',
+		Resolving = 'RESOLVING',
+		Error = 'ERROR',
+		Success = 'SUCCESS',
+	}
+
+	export type ResourcePermissionsResolution<IdType> = {
+		status: Status;
+		/**
+		 * Is the data still being resolved?
+		 */
+		isResolving: boolean;
+		/** Can the current user create new resources of this type? */
+		canCreate: boolean;
+	} & ( IdType extends void ? {
+		/** Can the current user update resources of this type? */
+		canUpdate: boolean;
+		/** Can the current user delete resources of this type? */
+		canDelete: boolean;
+	} : {} )
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-core-data/#useresourcepermissions
+	 */
+	export function useResourcePermissions<IdType = void>(
+		resource: string,
+		id?: IdType
+	): [ boolean, ResourcePermissionsResolution<IdType> ];
+
 	export default interface CoreData {
 		useEntityProp: UseEntityProp;
-		seEntityRecord: UseEntityRecord;
+		useEntityRecord: UseEntityRecord;
 		useEntityRecords: UseEntityRecords;
+		useResourcePermissions: typeof useResourcePermissions;
 	}
 }
