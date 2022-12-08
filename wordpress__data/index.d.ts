@@ -8,14 +8,7 @@
  * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/data
  */
 declare module '@wordpress/data' {
-	import {
-		BlockSettings,
-		BlockVariation,
-		CreateBlock,
-		createBlock,
-		IconObject,
-		WPBlockVariationScope
-	} from '@wordpress/blocks';
+	import {BlockSettings, BlockVariation, CreateBlock, createBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
 	import {PostEditing} from '@wordpress/edit-post';
 	import {Taxonomy} from '@wordpress/api/taxonomies';
 	import {Settings} from '@wordpress/api/settings';
@@ -546,6 +539,30 @@ not yet been saved.
 	export function select( store: 'core/edit-post' ): CoreEditPost & SelectShared<CoreEditPost>;
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-site/#selectors
+	 */
+	type CoreEditSite = {
+		getCanUserCreateMedia: () => any;
+		getCurrentTemplateNavigationPanelSubMenu: () => any;
+		getCurrentTemplateTemplateParts: () => any;
+		getEditedPostId: () => any;
+		getEditedPostType: () => any;
+		getEditorMode: () => any;
+		getHomeTemplateId: () => any;
+		getIsResolving: () => any;
+		getNavigationPanelActiveMenu: () => any;
+		getPage: () => any;
+		getReusableBlocks: () => any;
+		getSettings: () => any;
+		isFeatureActive: () => any;
+		isInserterOpened: () => any;
+		isListViewOpened: () => any;
+		isNavigationOpened: () => any;
+	}
+
+	export function select( store: 'core/edit-site' ): CoreEditSite & SelectShared<CoreEditSite>;
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/
 	 */
 	type CoreBlocks = {
@@ -813,6 +830,38 @@ not yet been saved.
 		updateBlockListSettings: ( key?: string ) => any;
 		updateSettings: ( settings: { [ key: string ]: any } ) => { [ key: string ]: any };
 		validateBlocksToTemplate: ( key?: string ) => any;
+	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-site/#actions
+	 */
+	export function dispatch( store: 'core/edit-site' ): {
+		addTemplate: () => any;
+		closeGeneralSidebar: () => any;
+		failResolution: () => any;
+		failResolutions: () => any;
+		finishResolution: () => any;
+		finishResolutions: () => any;
+		invalidateResolution: () => any;
+		invalidateResolutionForStore: () => any;
+		invalidateResolutionForStoreSelector: () => any;
+		openGeneralSidebar: () => any;
+		openNavigationPanelToMenu: () => any;
+		removeTemplate: () => any;
+		revertTemplate: () => any;
+		setHomeTemplateId: () => any;
+		setIsInserterOpened: () => any;
+		setIsListViewOpened: () => any;
+		setIsNavigationPanelOpened: () => any;
+		setNavigationPanelActiveMenu: () => any;
+		setPage: () => any;
+		setTemplate: () => any;
+		setTemplatePart: () => any;
+		startResolution: () => any;
+		startResolutions: () => any;
+		switchEditorMode: () => any;
+		toggleFeature: () => any;
+		updateSettings: () => any;
 	}
 
 	/**
