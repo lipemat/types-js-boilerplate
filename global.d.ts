@@ -10,6 +10,7 @@ import CoreData from '@wordpress/core-data';
 import Data from '@wordpress/data';
 import DomReady from '@wordpress/dom-ready';
 import EditPost from '@wordpress/edit-post';
+import EditSite from '@wordpress/edit-site';
 import Editor from '@wordpress/editor';
 import Element from '@wordpress/element';
 import Hooks from '@wordpress/hooks';
@@ -44,6 +45,7 @@ declare global {
 			coreData?: CoreData;
 			data?: Data;
 			editPost?: EditPost,
+			editSite?: EditSite,
 			editor?: Editor;
 			element?: Element;
 			domReady?: DomReady;
