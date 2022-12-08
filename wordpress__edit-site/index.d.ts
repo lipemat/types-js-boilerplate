@@ -1,6 +1,9 @@
 /**
  * Edit Site Module for WordPress.
  *
+ * Interacting with the FSE Site Editor area of the admin.
+ * Commonly used to insert custom items into the Site Editor specific screen.
+ *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-site/
  */
 declare module '@wordpress/edit-site' {
