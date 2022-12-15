@@ -5,7 +5,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__components/index.d.ts
  */
 declare module '@wordpress/components' {
-	import {ButtonHTMLAttributes, ChangeEvent, ComponentType, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, TextareaHTMLAttributes} from 'react';
+	import {ButtonHTMLAttributes, ChangeEvent, ComponentType, Context, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, TextareaHTMLAttributes} from 'react';
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
@@ -555,6 +555,15 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/disabled/
+	 */
+	type Disabled = ComponentType<{
+		isDisabled: boolean;
+	}> & {
+		Context: Context<boolean>;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/drop-zone/
 	 */
 	interface DropZone {
@@ -1097,6 +1106,7 @@ declare module '@wordpress/components' {
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPicker: ComponentType<ColorPicker>;
 	export const Dashicon: ComponentType<Dashicon>;
+	export const Disabled: Disabled;
 	export const Dropdown: ComponentType<Dropdown>;
 	export const DropdownMenu: ComponentType<DropdownMenu>;
 	export const DropZone: ComponentType<DropZone>;
@@ -1139,6 +1149,7 @@ declare module '@wordpress/components' {
 		ColorPicker: ComponentType<ColorPicker>;
 		createSlotFill: typeof createSlotFill;
 		Dashicon: ComponentType<Dashicon>;
+		Disabled: Disabled;
 		Dropdown: ComponentType<Dropdown>;
 		DropdownMenu: ComponentType<DropdownMenu>;
 		DropZone: ComponentType<DropZone>;
