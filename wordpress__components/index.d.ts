@@ -745,6 +745,18 @@ declare module '@wordpress/components' {
 	 *
 	 * @see @wordpress/block-editor.InspectorControls
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panel
+	 */
+	interface Panel {
+		className?: string;
+		header?: string;
+	}
+
+	/**
+	 * Panel commonly used within InspectorControls.
+	 *
+	 * @see @wordpress/block-editor.InspectorControls
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
 	 */
 	interface PanelBody {
@@ -1096,6 +1108,7 @@ declare module '@wordpress/components' {
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 	export const Modal: ComponentType<Modal>;
 	export const Notice: ComponentType<Notice>;
+	export const Panel: ComponentType<Panel>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const PanelRow: ComponentType<PanelRow>;
 	export const Path: ComponentType<Path>;
@@ -1138,6 +1151,7 @@ declare module '@wordpress/components' {
 		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 		Modal: ComponentType<Modal>;
 		Notice: ComponentType<Notice>;
+		Panel: ComponentType<Panel>;
 		PanelBody: ComponentType<PanelBody>;
 		PanelRow: ComponentType<PanelRow>;
 		Path: ComponentType<Path>;
