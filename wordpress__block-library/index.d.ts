@@ -10,7 +10,7 @@ declare module '@wordpress/block-library' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-library/#registercoreblocks
 	 */
-	export function registerCoreBlocks<Blocks extends Array<BlockSettings<any>>>(): void;
+	export function registerCoreBlocks<Blocks extends Array<BlockSettings<any>>>( blocks?: Blocks ): void;
 
 	export default interface BlockLibrary {
 		registerCoreBlocks: typeof registerCoreBlocks;

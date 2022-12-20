@@ -233,6 +233,22 @@ declare module '@wordpress/blocks' {
 
 	export type ChildBlocks = Array<[ string, { [ key: string ]: any }?, ChildBlocks? ]>;
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getblocktype
+	 */
+	export function getBlockType<Attr = any>( name: string ): BlockSettings<Attr> | null;
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getblocktypes
+	 */
+	export function getBlockTypes(): Array<BlockSettings<any>>;
+
+	export function getCategories<Category extends string = ''>(): Array<{
+		icon: BlockIcon | null;
+		slug: BlockCategory<Category>;
+		title: string;
+	}>
+
 	export type IconObject = {
 		// Specifying a background color to appear with the icon e.g.,: in the inserter.
 		background?: string;
@@ -241,6 +257,16 @@ declare module '@wordpress/blocks' {
 		// Specifying a dashicon or Svg.
 		src: iconType | SVGProps<SVGSVGElement>;
 	}
+
+	export type BlockCategory<Category> =
+		'text'
+		| 'media'
+		| 'design'
+		| 'widgets'
+		| 'embed'
+		| 'reusable'
+		| Category
+
 	/**
 	 * All possible icon types when registering a block.
 	 */
@@ -263,7 +289,7 @@ declare module '@wordpress/blocks' {
 	export type BlockSettings<Attr, Category = '', Transform = Attr, Context = {}> = {
 		title: string;
 		description?: string;
-		category: 'text' | 'media' | 'design' | 'widgets' | 'embed' | 'reusable' | Category
+		category: BlockCategory<Category>;
 		// Svg | dashicon | configuration
 		icon: BlockIcon;
 		keywords?: string[];
@@ -469,6 +495,9 @@ declare module '@wordpress/blocks' {
 	export default interface Blocks {
 		createBlock: typeof createBlock;
 		createBlocksFromInnerBlocksTemplate: typeof createBlocksFromInnerBlocksTemplate;
+		getBlockType: typeof getBlockType;
+		getBlockTypes: typeof getBlockTypes;
+		getCategories: typeof getCategories;
 		parse: typeof parse;
 		registerBlockCollection: typeof registerBlockCollection;
 		registerBlockStyle: typeof registerBlockStyle;
