@@ -3,8 +3,9 @@ import {WpCodeEditor} from '@lipemat/js-boilerplate/global/wp-code-editor';
 import ApiFetch from '@wordpress/api-fetch';
 import Autop from '@wordpress/autop';
 import BlockEditor from '@wordpress/block-editor';
-import BlockSerialize from '@wordpress/block-serialization-default-parser';
+import BlockLibrary from '@wordpress/block-library';
 import Blocks from '@wordpress/blocks';
+import BlockSerialize from '@wordpress/block-serialization-default-parser';
 import Components from '@wordpress/components';
 import CoreData from '@wordpress/core-data';
 import Data from '@wordpress/data';
@@ -38,6 +39,7 @@ declare global {
 			apiFetch?: typeof ApiFetch,
 			autop?: Autop;
 			blockEditor?: BlockEditor;
+			blockLibrary?: BlockLibrary;
 			blocks?: Blocks,
 			blockSerializationDefaultParser?: BlockSerialize,
 			codeEditor?: WpCodeEditor;

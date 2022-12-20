@@ -26,6 +26,7 @@ import './wordpress__api/index';
 import './wordpress__api-fetch/index';
 import './wordpress__autop/index';
 import './wordpress__block-editor/index';
+import './wordpress__block-library/index';
 import './wordpress__blocks/index';
 import './wordpress__block-serialization-default-parser/index';
 import './wordpress__components/index';
