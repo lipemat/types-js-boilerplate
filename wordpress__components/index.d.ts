@@ -443,6 +443,14 @@ declare module '@wordpress/components' {
 		| 'yes'
 		| 'youtube';
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/icon/
+	 */
+	interface Icon extends HTMLAttributes<{}> {
+		icon: BlockIcon;
+		size?: number;
+	}
+
 	type shortcutText = string | {
 		display: string;
 		ariaLabel: string;
@@ -1115,6 +1123,7 @@ declare module '@wordpress/components' {
 	export const Grid: ComponentType<Grid>;
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
+	export const Icon: ComponentType<Icon>;
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 	export const Modal: ComponentType<Modal>;
 	export const Notice: ComponentType<Notice>;
@@ -1159,6 +1168,7 @@ declare module '@wordpress/components' {
 		Grid: ComponentType<Grid>;
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
+		Icon: ComponentType<Icon>;
 		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 		Modal: ComponentType<Modal>;
 		Notice: ComponentType<Notice>;
