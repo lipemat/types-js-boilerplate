@@ -1,3 +1,4 @@
+
 /**
  * Definitions for the `@wordpress/blocks` package.
  *
@@ -5,9 +6,9 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__blocks/index.d.ts
  */
 declare module '@wordpress/blocks' {
+	import {BlockClientId, CoreBlocks} from '@wordpress/data';
 	import {ReactElement, SVGProps} from 'react';
 	import {iconType} from '@wordpress/components';
-	import {BlockClientId} from '@wordpress/data';
 
 	type dataTypes =
 		'null'
@@ -235,13 +236,15 @@ declare module '@wordpress/blocks' {
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getblocktype
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
 	 */
-	export function getBlockType<Attr = any>( name: string ): BlockSettings<Attr> | null;
+	export const getBlockType: CoreBlocks['getBlockType'];
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getblocktypes
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
 	 */
-	export function getBlockTypes(): Array<BlockSettings<any>>;
+	export const getBlockTypes: CoreBlocks['getBlockTypes'];
 
 	export function getCategories<Category extends string = ''>(): Array<{
 		icon: BlockIcon | null;
@@ -495,9 +498,9 @@ declare module '@wordpress/blocks' {
 	export default interface Blocks {
 		createBlock: typeof createBlock;
 		createBlocksFromInnerBlocksTemplate: typeof createBlocksFromInnerBlocksTemplate;
-		getBlockType: typeof getBlockType;
+		getBlockType: CoreBlocks['getBlockType'];
 		getBlockTypes: typeof getBlockTypes;
-		getCategories: typeof getCategories;
+		getCategories: typeof getBlockType;
 		parse: typeof parse;
 		registerBlockCollection: typeof registerBlockCollection;
 		registerBlockStyle: typeof registerBlockStyle;

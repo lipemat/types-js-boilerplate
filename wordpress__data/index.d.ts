@@ -565,7 +565,7 @@ not yet been saved.
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/
 	 */
-	type CoreBlocks = {
+	export type CoreBlocks = {
 		/**
 		 * Get full block registration by name.
 		 *
@@ -586,10 +586,11 @@ not yet been saved.
 		getDefaultBlockVariation: <Attr = Object>( name: string, scope?: WPBlockVariationScope ) => BlockVariation<Attr> | undefined;
 
 		// @todo properly type the rest of these as needed.
+		// @todo As these are typed, add the definitions to @wordpress/blocks see getBlockType as an example.
 		getActiveBlockVariation: () => any;
 		getBlockStyles: () => any;
 		getBlockSupport: () => any;
-		getBlockTypes: () => any;
+		getBlockTypes: () => Array<BlockSettings<any>>;
 		getCategories: () => any;
 		getChildBlockNames: () => any;
 		getCollections: () => any;
