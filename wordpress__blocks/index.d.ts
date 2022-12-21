@@ -6,7 +6,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__blocks/index.d.ts
  */
 declare module '@wordpress/blocks' {
-	import {BlockClientId, CoreBlocks} from '@wordpress/data';
+	import {BlockClientId, CoreBlocks, CoreBlocksDispatch} from '@wordpress/data';
 	import {ReactElement, SVGProps} from 'react';
 	import {iconType} from '@wordpress/components';
 
@@ -234,6 +234,13 @@ declare module '@wordpress/blocks' {
 
 	export type ChildBlocks = Array<[ string, { [ key: string ]: any }?, ChildBlocks? ]>;
 
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getdefaultblockname
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const getDefaultBlockName: CoreBlocks['getDefaultBlockName'];
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getblocktype
 	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
@@ -245,6 +252,43 @@ declare module '@wordpress/blocks' {
 	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
 	 */
 	export const getBlockTypes: CoreBlocks['getBlockTypes'];
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getblocksupport
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const getBlockSupport: CoreBlocks['getBlockSupport'];
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#hasblocksupport
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const hasBlockSupport: CoreBlocks['hasBlockSupport'];
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getchildblocknames
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const getChildBlockNames: CoreBlocks['getChildBlockNames'];
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#haschildblocks
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const hasChildBlocks: CoreBlocks['hasChildBlocks'];
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#haschildblockswithinsertersupport
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const hasChildBlocksWithInserterSupport: CoreBlocks['hasChildBlocksWithInserterSupport'];
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getgroupingblockname
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const getGroupingBlockName: CoreBlocks['getGroupingBlockName'];
+
 
 	export function getCategories<Category extends string = ''>(): Array<{
 		icon: BlockIcon | null;
@@ -483,6 +527,18 @@ declare module '@wordpress/blocks' {
 	export function registerBlockVariation<Attr>( blockName: string, variation: BlockVariation<Attr> ): void;
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#setdefaultblockname
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const setDefaultBlockName: CoreBlocksDispatch['setDefaultBlockName'];
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#setgroupingblockname
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const setGroupingBlockName: CoreBlocksDispatch['setGroupingBlockName'];
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#serialize
 	 */
 	export function serialize( blocks: Array<BlockClientId>, options?: WPBlockSerializationOptions ): string;
@@ -498,15 +554,24 @@ declare module '@wordpress/blocks' {
 	export default interface Blocks {
 		createBlock: typeof createBlock;
 		createBlocksFromInnerBlocksTemplate: typeof createBlocksFromInnerBlocksTemplate;
-		getBlockType: CoreBlocks['getBlockType'];
+		getBlockSupport: typeof getBlockSupport;
+		getBlockType: typeof getBlockType;
 		getBlockTypes: typeof getBlockTypes;
-		getCategories: typeof getBlockType;
+		getCategories: typeof getCategories;
+		getChildBlockNames: typeof getChildBlockNames;
+		getDefaultBlockName: typeof getDefaultBlockName;
+		getGroupingBlockName: typeof getGroupingBlockName;
+		hasBlockSupport: typeof hasBlockSupport;
+		hasChildBlocks: typeof hasChildBlocks;
+		hasChildBlocksWithInserterSupport: typeof hasChildBlocksWithInserterSupport;
 		parse: typeof parse;
 		registerBlockCollection: typeof registerBlockCollection;
 		registerBlockStyle: typeof registerBlockStyle;
 		registerBlockType: typeof registerBlockType;
 		registerBlockVariation: typeof registerBlockVariation;
 		serialize: typeof serialize;
+		setDefaultBlockName: typeof setDefaultBlockName;
+		setGroupingBlockName: typeof setGroupingBlockName;
 		unregisterBlockStyle: typeof unregisterBlockStyle;
 		unregisterBlockType: typeof unregisterBlockType;
 		unregisterBlockVariation: typeof unregisterBlockVariation;

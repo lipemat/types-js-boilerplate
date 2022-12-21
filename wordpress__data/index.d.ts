@@ -1022,10 +1022,9 @@ not yet been saved.
 		updateEditorSettings: () => any;
 		updatePostLock: () => any;
 	}
-	/**
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#actions
-	 */
-	export function dispatch( store: 'core/blocks' ): {
+
+
+	export type CoreBlocksDispatch = {
 		// @todo properly type the rest of these as needed.
 		addBlockCollection: () => any;
 		addBlockStyles: () => any;
@@ -1049,6 +1048,11 @@ not yet been saved.
 		startResolutions: () => any;
 		updateCategory: () => any;
 	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#actions
+	 */
+	export function dispatch( store: 'core/blocks' ): CoreBlocksDispatch;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-notices/#actions
