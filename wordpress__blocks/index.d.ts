@@ -527,6 +527,12 @@ declare module '@wordpress/blocks' {
 	export function registerBlockVariation<Attr>( blockName: string, variation: BlockVariation<Attr> ): void;
 
 	/**
+	 * Returns block variations by block name.
+	 *
+	 */
+	export function getBlockVariations<Attr>( blockName: string, scope?: Array<WPBlockVariationScope> ): Array<BlockVariation> | null;
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#setdefaultblockname
 	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
 	 */
@@ -557,6 +563,7 @@ declare module '@wordpress/blocks' {
 		getBlockSupport: typeof getBlockSupport;
 		getBlockType: typeof getBlockType;
 		getBlockTypes: typeof getBlockTypes;
+		getBlockVariations: typeof getBlockVariations;
 		getCategories: typeof getCategories;
 		getChildBlockNames: typeof getChildBlockNames;
 		getDefaultBlockName: typeof getDefaultBlockName;
