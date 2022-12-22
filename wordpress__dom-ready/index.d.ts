@@ -6,9 +6,5 @@
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom-ready/
  */
 declare module '@wordpress/dom-ready' {
-	export function domReady( callback: () => void ): void;
-
-	export default interface DomReady {
-		domReady: typeof domReady;
-	}
+	export default function domReady( callback: () => void ): void;
 }
