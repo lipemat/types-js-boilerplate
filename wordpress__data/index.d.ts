@@ -581,7 +581,12 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getblocktype
 		 */
-		getBlockType: <Attr = Object>( name: string ) => BlockSettings<Attr>;
+		getBlockType: <Attr = Object>( name: string ) => BlockSettings<Attr> & { name: string };
+		/**
+		 *
+		 * https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getblocktypes
+		 */
+		getBlockTypes: () => Array<BlockSettings<any> & { name: string }>;
 		/**
 		 * Get a blocks variations.
 		 *
@@ -600,7 +605,6 @@ not yet been saved.
 		getActiveBlockVariation: () => any;
 		getBlockStyles: () => any;
 		getBlockSupport: () => any;
-		getBlockTypes: () => Array<BlockSettings<any>>;
 		getCategories: () => any;
 		getChildBlockNames: () => any;
 		getCollections: () => any;
