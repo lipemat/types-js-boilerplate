@@ -5,28 +5,7 @@
 declare module '@wordpress/core-data/entity-types' {
 	import {CategoriesQuery, Context, PostsQuery} from '@wordpress/api';
 
-	import type {
-		Attachment,
-		Category,
-		Comment,
-		MenuLocation,
-		NavMenu,
-		NavMenuItem,
-		Page,
-		Plugin,
-		Post,
-		Settings,
-		Sidebar,
-		Tag,
-		Taxonomy,
-		Theme,
-		Type,
-		User,
-		Widget,
-		WidgetType,
-		WpTemplate,
-		WpTemplatePart
-	} from '@wordpress/core-data/entities';
+	import type {Attachment, Category, Comment, MenuLocation, NavMenu, NavMenuItem, Page, Plugin, Post, Settings, Sidebar, Tag, Taxonomy, Theme, Type, User, Widget, WidgetType, WpTemplate, WpTemplatePart} from '@wordpress/core-data/entities';
 	import {PagesQuery} from '@wordpress/api/pages';
 
 	/**
@@ -336,16 +315,22 @@ declare module '@wordpress/core-data/entity-types' {
 		key: 'plugin';
 	}, Plugin<C>, C>;
 
-	type PostEntity<C extends Context = Context> = EntityType<PostTypeConfig & { name: 'post' }, Post<C>, C>;
+	type PostEntity<C extends Context = Context> = EntityType<PostTypeConfig & {
+		name: 'post'
+	}, Post<C>, C>;
 
 	type PageEntity<C extends Context = Context> = EntityType<PostTypeConfig & {
 		name: 'page';
 		queryParams: PagesQuery
 	}, Page<C>, C>;
 
-	type WpTemplateEntity<C extends Context> = EntityType<PostTypeConfig & { name: 'wp_template' }, WpTemplate<C>, C>;
+	type WpTemplateEntity<C extends Context> = EntityType<PostTypeConfig & {
+		name: 'wp_template'
+	}, WpTemplate<C>, C>;
 
-	type WpTemplatePartEntity<C extends Context> = EntityType<PostTypeConfig & { name: 'wp_template_part' }, WpTemplatePart<C>, C>;
+	type WpTemplatePartEntity<C extends Context> = EntityType<PostTypeConfig & {
+		name: 'wp_template_part'
+	}, WpTemplatePart<C>, C>;
 
 	export type CoreEntities<C extends Context> =
 		| AttachmentEntity<C>
