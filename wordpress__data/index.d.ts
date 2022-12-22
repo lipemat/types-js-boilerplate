@@ -361,9 +361,15 @@ not yet been saved.
 	 */
 	type CoreBlockEditor = {
 		/**
+		 * Returns a block given its client ID.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblock
+		 */
+		getBlock: <T = CreateBlock>( clientId: string ) => T;
+		/**
 		 * Return all blocks currently in the editor.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getBlocks
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblocks
 		 */
 		getBlocks: <T = CreateBlock[]>( rootClientId?: string ) => T;
 		/**
@@ -444,6 +450,12 @@ not yet been saved.
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getSelectedBlockClientIds
 		 */
 		getSelectedBlockClientIds: () => string[];
+		/**
+		 * Returns true if one of the block’s inner blocks is selected.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#hasselectedinnerblock
+		 */
+		hasSelectedInnerBlock: ( string: BlockClientId, deep?: boolean ) => boolean;
 
 		// @todo properly type the rest of these as needed.
 		areInnerBlocksControlled: () => any;
@@ -451,7 +463,6 @@ not yet been saved.
 		canInsertBlocks: () => any;
 		didAutomaticChange: () => any;
 		getAdjacentBlockClientId: () => any;
-		getBlock: () => any;
 		getBlockHierarchyRootClientId: () => any;
 		getBlockInsertionPoint: () => any;
 		getBlockListSettings: () => any;
@@ -485,7 +496,6 @@ not yet been saved.
 		hasInserterItems: () => any;
 		hasMultiSelection: () => any;
 		hasSelectedBlock: () => any;
-		hasSelectedInnerBlock: () => any;
 		isAncestorBeingDragged: () => any;
 		isAncestorMultiSelected: () => any;
 		isBlockBeingDragged: () => any;
