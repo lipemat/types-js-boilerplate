@@ -18,7 +18,8 @@ declare module '@wordpress/compose' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-compose/#createhigherordercomponent
 	 */
-	type createHigherOrderComponent = <P>( WrappedComponent: ComponentType<P>, modifierName: string ) => ComponentType<P> & createHigherOrderComponentProps;
+	type createHigherOrderComponent = <T extends ComponentType<any>,
+		R extends ComponentType<any>>( mapCallback: ( WrappedComponent: T) => R, modifierName: string ) => ( Inner: T ) => R & createHigherOrderComponentProps;
 
 	/**
 	 * Copy text to clipboard.
