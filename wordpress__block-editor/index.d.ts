@@ -8,8 +8,9 @@
  */
 declare module '@wordpress/block-editor' {
 	import {ComponentClass, ComponentType, FunctionComponent, MouseEvent, MutableRefObject, ReactElement, ReactNode, RefCallback} from 'react';
-	import {ColorOption, ColorPalette as PaletteComponent, Control, GradientOption, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
+	import {ColorOption, ColorPalette as PaletteComponent, Control, Fill, GradientOption, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
+    import {StoreDescriptor} from '@wordpress/data';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 
@@ -172,8 +173,7 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/inspector-controls/README.md
 	 */
-	interface InspectorControls extends FunctionComponent {
-	}
+	interface InspectorControls extends Fill {};
 
 	export type AlignOptions = 'left' | 'center' | 'right' | 'space-between';
 
@@ -337,7 +337,8 @@ declare module '@wordpress/block-editor' {
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
 	export const CopyHandler: ComponentType<CopyHandler>;
-	export const InspectorControls: InspectorControls;
+    export const InspectorControls: ComponentType<InspectorControls>;
+    export const InspectorControlsAdvanced: ComponentType<InspectorControls>;
 	export const JustifyToolbar: ComponentType<JustifyToolbar>;
 	export const MediaPlaceholder: ComponentType<MediaPlaceholder>;
 	export const MediaUpload: ComponentClass<MediaUpload>;
@@ -347,6 +348,7 @@ declare module '@wordpress/block-editor' {
 	export const useBlockDisplayInformation: useBlockDisplayInformation;
 	export const useBlockProps: useBlockProps;
 	export const useInnerBlocksProps: useInnerBlocksProps;
+    export const store: StoreDescriptor;
 
 
 	export default interface BlockEditor {
@@ -361,7 +363,8 @@ declare module '@wordpress/block-editor' {
 		getColorObjectByColorValue: typeof getColorObjectByColorValue;
 		getGradientSlugByValue: typeof getGradientSlugByValue;
 		getGradientValueBySlug: typeof getGradientValueBySlug;
-		InspectorControls: InspectorControls;
+		InspectorControls: ComponentType<InspectorControls>;
+		InspectorControlsAdvanced: ComponentType<InspectorControls>;
 		JustifyToolbar: ComponentType<JustifyToolbar>;
 		MediaPlaceholder: ComponentType<MediaPlaceholder>;
 		MediaUpload: ComponentType<MediaUpload>;
@@ -372,5 +375,6 @@ declare module '@wordpress/block-editor' {
 		useBlockProps: useBlockProps;
 		useInnerBlocksProps: useInnerBlocksProps;
 		useSetting: typeof useSetting;
+        store: typeof store;
 	}
 }
