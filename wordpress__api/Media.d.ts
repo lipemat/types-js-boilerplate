@@ -108,7 +108,7 @@ declare module '@wordpress/api/media' {
 	export interface MediaQuery extends Omit<PagesQuery, '_fields' | 'status'>, Global<Media> {
 		media_type?: 'application' | 'audio' | 'image' | 'video';
 		mime_type?: ALL_TYPES;
-		status?: PostStatus | 'inherit';
+		status?: Array<PostStatus | 'inherit'>;
 		_embed?: true | 'author' | 'replies';
 	}
 }

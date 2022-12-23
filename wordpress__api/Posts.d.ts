@@ -129,7 +129,7 @@ declare module '@wordpress/api/posts' {
 		per_page?: number;
 		search?: string;
 		slug?: string;
-		status?: PostStatus;
+		status?: PostStatus[];
 		sticky?: boolean;
 		tags?: number[] | TaxQuery;
 		tags_exclude?: number[];
