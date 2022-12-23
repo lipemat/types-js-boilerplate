@@ -6,7 +6,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__blocks/index.d.ts
  */
 declare module '@wordpress/blocks' {
-	import {BlockClientId, CoreBlocks, CoreBlocksDispatch} from '@wordpress/data';
+	import {BlockClientId, CoreBlocks, CoreBlocksDispatch, StoreDescriptor} from '@wordpress/data';
 	import {ReactElement, SVGProps} from 'react';
 	import {iconType} from '@wordpress/components';
 
@@ -557,6 +557,8 @@ declare module '@wordpress/blocks' {
 	 */
 	export function unregisterBlockVariation( blockName: string, variationName: string ): void;
 
+	export const store: string = 'core/blocks';
+
 	export default interface Blocks {
 		createBlock: typeof createBlock;
 		createBlocksFromInnerBlocksTemplate: typeof createBlocksFromInnerBlocksTemplate;
@@ -579,6 +581,7 @@ declare module '@wordpress/blocks' {
 		serialize: typeof serialize;
 		setDefaultBlockName: typeof setDefaultBlockName;
 		setGroupingBlockName: typeof setGroupingBlockName;
+		store: typeof store;
 		unregisterBlockStyle: typeof unregisterBlockStyle;
 		unregisterBlockType: typeof unregisterBlockType;
 		unregisterBlockVariation: typeof unregisterBlockVariation;

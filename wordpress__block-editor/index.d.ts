@@ -10,7 +10,7 @@ declare module '@wordpress/block-editor' {
 	import {ComponentClass, ComponentType, FunctionComponent, MouseEvent, MutableRefObject, ReactElement, ReactNode, RefCallback} from 'react';
 	import {ColorOption, ColorPalette as PaletteComponent, Control, Fill, GradientOption, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
-    import {StoreDescriptor} from '@wordpress/data';
+	import {StoreDescriptor} from '@wordpress/data';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 
@@ -330,6 +330,7 @@ declare module '@wordpress/block-editor' {
 		Content: ComponentType<{}>;
 	}
 
+	export function getBlockCount( state: Object, rootClientId: string | null ) : number;
 
 	export const BlockControls: ComponentType<BlockControls>;
 	export const BlockIcon: ComponentType<BlockIcon>;
@@ -348,8 +349,7 @@ declare module '@wordpress/block-editor' {
 	export const useBlockDisplayInformation: useBlockDisplayInformation;
 	export const useBlockProps: useBlockProps;
 	export const useInnerBlocksProps: useInnerBlocksProps;
-    export const store: StoreDescriptor;
-
+	export const store: string = 'core/block-editor';
 
 	export default interface BlockEditor {
 		BlockControls: ComponentType<BlockControls>;
@@ -358,6 +358,7 @@ declare module '@wordpress/block-editor' {
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPaletteControl: ComponentType<ColorPaletteControl>;
 		CopyHandler: ComponentType<CopyHandler>;
+		getBlockCount: typeof getBlockCount;
 		getColorClassName: typeof getColorClassName;
 		getColorObjectByAttributeValues: typeof getColorObjectByAttributeValues;
 		getColorObjectByColorValue: typeof getColorObjectByColorValue;
@@ -375,6 +376,7 @@ declare module '@wordpress/block-editor' {
 		useBlockProps: useBlockProps;
 		useInnerBlocksProps: useInnerBlocksProps;
 		useSetting: typeof useSetting;
-        store: typeof store;
+		store: typeof store;
 	}
+
 }

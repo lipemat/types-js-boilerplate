@@ -463,6 +463,7 @@ not yet been saved.
 		canInsertBlocks: () => any;
 		didAutomaticChange: () => any;
 		getAdjacentBlockClientId: () => any;
+		getBlockCount: () => any;
 		getBlockHierarchyRootClientId: () => any;
 		getBlockInsertionPoint: () => any;
 		getBlockListSettings: () => any;
@@ -516,7 +517,72 @@ not yet been saved.
 		isValidTemplate: () => any;
 	}
 
+	type CoreBlockEditorDispatch = {
+		// todo: properly type these methods.
+		failResolution: () => any;
+		failResolutions: () => any;
+		finishResolution: () => any;
+		finishResolutions: () => any;
+		invalidateResolution: () => any;
+		invalidateResolutionForStore: () => any;
+		invalidateResolutionForStoreSelector: () => any;
+		startResolution: () => any;
+		startResolutions: () => any;
+		clearSelectedBlock: () => any;
+		duplicateBlocks: () => any;
+		enterFormattedText: () => any;
+		exitFormattedText: () => any;
+		flashBlock: () => any;
+		hideInsertionPoint: () => any;
+		insertAfterBlock: () => any;
+		insertBeforeBlock: () => any;
+		insertBlock: () => any;
+		insertBlocks: () => any;
+		insertDefaultBlock: () => any;
+		mergeBlocks: () => any;
+		moveBlockToPosition: () => any;
+		moveBlocksDown: () => any;
+		moveBlocksToPosition: () => any;
+		moveBlocksUp: () => any;
+		multiSelect: () => any;
+		receiveBlocks: () => any;
+		removeBlock: () => any;
+		removeBlocks: () => any;
+		replaceBlock: () => any;
+		replaceBlocks: () => any;
+		replaceInnerBlocks: () => any;
+		resetBlocks: () => any;
+		resetSelection: () => any;
+		selectBlock: () => any;
+		selectNextBlock: () => any;
+		selectPreviousBlock: () => any;
+		selectionChange: () => any;
+		setBlockMovingClientId: () => any;
+		setBlockVisibility: () => any;
+		setHasControlledInnerBlocks: () => any;
+		setNavigationMode: () => any;
+		setTemplateValidity: () => any;
+		showInsertionPoint: () => any;
+		startDraggingBlocks: () => any;
+		startMultiSelect: () => any;
+		startTyping: () => any;
+		stopDraggingBlocks: () => any;
+		stopMultiSelect: () => any;
+		stopTyping: () => any;
+		synchronizeTemplate: () => any;
+		toggleBlockHighlight: () => any;
+		toggleBlockMode: () => any;
+		toggleSelection: () => any;
+		updateBlock: () => any;
+		updateBlockAttributes: () => any;
+		updateBlockListSettings: () => any;
+		updateSettings: () => any;
+		validateBlocksToTemplate: () => any;
+	}
+
 	export function select( store: 'core/block-editor' ): CoreBlockEditor & SelectShared<CoreBlockEditor>;
+
+	export function dispatch( store: 'core/block-editor' ): CoreBlockEditorDispatch;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-post/
@@ -1087,8 +1153,8 @@ not yet been saved.
 
 	export function dispatch<Methods extends ActionFunctions>( store: string ): Methods;
 
-	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
-	type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: T ) => T, component: ComponentType<T> ) => ComponentType<T>;
+	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => T, component?: ComponentType<T> ) => ComponentType<T>;
+	type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: T ) => T, component?: ComponentType<T> ) => ComponentType<T>;
 
 	export const AsyncModeProvider: ComponentType<{
 		value: boolean
@@ -1102,7 +1168,7 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
 	 */
 	export const useSelect: typeof select;
-	export const withDispatch: withDispatch;
+	export const withDispatch: withDispatch; //<DispatchFunction>: ( WrappedComponent : Component ) => withDispatch( DispatchFunction, WrappedComponent );
 	export const withSelect: withSelect;
 
 	/**
