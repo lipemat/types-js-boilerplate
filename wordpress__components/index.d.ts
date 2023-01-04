@@ -9,6 +9,7 @@ declare module '@wordpress/components' {
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
+	import ClickEvent = JQuery.ClickEvent;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/components/button/
@@ -630,11 +631,14 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/form-file-upload/
 	 */
 	export interface FormFileUpload extends ButtonParams {
-		accept?: string;
+		accept?: InputHTMLAttributes<HTMLInputElement>[ 'accept' ];
+		// Children are rendered inside a button if `render` is not provided.
+		children?: ReactNode;
 		icon?: WPBlockTypeIconRender;
-		multiple?: boolean;
+		multiple?: InputHTMLAttributes<HTMLInputElement>[ 'multiple' ];
 		onChange?: ( ev: ChangeEvent<HTMLInputElement> ) => void;
-		render?: ( args: {openFileDialog: () => void} ) => ReactNode;
+		onClick?: ( ev: ClickEvent<HTMLInputElement> ) => void;
+		render?: ( args: { openFileDialog: () => void } ) => ReactNode;
 	}
 
 	interface Grid {
