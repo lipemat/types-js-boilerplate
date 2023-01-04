@@ -30,7 +30,7 @@ declare module '@wordpress/media-utils' {
 
 	export type UploadError = {
 		code: UploadMediaErrorCode;
-		message: [ JSX.Element, string, string ];
+		message: string;
 		file: File;
 	}
 
