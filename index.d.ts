@@ -40,6 +40,7 @@ import './wordpress__edit-post/index';
 import './wordpress__edit-site/index';
 import './wordpress__editor/index';
 import './wordpress__element/index';
+import './wordpress__escape-html/index';
 import './wordpress__hooks/index';
 import './wordpress__html-entities/index';
 import './wordpress__i18n/index';

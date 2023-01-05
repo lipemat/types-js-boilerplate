@@ -14,6 +14,7 @@ import EditPost from '@wordpress/edit-post';
 import EditSite from '@wordpress/edit-site';
 import Editor from '@wordpress/editor';
 import Element from '@wordpress/element';
+import EscapeHtml from '@wordpress/escape-html';
 import Hooks from '@wordpress/hooks';
 import HtmlEntities from '@wordpress/html-entities';
 import I18N from '@wordpress/i18n';
@@ -50,7 +51,8 @@ declare global {
 			editSite?: EditSite,
 			editor?: Editor;
 			element?: Element;
-			domReady?: DomReady;
+			escapeHtml?: EscapeHtml;
+			domReady?: typeof DomReady;
 			hooks?: Hooks;
 			htmlEntities?: HtmlEntities;
 			i18n?: I18N;
