@@ -15,6 +15,17 @@ declare module '@lipemat/js-boilerplate/utility' {
 	export type AtLeast<T, K extends keyof T> = Partial<T> & Pick<T, K>;
 
 	/**
+	 * Same as `keyof` except only keys whose value of a specified
+	 * type will be returned.
+	 *
+	 * @example ```ts
+	 *          type Post = {id: number, title: string, url: string}
+	 *          KeysOfType<Post, string> - 'id' will not be included because is not string = 'title'|'url'
+	 *          ```
+	 */
+	export type KeysOfType<T, K> = { [I in keyof T]: T[I] extends K ? I : never }[keyof T]
+
+	/**
 	 * Removes all the properties of type never, even the deeply nested ones.
 	 *
 	 * Used to provider different types based on context by assigning
