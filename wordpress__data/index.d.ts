@@ -1091,8 +1091,8 @@ not yet been saved.
 
 	export function dispatch<Methods extends ActionFunctions>( store: string ): Methods;
 
-	type withDispatch = <T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => T, component: ComponentType<T> ) => ComponentType<T>;
-	type withSelect = <T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: T ) => T, component: ComponentType<T> ) => ComponentType<T>;
+	type withDispatch = <T, AddedProps = T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => AddedProps ) => ( component: ComponentType<T> ) => ComponentType<T>;
+	type withSelect = <T, AddedProps = T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: T ) => AddedProps ) => ( component: ComponentType<T> ) => ComponentType<T>;
 
 	export const AsyncModeProvider: ComponentType<{
 		value: boolean
