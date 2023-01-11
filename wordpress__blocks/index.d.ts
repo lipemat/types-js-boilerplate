@@ -189,9 +189,37 @@ declare module '@wordpress/blocks' {
 	export type Transforms<T, Attr> = {
 		type: 'block';
 		blocks: Array<string | '*'>;
-		transform: ( attributes: T, innerBlocks: ChildBlocks ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
-		isMatch?: ( attributes: T, block: CreateBlock<Attr> ) => boolean;
-		isMultiBlock?: boolean;
+		transform: ( attributes: T, innerBlocks: Array<CreateBlock<T>> ) => CreateBlock<Attr>;
+		isMatch?: ( attributes: T, block: CreateBlock<T> ) => boolean;
+		isMultiBlock?: false;
+		priority?: number;
+	} | {
+		type: 'block';
+		blocks: Array<string | '*'>;
+		transform: ( attributes: T[], innerBlocks: Array<CreateBlock<T>>[] ) => CreateBlock<Attr>;
+		isMatch?: ( attributes: T[], blocks: Array<CreateBlock<Attr>> ) => boolean;
+		isMultiBlock: true;
+		priority?: number;
+	}
+
+	/**
+	 * Transforms only available for `to`.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-transforms/
+	 */
+	export type TransformsTo<T, Attr> = {
+		type: 'block';
+		blocks: Array<string | '*'>;
+		transform: ( attributes: Attr, innerBlocks: Array<CreateBlock> ) => CreateBlock<T>;
+		isMatch?: ( attributes: Attr, block: CreateBlock<Attr> ) => boolean;
+		isMultiBlock?: false;
+		priority?: number;
+	} | {
+		type: 'block';
+		blocks: Array<string | '*'>;
+		transform: ( attributes: Attr, innerBlocks: Array<CreateBlock>[] ) => Array<CreateBlock<T>>;
+		isMatch?: ( attributes: Attr, blocks: Array<CreateBlock<Attr>> ) => boolean;
+		isMultiBlock: true;
 		priority?: number;
 	}
 
@@ -234,7 +262,7 @@ declare module '@wordpress/blocks' {
 		priority?: number;
 	}
 
-	export type ChildBlocks = Array<[ string, { [ key: string ]: any }?, ChildBlocks? ]>;
+	export type ChildBlocks<T = any> = Array<[ string, { [ key: string ]: any }?, ( ChildBlocks | CreateBlock<T>[] )? ]>;
 
 
 	/**
@@ -358,7 +386,7 @@ declare module '@wordpress/blocks' {
 		variations?: Array<BlockVariation<Attr>>;
 		transforms?: {
 			from?: Array<Transforms<Transform, Attr> | TransformsFrom<Attr>>;
-			to?: Array<Transforms<Transform, Attr>>;
+			to?: Array<TransformsTo<Transform, Attr>>;
 		};
 		/**
 		 * Use context to pass attribute values to inner blocks.
