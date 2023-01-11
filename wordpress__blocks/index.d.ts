@@ -149,10 +149,12 @@ declare module '@wordpress/blocks' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/#example-optional
 	 */
 	export type BlockExample<Attr = Object> = {
-		attributes: Attr;
+		attributes?: Attr;
+		viewportWidth?: number;
 		innerBlocks?: Array<{
 			name: string;
-			attributes: Object;
+			attributes?: Object;
+			innerBlocks?: BlockExample['innerBlocks']
 		}>;
 	};
 
