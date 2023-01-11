@@ -266,6 +266,11 @@ declare module '@wordpress/blocks' {
 	export const hasBlockSupport: CoreBlocks['hasBlockSupport'];
 
 	/**
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const getBlockVariations: CoreBlocks['getBlockVariations'];
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#getchildblocknames
 	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
 	 */
@@ -557,6 +562,7 @@ declare module '@wordpress/blocks' {
 		getBlockSupport: typeof getBlockSupport;
 		getBlockType: typeof getBlockType;
 		getBlockTypes: typeof getBlockTypes;
+		getBlockVariations: typeof getBlockVariations;
 		getCategories: typeof getCategories;
 		getChildBlockNames: typeof getChildBlockNames;
 		getDefaultBlockName: typeof getDefaultBlockName;
