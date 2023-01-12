@@ -592,13 +592,13 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getblockvariations;
 		 */
-		getBlockVariations: <Attr = Object>( name: string, scope?: WPBlockVariationScope ) => Array<BlockVariation<Attr> | undefined>;
+		getBlockVariations: <Attr = Object, V extends string = string>( name: string, scope?: WPBlockVariationScope ) => Array<BlockVariation<Attr, V> | undefined>;
 		/**
 		 * Get a blocks default variation by name.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getdefaultblockvariation
 		 */
-		getDefaultBlockVariation: <Attr = Object>( name: string, scope?: WPBlockVariationScope ) => BlockVariation<Attr> | undefined;
+		getDefaultBlockVariation: <Attr = Object, V extends string = string>( name: string, scope?: WPBlockVariationScope ) => BlockVariation<Attr, V> | undefined;
 
 		// @todo properly type the rest of these as needed.
 		// @todo As these are typed, add the definitions to @wordpress/blocks see getBlockType as an example.

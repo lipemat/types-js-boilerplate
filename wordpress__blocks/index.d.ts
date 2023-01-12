@@ -128,8 +128,8 @@ declare module '@wordpress/blocks' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/
 	 */
-	export type BlockVariation<Attr = Object> = {
-		name: string;
+	export type BlockVariation<Attr = object, V extends string = string> = {
+		name: V;
 		title: string;
 		description?: string;
 		category?: string;
