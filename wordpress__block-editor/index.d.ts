@@ -7,8 +7,8 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/tree/trunk/types/wordpress__block-editor
  */
 declare module '@wordpress/block-editor' {
-	import {ComponentClass, ComponentType, FunctionComponent, MouseEvent, MutableRefObject, ReactElement, ReactNode, RefCallback} from 'react';
-	import {ColorOption, ColorPalette as PaletteComponent, Control, GradientOption, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
+	import {ComponentClass, ComponentType, MouseEvent, MutableRefObject, ReactElement, ReactNode, RefCallback} from 'react';
+	import {ColorOption, ColorPalette as PaletteComponent, Control, Fill, GradientOption, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
@@ -172,8 +172,7 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/inspector-controls/README.md
 	 */
-	interface InspectorControls extends FunctionComponent {
-	}
+	type InspectorControls = typeof Fill;
 
 	export type AlignOptions = 'left' | 'center' | 'right' | 'space-between';
 
