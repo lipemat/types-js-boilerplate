@@ -564,6 +564,28 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/date-time/
+	 */
+	interface DateTimePicker {
+		currentDate?: Date | string | number | null;
+		onChange?: ( date: string | null ) => void;
+		is12Hour?: boolean;
+		isInvalidDate?: ( date: Date ) => boolean;
+		onMonthPreviewed?: ( date: Date ) => void;
+		events?: Array<{
+			date: Date;
+		}>;
+		startOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+	}
+
+	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/date-time/date/index.tsx
+	 */
+	interface DatePicker extends Omit<DateTimePicker, 'is12Hour'> {
+
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/disabled/
 	 */
 	type Disabled = ComponentType<{
@@ -1047,11 +1069,19 @@ declare module '@wordpress/components' {
 		value: string | number;
 	}
 
-
 	type Tab<T extends string> = {
 		name: T;
 		title: string;
 		className?: string;
+	}
+
+	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/date-time/time/index.tsx
+	 */
+	interface TimePicker {
+		currentDate?: Date | string | number | null;
+		is12Hour?: boolean;
+		onChange?: ( time: string ) => void;
 	}
 
 	/**
@@ -1118,6 +1148,8 @@ declare module '@wordpress/components' {
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPicker: ComponentType<ColorPicker>;
 	export const Dashicon: ComponentType<Dashicon>;
+	export const DatePicker: ComponentType<DatePicker>;
+	export const DateTimePicker: ComponentType<DateTimePicker>;
 	export const Disabled: Disabled;
 	export const Dropdown: ComponentType<Dropdown>;
 	export const DropdownMenu: ComponentType<DropdownMenu>;
@@ -1147,6 +1179,7 @@ declare module '@wordpress/components' {
 	export const SVG: ComponentType<SVG>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
+	export const TimePicker: ComponentType<TimePicker>;
 	export const ToggleControl: ComponentType<ToggleControl>;
 	export const ToolbarButton: ComponentType<ToolbarButton>;
 	export const ToolbarGroup: ComponentType<ToolbarGroup>;
@@ -1162,10 +1195,12 @@ declare module '@wordpress/components' {
 		ColorPicker: ComponentType<ColorPicker>;
 		createSlotFill: typeof createSlotFill;
 		Dashicon: ComponentType<Dashicon>;
+		DatePicker: ComponentType<DatePicker>;
+		DateTimePicker: ComponentType<DateTimePicker>;
 		Disabled: Disabled;
+		DropZone: ComponentType<DropZone>;
 		Dropdown: ComponentType<Dropdown>;
 		DropdownMenu: ComponentType<DropdownMenu>;
-		DropZone: ComponentType<DropZone>;
 		Fill: typeof Fill;
 		FormFileUpload: ComponentType<FormFileUpload>;
 		GradientPicker: ComponentType<GradientPicker>;
@@ -1195,6 +1230,7 @@ declare module '@wordpress/components' {
 		TabPanel: typeof TabPanel;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
+		TimePicker: ComponentType<TimePicker>;
 		ToggleControl: ComponentType<ToggleControl>;
 		ToolbarButton: ComponentType<ToolbarButton>;
 		ToolbarGroup: ComponentType<ToolbarGroup>;
