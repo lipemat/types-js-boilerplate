@@ -14,6 +14,13 @@
  * @todo Adjust configurations to use webpack external and remove
  *       direct package access and package.json dependency
  *       when available in WP Core.
+ *
+ * @deprecated Icons have not yet been included in WP core, and the
+ *             `@wordpress/icons` package ships with its own
+ *             Type definition files, which are available since the package
+ *             must be installed to use. Consider removing this
+ *             package on the next major version update.
+ *
  */
 declare module '@wordpress/icons' {
 	import {ComponentType, SVGAttributes} from 'react';
