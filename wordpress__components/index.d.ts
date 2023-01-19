@@ -5,7 +5,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__components/index.d.ts
  */
 declare module '@wordpress/components' {
-	import {ButtonHTMLAttributes, ChangeEvent, ComponentType, Context, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, TextareaHTMLAttributes} from 'react';
+	import {ButtonHTMLAttributes, ChangeEvent, ComponentType, Context, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
@@ -34,7 +34,7 @@ declare module '@wordpress/components' {
 		shortcut?: shortcutText;
 		showTooltip?: boolean;
 		text?: string;
-		tooltipPosition?: tooltipPosition;
+		tooltipPosition?: TooltipPosition;
 		variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
 	}
 
@@ -457,7 +457,7 @@ declare module '@wordpress/components' {
 		ariaLabel: string;
 	};
 
-	type tooltipPosition =
+	type TooltipPosition =
 		'top'
 		| 'bottom'
 		| 'left'
@@ -483,6 +483,10 @@ declare module '@wordpress/components' {
 		| 'left'
 		| 'left-start'
 		| 'left-end'
+
+	type PositionYAxis = 'top' | 'middle' | 'bottom';
+	type PositionXAxis = 'left' | 'center' | 'right';
+	type PositionCorner = 'top' | 'right' | 'bottom' | 'left';
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/base-control/
@@ -616,7 +620,7 @@ declare module '@wordpress/components' {
 		onClose?: () => void;
 		onToggle?: ( open: boolean ) => void;
 		popoverProps?: PopoverProps;
-		position?: tooltipPosition;
+		position?: TooltipPosition;
 		renderContent: ( args: Dropdown['renderToggle'] ) => ReactNode;
 		renderToggle: ( args: {
 			isOpen: boolean;
@@ -843,29 +847,32 @@ declare module '@wordpress/components' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/popover
 	 */
 	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-		// @note: Use the `placement` prop instead when possible.
-		position?:
-			'bottom left'
-			| 'bottom center'
-			| 'bottom right'
-			| 'middle left'
-			| 'middle center'
-			| 'middle right'
-			| 'top left'
-			| 'top center'
-			| 'top right';
-		anchorRef?: MutableRefObject<any>;
+		anchor?: Element;
 		animate?: boolean;
 		expandOnMobile?: boolean;
-		focusOnMount?: FocusOnMount;
-		getAnchorRect?: ( ref: MutableRefObject<any> ) => MutableRefObject<any>;
+		flip?: boolean;
+		focusOnMount?: 'firstElement' | boolean;
 		headerTitle?: string;
-		isAlternate?: boolean;
 		noArrow?: boolean;
-		onClose?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
 		offset?: number;
-		onFocusOutside?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
+		onClose?: ( ev: SyntheticEvent<HTMLButtonElement> ) => void;
+		onFocusOutside?: ( ev: SyntheticEvent ) => void;
 		placement?: Placement;
+		// @note: Use the `placement` prop instead when possible.
+		position?:
+			| `${PositionYAxis}`
+			| `${PositionYAxis} ${PositionXAxis}`
+			| `${PositionYAxis} ${PositionXAxis} ${PositionCorner}`;
+		resize?: boolean;
+		shift?: boolean;
+		variant?: 'unstyled' | 'toolbar';
+
+		/** @deprecated use `anchor` */
+		anchorRef?: MutableRefObject<any>;
+		/** @deprecated use `anchor` */
+		getAnchorRect?: ( ref: MutableRefObject<any> ) => MutableRefObject<any>;
+		/** @deprecated use `variant` */
+		isAlternate?: boolean;
 	}
 
 	/**
@@ -1052,7 +1059,7 @@ declare module '@wordpress/components' {
 	interface Tooltip {
 		delay?: number;
 		text?: string;
-		position?: tooltipPosition;
+		position?: TooltipPosition;
 		shortcut?: shortcutText;
 	}
 
