@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
 /**
+ * Search REST Endpoint
+ *
  * @link https://developer.wordpress.org/rest-api/reference/search-results/
  */
 declare module '@wordpress/api/search' {
@@ -21,17 +23,21 @@ declare module '@wordpress/api/search' {
 	}
 
 	/**
+	 * Search Endpoint Query Parameters
+	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/search-results/#list-search-results
+	 *
+	 * @see https://make.wordpress.org/core/2022/10/11/miscellaneous-rest-api-improvements-in-wordpress-6-1/
 	 */
-	export interface SearchQuery extends Omit<Global<SearchItem>, '_embed'> {
-		// Defaults to 1.
+	export interface SearchQuery extends Omit<Global<SearchItem>, '_embed' | 'context'> {
+		context?: 'view' | 'embed';
+		exclude?: number[];
+		include?: number[];
 		page?: number;
-		// Defaults to 10.
 		per_page?: number;
 		search?: string;
-		// Defaults to 'post'.
-		type?: 'post' | 'term' | 'post-format';
 		subtype?: 'post' | 'page' | 'category' | 'post_tag' | 'any';
+		type?: 'post' | 'term' | 'post-format';
 		_embed?: 'self' | true;
 	}
 }
