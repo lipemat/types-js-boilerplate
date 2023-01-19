@@ -566,23 +566,22 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/date-time/
 	 */
-	interface DateTimePicker {
+	interface DateTimePicker extends DatePicker {
+		is12Hour?: boolean;
+	}
+
+	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/date-time/date/index.tsx
+	 */
+	interface DatePicker {
 		currentDate?: Date | string | number | null;
 		onChange?: ( date: string | null ) => void;
-		is12Hour?: boolean;
 		isInvalidDate?: ( date: Date ) => boolean;
 		onMonthPreviewed?: ( date: Date ) => void;
 		events?: Array<{
 			date: Date;
 		}>;
 		startOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-	}
-
-	/**
-	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/date-time/date/index.tsx
-	 */
-	interface DatePicker extends Omit<DateTimePicker, 'is12Hour'> {
-
 	}
 
 	/**
