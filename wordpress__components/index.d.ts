@@ -847,6 +847,7 @@ declare module '@wordpress/components' {
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/popover
 	 */
 	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+		// @see example in docs for using anchor.
 		anchor?: Element;
 		animate?: boolean;
 		expandOnMobile?: boolean;
