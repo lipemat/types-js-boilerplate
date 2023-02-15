@@ -11,12 +11,30 @@ declare module '@wordpress/api-fetch' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/packages/packages-api-fetch/
 	 */
-	export interface FetchOptions<D> extends RequestInit {
-		data?: D; // Data passed as JSON body.
-		method?: Method; // Defaults to false.
-		parse?: boolean; // Return items, or entire request.
+	export type FetchOptions<D> = {
+		data: D; // Data passed as JSON body.
+		method: Exclude<Method, 'GET' | 'OPTIONS'>;
+		parse?: boolean; // Return items instead of entire request (default true).
 		path: string; // Path relative to provided root.
-		url?: string; // Absolute url of request.
+		url?: never; // URL is not allowed with path.
+	} | {
+		method?: 'GET' | 'OPTIONS' | undefined;
+		data?: never;
+		parse?: boolean; // Return items instead of entire request (default true).
+		path: string; // Path relative to provided root.
+		url?: never;  // URL is not allowed with path.
+	} | {
+		method?: 'GET' | 'OPTIONS' | undefined;
+		data?: never;
+		parse?: boolean; // Return items instead of entire request (default true).
+		path?: never; // Path is not allowed with url.
+		url: string; // Absolute url of request.
+	} | {
+		data: D; // Data passed as JSON body.
+		method: Exclude<Method, 'GET' | 'OPTIONS'>;
+		parse?: boolean; // Return items instead of entire request (default true).
+		path?: never; // Path is not allowed with url.
+		url: string; // Absolute url of request.
 	}
 
 	interface ApiFetch {
