@@ -46,6 +46,9 @@ declare global {
 			codeEditor?: WpCodeEditor;
 			components?: Components;
 			coreData?: CoreData;
+			customize?: {
+				bind: ( event: string | 'ready', callback: () => void ) => void;
+			};
 			data?: Data;
 			editPost?: EditPost,
 			editSite?: EditSite,
