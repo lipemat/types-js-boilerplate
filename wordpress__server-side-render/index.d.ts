@@ -23,6 +23,7 @@ declare module '@wordpress/server-side-render' {
 			showLoader: boolean;
 			children: ReactChild | [];
 		}>;
+		skipBlockSupportAttributes?: boolean;
 	}
 
 
