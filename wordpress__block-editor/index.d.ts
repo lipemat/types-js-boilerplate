@@ -172,7 +172,19 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/inspector-controls/README.md
 	 */
-	type InspectorControls = typeof Fill;
+	type InspectorControls = typeof Fill & {
+		group?:
+			'advanced' |
+			'border' |
+			'color' |
+			'default' |
+			'dimensions' |
+			'list' |
+			'position' |
+			'settings' |
+			'styles' |
+			'typography';
+	}
 
 	export type AlignOptions = 'left' | 'center' | 'right' | 'space-between';
 

@@ -428,6 +428,14 @@ declare module '@wordpress/blocks' {
 				link?: boolean; // Enable link color UI control.
 			};
 			/**
+			 * Enable dimensions UI control.
+			 *
+			 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#dimensions
+			 */
+			dimensions?: {
+				minHeight?: true // Enable min height control.
+			};
+			/**
 			 * Enable font size UI control.
 			 *
 			 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#fontsize
