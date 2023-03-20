@@ -1,5 +1,6 @@
 // Utilities
 import './mime';
+import './helpers';
 
 // classnames
 import './classnames';

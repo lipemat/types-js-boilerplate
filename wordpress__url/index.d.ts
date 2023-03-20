@@ -177,7 +177,7 @@ declare module '@wordpress/url' {
 	 *
 	 * @return {QueryArgParsed|undefined} Query arg value.
 	 */
-	export function getQueryArg( url: string, arg: string ): QueryArgParsed | undefined;
+	export function getQueryArg<T extends QueryArgParsed>( url: string, arg: string ): T | undefined;
 
 	/**
 	 * Determines whether the URL contains a given query arg.

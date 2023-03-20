@@ -4,7 +4,8 @@
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-primitives/
  */
 declare module '@wordpress/primitives' {
-	import {ComponentType, SVGAttributes} from 'react';
+	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
+	import {SVGAttributes} from 'react';
 	import {ClassValue} from 'classnames';
 
 

@@ -23,7 +23,8 @@
  *
  */
 declare module '@wordpress/icons' {
-	import {ComponentType, SVGAttributes} from 'react';
+	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
+	import {SVGAttributes} from 'react';
 
 	type IconType = JSX.Element;
 

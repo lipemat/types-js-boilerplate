@@ -5,7 +5,8 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__compose/index.d.ts
  */
 declare module '@wordpress/compose' {
-	import {ComponentType, Ref} from 'react';
+	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
+	import {Ref} from 'react';
 
 	// @note displayName is assigned directly to component, not a prop.
 	export interface createHigherOrderComponentProps {
