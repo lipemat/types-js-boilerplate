@@ -11,7 +11,7 @@ declare module '@wordpress/api-fetch' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/packages/packages-api-fetch/
 	 */
-	export type FetchOptions<D> = {
+	export type FetchOptions<D> = RequestInit & ( {
 		data: D; // Data passed as JSON body.
 		method: Exclude<Method, 'GET' | 'OPTIONS'>;
 		parse?: boolean; // Return items instead of entire request (default true).
@@ -35,7 +35,7 @@ declare module '@wordpress/api-fetch' {
 		parse?: boolean; // Return items instead of entire request (default true).
 		path?: never; // Path is not allowed with url.
 		url: string; // Absolute url of request.
-	}
+	} )
 
 	interface ApiFetch {
 		<T, D = {}>( options: FetchOptions<D> ): Promise<T>;
