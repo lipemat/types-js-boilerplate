@@ -5,7 +5,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__editor/index.d.ts
  */
 declare module '@wordpress/editor' {
-	import {ComponentType} from 'react';
+	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
 	import {withInstanceIdProps} from '@wordpress/compose';
 	import {withSpokenMessages} from '@wordpress/components';
 	import {Settings} from 'tinymce';

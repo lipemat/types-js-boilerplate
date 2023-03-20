@@ -7,7 +7,8 @@
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-site/
  */
 declare module '@wordpress/edit-site' {
-	import {FunctionComponent, ReactNode} from 'react';
+	import {FunctionComponent} from '@lipemat/js-boilerplate/helpers';
+	import {ReactNode} from 'react';
 	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {WPBlockTypeIconRender} from '@wordpress/components';
 

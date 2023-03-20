@@ -5,7 +5,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__media-utils/index.d.ts
  */
 declare module '@wordpress/media-utils' {
-	import {ComponentType} from 'react';
+	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {MediaUpload as Base} from '@wordpress/block-editor';
 	import {Media, MediaCreate} from '@wordpress/api/media';

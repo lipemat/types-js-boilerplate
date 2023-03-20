@@ -5,7 +5,8 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__plugins/index.d.ts
  */
 declare module '@wordpress/plugins' {
-	import {ComponentClass, FunctionComponent, ReactNode} from 'react';
+	import {ComponentClass, ComponentType, FunctionComponent} from '@lipemat/js-boilerplate/helpers';
+	import {ReactNode} from 'react';
 	import {WPBlockTypeIconRender} from '@wordpress/components';
 
 	/**
@@ -20,7 +21,7 @@ declare module '@wordpress/plugins' {
 	export type WPPlugin = {
 		name: string;
 		icon: WPBlockTypeIconRender,
-		render: ReactNode,
+		render: ComponentType<any>,
 		scope: string;
 	}
 

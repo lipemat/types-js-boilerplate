@@ -4,7 +4,8 @@
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
  */
 declare module '@wordpress/element' {
-	import {ComponentType, useEffect as reactUseEffect, useState as reactUseState} from 'react';
+	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
+	import {useEffect as reactUseEffect, useState as reactUseState} from 'react';
 	import {render as reactRender} from 'react-dom';
 
 	export const Fragment: ComponentType<{}>;

@@ -5,7 +5,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__edit-post/index.d.ts
  */
 declare module '@wordpress/edit-post' {
-	import {FunctionComponent} from 'react';
+	import {FunctionComponent} from '@lipemat/js-boilerplate/helpers';
 	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {WPBlockTypeIconRender} from '@wordpress/components';
 	import {Page} from '@wordpress/api/pages';

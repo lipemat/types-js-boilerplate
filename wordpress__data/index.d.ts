@@ -8,6 +8,7 @@
  * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/data
  */
 declare module '@wordpress/data' {
+	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
 	import {BlockSettings, BlockVariation, CreateBlock, createBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
 	import {PostEditing} from '@wordpress/edit-post';
 	import {Taxonomy} from '@wordpress/api/taxonomies';
@@ -15,7 +16,7 @@ declare module '@wordpress/data' {
 	import {Type} from '@wordpress/api/types';
 	import {Media} from '@wordpress/api/media';
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
-	import {ComponentType, DependencyList} from 'react';
+	import {DependencyList} from 'react';
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
 
 	/**
@@ -690,7 +691,11 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
 		 */
-		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => CreateBlock<A, I>;
+		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => Promise<{
+			type: 'SELECT_BLOCK';
+			clientId: string;
+			initialPosition: number;
+		}>;
 		/**
 		 * Unselect all blocks.
 		 *
