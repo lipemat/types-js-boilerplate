@@ -691,7 +691,11 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
 		 */
-		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => CreateBlock<A, I>;
+		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => Promise<{
+			type: 'SELECT_BLOCK';
+			clientId: string;
+			initialPosition: number;
+		}>;
 		/**
 		 * Unselect all blocks.
 		 *
