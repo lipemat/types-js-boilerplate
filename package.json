@@ -1,7 +1,7 @@
 {
   "name": "@types/lipemat__js-boilerplate",
   "version": "1.39.1",
-  "description": "External TypeScript definitions for @lipemat/js-boilerplate and plugins",
+  "description": "External TypeScript definitions for WordPress Gutenberg, @lipemat/js-boilerplate and plugins",
   "typings": "index.d.ts",
   "repository": {
     "type": "git",
@@ -15,15 +15,9 @@
   "homepage": "https://github.com/lipemat/types-js-boilerplate#readme",
   "dependencies": {
     "@types/codemirror": "^5.60.5",
-    "@types/jest": "^24.0.19",
     "@types/jquery": "^3.5.5",
-    "@types/js-cookie": "^2.2.4",
-    "@types/lodash": "^4.14.168",
-    "@types/react": "^16 || ^17 || ^18",
-    "@types/react-dom": "^16 || ^17 || ^18",
-    "@types/react-router-dom": "^4.3.4",
-    "@types/react-transition-group": "^4.2.4",
     "@types/tinymce": "^4.5.23",
-    "@types/webpack-env": "^1.16.0"
+    "@types/react": "^16 || ^17 || ^18",
+    "@types/react-dom": "^16 || ^17 || ^18"
   }
 }
