@@ -941,7 +941,7 @@ declare module '@wordpress/components' {
 		onChange: ( currentValue: T ) => void;
 		options: Array<{
 			label: string;
-			value: string | number;
+			value: T;
 			disabled?: boolean
 		}>;
 		className?: string,
