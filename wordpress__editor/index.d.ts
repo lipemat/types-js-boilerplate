@@ -6,8 +6,6 @@
  */
 declare module '@wordpress/editor' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {withInstanceIdProps} from '@wordpress/compose';
-	import {withSpokenMessages} from '@wordpress/components';
 	import {Settings} from 'tinymce';
 
 	/**
@@ -23,27 +21,24 @@ declare module '@wordpress/editor' {
 	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/editor/src/components/post-taxonomies
 	 */
-	interface HierarchicalTermSelector extends withInstanceIdProps, withSpokenMessages {
-		hasCreateAction?: boolean;
-		hasAssignAction?: boolean;
-		terms?: Array<{
-			id: number;
-			count: number;
-			description: string;
-			link: string;
-			name: string;
-			taxonomy: string;
-			parent: number;
-		}>;
+	interface FlatTermSelector {
 		slug: string;
-		taxonomy?: string;
 	}
 
-	export const HierarchicalTermSelector: ComponentType<HierarchicalTermSelector>;
+	/**
+	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/editor/src/components/post-taxonomies
+	 */
+	interface HierarchicalTermSelector {
+		slug: string;
+	}
+
+	export const PostTaxonomiesFlatTermSelector: ComponentType<FlatTermSelector>;
+	export const PostTaxonomiesHierarchicalTermSelector: ComponentType<HierarchicalTermSelector>;
 	export const initialize: initialize;
 
 	export default interface Editor {
-		initialize: initialize
-		HierarchicalTermSelector: ComponentType<HierarchicalTermSelector>;
+		initialize: initialize;
+		PostTaxonomiesFlatTermSelector: ComponentType<FlatTermSelector>;
+		PostTaxonomiesHierarchicalTermSelector: ComponentType<HierarchicalTermSelector>;
 	}
 }
