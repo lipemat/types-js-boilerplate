@@ -45,7 +45,6 @@ import './wordpress__escape-html/index';
 import './wordpress__hooks/index';
 import './wordpress__html-entities/index';
 import './wordpress__i18n/index';
-import './wordpress__icons/index';
 import './wordpress__media-utils/index';
 import './wordpress__notices/index';
 import './wordpress__plugins/index';

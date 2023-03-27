@@ -7,7 +7,8 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/tree/trunk/types/wordpress__block-editor
  */
 declare module '@wordpress/block-editor' {
-	import {ComponentClass, ComponentType, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefCallback} from 'react';
+	import {ComponentClass, ComponentType} from '@lipemat/js-boilerplate/helpers';
+	import {MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefCallback} from 'react';
 	import {ColorOption, ColorPalette as PaletteComponent, Control, Fill, GradientOption, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
@@ -335,7 +336,7 @@ declare module '@wordpress/block-editor' {
 		onChange?: ( blocks: CreateBlock[] ) => void;
 		orientation?: 'horizontal';
 		placeholder?: ReactElement;
-		renderAppender?: boolean | ( () => ReactNode );
+		renderAppender?: boolean | ( () => ReactNode ) | ComponentType<any>;
 		template?: ChildBlocks;
 		templateLock?: 'all' | 'insert' | 'contentOnly' | boolean;
 		value?: CreateBlock[];
