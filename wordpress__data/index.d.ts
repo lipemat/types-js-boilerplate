@@ -553,21 +553,32 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-site/#selectors
 	 */
 	type CoreEditSite = {
+		/**
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-site/#geteditedpostcontext
+		 */
+		getEditedPostContext: () => string | null;
+
+		// @todo properly type the rest of these as needed.
 		getCanUserCreateMedia: () => any;
-		getCurrentTemplateNavigationPanelSubMenu: () => any;
 		getCurrentTemplateTemplateParts: () => any;
 		getEditedPostId: () => any;
 		getEditedPostType: () => any;
 		getEditorMode: () => any;
-		getHomeTemplateId: () => any;
 		getIsResolving: () => any;
-		getNavigationPanelActiveMenu: () => any;
-		getPage: () => any;
 		getReusableBlocks: () => any;
 		getSettings: () => any;
 		isFeatureActive: () => any;
 		isInserterOpened: () => any;
 		isListViewOpened: () => any;
+		/** @deprecated **/
+		getCurrentTemplateNavigationPanelSubMenu: () => any;
+		/** @deprecated **/
+		getHomeTemplateId: () => any;
+		/** @deprecated **/
+		getPage: () => any;
+		/** @deprecated **/
+		getNavigationPanelActiveMenu: () => any;
+		/** @deprecated **/
 		isNavigationOpened: () => any;
 	}
 
