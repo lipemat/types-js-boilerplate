@@ -20,7 +20,13 @@ declare module '@wordpress/icons' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
 	import {SVGAttributes} from 'react';
 
-	type IconType = JSX.Element;
+	/**
+	 * Hack to make `Icon` only accept listed icon elements.
+	 *
+	 */
+	interface IconType {
+		nonexistent: never;
+	}
 
 	interface Icon extends SVGAttributes<SVGElement> {
 		icon: IconType;
