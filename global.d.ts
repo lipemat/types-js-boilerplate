@@ -18,7 +18,6 @@ import EscapeHtml from '@wordpress/escape-html';
 import Hooks from '@wordpress/hooks';
 import HtmlEntities from '@wordpress/html-entities';
 import I18N from '@wordpress/i18n';
-import Icons from '@wordpress/icons';
 import MediaUtils from '@wordpress/media-utils';
 import Plugins from '@wordpress/plugins';
 import Primitives from '@wordpress/primitives';
@@ -59,7 +58,6 @@ declare global {
 			hooks?: Hooks;
 			htmlEntities?: HtmlEntities;
 			i18n?: I18N;
-			icons?: Icons;
 			media?: WpMedia;
 			mediaUtils?: MediaUtils;
 			// wp_enqueue_scripts( 'password-strength-meter' );
