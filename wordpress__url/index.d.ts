@@ -5,7 +5,7 @@
  */
 declare module '@wordpress/url' {
 	export type QueryArgObject = {
-		[ key: string ]: string | string[] | any;
+		[ key: string ]: string | string[] | QueryArgObject;
 	};
 	export type QueryArgParsed = string | string[] | QueryArgObject
 
@@ -162,7 +162,7 @@ declare module '@wordpress/url' {
 	 *
 	 * @return {string} URL with arguments applied.
 	 */
-	export function addQueryArgs( url?: string | undefined, args?: Object | undefined ): string;
+	export function addQueryArgs<T extends QueryArgObject = undefined>( url?: string | undefined, args?: T ): string;
 
 	/**
 	 * Returns a single query argument of the url
