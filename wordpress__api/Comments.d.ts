@@ -43,7 +43,7 @@ declare module '@wordpress/api/comments' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/comments/#create-a-comment
 	 */
-	export interface CommentCreate extends Editing<Partial<Comment<'edit'>>> {
+	export interface CommentCreate extends Partial<Editing<Comment<'edit'>>> {
 	}
 
 	/**
