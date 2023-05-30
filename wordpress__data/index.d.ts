@@ -165,8 +165,8 @@ declare module '@wordpress/data' {
 		getPostType: ( slug: string ) => Type;
 		getPostTypes: () => Type[];
 		getSite: () => Settings;
-		getTaxonomies: () => Taxonomy[] | undefined;
-		getTaxonomy: ( slug: string ) => Taxonomy | undefined;
+		getTaxonomies: () => Array<Taxonomy<'edit'>> | undefined;
+		getTaxonomy: ( slug: string ) => Taxonomy<'edit'> | undefined;
 		hasFetchedAutosaves: () => boolean;
 		hasRedo: () => boolean;
 		hasUndo: () => boolean;
