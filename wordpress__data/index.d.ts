@@ -162,8 +162,8 @@ declare module '@wordpress/data' {
 		getEntityRecords: getEntityRecords;
 		getMedia: ( id: number ) => Media;
 		getMediaItems: () => Media[ ];
-		getPostType: ( slug: string ) => Type;
-		getPostTypes: () => Type[];
+		getPostType: ( slug: string ) => Type<'edit'>;
+		getPostTypes: () => Type<'edit'>[];
 		getSite: () => Settings;
 		getTaxonomies: () => Array<Taxonomy<'edit'>> | undefined;
 		getTaxonomy: ( slug: string ) => Taxonomy<'edit'> | undefined;
