@@ -162,11 +162,11 @@ declare module '@wordpress/data' {
 		getEntityRecords: getEntityRecords;
 		getMedia: ( id: number ) => Media;
 		getMediaItems: () => Media[ ];
-		getPostType: ( slug: string ) => Type;
-		getPostTypes: () => Type[];
+		getPostType: ( slug: string ) => Type<'edit'>;
+		getPostTypes: () => Type<'edit'>[];
 		getSite: () => Settings;
-		getTaxonomies: () => Taxonomy[] | undefined;
-		getTaxonomy: ( slug: string ) => Taxonomy | undefined;
+		getTaxonomies: () => Array<Taxonomy<'edit'>> | undefined;
+		getTaxonomy: ( slug: string ) => Taxonomy<'edit'> | undefined;
 		hasFetchedAutosaves: () => boolean;
 		hasRedo: () => boolean;
 		hasUndo: () => boolean;
