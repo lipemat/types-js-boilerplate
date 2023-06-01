@@ -75,7 +75,7 @@ declare module '@wordpress/api' {
 	 * Used with `Editing` this field is converted
 	 * to `string` when making edits.
 	 */
-	export interface RenderedText<C extends Context> {
+	export type RenderedText<C extends Context> = {
 		raw: ContextualField<string, 'edit', C>;
 		rendered: string;
 	}
