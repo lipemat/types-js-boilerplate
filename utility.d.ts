@@ -72,6 +72,15 @@ declare module '@lipemat/js-boilerplate/utility' {
 	export type Subtract<T extends K, K> = Omit<T, keyof K>;
 
 	/**
+	 * Exclude all top level properties in an object which are of a type.
+	 *
+	 * @example ExcludeOfType<{y:'false':x:false}, boolean> = {y:'false'}
+	 */
+	export type ExcludeOfType<T, Type> = Pick<T, {
+		[P in keyof T]: T[P] extends Type ? never : P
+	}[keyof T]>
+
+	/**
 	 * Union from array elements.
 	 *
 	 * Useful for passing to `Pick`.
