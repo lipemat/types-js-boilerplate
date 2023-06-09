@@ -31,6 +31,9 @@ declare module '@lipemat/js-boilerplate/utility' {
 	 * Used to provider different types based on context by assigning
 	 * some properties to never.
 	 *
+	 * @notice Will not work properly of sub items are an `interface` they
+	 *         must be a `type`.
+	 *
 	 * @example OmitNever<{foo: number; bar: never}> - {foo: number}
 	 */
 	export type OmitNever<T, Converted = {
