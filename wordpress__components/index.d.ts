@@ -1073,7 +1073,8 @@ declare module '@wordpress/components' {
 		help?: ReactNode;
 		hideLabelFromVision?: boolean
 		label?: ReactNode;
-		onChange: ( currentValue: string ) => void;
+		onChange: ( value: string ) => void;
+		type?: 'email' | 'number' | 'password' | 'tel' | 'text' | 'search' | 'url';
 		value: string | number;
 	}
 
