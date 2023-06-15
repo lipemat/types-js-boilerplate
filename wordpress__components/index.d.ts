@@ -356,7 +356,6 @@ declare module '@wordpress/components' {
 		| 'playlist-audio'
 		| 'playlist-video'
 		| 'plus-alt'
-		| 'plus-light'
 		| 'plus'
 		| 'portfolio'
 		| 'post-status'
