@@ -31,6 +31,9 @@ declare module '@lipemat/js-boilerplate/utility' {
 	 * Used to provider different types based on context by assigning
 	 * some properties to never.
 	 *
+	 * @notice Will not work properly of sub items are an `interface` they
+	 *         must be a `type`.
+	 *
 	 * @example OmitNever<{foo: number; bar: never}> - {foo: number}
 	 */
 	export type OmitNever<T, Converted = {
@@ -67,6 +70,15 @@ declare module '@lipemat/js-boilerplate/utility' {
 	 *
 	 */
 	export type Subtract<T extends K, K> = Omit<T, keyof K>;
+
+	/**
+	 * Exclude all top level properties in an object which are of a type.
+	 *
+	 * @example ExcludeOfType<{y:'false':x:false}, boolean> = {y:'false'}
+	 */
+	export type ExcludeOfType<T, Type> = Pick<T, {
+		[P in keyof T]: T[P] extends Type ? never : P
+	}[keyof T]>
 
 	/**
 	 * Union from array elements.

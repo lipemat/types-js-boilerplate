@@ -351,6 +351,7 @@ declare module '@wordpress/block-editor' {
 		ButtonBlockAppender: ComponentType<{}>;
 		DefaultBlockAppender: ComponentType<{}>;
 		Content: ComponentType<{}>;
+		prioritizedInserterBlocks?: string[];
 	}
 
 

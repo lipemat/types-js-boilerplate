@@ -356,7 +356,6 @@ declare module '@wordpress/components' {
 		| 'playlist-audio'
 		| 'playlist-video'
 		| 'plus-alt'
-		| 'plus-light'
 		| 'plus'
 		| 'portfolio'
 		| 'post-status'
@@ -1073,7 +1072,8 @@ declare module '@wordpress/components' {
 		help?: ReactNode;
 		hideLabelFromVision?: boolean
 		label?: ReactNode;
-		onChange: ( currentValue: string ) => void;
+		onChange: ( value: string ) => void;
+		type?: 'email' | 'number' | 'password' | 'tel' | 'text' | 'search' | 'url';
 		value: string | number;
 	}
 

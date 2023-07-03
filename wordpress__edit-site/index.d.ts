@@ -10,7 +10,7 @@ declare module '@wordpress/edit-site' {
 	import {FunctionComponent} from '@lipemat/js-boilerplate/helpers';
 	import {ReactNode} from 'react';
 	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
-	import {WPBlockTypeIconRender} from '@wordpress/components';
+	import {Fill, WPBlockTypeIconRender} from '@wordpress/components';
 
 	/**
 	 * Settings used to initialize the editor.
@@ -160,6 +160,15 @@ declare module '@wordpress/edit-site' {
 	}
 
 	/**
+	 * Slot for rendering in the Template sidebar
+	 *
+	 * @todo Add more information once docs become available.
+	 */
+	type PluginTemplateSettingPanel = typeof Fill & {
+
+	}
+
+	/**
 	 * Reinitialize the editor after the user chooses to reboot the editor after
 	 * an unhandled error occurs, replacing previously mounted editor element using
 	 * an initial state from before the crash.
@@ -180,12 +189,14 @@ declare module '@wordpress/edit-site' {
 	export function reinitializeEditor( target: Element, settings: Partial<EditorSettings> ): void;
 
 	export const PluginMoreMenuItem: FunctionComponent<PluginMoreMenuItem>;
+	export const PluginTemplateSettingPanel: PluginTemplateSettingPanel;
 	export const PluginSidebar: FunctionComponent<PluginSidebar>;
 	export const PluginSidebarMoreMenuItem: FunctionComponent<PluginSidebarMoreMenuItem>;
 
 	export default interface editSite {
 		initializeEditor: typeof initializeEditor;
 		PluginMoreMenuItem: FunctionComponent<PluginMoreMenuItem>;
+		PluginTemplateSettingPanel: PluginTemplateSettingPanel;
 		PluginSidebar: FunctionComponent<PluginSidebar>;
 		PluginSidebarMoreMenuItem: FunctionComponent<PluginSidebarMoreMenuItem>;
 		reinitializeEditor: typeof reinitializeEditor;
