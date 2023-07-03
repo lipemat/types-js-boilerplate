@@ -5,7 +5,7 @@
  */
 declare module '@wordpress/url' {
 	export type QueryArgObject = {
-		[ key: string ]: string | string[] | QueryArgObject;
+		[ key: string ]: string | number | Array<string | number> | QueryArgObject;
 	};
 	export type QueryArgParsed = string | string[] | QueryArgObject
 
