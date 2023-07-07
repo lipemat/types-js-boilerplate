@@ -9,7 +9,7 @@
 declare module '@wordpress/block-editor' {
 	import {ComponentClass, ComponentType} from '@lipemat/js-boilerplate/helpers';
 	import {MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefCallback} from 'react';
-	import {ColorOption, ColorPalette as PaletteComponent, Control, Fill, GradientOption, PanelBody, PopoverProps, WPBlockTypeIconRender} from '@wordpress/components';
+	import {ColorOption, ColorPalette as PaletteComponent, Control, Fill, GradientOption, PanelBody, PopoverProps, ToolbarButton, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
@@ -329,6 +329,19 @@ declare module '@wordpress/block-editor' {
 	}
 
 	/**
+	 * Button for the RichText toolbar.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/rich-text/toolbar-button.js
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#richtexttoolbarbutton
+	 */
+	interface RichTextToolbarButton extends ToolbarButton {
+		name?: string;
+		shortcutType?: 'primary' | 'primaryShift' | 'primaryAlt' | 'secondary' | 'access' | 'ctrl' | 'alt' | 'ctrlShift' | 'shift' | 'shiftAlt' | 'undefined';
+		shortcutCharacter?: string;
+	}
+
+
+	/**
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/inner-blocks/README.md
 	 */
 	type InnerBlock = {
@@ -367,6 +380,7 @@ declare module '@wordpress/block-editor' {
 	export const MediaUpload: ComponentClass<MediaUpload>;
 	export const PanelColorSettings: ComponentType<PanelColorSettings>;
 	export const RichText: ComponentType<RichText>;
+	export const RichTextToolbarButton: ComponentType<RichTextToolbarButton>;
 	export const InnerBlocks: InnerBlocks;
 	export const useBlockDisplayInformation: useBlockDisplayInformation;
 	export const useBlockProps: useBlockProps;
@@ -392,6 +406,7 @@ declare module '@wordpress/block-editor' {
 		MediaUpload: ComponentType<MediaUpload>;
 		PanelColorSettings: ComponentType<PanelColorSettings>;
 		RichText: ComponentType<RichText>;
+		RichTextToolbarButton: ComponentType<RichTextToolbarButton>;
 		InnerBlocks: InnerBlocks;
 		useBlockDisplayInformation: useBlockDisplayInformation;
 		useBlockProps: useBlockProps;

@@ -21,6 +21,7 @@ import I18N from '@wordpress/i18n';
 import MediaUtils from '@wordpress/media-utils';
 import Plugins from '@wordpress/plugins';
 import Primitives from '@wordpress/primitives';
+import RichText from '@wordpress/rich-text';
 import URL from '@wordpress/url';
 
 /**
@@ -67,6 +68,7 @@ declare global {
 			}
 			plugins?: Plugins;
 			primitives?: Primitives;
+			richText?: RichText;
 			url?: URL;
 			// wp_enqueue_scripts( 'wp-api-fetch' );
 			wpApiSettings?: {
