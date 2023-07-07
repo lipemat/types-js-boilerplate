@@ -49,6 +49,7 @@ import './wordpress__media-utils/index';
 import './wordpress__notices/index';
 import './wordpress__plugins/index';
 import './wordpress__primitives/index';
+import './wordpress__rich-text/index';
 import './wordpress__server-side-render/index';
 import './wordpress__url/index';
 
