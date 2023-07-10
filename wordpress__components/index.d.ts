@@ -34,6 +34,8 @@ declare module '@wordpress/components' {
 		label?: ReactNode;
 		shortcut?: shortcutText;
 		showTooltip?: boolean;
+		// Available in WP 6.3+.
+		size?: 'small' | 'compact' | 'default';
 		text?: string;
 		tooltipPosition?: TooltipPosition;
 		variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
