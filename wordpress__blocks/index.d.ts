@@ -354,6 +354,49 @@ declare module '@wordpress/blocks' {
 	 */
 	export type BlockIcon = iconType | IconObject | SVGProps<SVGSVGElement>;
 
+	/**
+	 * Custom CSS classnames for generated markup.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-selectors.md
+	 */
+	export type BlockSelectors = {
+		// The primary CSS class to apply to the block. Replaces the `.wp-block-name` class if set.
+		root: string;
+		border?: string | {
+			root?: string,
+			color?: string,
+			radius?: string,
+			style?: string,
+			width?: string
+		};
+		color?: string | {
+			root?: string;
+			text?: string;
+			background?: string;
+		};
+		dimensions?: string | {
+			root?: string;
+			minHeight?: string;
+		};
+		spacing?: string | {
+			root?: string;
+			margin?: string;
+			padding?: string;
+			blockGap?: string;
+		};
+		typography?: string | {
+			root?: string;
+			fontFamily?: string;
+			fontSize?: string;
+			fontStyle?: string;
+			fontWeight?: string;
+			letterSpacing?: string;
+			lineHeight?: string;
+			textDecoration?: string;
+			textTransform?: string;
+		};
+	}
+
 
 	/**
 	 * Parser utility for converting HTML block JSON to finished block objects.
@@ -366,7 +409,10 @@ declare module '@wordpress/blocks' {
 	export function parse( content: string ): CreateBlock[];
 
 	/**
+	 * Block registration settings.
+	 *
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
+	 * @link https://schemas.wp.org/trunk/block.json
 	 */
 	export type BlockSettings<Attr, Category = '', Transform = Attr, Context = {}> = {
 		title: string;
@@ -457,6 +503,8 @@ declare module '@wordpress/blocks' {
 			multiple?: boolean;
 			// False prevents the block to be converted into a reusable block.
 			reusable?: boolean;
+			// Custom CSS classnames for generated markup.
+			selectors?: BlockSelectors;
 			/**
 			 * Enable CSS spacing UI controls
 			 *
