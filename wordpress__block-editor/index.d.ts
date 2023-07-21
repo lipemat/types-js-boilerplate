@@ -342,6 +342,8 @@ declare module '@wordpress/block-editor' {
 
 
 	/**
+	 * Shared attributes between `useInnerBlocksProps` and the `InnerBlocks` component.
+	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/inner-blocks/README.md
 	 */
 	type InnerBlock = {
@@ -349,6 +351,7 @@ declare module '@wordpress/block-editor' {
 		onChange?: ( blocks: CreateBlock[] ) => void;
 		orientation?: 'horizontal';
 		placeholder?: ReactElement;
+		prioritizedInserterBlocks?: string[];
 		renderAppender?: boolean | ( () => ReactNode ) | ComponentType<any>;
 		template?: ChildBlocks;
 		templateLock?: 'all' | 'insert' | 'contentOnly' | boolean;
@@ -364,7 +367,6 @@ declare module '@wordpress/block-editor' {
 		ButtonBlockAppender: ComponentType<{}>;
 		DefaultBlockAppender: ComponentType<{}>;
 		Content: ComponentType<{}>;
-		prioritizedInserterBlocks?: string[];
 	}
 
 
