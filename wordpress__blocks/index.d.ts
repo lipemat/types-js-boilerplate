@@ -430,9 +430,15 @@ declare module '@wordpress/blocks' {
 		attributes?: BlockAttributes<Attr>;
 		example?: BlockExample<Partial<Attr>>;
 		variations?: Array<BlockVariation<Attr>>;
+		/**
+		 * Offer block transformations.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-transforms/
+		 */
 		transforms?: {
 			from?: Array<Transforms<Transform, Attr> | TransformsFrom<Attr>>;
 			to?: Array<TransformsTo<Transform, Attr>>;
+			ungroup?: ( attr: Attr, innerBlocks: Array<CreateBlock<Attr>> ) => Array<CreateBlock<Attr>>;
 		};
 		/**
 		 * Use context to pass attribute values to inner blocks.
