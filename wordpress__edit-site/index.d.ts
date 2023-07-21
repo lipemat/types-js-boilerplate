@@ -160,9 +160,7 @@ declare module '@wordpress/edit-site' {
 	}
 
 	/**
-	 * Slot for rendering in the Template sidebar
-	 *
-	 * @todo Add more information once docs become available.
+	 * Slot for rendering in the Site Editor "Template" sidebar.
 	 */
 	type PluginTemplateSettingPanel = typeof Fill & {
 
