@@ -19,8 +19,11 @@ Thumbs.db
 # log files
 *.log
 
+# Yarn berry files
+install-state.gz
+build-state.yml
 node_modules
-yarn.lock
+
 
 # PHPStorm files
 # https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
