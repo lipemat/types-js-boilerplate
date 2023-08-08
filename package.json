@@ -2,17 +2,21 @@
   "name": "@types/lipemat__js-boilerplate",
   "version": "2.2.0",
   "description": "External TypeScript definitions for WordPress Gutenberg, @lipemat/js-boilerplate and plugins",
-  "typings": "index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lipemat/types-js-boilerplate.git"
-  },
+  "types": "index",
   "author": "Mat Lipe",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lipemat/types-js-boilerplate/issues"
   },
   "homepage": "https://github.com/lipemat/types-js-boilerplate#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lipemat/types-js-boilerplate.git"
+  },
+  "files": [
+    "./*.d.ts",
+    "**/*.d.ts"
+  ],
   "dependencies": {
     "@types/codemirror": "^5.60.5",
     "@types/jquery": "^3.5.5",
