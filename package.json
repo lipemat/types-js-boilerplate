@@ -25,5 +25,8 @@
     "@types/tinymce": "^4.5.23",
     "@types/webpack-env": "^1.18.0"
   },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  },
   "packageManager": "yarn@3.6.1"
 }
