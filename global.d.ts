@@ -6,6 +6,7 @@ import BlockEditor from '@wordpress/block-editor';
 import BlockLibrary from '@wordpress/block-library';
 import Blocks from '@wordpress/blocks';
 import BlockSerialize from '@wordpress/block-serialization-default-parser';
+import Commands from '@wordpress/commands';
 import Components from '@wordpress/components';
 import CoreData from '@wordpress/core-data';
 import Data from '@wordpress/data';
@@ -44,6 +45,7 @@ declare global {
 			blocks?: Blocks,
 			blockSerializationDefaultParser?: BlockSerialize,
 			codeEditor?: WpCodeEditor;
+			commands?: Commands;
 			components?: Components;
 			coreData?: CoreData;
 			customize?: {

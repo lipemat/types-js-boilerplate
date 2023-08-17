@@ -18,6 +18,7 @@ declare module '@wordpress/data' {
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
 	import {DependencyList} from 'react';
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
+	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
 
 	/**
 	 * @deprecated In favor of CreateBlock;
@@ -519,6 +520,15 @@ not yet been saved.
 
 	export function select( store: 'core/block-editor' ): CoreBlockEditor & SelectShared<CoreBlockEditor>;
 
+	type CoreCommands = {
+		getCommandLoaders: ( contextual?: boolean ) => WPCommandLoaderConfig[];
+		getCommands: ( contextual?: boolean ) => WPCommandConfig[];
+		getContext: () => string;
+		isOpen: () => boolean;
+	}
+
+	export function select( store: 'core/commands' ): CoreCommands & SelectShared<CoreCommands>;
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-post/
 	 */
@@ -862,6 +872,24 @@ not yet been saved.
 		updateSettings: ( settings: { [ key: string ]: any } ) => { [ key: string ]: any };
 		validateBlocksToTemplate: ( key?: string ) => any;
 	}
+
+
+	export function dispatch( store: 'core/commands' ): {
+		open: () => Promise<{
+			type: 'OPEN';
+		}>;
+		close: () => Promise<{
+			type: 'CLOSE';
+		}>;
+		registerCommand: ( command: WPCommandConfig ) => Promise<WPCommandConfig & {
+			type: 'REGISTER_COMMAND',
+		}>;
+		unregisterCommand: <T extends string>( name: T ) => Promise<{
+			type: 'UNREGISTER_COMMAND',
+			name: T
+		}>;
+	}
+
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-edit-site/#actions
