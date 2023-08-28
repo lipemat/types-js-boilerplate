@@ -45,6 +45,6 @@ console.log( hasResolved );
 
 const {
 	record: siteSettings,
-} = useEntityRecord( 'root', 'site' );
+} = useEntityRecord( 'root', 'site', undefined );
 
 console.log( siteSettings );

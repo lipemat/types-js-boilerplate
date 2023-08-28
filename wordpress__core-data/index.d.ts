@@ -124,7 +124,7 @@ declare module '@wordpress/core-data' {
 	(
 		kind: K,
 		name: N,
-		id?: KeyType<R, N>,
+		id: KeyType<R, N>,
 		options?: Options,
 	) => EntityRecordResolution<EntityRecordOf<K, N>>;
 

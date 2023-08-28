@@ -164,7 +164,7 @@ declare module '@wordpress/core-data/entity-types' {
 		R extends AllEntityRecords,
 		N extends Name,
 		E extends AllEntities = EntityOf<R, N>
-	> = E[ 'key' ] extends keyof E[ 'record' ] ? E[ 'record' ][ E[ 'key' ] ] : never;
+	> = E[ 'key' ] extends keyof E[ 'record' ] ? E[ 'record' ][ E[ 'key' ] ] : undefined;
 
 	/**
 	 * Default context of the requested entity, sourced from PerPackageEntities.
