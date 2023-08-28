@@ -1,5 +1,6 @@
 import '../index';
 import {select} from '@wordpress/data';
+import {useEntityRecords} from '@wordpress/core-data';
 
 const X = select( 'core' ).getEntityRecords( 'taxonomy', 'product' as 'category', {
 	parent: 0,
@@ -14,6 +15,7 @@ const T = select( 'core' ).getEntityRecords( 'postType', 'page', {
 } );
 
 console.log( X[ 0 ].parent );
+console.log( T );
 
 const V = select( 'core' ).getEntityRecords( 'postType', 'wp_template', {
 	order: 'asc',
@@ -32,3 +34,11 @@ const S = select( 'core' ).getEntityRecord( 'postType', 'wp_template', '4', {
 } );
 
 console.log( S );
+
+const {
+	records: types,
+	hasResolved
+} = useEntityRecords( 'taxonomy', 'banner_type' as 'post_tag', {} );
+
+console.log( types[ 0 ].name );
+console.log( hasResolved );
