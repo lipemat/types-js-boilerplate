@@ -10,7 +10,14 @@ declare module '@wordpress/editor' {
 
 	/**
 	 * Initialize the classic tinymce editor.
-	 * @link https://github.com/WordPress/gutenberg/blob/master/packages/block-library/src/classic/edit.js
+	 *
+	 * @see wp_enqueue_editor
+	 * @link https://github.com/WordPress/WordPress/blob/master/wp-admin/js/editor.js#L1216
+	 * @link https://www.tiny.cloud/docs-4x/
+	 *
+	 * Alternative integrations via React or Svelte components
+	 * are available
+	 * @link https://www.tiny.cloud/docs/integrations/
 	 */
 	type initialize = ( id: string, settings: {
 		quicktags?: boolean;
