@@ -1,6 +1,6 @@
 import '../index';
 import {select} from '@wordpress/data';
-import {useEntityRecords} from '@wordpress/core-data';
+import {EntityRecordResolution, useEntityRecord, useEntityRecords} from '@wordpress/core-data';
 
 const X = select( 'core' ).getEntityRecords( 'taxonomy', 'product' as 'category', {
 	parent: 0,
@@ -42,3 +42,9 @@ const {
 
 console.log( types[ 0 ].name );
 console.log( hasResolved );
+
+const {
+	record: siteSettings,
+} = useEntityRecord( 'root', 'site' );
+
+console.log( siteSettings );
