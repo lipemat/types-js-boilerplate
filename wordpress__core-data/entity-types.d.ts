@@ -21,7 +21,9 @@ declare module '@wordpress/core-data/entity-types' {
 		record: Record;
 		config: Omit<EntityConfig<Record, C>, RequiredConfigKeys> & Config;
 		key: Config[ 'key' ] extends string ? Config[ 'key' ] : 'id';
-		defaultContext: Config[ 'baseURLParams' ] extends { context: infer InferredContext } ? InferredContext : 'view';
+		defaultContext: Config[ 'baseURLParams' ] extends {
+			context: infer InferredContext
+		} ? InferredContext : 'view';
 	};
 
 	type RequiredConfigKeys = 'name' | 'kind' | 'key' | 'baseURLParams';
@@ -158,10 +160,11 @@ declare module '@wordpress/core-data/entity-types' {
 	 * For instance a `Category` key type would be `number` because it's
 	 * its config `key` is "id" and "id" field is of type "number".
 	 */
-	export type KeyType<R extends AllEntityRecords, N extends Name,
-		E extends AllEntities = EntityOf<R, N>> =
-		( E[ 'key' ] extends keyof E[ 'record' ] ? E[ 'record' ][ E[ 'key' ] ] : never )
-		& ( number | string );
+	export type KeyType<
+		R extends AllEntityRecords,
+		N extends Name,
+		E extends AllEntities = EntityOf<R, N>
+	> = E[ 'key' ] extends keyof E[ 'record' ] ? E[ 'record' ][ E[ 'key' ] ] : never;
 
 	/**
 	 * Default context of the requested entity, sourced from PerPackageEntities.
