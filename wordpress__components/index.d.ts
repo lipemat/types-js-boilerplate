@@ -760,6 +760,40 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/menu-item/#props
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/button/types.ts
+	 */
+	interface MenuItem extends ButtonHTMLAttributes<HTMLButtonElement> {
+		className?: string;
+		children?: ReactNode;
+		info?: string;
+		icon?: ButtonParams[ 'icon' ];
+		iconPosition?: ButtonParams[ 'iconPosition' ];
+		/**
+		 * Whether the menu item is currently selected, `isSelected` is only taken into
+		 * account when the `role` prop is either `"menuitemcheckbox"` or `"menuitemradio"`.
+		 */
+		isSelected?: boolean;
+		label?: string;
+		/**
+		 * If you need to have selectable menu items use "menuitemradio" for single select,
+		 * and "menuitemcheckbox" for multiselect.
+		 *
+		 * @default 'menuitem'
+		 */
+		role?: 'menuitem' | 'menuitemcheckbox' | 'menuitemradio';
+		/**
+		 * If shortcut is a string, it is expecting the display text. If shortcut is an object,
+		 * it will accept the properties of `display` (string) and `ariaLabel` (string).
+		 */
+		shortcut?: string | { display: string; ariaLabel: string };
+		/**
+		 * Allows for markup other than icons or shortcuts to be added to the menu item.
+		 */
+		suffix?: ReactNode;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/modal/#props
 	 */
 	interface Modal {
@@ -1182,6 +1216,7 @@ declare module '@wordpress/components' {
 	export const Icon: ComponentType<Icon>;
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 	export const MenuGroup: ComponentType<MenuGroup>;
+	export const MenuItem: ComponentType<MenuItem>;
 	export const Modal: ComponentType<Modal>;
 	export const Notice: ComponentType<Notice>;
 	export const Panel: ComponentType<Panel>;
@@ -1231,6 +1266,7 @@ declare module '@wordpress/components' {
 		Icon: ComponentType<Icon>;
 		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 		MenuGroup: ComponentType<MenuGroup>;
+		MenuItem: ComponentType<MenuItem>;
 		Modal: ComponentType<Modal>;
 		Notice: ComponentType<Notice>;
 		Panel: ComponentType<Panel>;
