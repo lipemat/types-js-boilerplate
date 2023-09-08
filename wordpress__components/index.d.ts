@@ -750,6 +750,16 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/menu-group/#props
+	 */
+	interface MenuGroup {
+		className?: string;
+		hideSeparator?: boolean;
+		label?: string;
+		children?: ReactNode;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/modal/#props
 	 */
 	interface Modal {
@@ -1171,6 +1181,7 @@ declare module '@wordpress/components' {
 	export const GuidePage: ComponentType<GuidePage>;
 	export const Icon: ComponentType<Icon>;
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+	export const MenuGroup: ComponentType<MenuGroup>;
 	export const Modal: ComponentType<Modal>;
 	export const Notice: ComponentType<Notice>;
 	export const Panel: ComponentType<Panel>;
@@ -1219,6 +1230,7 @@ declare module '@wordpress/components' {
 		GuidePage: ComponentType<GuidePage>;
 		Icon: ComponentType<Icon>;
 		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+		MenuGroup: ComponentType<MenuGroup>;
 		Modal: ComponentType<Modal>;
 		Notice: ComponentType<Notice>;
 		Panel: ComponentType<Panel>;
