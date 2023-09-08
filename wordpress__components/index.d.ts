@@ -6,7 +6,7 @@
  */
 declare module '@wordpress/components' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
+	import {ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
@@ -814,8 +814,10 @@ declare module '@wordpress/components' {
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/notice/#props
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/notice/types.ts
 	 */
 	interface Notice {
+		className?: string;
 		spokenMessage?: string;
 		status?: Status;
 		onRemove?: () => void;
@@ -823,13 +825,17 @@ declare module '@wordpress/components' {
 		isDismissible?: boolean;
 		onDismiss?: () => void;
 		actions?: Array<{
-			label: ReactElement;
-			url?: string;
-			onClick?: () => void;
+			label: ReactNode;
 			className?: string;
-			neDefaultClasses?: boolean;
-			variant?: 'primary';
-		}>;
+			noDefaultClasses?: boolean;
+			variant?: 'primary' | 'secondary' | 'link';
+		} & ( {
+			url: string;
+			onClick?: never;
+		} | {
+			url?: never;
+			onClick: MouseEventHandler<HTMLButtonElement>
+		} )>;
 	}
 
 	/**
