@@ -1123,6 +1123,14 @@ declare module '@wordpress/components' {
 		value: string | number;
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/text-highlight/#props
+	 */
+	interface TextHighlight {
+		highlight: string;
+		text: string;
+	}
+
 	type Tab<T extends string> = {
 		name: T;
 		title: string;
@@ -1235,6 +1243,7 @@ declare module '@wordpress/components' {
 	export const SVG: ComponentType<SVG>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
+	export const TextHighlight: ComponentType<TextHighlight>;
 	export const TimePicker: ComponentType<TimePicker>;
 	export const ToggleControl: ComponentType<ToggleControl>;
 	export const ToolbarButton: ComponentType<ToolbarButton>;
@@ -1288,6 +1297,7 @@ declare module '@wordpress/components' {
 		TabPanel: typeof TabPanel;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
+		TextHighlight: ComponentType<TextHighlight>;
 		TimePicker: ComponentType<TimePicker>;
 		ToggleControl: ComponentType<ToggleControl>;
 		ToolbarButton: ComponentType<ToolbarButton>;
