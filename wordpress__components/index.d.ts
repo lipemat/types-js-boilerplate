@@ -92,7 +92,11 @@ declare module '@wordpress/components' {
 	 * Dashicon slug or react element, which renders a SVG.
 	 * like the @wordpress/icons package.
 	 */
-	export type WPBlockTypeIconRender = BlockIcon | ReactElement | null;
+	export type WPBlockTypeIconRender =
+		iconType
+		| SVGProps<SVGSVGElement>
+		| ReactElement
+		| null;
 
 	export type FocusOnMount = 'firstElement' | 'container' | boolean;
 
