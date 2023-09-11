@@ -61,10 +61,15 @@ declare module '@wordpress/block-editor' {
 		description: string;
 	}
 
-	type BlockWrapAttributes = JSX.IntrinsicElements['div'] & {
+	export type BlockEditingMode = 'disabled' | 'contentOnly' | 'default';
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockeditingmode
+	 */
+	type useBlockEditingMode = ( mode?: BlockEditingMode ) => BlockEditingMode;
+
+	type BlockWrapAttributes = React.JSX.IntrinsicElements['div'] & {
 		ref?: MutableRefObject<any>;
 	};
-
 	/**
 	 * Receive HTML props to add to wrapper element when using `apiVersion:2`.
 	 *
@@ -385,6 +390,7 @@ declare module '@wordpress/block-editor' {
 	export const RichTextToolbarButton: ComponentType<RichTextToolbarButton>;
 	export const InnerBlocks: InnerBlocks;
 	export const useBlockDisplayInformation: useBlockDisplayInformation;
+	export const useBlockEditingMode: useBlockEditingMode;
 	export const useBlockProps: useBlockProps;
 	export const useInnerBlocksProps: useInnerBlocksProps;
 
@@ -411,6 +417,7 @@ declare module '@wordpress/block-editor' {
 		RichTextToolbarButton: ComponentType<RichTextToolbarButton>;
 		InnerBlocks: InnerBlocks;
 		useBlockDisplayInformation: useBlockDisplayInformation;
+		useBlockEditingMode: useBlockEditingMode;
 		useBlockProps: useBlockProps;
 		useInnerBlocksProps: useInnerBlocksProps;
 		useSetting: typeof useSetting;

@@ -19,6 +19,7 @@ declare module '@wordpress/data' {
 	import {DependencyList} from 'react';
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
+	import {BlockEditingMode} from '@wordpress/block-editor';
 
 	/**
 	 * @deprecated In favor of CreateBlock;
@@ -386,6 +387,14 @@ not yet been saved.
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockcount
 		 */
 		getBlockCount: ( clientId?: string ) => number;
+		/**
+		 * Returns the block editing mode for a given block.
+		 *
+		 * @param {string} clientId - Block client ID or '' for the root container.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockeditingmode
+		 */
+		getBlockEditingMode: ( clientId?: string ) => BlockEditingMode;
 		/**
 		 * Get index of a root block in the editor or the index
 		 * of an inner block within inner blocks.
@@ -787,7 +796,7 @@ not yet been saved.
 			meta?: { [ key: string ]: any },
 		) => Promise<undefined>;
 		/**
-		 * Replace innerblocks by client id.
+		 * Replace inner blocks by client id.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#replaceinnerblocks
 		 */
@@ -798,7 +807,19 @@ not yet been saved.
 			time: number;
 			type: 'REPLACE_INNER_BLOCKS'
 			updateSelection: boolean;
-		}>
+		}>;
+		/**
+		 * Set the block editing mode for a given block.
+		 *
+		 * @param {string} clientId - Block client ID or '' for the root container.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#setblockeditingmode
+		 */
+		setBlockEditingMode: ( clientId: string, mode: BlockEditingMode ) => Promise<{
+			clientId: string;
+			mode: BlockEditingMode;
+			type: 'SET_BLOCK_EDITING_MODE';
+		}>;
 		/**
 		 * Enable or disabled block selection.
 		 *
@@ -807,6 +828,17 @@ not yet been saved.
 		toggleSelection: ( enabled: boolean ) => Promise<{
 			type: 'TOGGLE_SELECTION',
 			isSelectionEnabled: boolean
+		}>;
+		/**
+		 * Clears the block editing mode for a given block.
+		 *
+		 * @param {string} clientId - Block client ID or '' for the root container.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#unsetblockeditingmode
+		 */
+		unsetBlockEditingMode: ( clientId?: string ) => Promise<{
+			clientId: string;
+			type: 'UNSET_BLOCK_EDITING_MODE';
 		}>;
 		/**
 		 * Update a block's properties.
