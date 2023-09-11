@@ -13,6 +13,7 @@ declare module '@wordpress/commands' {
 		name: string;
 		label: string;
 		searchLabel?: string;
+		// @todo icon became optional staring in WP 6.4.
 		icon: Element;
 		callback: ( ...args: any[] ) => void;
 	}
