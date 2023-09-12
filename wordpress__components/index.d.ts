@@ -785,7 +785,7 @@ declare module '@wordpress/components' {
 		 *
 		 * @default 'menuitem'
 		 */
-		role?: 'menuitem' | 'menuitemcheckbox' | 'menuitemradio';
+		role?: 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'option';
 		/**
 		 * If shortcut is a string, it is expecting the display text. If shortcut is an object,
 		 * it will accept the properties of `display` (string) and `ariaLabel` (string).
