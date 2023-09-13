@@ -32,6 +32,7 @@ declare module '@wordpress/components' {
 		isSmall?: boolean;
 		isTertiary?: boolean;
 		label?: ReactNode;
+		ref?: RefObject<HTMLButtonElement>;
 		shortcut?: shortcutText;
 		showTooltip?: boolean;
 		// Available in WP 6.3+.
@@ -767,7 +768,7 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/menu-item/#props
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/button/types.ts
 	 */
-	interface MenuItem extends ButtonHTMLAttributes<HTMLButtonElement> {
+	type MenuItem = ButtonButton | ButtonLink & {
 		className?: string;
 		children?: ReactNode;
 		info?: string;
