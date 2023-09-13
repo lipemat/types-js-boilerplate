@@ -818,6 +818,32 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/navigable-container/#props
+	 */
+	interface NavigableMenu extends HTMLAttributes<HTMLDivElement> {
+		orientation?: 'vertical' | 'horizontal' | 'both';
+		ref?: RefObject<HTMLDivElement>;
+		/**
+		 * The component children.
+		 */
+		children?: ReactNode;
+		/**
+		 * A boolean which tells the component whether or not to cycle from the end back to the beginning and vice versa.
+		 *
+		 * @default true
+		 */
+		cycle?: boolean;
+		/**
+		 * A callback invoked on the keydown event.
+		 */
+		onKeyDown?: ( event: KeyboardEvent ) => void;
+		/**
+		 * A callback invoked when the menu navigates to one of its children passing the index and child as an argument
+		 */
+		onNavigate?: ( index: number, focusable: HTMLElement ) => void;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/notice/#props
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/notice/types.ts
 	 */
@@ -1159,6 +1185,16 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/navigable-container/#props
+	 */
+	interface TabbableContainer extends Omit<NavigableMenu, 'orientation'> {
+		/**
+		 * Gets an offset, given an event.
+		 */
+		eventToOffset?: ( event: KeyboardEvent ) => -1 | 0 | 1 | undefined;
+	}
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/tab-panel/
 	 */
 	export function TabPanel<TabKeys extends string>( props: PropsWithChildren<{
@@ -1235,6 +1271,7 @@ declare module '@wordpress/components' {
 	export const GuidePage: ComponentType<GuidePage>;
 	export const Icon: ComponentType<Icon>;
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
+	export const NavigableMenu: ComponentType<NavigableMenu>;
 	export const MenuGroup: ComponentType<MenuGroup>;
 	export const MenuItem: ComponentType<MenuItem>;
 	export const Modal: ComponentType<Modal>;
@@ -1253,6 +1290,7 @@ declare module '@wordpress/components' {
 	export const SlotFillProvider: ComponentType<SlotFillProvider>;
 	export const Spinner: ComponentType<Spinner>;
 	export const SVG: ComponentType<SVG>;
+	export const TabbableContainer: ComponentType<TabbableContainer>;
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
 	export const TextHighlight: ComponentType<TextHighlight>;
@@ -1289,6 +1327,7 @@ declare module '@wordpress/components' {
 		MenuGroup: ComponentType<MenuGroup>;
 		MenuItem: ComponentType<MenuItem>;
 		Modal: ComponentType<Modal>;
+		NavigableMenu: ComponentType<NavigableMenu>;
 		Notice: ComponentType<Notice>;
 		Panel: ComponentType<Panel>;
 		PanelBody: ComponentType<PanelBody>;
@@ -1306,6 +1345,7 @@ declare module '@wordpress/components' {
 		SlotFillProvider: ComponentType<SlotFillProvider>;
 		Spinner: ComponentType<Spinner>;
 		SVG: ComponentType<SVG>;
+		TabbableContainer: ComponentType<TabbableContainer>;
 		TabPanel: typeof TabPanel;
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
