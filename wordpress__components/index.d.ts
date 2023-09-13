@@ -913,11 +913,12 @@ declare module '@wordpress/components' {
 	 * Gives a block a border an makes it occupy the minimum standard
 	 * amount of space.
 	 *
-	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/placeholder
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/placeholder/#props
 	 */
 	interface Placeholder extends HTMLAttributes<HTMLDivElement> {
 		icon?: iconType | JSX.Element;
 		label?: ReactNode;
+
 		instructions?: ReactNode;
 		isColumnLayout?: boolean;
 		notices?: ReactNode;
@@ -927,7 +928,7 @@ declare module '@wordpress/components' {
 	/**
 	 * A floating tooltip of any content type.
 	 *
-	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/popover
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/popover/#props
 	 */
 	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
 		// @see example in docs for using anchor.
@@ -937,6 +938,10 @@ declare module '@wordpress/components' {
 		flip?: boolean;
 		focusOnMount?: 'firstElement' | boolean;
 		headerTitle?: string;
+		/**
+		 * Whether to render the popover inline or within the slot.
+		 */
+		inline?: boolean;
 		noArrow?: boolean;
 		offset?: number;
 		onClose?: ( ev: SyntheticEvent<HTMLButtonElement> ) => void;
