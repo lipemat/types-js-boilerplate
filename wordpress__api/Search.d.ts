@@ -12,16 +12,16 @@ declare module '@wordpress/api/search' {
 	/**
 	 * @link https://developer.wordpress.org/rest-api/reference/search-results/#schema
 	 */
-	export interface SearchItem {
+	export interface SearchItem<ST extends string = Exclude<SubType, 'any'>> {
 		id: string | number;
 		title: string;
 		url: string;
 		type: 'post' | 'term' | 'post-format';
-		subtype: 'post' | 'page' | 'category' | 'post_tag';
+		subtype: ST;
 		_links: Links;
 		_embedded?: {
 			self: Array<Post | Category>
-		}
+		};
 	}
 
 	/**
@@ -31,7 +31,7 @@ declare module '@wordpress/api/search' {
 	 *
 	 * @see https://make.wordpress.org/core/2022/10/11/miscellaneous-rest-api-improvements-in-wordpress-6-1/
 	 */
-	export interface SearchQuery<ST extends string = SubType> extends Omit<Global<SearchItem>, '_embed' | 'context'> {
+	export interface SearchQuery<ST extends string = SubType> extends Omit<Global<SearchItem<ST>>, '_embed' | 'context'> {
 		context?: 'view' | 'embed';
 		exclude?: number[];
 		include?: number[];
