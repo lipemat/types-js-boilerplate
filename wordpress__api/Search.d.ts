@@ -31,6 +31,7 @@ declare module '@wordpress/api/search' {
 		url: string;
 		type: T;
 		_links: Links;
+		subtype?: never;
 		_embedded?: {
 			self: [ Category ]
 		};
@@ -41,6 +42,7 @@ declare module '@wordpress/api/search' {
 		title: string;
 		url: string;
 		type: 'post-format';
+		subtype?: never;
 		_links: {
 			collection: Collection[];
 		};
