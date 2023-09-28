@@ -133,7 +133,7 @@ declare module '@wordpress/data' {
 		selectors?: {
 			[Property in keyof Selectors]: SelectorFactory<State, Selectors[Property]>
 		};
-		controls?: Action;
+		controls?: { [ name: string ]: ( ...params: any ) => Promise<any> | any };
 	} ): StoreDescriptor<State, Selectors, Actions>
 
 	export function register<State, Actions extends ActionFunctions, Selectors extends SelectFunctions<State>>( store: StoreDescriptor<State, Selectors, Actions> ): void;
