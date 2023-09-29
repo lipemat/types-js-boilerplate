@@ -91,7 +91,7 @@ declare module '@wordpress/data' {
 
 
 	type ActionValue = { [ key: string ]: any } & { type: string };
-	type ActionFunctions = { [ name: string ]: ( ...params: any ) => ActionValue };
+	type ActionFunctions = { [ name: string ]: ( ...params: any ) => ActionValue | Generator<any, ActionValue, any> };
 	type SelectFunctions<State> = { [ name: string ]: ( ...params: any ) => any }
 	// Selectors receive a prepended `state` parameter.
 	type SelectorFactory<State, S extends ( ...params: any ) => any> = Parameters<S> extends []
@@ -133,7 +133,7 @@ declare module '@wordpress/data' {
 		selectors?: {
 			[Property in keyof Selectors]: SelectorFactory<State, Selectors[Property]>
 		};
-		controls?: Action;
+		controls?: { [ name: string ]: ( ...params: any ) => Promise<any> | any };
 	} ): StoreDescriptor<State, Selectors, Actions>
 
 	export function register<State, Actions extends ActionFunctions, Selectors extends SelectFunctions<State>>( store: StoreDescriptor<State, Selectors, Actions> ): void;
