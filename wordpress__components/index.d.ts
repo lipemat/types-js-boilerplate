@@ -894,7 +894,7 @@ declare module '@wordpress/components' {
 		className?: string;
 		icon?: string;
 		initialOpen?: boolean;
-		title?: string;
+		title?: ReactNode;
 	}
 
 	/**
