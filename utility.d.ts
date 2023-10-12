@@ -12,7 +12,7 @@ declare module '@lipemat/js-boilerplate/utility' {
 	 *
 	 * @example AtLeast<Post, 'author' | 'post_title'> - post_title and author will be required, the rest optional.
 	 */
-	export type AtLeast<T, K extends keyof T> = Partial<T> & Pick<T, K>;
+	export type AtLeast<T, K extends keyof T> = Partial<T> & Required<Pick<T, K>>;
 
 	/**
 	 * Same as `keyof` except only keys whose value of a specified
