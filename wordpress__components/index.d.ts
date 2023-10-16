@@ -806,7 +806,7 @@ declare module '@wordpress/components' {
 		'aria.labelledby'?: string;
 		className?: string;
 		contentLabel?: string;
-		focusOnMount?: boolean;
+		focusOnMount?: boolean | 'firstElement' | 'firstContentElement';
 		isDismissible?: boolean;
 		isFullScreen?: boolean;
 		onRequestClose: () => void;
