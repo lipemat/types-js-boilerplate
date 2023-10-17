@@ -1,4 +1,3 @@
-
 /**
  * Definitions for the `@wordpress/blocks` package.
  *
@@ -20,6 +19,12 @@ declare module '@wordpress/blocks' {
 		| 'integer';
 
 	export type WPBlockVariationScope = 'block' | 'inserter' | 'transform';
+
+	export type WPShortcodeMatch = {
+		tag: string;
+		text: string;
+		index: number;
+	}
 
 	/**
 	 * Pass to `Transform` when transforming a legacy widget
@@ -228,7 +233,7 @@ declare module '@wordpress/blocks' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-transforms/
 	 */
-	export type TransformsFrom<Attr> = {
+	export type TransformsFrom<Attr, T = Attr> = {
 		type: 'enter';
 		regExp: RegExp;
 		transform: ( value: string ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
@@ -252,13 +257,14 @@ declare module '@wordpress/blocks' {
 	} | {
 		type: 'shortcode';
 		tag: string | Array<string>;
-		attributes: {
+		attributes?: {
 			[key in keyof Attr]: AttributeShape &
 			{
 				shortcode?: ( attr: Partial<Attr> ) => dataTypes;
 			};
 		};
-		isMatch: ( attr: Partial<Attr> ) => boolean;
+		isMatch?: ( attr: Partial<Attr> ) => boolean;
+		transform?: ( shortCodeAttr: Partial<T>, shortCode: WPShortcodeMatch ) => Array<CreateBlock<Attr>> | CreateBlock<Attr>;
 		priority?: number;
 	}
 
@@ -436,7 +442,7 @@ declare module '@wordpress/blocks' {
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-transforms/
 		 */
 		transforms?: {
-			from?: Array<Transforms<Transform, Attr> | TransformsFrom<Attr>>;
+			from?: Array<Transforms<Transform, Attr> | TransformsFrom<Attr, Transform>>;
 			to?: Array<TransformsTo<Transform, Attr>>;
 			ungroup?: ( attr: Attr, innerBlocks: Array<CreateBlock<Attr>> ) => Array<CreateBlock<Attr>>;
 		};
