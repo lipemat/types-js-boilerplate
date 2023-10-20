@@ -57,6 +57,10 @@ declare module '@wordpress/components' {
 		slug: string;
 	};
 
+	export type VirtualElement = Pick<Element, 'getBoundingClientRect'> & {
+		ownerDocument?: Document;
+	};
+
 	/**
 	 * Gradient picker component
 	 *
@@ -932,7 +936,7 @@ declare module '@wordpress/components' {
 	 */
 	export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
 		// @see example in docs for using anchor.
-		anchor?: Element;
+		anchor?: Element | VirtualElement | null;
 		animate?: boolean;
 		expandOnMobile?: boolean;
 		flip?: boolean;
