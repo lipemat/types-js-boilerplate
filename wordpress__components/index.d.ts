@@ -629,11 +629,13 @@ declare module '@wordpress/components' {
 	interface Dropdown {
 		className?: string;
 		contentClassName?: string;
+		defaultOpen?: boolean;
 		expandOnMobile?: boolean;
 		focusOnMount?: FocusOnMount;
 		headerTitle?: string;
 		onClose?: () => void;
-		onToggle?: ( open: boolean ) => void;
+		onToggle?: ( willOpen: boolean ) => void;
+		open?: boolean;
 		popoverProps?: PopoverProps;
 		position?: TooltipPosition;
 		renderContent: ( args: Dropdown['renderToggle'] ) => ReactNode;
@@ -642,6 +644,7 @@ declare module '@wordpress/components' {
 			onToggle: () => void;
 			onClose: () => void;
 		} ) => ReactNode;
+		style?: CSSProperties;
 	}
 
 	/**
@@ -651,11 +654,17 @@ declare module '@wordpress/components' {
 		children?: ( args: Dropdown['renderToggle'] ) => ReactNode;
 		className?: string;
 		controls?: Control[];
+		defaultOpen?: boolean;
 		disableOpenOnArrowDown?: boolean;
 		icon?: iconType;
 		label: string;
 		menuProps?: Dropdown;
+		noIcons?: boolean;
+		onToggle?: ( willOpen: boolean ) => void;
+		open?: boolean;
 		popoverProps?: PopoverProps;
+		role?: HTMLAttributes<HTMLElement>[ 'role' ];
+		text?: string;
 		toggleProps?: ButtonButton;
 	}
 
