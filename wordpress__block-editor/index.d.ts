@@ -14,6 +14,17 @@ declare module '@wordpress/block-editor' {
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 
+	export type BlockEditingMode = 'disabled' | 'contentOnly' | 'default';
+
+	export type WPDirectInsertBlock = [
+		blockName: string,
+		blockAttributes: { [ attr: string ]: any }
+	];
+
+	type BlockWrapAttributes = React.JSX.IntrinsicElements['div'] & {
+		ref?: MutableRefObject<any>;
+	};
+
 	/**
 	 * Returns a class based on the context a color is being used and its slug.
 	 *
@@ -61,15 +72,11 @@ declare module '@wordpress/block-editor' {
 		description: string;
 	}
 
-	export type BlockEditingMode = 'disabled' | 'contentOnly' | 'default';
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockeditingmode
 	 */
 	type useBlockEditingMode = ( mode?: BlockEditingMode ) => BlockEditingMode;
 
-	type BlockWrapAttributes = React.JSX.IntrinsicElements['div'] & {
-		ref?: MutableRefObject<any>;
-	};
 	/**
 	 * Receive HTML props to add to wrapper element when using `apiVersion:2`.
 	 *
@@ -353,8 +360,10 @@ declare module '@wordpress/block-editor' {
 	 */
 	type InnerBlock = {
 		allowedBlocks?: string[];
+		defaultBlock: WPDirectInsertBlock;
+		directInsert?: boolean;
 		onChange?: ( blocks: CreateBlock[] ) => void;
-		orientation?: 'horizontal';
+		orientation?: 'horizontal' | 'vertical';
 		placeholder?: ReactElement;
 		prioritizedInserterBlocks?: string[];
 		renderAppender?: boolean | ( () => ReactNode ) | ComponentType<any>;

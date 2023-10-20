@@ -19,7 +19,7 @@ declare module '@wordpress/data' {
 	import {DependencyList} from 'react';
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
-	import {BlockEditingMode} from '@wordpress/block-editor';
+	import {BlockEditingMode, WPDirectInsertBlock} from '@wordpress/block-editor';
 
 	/**
 	 * @deprecated In favor of CreateBlock;
@@ -420,6 +420,11 @@ not yet been saved.
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblocksbyclientid
 		 */
 		getBlocksByClientId: <Attr = { [ key: string ]: any }, I = []>( clientIds: string[] ) => Array<CreateBlock<Attr, I>>;
+		/**
+		 * Returns the block to be directly inserted by the block appender.
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getdirectinsertblock
+		 */
+		getDirectInsertBlock: ( rootClientId?: string ) => WPDirectInsertBlock | null;
 		/**
 		 * Get full list of blocks shown in the block inserter.
 		 *

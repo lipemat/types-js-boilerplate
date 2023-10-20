@@ -268,7 +268,11 @@ declare module '@wordpress/blocks' {
 		priority?: number;
 	}
 
-	export type ChildBlocks<T = any> = Array<[ string, { [ key: string ]: any }?, ( ChildBlocks | CreateBlock<T>[] )? ]>;
+	export type ChildBlocks<T = any> = Array<[
+		blockName: string,
+		blockAttribute?: { [ key: string ]: any },
+		childBlocks?: ( ChildBlocks | CreateBlock<T>[] )
+	]>;
 
 
 	/**
