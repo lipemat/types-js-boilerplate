@@ -6,7 +6,7 @@
  */
 declare module '@wordpress/components' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
+	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
@@ -806,18 +806,27 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/modal/#props
 	 */
 	interface Modal {
-		'aria.describedby'?: string;
-		'aria.labelledby'?: string;
+		aria?: {
+			describedby?: string;
+			labelledby?: string;
+		};
+		bodyOpenClassName?: string;
 		className?: string;
+		closeButtonLabel?: string;
 		contentLabel?: string;
 		focusOnMount?: boolean | 'firstElement' | 'firstContentElement';
+		headerActions?: ReactNode;
+		icon?: ReactNode;
 		isDismissible?: boolean;
 		isFullScreen?: boolean;
-		onRequestClose: () => void;
+		onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+		onRequestClose: ( event?: KeyboardEvent<HTMLDivElement> | SyntheticEvent ) => void;
 		overlayClassName?: string;
-		role?: string;
+		role?: AriaRole;
 		shouldCloseOnClickOutside?: boolean;
 		shouldCloseOnEsc?: boolean;
+		size?: 'small' | 'medium' | 'large' | 'fill';
+		style?: CSSProperties;
 		title?: string;
 	}
 
