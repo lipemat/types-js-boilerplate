@@ -6,7 +6,7 @@
  */
 declare module '@wordpress/components' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
+	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
 	import {Status} from '@wordpress/notices';
 	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
@@ -51,11 +51,15 @@ declare module '@wordpress/components' {
 	/** @deprecated in favor of ColorOption[] **/
 	export type colorOptions = Array<ColorOption>;
 
+	export type DragDirection = 'n' | 's' | 'e' | 'w';
+
 	export type GradientOption = {
 		gradient: string;
 		name: string;
 		slug: string;
 	};
+
+	export type LabelPosition = 'top' | 'bottom' | 'side' | 'edge';
 
 	export type VirtualElement = Pick<Element, 'getBoundingClientRect'> & {
 		ownerDocument?: Document;
@@ -883,6 +887,28 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/number-control/
+	 */
+	interface NumberControl extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+		dragDirection?: DragDirection;
+		dragThreshold?: number;
+		isDragEnabled?: boolean;
+		isShiftStepEnabled?: boolean;
+		label?: ReactNode;
+		labelPosition?: LabelPosition;
+		max?: number;
+		min?: number;
+		onChange?: ( nextValue: string | undefined, extra: { event: SyntheticEvent } ) => void;
+		required?: boolean;
+		shiftStep?: number;
+		spinControls?: 'none' | 'native' | 'custom';
+		spinFactor?: number;
+		step?: number;
+		type?: HTMLInputTypeAttribute;
+		value?: number | string;
+	}
+
+	/**
 	 * Panel commonly used within InspectorControls.
 	 *
 	 * @see @wordpress/block-editor.InspectorControls
@@ -1294,6 +1320,7 @@ declare module '@wordpress/components' {
 	export const MenuItem: ComponentType<MenuItem>;
 	export const Modal: ComponentType<Modal>;
 	export const Notice: ComponentType<Notice>;
+	export const NumberControl: ComponentType<NumberControl>;
 	export const Panel: ComponentType<Panel>;
 	export const PanelBody: ComponentType<PanelBody>;
 	export const PanelRow: ComponentType<PanelRow>;
@@ -1347,6 +1374,7 @@ declare module '@wordpress/components' {
 		Modal: ComponentType<Modal>;
 		NavigableMenu: ComponentType<NavigableMenu>;
 		Notice: ComponentType<Notice>;
+		NumberControl: ComponentType<NumberControl>;
 		Panel: ComponentType<Panel>;
 		PanelBody: ComponentType<PanelBody>;
 		PanelRow: ComponentType<PanelRow>;
