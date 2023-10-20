@@ -27,6 +27,8 @@ declare module '@wordpress/core-data' {
 		editedRecord: Partial<RecordType>;
 		/** Apply local (in-browser) edits to the edited entity record */
 		edit: ( diff: Partial<RecordType> ) => void;
+		/** The edits to the edited entity record */
+		edits: Partial<RecordType>;
 		/** Persist the edits to the server */
 		save: () => Promise<void>;
 		/**
