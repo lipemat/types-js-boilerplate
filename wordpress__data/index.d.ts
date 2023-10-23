@@ -19,7 +19,7 @@ declare module '@wordpress/data' {
 	import {DependencyList} from 'react';
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
-	import {BlockEditingMode, WPDirectInsertBlock} from '@wordpress/block-editor';
+	import {BlockEditingMode} from '@wordpress/block-editor';
 
 	/**
 	 * @deprecated In favor of CreateBlock;
@@ -91,7 +91,9 @@ declare module '@wordpress/data' {
 
 
 	type ActionValue = { [ key: string ]: any } & { type: string };
-	type ActionFunctions = { [ name: string ]: ( ...params: any ) => ActionValue | Generator<any, ActionValue, any> };
+	type ActionFunctions = {
+		[ name: string ]: ( ...params: any ) => ActionValue | Generator<any, ActionValue, any>
+	};
 	type SelectFunctions<State> = { [ name: string ]: ( ...params: any ) => any }
 	// Selectors receive a prepended `state` parameter.
 	type SelectorFactory<State, S extends ( ...params: any ) => any> = Parameters<S> extends []
@@ -362,7 +364,7 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectors
 	 * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__block-editor/store/selectors.d.ts
 	 */
-	type CoreBlockEditor = {
+	export type CoreBlockEditor = {
 		/**
 		 * Returns a block given its client ID.
 		 *
@@ -419,12 +421,9 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblocksbyclientid
 		 */
-		getBlocksByClientId: <Attr = { [ key: string ]: any }, I = []>( clientIds: string[] ) => Array<CreateBlock<Attr, I>>;
-		/**
-		 * Returns the block to be directly inserted by the block appender.
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getdirectinsertblock
-		 */
-		getDirectInsertBlock: ( rootClientId?: string ) => WPDirectInsertBlock | null;
+		getBlocksByClientId: <Attr = {
+			[ key: string ]: any
+		}, I = []>( clientIds: string[] ) => Array<CreateBlock<Attr, I>>;
 		/**
 		 * Get full list of blocks shown in the block inserter.
 		 *
@@ -720,7 +719,7 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#actions
 	 * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__block-editor/store/actions.d.ts
 	 */
-	export function dispatch( store: 'core/block-editor' ): {
+	export type CoreBlockEditorDispatch = {
 		/**
 		 * Select a block in the editor based on id.
 		 *
@@ -911,6 +910,16 @@ not yet been saved.
 	}
 
 
+	/**
+	 * The Block Editor’s Data
+	 *
+	 * @notice The Global types have incorrect non-promise returns.
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#actions
+	 * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__block-editor/store/actions.d.ts
+	 */
+	export function dispatch( store: 'core/block-editor' ): CoreBlockEditorDispatch;
+
+
 	export function dispatch( store: 'core/commands' ): {
 		open: () => Promise<{
 			type: 'OPEN';
@@ -1004,6 +1013,7 @@ not yet been saved.
 		togglePublishSidebar: ( key?: string ) => any;
 		updatePreferredStyleVariations: ( key?: string ) => any;
 	}
+
 
 	/**
 	 * The Post Editor’s Data
@@ -1173,7 +1183,7 @@ not yet been saved.
 	export function dispatch<Methods extends ActionFunctions>( store: string ): Methods;
 
 	type withDispatch = <T, AddedProps = T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => AddedProps ) => ( component: ComponentType<T> ) => ComponentType<T>;
-	type withSelect = <T, AddedProps = T>( callback: ( callback: ( selectFunction: typeof select ) => T, ownProps: T ) => AddedProps ) => ( component: ComponentType<T> ) => ComponentType<T>;
+
 
 	export const AsyncModeProvider: ComponentType<{
 		value: boolean
@@ -1187,8 +1197,30 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
 	 */
 	export const useSelect: typeof select;
-	export const withDispatch: withDispatch;
-	export const withSelect: withSelect;
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#withdispatch
+	 */
+	export function withDispatch<T, AddedProps = Partial<T>>(
+		callback: (
+			dispatchFunction: typeof dispatch,
+			ownProps: T,
+			extra: {
+				select: typeof select
+			}
+		) => AddedProps
+	): ( component: ComponentType<T> ) => ComponentType<T & AddedProps>
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#withselect
+	 */
+	export function withSelect<T, AddedProps = Partial<T>>(
+		callback: (
+			selectFunction: typeof select,
+			ownProps: T
+		) => AddedProps
+	): ( component: ComponentType<T> ) => ComponentType<T & AddedProps>;
+
 
 	/**
 	 * Subscribe to any state change.
@@ -1210,7 +1242,7 @@ not yet been saved.
 		subscribe: typeof subscribe;
 		useDispatch: typeof dispatch;
 		useSelect: typeof select;
-		withDispatch: withDispatch;
-		withSelect: withSelect;
+		withDispatch: typeof withDispatch;
+		withSelect: typeof withSelect;
 	}
 }
