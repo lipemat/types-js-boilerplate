@@ -1201,7 +1201,7 @@ not yet been saved.
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#withdispatch
 	 */
-	export function withDispatch<T, AddedProps = Partial<T>>(
+	export function withDispatch<T, AddedProps>(
 		callback: (
 			dispatchFunction: typeof dispatch,
 			ownProps: T,
@@ -1214,7 +1214,7 @@ not yet been saved.
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#withselect
 	 */
-	export function withSelect<T, AddedProps = Partial<T>>(
+	export function withSelect<T, AddedProps>(
 		callback: (
 			selectFunction: typeof select,
 			ownProps: T
