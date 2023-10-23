@@ -141,6 +141,12 @@ declare module '@wordpress/data' {
 	export function register<State, Actions extends ActionFunctions, Selectors extends SelectFunctions<State>>( store: StoreDescriptor<State, Selectors, Actions> ): void;
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#subscribe
+	 */
+	export function subscribe( listener: () => void, storeNameOrDescriptor?: string | StoreDescriptor<any, any, any> ): () => void;
+
+
+	/**
 	 * Selectors shared by all stores.
 	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/data/src/redux-store/metadata/selectors.js
@@ -1182,9 +1188,9 @@ not yet been saved.
 
 	export function dispatch<Methods extends ActionFunctions>( store: string ): Methods;
 
-	type withDispatch = <T, AddedProps = T>( callback: ( dispatchFunction: typeof dispatch, ownProps: T, {select: select} ) => AddedProps ) => ( component: ComponentType<T> ) => ComponentType<T>;
-
-
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#asyncmodeprovider
+	 */
 	export const AsyncModeProvider: ComponentType<{
 		value: boolean
 	}>;
@@ -1221,20 +1227,8 @@ not yet been saved.
 		) => AddedProps
 	): ( component: ComponentType<T> ) => ComponentType<T & AddedProps>;
 
-
-	/**
-	 * Subscribe to any state change.
-	 *
-	 * Returns an `unsubscribe` function.
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#subscribe
-	 */
-	export function subscribe(): () => void;
-
 	export default interface Data {
-		AsyncModeProvider: ComponentType<{
-			value: boolean
-		}>;
+		AsyncModeProvider: typeof AsyncModeProvider;
 		createReduxStore: typeof createReduxStore;
 		dispatch: typeof dispatch;
 		register: typeof register;
