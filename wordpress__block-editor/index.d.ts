@@ -360,7 +360,7 @@ declare module '@wordpress/block-editor' {
 	 */
 	type InnerBlock = {
 		allowedBlocks?: string[];
-		defaultBlock: WPDirectInsertBlock;
+		defaultBlock?: WPDirectInsertBlock;
 		directInsert?: boolean;
 		onChange?: ( blocks: CreateBlock[] ) => void;
 		orientation?: 'horizontal' | 'vertical';
