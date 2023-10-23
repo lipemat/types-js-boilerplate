@@ -93,7 +93,7 @@ declare module '@wordpress/blocks' {
 			// Special meta type with `meta` requirement.
 			source: 'meta';
 			// Meta key to store/retrieve data when using `source:'meta'`.
-			meta: keyof Attr;
+			meta: string;
 		}
 	}
 
