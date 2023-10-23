@@ -27,42 +27,42 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["@types/codemirror", "npm:5.60.8"],\
-            ["@types/jquery", "npm:3.5.16"],\
-            ["@types/react", "npm:18.2.19"],\
-            ["@types/react-dom", "npm:18.2.7"],\
-            ["@types/tinymce", "npm:4.6.5"],\
-            ["@types/webpack-env", "npm:1.18.1"],\
-            ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"]\
+            ["@types/codemirror", "npm:5.60.12"],\
+            ["@types/jquery", "npm:3.5.25"],\
+            ["@types/react", "npm:18.2.31"],\
+            ["@types/react-dom", "npm:18.2.14"],\
+            ["@types/tinymce", "npm:4.6.7"],\
+            ["@types/webpack-env", "npm:1.18.3"],\
+            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
           ],\
           "linkType": "SOFT"\
         }]\
       ]],\
       ["@types/codemirror", [\
-        ["npm:5.60.8", {\
-          "packageLocation": "./.yarn/cache/@types-codemirror-npm-5.60.8-20dc6b1346-bc3a63eab0.zip/node_modules/@types/codemirror/",\
+        ["npm:5.60.12", {\
+          "packageLocation": "./.yarn/cache/@types-codemirror-npm-5.60.12-e617a7d63c-dff22f32ea.zip/node_modules/@types/codemirror/",\
           "packageDependencies": [\
-            ["@types/codemirror", "npm:5.60.8"],\
-            ["@types/tern", "npm:0.23.4"]\
+            ["@types/codemirror", "npm:5.60.12"],\
+            ["@types/tern", "npm:0.23.6"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/estree", [\
-        ["npm:1.0.1", {\
-          "packageLocation": "./.yarn/cache/@types-estree-npm-1.0.1-4c9469c165-e9aa175eac.zip/node_modules/@types/estree/",\
+        ["npm:1.0.3", {\
+          "packageLocation": "./.yarn/cache/@types-estree-npm-1.0.3-716b9810bd-f21a544899.zip/node_modules/@types/estree/",\
           "packageDependencies": [\
-            ["@types/estree", "npm:1.0.1"]\
+            ["@types/estree", "npm:1.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/jquery", [\
-        ["npm:3.5.16", {\
-          "packageLocation": "./.yarn/cache/@types-jquery-npm-3.5.16-62a6b7d27d-13c995f15d.zip/node_modules/@types/jquery/",\
+        ["npm:3.5.25", {\
+          "packageLocation": "./.yarn/cache/@types-jquery-npm-3.5.25-c8cd048d55-912ce42124.zip/node_modules/@types/jquery/",\
           "packageDependencies": [\
-            ["@types/jquery", "npm:3.5.16"],\
-            ["@types/sizzle", "npm:2.3.3"]\
+            ["@types/jquery", "npm:3.5.25"],\
+            ["@types/sizzle", "npm:2.3.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -72,91 +72,91 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@types/lipemat__js-boilerplate", "workspace:."],\
-            ["@types/codemirror", "npm:5.60.8"],\
-            ["@types/jquery", "npm:3.5.16"],\
-            ["@types/react", "npm:18.2.19"],\
-            ["@types/react-dom", "npm:18.2.7"],\
-            ["@types/tinymce", "npm:4.6.5"],\
-            ["@types/webpack-env", "npm:1.18.1"],\
-            ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"]\
+            ["@types/codemirror", "npm:5.60.12"],\
+            ["@types/jquery", "npm:3.5.25"],\
+            ["@types/react", "npm:18.2.31"],\
+            ["@types/react-dom", "npm:18.2.14"],\
+            ["@types/tinymce", "npm:4.6.7"],\
+            ["@types/webpack-env", "npm:1.18.3"],\
+            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
           ],\
           "linkType": "SOFT"\
         }]\
       ]],\
       ["@types/prop-types", [\
-        ["npm:15.7.5", {\
-          "packageLocation": "./.yarn/cache/@types-prop-types-npm-15.7.5-2aa48aa177-5b43b8b154.zip/node_modules/@types/prop-types/",\
+        ["npm:15.7.9", {\
+          "packageLocation": "./.yarn/cache/@types-prop-types-npm-15.7.9-6ec0dd0ab3-c7591d3ff7.zip/node_modules/@types/prop-types/",\
           "packageDependencies": [\
-            ["@types/prop-types", "npm:15.7.5"]\
+            ["@types/prop-types", "npm:15.7.9"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/react", [\
-        ["npm:18.2.19", {\
-          "packageLocation": "./.yarn/cache/@types-react-npm-18.2.19-821bb174e8-1ef657b90c.zip/node_modules/@types/react/",\
+        ["npm:18.2.31", {\
+          "packageLocation": "./.yarn/cache/@types-react-npm-18.2.31-6e2d07ce27-b11be8e391.zip/node_modules/@types/react/",\
           "packageDependencies": [\
-            ["@types/react", "npm:18.2.19"],\
-            ["@types/prop-types", "npm:15.7.5"],\
-            ["@types/scheduler", "npm:0.16.3"],\
+            ["@types/react", "npm:18.2.31"],\
+            ["@types/prop-types", "npm:15.7.9"],\
+            ["@types/scheduler", "npm:0.16.5"],\
             ["csstype", "npm:3.1.2"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/react-dom", [\
-        ["npm:18.2.7", {\
-          "packageLocation": "./.yarn/cache/@types-react-dom-npm-18.2.7-a20ba684a5-e02ea90828.zip/node_modules/@types/react-dom/",\
+        ["npm:18.2.14", {\
+          "packageLocation": "./.yarn/cache/@types-react-dom-npm-18.2.14-cdfaaeda19-890289c70d.zip/node_modules/@types/react-dom/",\
           "packageDependencies": [\
-            ["@types/react-dom", "npm:18.2.7"],\
-            ["@types/react", "npm:18.2.19"]\
+            ["@types/react-dom", "npm:18.2.14"],\
+            ["@types/react", "npm:18.2.31"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/scheduler", [\
-        ["npm:0.16.3", {\
-          "packageLocation": "./.yarn/cache/@types-scheduler-npm-0.16.3-887bfc0086-2b0aec39c2.zip/node_modules/@types/scheduler/",\
+        ["npm:0.16.5", {\
+          "packageLocation": "./.yarn/cache/@types-scheduler-npm-0.16.5-59f95de675-5aae67331b.zip/node_modules/@types/scheduler/",\
           "packageDependencies": [\
-            ["@types/scheduler", "npm:0.16.3"]\
+            ["@types/scheduler", "npm:0.16.5"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/sizzle", [\
-        ["npm:2.3.3", {\
-          "packageLocation": "./.yarn/cache/@types-sizzle-npm-2.3.3-9403924950-586a9fb1f6.zip/node_modules/@types/sizzle/",\
+        ["npm:2.3.5", {\
+          "packageLocation": "./.yarn/cache/@types-sizzle-npm-2.3.5-7c91419052-1c2609a9be.zip/node_modules/@types/sizzle/",\
           "packageDependencies": [\
-            ["@types/sizzle", "npm:2.3.3"]\
+            ["@types/sizzle", "npm:2.3.5"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/tern", [\
-        ["npm:0.23.4", {\
-          "packageLocation": "./.yarn/cache/@types-tern-npm-0.23.4-9168cf1c58-d8fd304f14.zip/node_modules/@types/tern/",\
+        ["npm:0.23.6", {\
+          "packageLocation": "./.yarn/cache/@types-tern-npm-0.23.6-4eaa8f2538-8af409516b.zip/node_modules/@types/tern/",\
           "packageDependencies": [\
-            ["@types/tern", "npm:0.23.4"],\
-            ["@types/estree", "npm:1.0.1"]\
+            ["@types/tern", "npm:0.23.6"],\
+            ["@types/estree", "npm:1.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/tinymce", [\
-        ["npm:4.6.5", {\
-          "packageLocation": "./.yarn/cache/@types-tinymce-npm-4.6.5-892e7d4c2b-5db7fe352f.zip/node_modules/@types/tinymce/",\
+        ["npm:4.6.7", {\
+          "packageLocation": "./.yarn/cache/@types-tinymce-npm-4.6.7-9cca8e73ea-94febf4cee.zip/node_modules/@types/tinymce/",\
           "packageDependencies": [\
-            ["@types/tinymce", "npm:4.6.5"],\
-            ["@types/jquery", "npm:3.5.16"]\
+            ["@types/tinymce", "npm:4.6.7"],\
+            ["@types/jquery", "npm:3.5.25"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/webpack-env", [\
-        ["npm:1.18.1", {\
-          "packageLocation": "./.yarn/cache/@types-webpack-env-npm-1.18.1-73a2ecf677-3173c06976.zip/node_modules/@types/webpack-env/",\
+        ["npm:1.18.3", {\
+          "packageLocation": "./.yarn/cache/@types-webpack-env-npm-1.18.3-82c476a9d1-f24e82485d.zip/node_modules/@types/webpack-env/",\
           "packageDependencies": [\
-            ["@types/webpack-env", "npm:1.18.1"]\
+            ["@types/webpack-env", "npm:1.18.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -171,10 +171,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["typescript", [\
-        ["patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071", {\
-          "packageLocation": "./.yarn/cache/typescript-patch-bd21d74a9d-f53bfe97f7.zip/node_modules/typescript/",\
+        ["patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441", {\
+          "packageLocation": "./.yarn/cache/typescript-patch-2e8dbfb8ab-0f4da2f15e.zip/node_modules/typescript/",\
           "packageDependencies": [\
-            ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"]\
+            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
           ],\
           "linkType": "HARD"\
         }]\
