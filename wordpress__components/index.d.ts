@@ -1063,6 +1063,19 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * A wrapper component that maintains its aspect ratio when resized.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/responsive-wrapper/
+	 */
+	interface ResponsiveWrapper {
+		children: ReactElement;
+		isInline?: boolean;
+		naturalHeight?: number;
+		naturalWidth?: number;
+	}
+
+
+	/**
 	 * Select Control
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/select-control/
@@ -1338,6 +1351,7 @@ declare module '@wordpress/components' {
 	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 	export const RangeControl: ComponentType<RangeControl>;
+	export const ResponsiveWrapper: ComponentType<ResponsiveWrapper>;
 	export const SearchControl: ComponentType<SearchControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
@@ -1392,6 +1406,7 @@ declare module '@wordpress/components' {
 		Popover: ComponentType<PopoverProps>;
 		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 		RangeControl: ComponentType<RangeControl>;
+		ResponsiveWrapper: ComponentType<ResponsiveWrapper>;
 		SelectControl: typeof SelectControl;
 		SearchControl: ComponentType<SearchControl>;
 		ServerSideRender: ComponentType<ServerSideRender>;
