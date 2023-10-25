@@ -37,7 +37,7 @@ declare module '@wordpress/blocks' {
 		instance: {
 			encoded: string;
 			hash: string;
-			raw: Attr;
+			raw?: Attr;
 		};
 		__internalWidgetId?: string;
 	}
