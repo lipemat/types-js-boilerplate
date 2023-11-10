@@ -3,6 +3,8 @@
  *
  * @note You probably don't need to use this.
  *
+ * @deprecated Gutenberg has remove all uses of this package and documentation.
+ *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
  */
 declare module '@wordpress/element' {
@@ -10,10 +12,19 @@ declare module '@wordpress/element' {
 	import {useEffect as reactUseEffect, useState as reactUseState} from 'react';
 	import {render as reactRender} from 'react-dom';
 
+	/**
+	 * @deprecated
+	 */
 	export const Fragment: ComponentType<{}>;
 
+	/**
+	 * @deprecated
+	 */
 	export const useEffect: typeof reactUseEffect;
 
+	/**
+	 * @deprecated
+	 */
 	export const useState: typeof reactUseState;
 
 	/**
