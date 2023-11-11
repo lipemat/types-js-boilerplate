@@ -429,7 +429,7 @@ not yet been saved.
 		 */
 		getBlocksByClientId: <Attr = {
 			[ key: string ]: any
-		}, I = []>( clientIds: string[] ) => Array<CreateBlock<Attr, I>>;
+		}, I = []>( clientIds: string[] ) => Array<CreateBlock<Attr, I> | null>;
 		/**
 		 * Get full list of blocks shown in the block inserter.
 		 *
