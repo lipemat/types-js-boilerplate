@@ -671,10 +671,10 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
 	 */
-	export function Fill<P = {}>( props: PropsWithChildren<{
+	export function Fill<P = {}>( props: {
 		children?: ReactNode | ( ( fillProps: P ) => ReactNode )
 		name?: string;
-	}>, context?: any ): ReactElement<any, any> | null;
+	}, context?: any ): ReactElement<any, any> | null;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/form-file-upload/
