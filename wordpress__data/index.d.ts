@@ -1,3 +1,4 @@
+
 /**
  * Definitions for the `@wordpress/data` package.
  *
@@ -8,8 +9,9 @@
  * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/data
  */
 declare module '@wordpress/data' {
+	import {BlockIcon} from '@wordpress/blocks';
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {BlockSettings, BlockVariation, CreateBlock, createBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
+	import {BlockSettings, BlockVariation, CreateBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
 	import {PostEditing} from '@wordpress/edit-post';
 	import {Taxonomy} from '@wordpress/api/taxonomies';
 	import {Settings} from '@wordpress/api/settings';
@@ -20,6 +22,12 @@ declare module '@wordpress/data' {
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
 	import {BlockEditingMode} from '@wordpress/block-editor';
+
+	export type WPBlockCategory = {
+		icon: BlockIcon | null;
+		slug: string;
+		title: string;
+	}
 
 	/**
 	 * @deprecated In favor of CreateBlock;
@@ -635,6 +643,12 @@ not yet been saved.
 		 */
 		getBlockVariations: <Attr = Object, V extends string = string>( name: string, scope?: WPBlockVariationScope ) => Array<BlockVariation<Attr, V> | undefined>;
 		/**
+		 * Returns all the available block categories.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getcategories
+		 */
+		getCategories: () => WPBlockCategory[];
+		/**
 		 * Get a blocks default variation by name.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getdefaultblockvariation
@@ -646,7 +660,6 @@ not yet been saved.
 		getActiveBlockVariation: () => any;
 		getBlockStyles: () => any;
 		getBlockSupport: () => any;
-		getCategories: () => any;
 		getChildBlockNames: () => any;
 		getCollections: () => any;
 		getDefaultBlockName: () => any;

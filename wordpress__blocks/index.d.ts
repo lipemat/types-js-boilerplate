@@ -300,6 +300,11 @@ declare module '@wordpress/blocks' {
 	export const getBlockSupport: CoreBlocks['getBlockSupport'];
 
 	/**
+	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
+	 */
+	export const getCategories: CoreBlocks['getCategories'];
+
+	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#hasblocksupport
 	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
 	 */
@@ -333,13 +338,6 @@ declare module '@wordpress/blocks' {
 	 * @link https://github.dev/WordPress/gutenberg/tree/trunk/packages/blocks/src/api
 	 */
 	export const getGroupingBlockName: CoreBlocks['getGroupingBlockName'];
-
-
-	export function getCategories<Category extends string = ''>(): Array<{
-		icon: BlockIcon | null;
-		slug: BlockCategory<Category>;
-		title: string;
-	}>
 
 	export type IconObject = {
 		// Specifying a background color to appear with the icon e.g.,: in the inserter.
