@@ -15,7 +15,7 @@ declare module '@wordpress/data' {
 	import {PostEditing} from '@wordpress/edit-post';
 	import {Taxonomy} from '@wordpress/api/taxonomies';
 	import {Settings} from '@wordpress/api/settings';
-	import {Type} from '@wordpress/api/types';
+	import {Type, TypesQuery} from '@wordpress/api/types';
 	import {Media} from '@wordpress/api/media';
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
 	import {DependencyList} from 'react';
@@ -181,7 +181,7 @@ declare module '@wordpress/data' {
 		getMedia: ( id: number ) => Media;
 		getMediaItems: () => Media[ ];
 		getPostType: ( slug: string ) => Type<'edit'>;
-		getPostTypes: () => Type<'edit'>[];
+		getPostTypes: ( args?: TypesQuery ) => Type<'edit'>[];
 		getSite: () => Settings;
 		getTaxonomies: () => Array<Taxonomy<'edit'>> | undefined;
 		getTaxonomy: ( slug: string ) => Taxonomy<'edit'> | undefined;

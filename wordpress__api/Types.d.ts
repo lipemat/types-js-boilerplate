@@ -87,8 +87,13 @@ declare module '@wordpress/api/types' {
 	/**
 	 * List Types.
 	 *
+	 * The `page` and `per_page` arguments are not documented, but are used
+	 * throughout Gutenberg.
+	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/post-types/#retrieve-a-type-2
 	 */
 	export interface TypesQuery extends Global<Type> {
+		page?: number;
+		per_page?: number;
 	}
 }
