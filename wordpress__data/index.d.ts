@@ -263,6 +263,11 @@ not yet been saved.
 		 */
 		getSelectedBlockClientId: () => null | string;
 		/**
+		 * Prefer using the `block-editor` store.
+		 * @related core/block-editor store.
+		 */
+		hasSelectedInnerBlock: ( clientId: string, deep?: boolean ) => boolean;
+		/**
 		 * Is the current post locked.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#isPostLocked
@@ -335,7 +340,6 @@ not yet been saved.
 		hasMultiSelection: () => any;
 		hasNonPostEntityChanges: () => any;
 		hasSelectedBlock: () => any;
-		hasSelectedInnerBlock: () => any;
 		isAncestorMultiSelected: () => any;
 		isAutosavingPost: () => any;
 		isBlockInsertionPointVisible: () => any;
@@ -484,12 +488,12 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#hasselectedinnerblock
 		 */
-		hasSelectedInnerBlock: ( string: BlockClientId, deep?: boolean ) => boolean;
+		hasSelectedInnerBlock: ( clientId: string, deep?: boolean ) => boolean;
 
 		// @todo properly type the rest of these as needed.
 		areInnerBlocksControlled: () => any;
 		canInsertBlockType: () => any;
-		canInsertBlocks: () => any;
+		canInsertBlocks: () => any; N
 		didAutomaticChange: () => any;
 		getAdjacentBlockClientId: () => any;
 		getBlockHierarchyRootClientId: () => any;
