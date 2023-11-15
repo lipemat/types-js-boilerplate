@@ -25,8 +25,18 @@ declare module '@wordpress/plugins' {
 		scope: string;
 	}
 
+	export interface withPluginContextType {
+		name: string,
+		icon: WPBlockTypeIconRender;
+	}
+
+	export interface PluginSettings extends Partial <Omit<WPPlugin, 'name'>> {
+	}
+
 	/**
 	 * Returns a registered plugin settings.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/#getplugin
 	 *
 	 * @param {string} name Plugin name.
 	 *
@@ -36,6 +46,8 @@ declare module '@wordpress/plugins' {
 
 	/**
 	 * Returns all registered plugins without a scope or for a given scope.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/#getplugins
 	 *
 	 * @param {string} [scope] The scope to be used when rendering inside
 	 *                         a plugin area. No scope by default.
@@ -47,60 +59,24 @@ declare module '@wordpress/plugins' {
 	/**
 	 * A component that renders all plugin fills in a hidden div.
 	 *
-	 * @example
-	 * ```js
-	 * import { PluginArea } from '@wordpress/plugins';
-	 *
-	 * const Layout = () => (
-	 * 	<div>
-	 * 		Content of the page
-	 * 		<PluginArea scope="my-page" />
-	 * 	</div>
-	 * );
-	 * ```
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/#pluginarea
 	 */
 	interface PluginArea {
 		scope: string;
 	}
 
-	export interface PluginSettings extends Partial <Omit<WPPlugin, 'name'>> {
-	}
 
 	/**
 	 * Registers a plugin to the editor.
 	 *
+	 @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/#registerplugin
+	 *
 	 * @param {string}   name     A string identifying the plugin.Must be
 	 *                            unique across all registered plugins.
+	 *                            May only contain lowercase letters
+	 *                            and d
 	 * @param {WPPlugin} settings The settings for this plugin.
 	 *
-	 * @example
-	 * ```js
-	 * import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/edit-post';
-	 * import { registerPlugin } from '@wordpress/plugins';
-	 * import { more } from '@wordpress/icons';
-	 *
-	 * const Component = () => (
-	 * 	<>
-	 * 		<PluginSidebarMoreMenuItem
-	 * 			target="sidebar-name"
-	 * 		>
-	 * 			My Sidebar
-	 * 		</PluginSidebarMoreMenuItem>
-	 * 		<PluginSidebar
-	 * 			name="sidebar-name"
-	 * 			title="My Sidebar"
-	 * 		>
-	 * 			Content of the sidebar
-	 * 		</PluginSidebar>
-	 * 	</>
-	 * );
-	 *
-	 * registerPlugin( 'plugin-name', {
-	 * 	icon: more,
-	 * 	render: Component,
-	 * 	scope: 'my-page',
-	 * } );
-	 * ```
 	 *
 	 * @return {WPPlugin} The final plugin settings object.
 	 */
@@ -109,28 +85,20 @@ declare module '@wordpress/plugins' {
 	/**
 	 * Unregisters a plugin by name.
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/#unregisterplugin
+	 *
 	 * @param {string} name Plugin name.
-	 *
-	 * @example
-	 * ```js
-	 * import { unregisterPlugin } from '@wordpress/plugins';
-	 *
-	 * unregisterPlugin( 'plugin-name' );
-	 * ```
 	 *
 	 * @return {?WPPlugin} The previous plugin settings object, if it has been
 	 *                     successfully unregistered; otherwise `undefined`.
 	 */
 	export function unregisterPlugin( name: string ): WPPlugin | undefined;
 
-	export interface withPluginContextType {
-		name: string,
-		icon: WPBlockTypeIconRender;
-	}
-
 	/**
 	 * A Higher Order Component used to inject Plugin context to the
 	 * wrapped component.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/#withplugincontext
 	 *
 	 * @param {Function} mapContextToProps Function called on every context change,
 	 *                                     expected to return object of props to
@@ -146,7 +114,7 @@ declare module '@wordpress/plugins' {
 	export default interface Plugins {
 		getPlugin: typeof getPlugin;
 		getPlugins: typeof getPlugins;
-		PluginArea: ComponentClass<PluginArea>;
+		PluginArea: typeof PluginArea;
 		registerPlugin: typeof registerPlugin;
 		unregisterPlugin: typeof unregisterPlugin;
 		widthPluginContext: typeof withPluginContext;
