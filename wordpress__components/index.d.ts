@@ -42,6 +42,15 @@ declare module '@wordpress/components' {
 		variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
 	}
 
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/color-indicator/
+	 */
+	interface ColorIndicator {
+		className?: string;
+		colorValue: CSSProperties[ 'background' ];
+	}
+
+
 	export type ColorOption = {
 		color: string;
 		name: string;
@@ -1321,6 +1330,7 @@ declare module '@wordpress/components' {
 	export const BaseControl: ComponentType<BaseControl>;
 	export const Button: ComponentType<ButtonLink | ButtonButton>;
 	export const CheckboxControl: ComponentType<CheckboxControl>;
+	export const ColorIndicator: ComponentType<ColorIndicator>;
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPicker: ComponentType<ColorPicker>;
 	export const Dashicon: ComponentType<Dashicon>;
@@ -1374,6 +1384,7 @@ declare module '@wordpress/components' {
 		BaseControl: ComponentType<BaseControl>;
 		Button: ComponentType<ButtonLink | ButtonButton>;
 		CheckboxControl: ComponentType<CheckboxControl>;
+		ColorIndicator: ComponentType<ColorIndicator>;
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPicker: ComponentType<ColorPicker>;
 		createSlotFill: typeof createSlotFill;
