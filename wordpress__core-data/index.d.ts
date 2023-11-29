@@ -118,6 +118,7 @@ declare module '@wordpress/core-data' {
 	];
 
 	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-core-data/#useentityrecord
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/core-data/src/hooks/use-entity-record.ts
 	 */
 	type UseEntityRecord = <R extends EntityRecordOf<K, N>,
@@ -134,6 +135,7 @@ declare module '@wordpress/core-data' {
 	 * 1. When query._fields is not given, the returned type is EntityRecordOf<K, N, C>
 	 * 2. When query._fields is given, the returned type is Partial<EntityRecordOf<K, N, C>>
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-core-data/#useentityrecords
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/core-data/src/hooks/use-entity-records.ts
 	 */
 	interface UseEntityRecords {
