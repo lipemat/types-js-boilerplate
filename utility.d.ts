@@ -88,4 +88,17 @@ declare module '@lipemat/js-boilerplate/utility' {
 	 * @example UnionOfArray<['one', 2, 'three']> - `'one' | 2 | 'three'`.
 	 */
 	export type UnionOfArray<A extends Readonly<unknown[]>> = A[number];
+
+	/**
+	 * Combine two types, making all properties optional which
+	 * do not intersect.
+	 *
+	 * @example OptionalNonIntersect<{foo: string, bar: number}, {foo: string, waz: boolean}> - `{foo: string, bar?: number, waz?: boolean}`.
+	 *
+	 */
+	export type OptionalNonIntersect<T, U> =
+		Pick<T, Extract<keyof T, keyof U>> &
+		{
+			[P in Exclude<keyof T | keyof U, Extract<keyof T, keyof U>>]?: P extends keyof T ? T[P] : P extends keyof U ? U[P] : never;
+		};
 }
