@@ -9,7 +9,8 @@ declare module '@wordpress/edit-post' {
 	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {WPBlockTypeIconRender} from '@wordpress/components';
 	import {Page} from '@wordpress/api/pages';
-	import {Optional} from '@lipemat/js-boilerplate/utility';
+	import {OptionalNonIntersect} from '@lipemat/js-boilerplate/utility';
+	import {Post} from '@wordpress/api/posts';
 
 	/**
 	 * Convenience interface when working with Post data in the editor.
@@ -17,7 +18,7 @@ declare module '@wordpress/edit-post' {
 	 * The post data mirrors the REST api except it flattens
 	 * a few of the keys to one level.
 	 */
-	export interface PostEditing extends Optional<Page<'edit'>, 'parent' | 'menu_order'> {
+	export interface PostEditing extends OptionalNonIntersect<Page<'edit'>, Post<'edit'>> {
 	}
 
 	/**
