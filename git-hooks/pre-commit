@@ -1,0 +1,54 @@
+#!/bin/bash
+
+### mklink E:\SVN\types-js-boilerplate\.git\hooks\pre-commit E:\SVN\types-js-boilerplate\git-hooks\pre-commit
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
+GREEN="$(tput setaf 2)"
+WHITE="$(tput setaf 7)"
+YELLOW="$(tput setaf 3)"
+RED="$(tput setaf 1)"
+BLUE="$(tput setaf 6)"
+RESET_COLOR="$(tput sgr0)"
+
+# Replace possible paths to .git hooks based on context.
+DIR=${DIR//\/.git}
+DIR=${DIR//\/modules/}
+DIR=${DIR//\/hooks/}
+
+cd "${DIR}" || exit 1;
+
+function exit_reset_colors() {
+    echo "${RESET_COLOR}"
+    exit 1
+}
+
+function js_tests() {
+    echo "${YELLOW}[pre-commit]${BLUE} Running JS Tests... ${WHITE}"
+
+    OUTPUT=$(yarn test 2>&1)
+     if [[ $? != 0 ]]; then
+        echo
+        echo "${BLUE}JS Tests failed. Fix the error before commit!"
+        echo "${RED}$OUTPUT"
+        exit_reset_colors
+    fi
+    echo "${YELLOW}[pre-commit]${GREEN} JS Tests Passed!${WHITE}"
+
+}
+js_tests &
+
+# Go through each background task
+# If it sent exit code 1, it failed and the result from `wait` will be false.
+FAIL=0
+for job in $(jobs -p); do
+    wait "$job" || let "FAIL+=1"
+done
+
+echo "${RESET_COLOR}"
+
+# If any of the background tasks failed, we exit 1
+if [[ $FAIL -ne 0 ]]; then
+    exit 1
+else
+    exit 0
+fi

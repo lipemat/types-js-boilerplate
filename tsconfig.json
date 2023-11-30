@@ -1,6 +1,32 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "include": [
     "./*.ts",
     "**/*.ts"
-  ]
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "typeRoots": [
+      "./"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "sourceMap": true,
+    "strictBindCallApply": true,
+    "strictNullChecks": true,
+    "target": "es6",
+    "verbatimModuleSyntax": false
+  }
 }

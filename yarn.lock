@@ -36,13 +36,21 @@ __metadata:
   dependencies:
     "@types/codemirror": ^5.60.5
     "@types/jquery": ^3.5.5
+    "@types/lodash": ^4.14.202
     "@types/react": ^16 || ^17 || ^18
     "@types/react-dom": ^16 || ^17 || ^18
     "@types/tinymce": ^4.5.23
     "@types/webpack-env": ^1.18.0
-    typescript: ^5.1.6
+    typescript: 5.2.2
   languageName: unknown
   linkType: soft
+
+"@types/lodash@npm:^4.14.202":
+  version: 4.14.202
+  resolution: "@types/lodash@npm:4.14.202"
+  checksum: a91acf3564a568c6f199912f3eb2c76c99c5a0d7e219394294213b3f2d54f672619f0fde4da22b29dc5d4c31457cd799acc2e5cb6bd90f9af04a1578483b6ff7
+  languageName: node
+  linkType: hard
 
 "@types/prop-types@npm:*":
   version: 15.7.9
@@ -117,7 +125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.1.6":
+"typescript@npm:5.2.2":
   version: 5.2.2
   resolution: "typescript@npm:5.2.2"
   bin:
@@ -127,7 +135,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^5.1.6#~builtin<compat/typescript>":
+"typescript@patch:typescript@5.2.2#~builtin<compat/typescript>":
   version: 5.2.2
   resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"
   bin:

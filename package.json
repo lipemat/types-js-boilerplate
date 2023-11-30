@@ -5,6 +5,9 @@
   "types": "index",
   "author": "Mat Lipe",
   "license": "MIT",
+  "engines": {
+    "node": ">=16.14.2"
+  },
   "bugs": {
     "url": "https://github.com/lipemat/types-js-boilerplate/issues"
   },
@@ -17,6 +20,9 @@
     "./*.d.ts",
     "**/*.d.ts"
   ],
+  "scripts": {
+    "test": "tsc --noEmit"
+  },
   "dependencies": {
     "@types/codemirror": "^5.60.5",
     "@types/jquery": "^3.5.5",
@@ -26,7 +32,8 @@
     "@types/webpack-env": "^1.18.0"
   },
   "devDependencies": {
-    "typescript": "^5.1.6"
+    "@types/lodash": "^4.14.202",
+    "typescript": "5.2.2"
   },
   "packageManager": "yarn@3.6.4"
 }

@@ -19,6 +19,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
+      ["@types/lipemat__js-boilerplate", ["workspace:."]]\
     ],\
     "fallbackPool": [\
     ],\
@@ -29,6 +30,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@types/codemirror", "npm:5.60.12"],\
             ["@types/jquery", "npm:3.5.25"],\
+            ["@types/lodash", "npm:4.14.202"],\
             ["@types/react", "npm:18.2.31"],\
             ["@types/react-dom", "npm:18.2.14"],\
             ["@types/tinymce", "npm:4.6.7"],\
@@ -74,6 +76,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/lipemat__js-boilerplate", "workspace:."],\
             ["@types/codemirror", "npm:5.60.12"],\
             ["@types/jquery", "npm:3.5.25"],\
+            ["@types/lodash", "npm:4.14.202"],\
             ["@types/react", "npm:18.2.31"],\
             ["@types/react-dom", "npm:18.2.14"],\
             ["@types/tinymce", "npm:4.6.7"],\
@@ -81,6 +84,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["@types/lodash", [\
+        ["npm:4.14.202", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.202-76de3e302b-a91acf3564.zip/node_modules/@types/lodash/",\
+          "packageDependencies": [\
+            ["@types/lodash", "npm:4.14.202"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@types/prop-types", [\

@@ -1,6 +1,5 @@
-import '../index';
 import {select} from '@wordpress/data';
-import {EntityRecordResolution, useEntityRecord, useEntityRecords} from '@wordpress/core-data';
+import {useEntityRecord, useEntityRecords} from '@wordpress/core-data';
 
 const X = select( 'core' ).getEntityRecords( 'taxonomy', 'product' as 'category', {
 	parent: 0,
@@ -14,7 +13,7 @@ const T = select( 'core' ).getEntityRecords( 'postType', 'page', {
 	order: 'asc',
 } );
 
-console.log( X[ 0 ].parent );
+console.log( X?.[ 0 ].parent );
 console.log( T );
 
 const V = select( 'core' ).getEntityRecords( 'postType', 'wp_template', {
@@ -22,7 +21,7 @@ const V = select( 'core' ).getEntityRecords( 'postType', 'wp_template', {
 	_fields: [ 'is_custom' ]
 } );
 
-console.log( V[ 0 ].type );
+console.log( V?.[ 0 ].type );
 
 const W = select( 'core' ).getEntityRecords( 'root', 'menu', {} );
 
@@ -40,7 +39,7 @@ const {
 	hasResolved
 } = useEntityRecords( 'taxonomy', 'banner_type' as 'post_tag', {} );
 
-console.log( types[ 0 ].name );
+console.log( types?.[ 0 ].name );
 console.log( hasResolved );
 
 const {
