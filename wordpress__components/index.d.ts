@@ -472,7 +472,7 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/icon/
 	 */
 	interface Icon extends HTMLAttributes<{}> {
-		icon: BlockIcon;
+		icon: iconType | SVGProps<SVGSVGElement>;
 		size?: number;
 	}
 
