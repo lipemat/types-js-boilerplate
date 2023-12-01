@@ -8,7 +8,6 @@ declare module '@wordpress/components' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
 	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
 	import {Status} from '@wordpress/notices';
-	import {BlockIcon} from '@wordpress/blocks';
 	import DropEvent = JQuery.DropEvent;
 	import ClickEvent = JQuery.ClickEvent;
 
@@ -973,9 +972,8 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/placeholder/#props
 	 */
 	interface Placeholder extends HTMLAttributes<HTMLDivElement> {
-		icon?: iconType | JSX.Element;
+		icon?: iconType | ReactElement;
 		label?: ReactNode;
-
 		instructions?: ReactNode;
 		isColumnLayout?: boolean;
 		notices?: ReactNode;

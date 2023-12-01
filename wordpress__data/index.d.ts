@@ -1,4 +1,3 @@
-
 /**
  * Definitions for the `@wordpress/data` package.
  *

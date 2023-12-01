@@ -5,7 +5,7 @@
  */
 declare module '@wordpress/commands' {
 	import Element = React.JSX.Element;
-	import {FunctionComponent} from 'react';
+	import React, {FunctionComponent} from 'react';
 
 	export type WPCommandLoaderHook = ( search: string ) => WPCommandConfig[];
 

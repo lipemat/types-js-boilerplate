@@ -5,7 +5,7 @@
  */
 declare module '@wordpress/primitives' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {SVGAttributes} from 'react';
+	import React, {SVGAttributes} from 'react';
 	import {ClassValue} from 'classnames';
 
 

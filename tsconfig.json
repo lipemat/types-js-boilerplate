@@ -4,12 +4,9 @@
     "./*.ts",
     "**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ],
   "compilerOptions": {
     "typeRoots": [
-      "./"
+      "./index.d.ts"
     ],
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -24,6 +21,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "sourceMap": true,
+    "strict": false,
     "strictBindCallApply": true,
     "strictNullChecks": true,
     "target": "es6",
