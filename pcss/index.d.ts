@@ -4,6 +4,6 @@
  *
  */
 declare module '*.pcss' {
-	const content: any;
+	const content: Record<string, string>;
 	export default content;
 }
