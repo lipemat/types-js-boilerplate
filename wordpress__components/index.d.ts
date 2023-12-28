@@ -6,7 +6,7 @@
  */
 declare module '@wordpress/components' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes} from 'react';
+	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
 	import {Status} from '@wordpress/notices';
 	import DropEvent = JQuery.DropEvent;
 	import ClickEvent = JQuery.ClickEvent;
@@ -1070,6 +1070,112 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * ResizableBox is a wrapper around the `re-resizable` package with pre-defined classes and styles.
+	 *
+	 * Most options are passed directly to re-resizable, so their types are used.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/resizable-box/
+	 */
+	interface ResizableBox {
+		showHandle?: boolean;
+		className?: string;
+		/** Below are from re-resizable */
+		as?: string | ComponentType<any>;
+		style?: CSSProperties;
+		grid?: [ number, number ];
+		snap?: {
+			x?: number[];
+			y?: number[];
+		};
+		snapGap?: number;
+		bounds?: 'parent' | 'window' | HTMLElement;
+		boundsByDirection?: boolean;
+		size?: {
+			width: string | number;
+			height: string | number;
+		};
+		minWidth?: string | number;
+		minHeight?: string | number;
+		maxWidth?: string | number;
+		maxHeight?: string | number;
+		lockAspectRatio?: boolean | number;
+		lockAspectRatioExtraWidth?: number;
+		lockAspectRatioExtraHeight?: number;
+		enable?: {
+			top?: boolean;
+			right?: boolean;
+			bottom?: boolean;
+			left?: boolean;
+			topRight?: boolean;
+			bottomRight?: boolean;
+			bottomLeft?: boolean;
+			topLeft?: boolean;
+		} | false;
+		handleStyles?: {
+			top?: CSSProperties;
+			right?: CSSProperties;
+			bottom?: CSSProperties;
+			left?: CSSProperties;
+			topRight?: CSSProperties;
+			bottomRight?: CSSProperties;
+			bottomLeft?: CSSProperties;
+			topLeft?: CSSProperties;
+		};
+		handleClasses?: {
+			top?: string;
+			right?: string;
+			bottom?: string;
+			left?: string;
+			topRight?: string;
+			bottomRight?: string;
+			bottomLeft?: string;
+			topLeft?: string;
+		};
+		handleWrapperStyle?: CSSProperties;
+		handleWrapperClass?: string;
+		handleComponent?: {
+			top?: ReactElement;
+			right?: ReactElement;
+			bottom?: ReactElement;
+			left?: ReactElement;
+			topRight?: ReactElement;
+			bottomRight?: ReactElement;
+			bottomLeft?: ReactElement;
+			topLeft?: ReactElement;
+		};
+		children?: ReactNode;
+		onResizeStart?: (
+			e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>,
+			dir: 'top' | 'right' | 'bottom' | 'left' | 'topRight' | 'bottomRight' | 'bottomLeft' | 'topLeft',
+			elementRef: HTMLElement
+		) => void | boolean;
+		onResize?: (
+			event: MouseEvent | TouchEvent,
+			direction: 'top' | 'right' | 'bottom' | 'left' | 'topRight' | 'bottomRight' | 'bottomLeft' | 'topLeft',
+			elementRef: HTMLElement,
+			delta: {
+				width: number;
+				height: number;
+			}
+		) => void;
+		onResizeStop?: (
+			event: MouseEvent | TouchEvent,
+			direction: 'top' | 'right' | 'bottom' | 'left' | 'topRight' | 'bottomRight' | 'bottomLeft' | 'topLeft',
+			elementRef: HTMLElement,
+			delta: {
+				width: number;
+				height: number;
+			}
+		) => void;
+		defaultSize?: {
+			width: string | number;
+			height: string | number;
+		};
+		scale?: number;
+		resizeRatio?: number;
+	}
+
+	/**
 	 * A wrapper component that maintains its aspect ratio when resized.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/responsive-wrapper/
@@ -1359,6 +1465,7 @@ declare module '@wordpress/components' {
 	export const Popover: ComponentType<PopoverProps>;
 	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 	export const RangeControl: ComponentType<RangeControl>;
+	export const ResizableBox: ComponentType<ResizableBox>;
 	export const ResponsiveWrapper: ComponentType<ResponsiveWrapper>;
 	export const SearchControl: ComponentType<SearchControl>;
 	export const ServerSideRender: ComponentType<ServerSideRender>;
@@ -1415,6 +1522,7 @@ declare module '@wordpress/components' {
 		Popover: ComponentType<PopoverProps>;
 		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 		RangeControl: ComponentType<RangeControl>;
+		ResizableBox: ComponentType<ResizableBox>;
 		ResponsiveWrapper: ComponentType<ResponsiveWrapper>;
 		SelectControl: typeof SelectControl;
 		SearchControl: ComponentType<SearchControl>;
