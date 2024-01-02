@@ -6,7 +6,7 @@
  */
 declare module '@wordpress/components' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
+	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, type DetailedHTMLProps, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, type SVGAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
 	import {Status} from '@wordpress/notices';
 	import DropEvent = JQuery.DropEvent;
 	import ClickEvent = JQuery.ClickEvent;
@@ -112,6 +112,7 @@ declare module '@wordpress/components' {
 	export type WPBlockTypeIconRender =
 		iconType
 		| SVGProps<SVGSVGElement>
+		| ComponentType<{ size?: number }>
 		| ReactElement
 		| null;
 
@@ -467,13 +468,19 @@ declare module '@wordpress/components' {
 		| 'yes'
 		| 'youtube';
 
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/icon/
 	 */
-	interface Icon extends HTMLAttributes<{}> {
-		icon: iconType | SVGProps<SVGSVGElement>;
-		size?: number;
-	}
+	export function Icon<T extends WPBlockTypeIconRender>( props: {
+			icon: T;
+			size?: number;
+		} & (
+			T extends iconType ? DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> :
+				T extends ComponentType<{ size: number }> ? {} :
+					T extends SVGProps<SVGSVGElement> ? SVGProps<SVGSVGElement> : {} )
+	): ReactElement<any, any>;
+
 
 	type shortcutText = string | {
 		display: string;
@@ -972,7 +979,7 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/placeholder/#props
 	 */
 	interface Placeholder extends HTMLAttributes<HTMLDivElement> {
-		icon?: iconType | ReactElement;
+		icon?: WPBlockTypeIconRender;
 		label?: ReactNode;
 		instructions?: ReactNode;
 		isColumnLayout?: boolean;
@@ -1449,7 +1456,6 @@ declare module '@wordpress/components' {
 	export const Grid: ComponentType<Grid>;
 	export const Guide: ComponentType<Guide>;
 	export const GuidePage: ComponentType<GuidePage>;
-	export const Icon: ComponentType<Icon>;
 	export const KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 	export const NavigableMenu: ComponentType<NavigableMenu>;
 	export const MenuGroup: ComponentType<MenuGroup>;
@@ -1506,7 +1512,7 @@ declare module '@wordpress/components' {
 		Grid: ComponentType<Grid>;
 		Guide: ComponentType<Guide>;
 		GuidePage: ComponentType<GuidePage>;
-		Icon: ComponentType<Icon>;
+		Icon: typeof Icon;
 		KeyboardShortcuts: ComponentType<KeyboardShortcuts>;
 		MenuGroup: ComponentType<MenuGroup>;
 		MenuItem: ComponentType<MenuItem>;
