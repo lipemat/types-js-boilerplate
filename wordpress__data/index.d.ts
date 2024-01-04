@@ -21,6 +21,8 @@ declare module '@wordpress/data' {
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
 	import {BlockEditingMode} from '@wordpress/block-editor';
+	import type {User, UsersQuery} from '@wordpress/api/users';
+
 
 	export type WPBlockCategory = {
 		icon: BlockIcon | null;
@@ -184,6 +186,7 @@ declare module '@wordpress/data' {
 		getSite: () => Settings;
 		getTaxonomies: () => Array<Taxonomy<'edit'>> | undefined;
 		getTaxonomy: ( slug: string ) => Taxonomy<'edit'> | undefined;
+		getUsers: ( query?: UsersQuery ) => Array<User<'edit'>> | null;
 		hasFetchedAutosaves: () => boolean;
 		hasRedo: () => boolean;
 		hasUndo: () => boolean;
@@ -193,7 +196,6 @@ declare module '@wordpress/data' {
 		isSavingEntityRecord: () => boolean;
 
 		// @todo properly type the rest of these as needed.
-		getAuthors: () => any;
 		getAutosave: ( id: string ) => any;
 		getAutosaves: () => any;
 		getCurrentUser: () => any;
@@ -209,6 +211,9 @@ declare module '@wordpress/data' {
 		getUserQueryResults: () => any;
 		getWidgetArea: ( slug: string ) => any;
 		getWidgetAreas: () => any;
+
+		//@deprecated
+		getAuthors: () => any;
 	};
 
 	export function select( store: 'core' ): Core & SelectShared<Core>;
