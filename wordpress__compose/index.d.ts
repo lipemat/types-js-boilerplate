@@ -91,6 +91,19 @@ declare module '@wordpress/compose' {
 	 */
 	type useDebounce = <T extends ( ...args: any[] ) => any>( func: T, wait: number, options?: DebounceOptions ) => DebouncedFunc<T>;
 
+	/**
+	 * Provides a unique instance ID.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-compose/#useinstanceid
+	 */
+	function useInstanceId( object: object ): number;
+	function useInstanceId( object: object, prefix: string ): string;
+	function useInstanceId<T extends string | number>(
+		object: object,
+		prefix: string,
+		preferredId?: T
+	): T;
+
 	export interface withInstanceIdProps {
 		instanceId?: string;
 	}
