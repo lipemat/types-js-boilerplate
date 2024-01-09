@@ -16,11 +16,19 @@ declare module '@wordpress/i18n' {
 	type setLocaleData = ( data: { [ key: string ]: [ single, plural ] | emptyKey }, domain?: string ) => void;
 
 	type __ = ( text: string, domain?: string ) => string;
-	type _x = ( text: string, context: string, domain?: string ) => string;
 	type _n = ( single: string, plural: string, number: number, domain?: string ) => string;
-	type _nx = ( single: string, plural: string, number: number, context: string, domain?: string ) => string;
 
 	type sprintf = ( format: string, ...args: Array<string | number> ) => string;
+
+	/**
+	 * @deprecated Known issue with poedit and xgettext-tools.
+	 */
+	type _x = ( text: string, context: string, domain?: string ) => string;
+	/**
+	 * @deprecated Known issue with poedit and xgettext-tools.
+	 */
+	type _nx = ( single: string, plural: string, number: number, context: string, domain?: string ) => string;
+
 
 	export const setLocaleData: setLocaleData;
 	export const __: __;
