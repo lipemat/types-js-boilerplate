@@ -73,6 +73,7 @@ declare module '@wordpress/api/users' {
 	 * @link https://developer.wordpress.org/rest-api/reference/users/#arguments
 	 */
 	export interface UsersQuery {
+		context?: Context;
 		page?: number | 1;
 		per_page?: number | 10;
 		search?: string;
@@ -83,9 +84,9 @@ declare module '@wordpress/api/users' {
 		orderby?: 'id' | 'include' | 'name' | 'registered_date' | 'slug' | 'include_slugs' | 'email' | 'url';
 		slug?: string;
 		roles?: string[];
+		capabilities?: string[];
 		who?: 'authors';
 		_fields?: Array<keyof User>;
-		context?: Context;
 		_embed?: boolean;
 	}
 }
