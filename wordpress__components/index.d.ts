@@ -593,6 +593,32 @@ declare module '@wordpress/components' {
 		onChange?: ( hex8Color: string ) => void;
 	}
 
+	/**
+	 * Combobox Control
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/combobox-control/
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/combobox-control/types.ts
+	 */
+	export function ComboboxControl<T extends string>( props: {
+		allowReset?: boolean;
+		className?: string;
+		help?: string | ReactNode;
+		hideLabelFromVision?: boolean;
+		label?: string | ReactNode;
+		messages?: {
+			selected: string;
+		};
+		onChange: ( currentValue: T | null ) => void;
+		onFilterValueChange?: ( value: string ) => void;
+		options: Array<{
+			label: string;
+			value: T;
+			disabled?: boolean
+		}>;
+		value?: T | null;
+	}): ReactElement<any, any> | null;
+	
+
 	interface Dashicon extends HTMLAttributes<{}> {
 		icon: iconType;
 	}
@@ -1216,6 +1242,7 @@ declare module '@wordpress/components' {
 		hideLabelFromVision?: boolean
 	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
 
+
 	/**
 	 * Seach box and icon.
 	 *
@@ -1498,6 +1525,7 @@ declare module '@wordpress/components' {
 		ColorIndicator: ComponentType<ColorIndicator>;
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPicker: ComponentType<ColorPicker>;
+		ComboboxControl: typeof ComboboxControl;
 		createSlotFill: typeof createSlotFill;
 		Dashicon: ComponentType<Dashicon>;
 		DatePicker: ComponentType<DatePicker>;
