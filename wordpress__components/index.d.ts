@@ -1217,6 +1217,83 @@ declare module '@wordpress/components' {
 	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
 
 	/**
+	 * ComboboxControl
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/combobox-control/
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/combobox-control/types.ts
+	 */
+	export function ComboboxControl<T extends string>( props: PropsWithChildren<{
+		/**
+		 * Start opting into the new margin-free styles that will become the default in a future version.
+		 *
+		 * @default false
+		 */
+		__nextHasNoMarginBottom?: boolean;
+		/**
+		 * Start opting into the larger default height that will become the default size in a future version.
+		 *
+		 * @default false
+		 */
+		__next40pxDefaultSize?: boolean;
+		/**
+		 * Additional description for the control.
+		 *
+		 * It is preferable to use plain text for `help`, as it can be accessibly associated with the control using `aria-describedby`.
+		 * When the `help` contains links, or otherwise non-plain text content, it will be associated with the control using `aria-details`.
+		 */
+		help?: ReactNode;
+		/**
+		 * If this property is added, a label will be generated using label property as the content.
+		 */
+		label?: ReactNode;
+		/**
+		 * If true, the label will only be visible to screen readers.
+		 *
+		 * @default false
+		 */
+		hideLabelFromVision?: boolean;
+		/**
+		 * Show a reset button to clear the input.
+		 *
+		 * @default true
+		 */
+		allowReset?: boolean;
+		/**
+		 * Customizable UI messages.
+		 */
+		messages?: {
+			/**
+			 * The message to announce to screen readers when a suggestion is selected.
+			 *
+			 * @default `__( 'Item selected.' )`
+			 */
+			selected: string;
+		};
+		/**
+		 * Function called with the selected value changes.
+		 */
+		onChange: ( currentValue: T ) => void;
+		/**
+		 * Function called when the control's search input value changes. The argument contains the next input value.
+		 *
+		 * @default noop
+		 */
+		onFilterValueChange?: ( value: string ) => void;
+		/**
+		 * The options that can be chosen from.
+		 */
+		options: Array<{
+			label: string;
+			value: T;
+			disabled?: boolean
+		}>;
+		/**
+		 * The current value of the control.
+		 */
+		value?: string | null;
+	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
+
+	/**
 	 * Seach box and icon.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/search-control/
@@ -1498,6 +1575,7 @@ declare module '@wordpress/components' {
 		ColorIndicator: ComponentType<ColorIndicator>;
 		ColorPalette: ComponentType<ColorPalette>;
 		ColorPicker: ComponentType<ColorPicker>;
+		ComboboxControl: typeof ComboboxControl;
 		createSlotFill: typeof createSlotFill;
 		Dashicon: ComponentType<Dashicon>;
 		DatePicker: ComponentType<DatePicker>;
