@@ -8,17 +8,16 @@ declare module '@wordpress/edit-post' {
 	import {FunctionComponent} from '@lipemat/js-boilerplate/helpers';
 	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {WPBlockTypeIconRender} from '@wordpress/components';
-	import {Page} from '@wordpress/api/pages';
 	import {OptionalNonIntersect} from '@lipemat/js-boilerplate/utility';
-	import {Post} from '@wordpress/api/posts';
+	import type {RawPage, RawPost} from '@wordpress/core-data/entities';
 
 	/**
 	 * Convenience interface when working with Post data in the editor.
 	 *
-	 * The post data mirrors the REST api except it flattens
-	 * a few of the keys to one level.
+	 * The post data mirrors the REST API except it flattens
+	 * a few of the `raw` keys to one level.
 	 */
-	export interface PostEditing extends OptionalNonIntersect<Page<'edit'>, Post<'edit'>> {
+	export interface PostEditing extends OptionalNonIntersect<RawPage, RawPost> {
 	}
 
 	/**

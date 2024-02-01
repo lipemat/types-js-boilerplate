@@ -4,19 +4,10 @@ import {omit} from 'lodash';
 const complete: PostEditing = {
 	author: 0,
 	comment_status: 'open',
-	content: {
-		rendered: '',
-		raw: '',
-		block_version: '1',
-		protected: false
-	},
+	content: '',
 	date: '',
 	date_gmt: '',
-	excerpt: {
-		rendered: '',
-		raw: '',
-		protected: false
-	},
+	excerpt: '',
 	featured_media: 0,
 	generated_slug: '',
 	guid: {
@@ -35,10 +26,7 @@ const complete: PostEditing = {
 	status: 'publish',
 	sticky: false,
 	template: '',
-	title: {
-		rendered: '',
-		raw: '',
-	},
+	title: '',
 	type: 'page'
 };
 

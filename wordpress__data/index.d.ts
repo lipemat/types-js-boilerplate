@@ -8,9 +8,8 @@
  * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/data
  */
 declare module '@wordpress/data' {
-	import {BlockIcon} from '@wordpress/blocks';
+	import {BlockIcon, BlockSettings, BlockVariation, CreateBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {BlockSettings, BlockVariation, CreateBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
 	import {PostEditing} from '@wordpress/edit-post';
 	import {Taxonomy} from '@wordpress/api/taxonomies';
 	import {Settings} from '@wordpress/api/settings';
@@ -22,6 +21,8 @@ declare module '@wordpress/data' {
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
 	import {BlockEditingMode} from '@wordpress/block-editor';
 	import type {User, UsersQuery} from '@wordpress/api/users';
+	import type {OptionalNonIntersect} from '@lipemat/js-boilerplate/utility';
+	import type {RawPage, RawPost} from '@wordpress/core-data/entities';
 
 
 	export type WPBlockCategory = {
@@ -221,12 +222,12 @@ declare module '@wordpress/data' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/
 	 */
-	type CoreEditor = {
+	export type CoreEditor = {
 		/**
 		 * Returns the post currently being edited in its last known saved state, not
 including unsaved edits.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getCurrentPost
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getcurrentpost
 		 */
 		getCurrentPost: <T = PostEditing>() => T;
 		/**
@@ -1057,7 +1058,7 @@ not yet been saved.
 		/**
 		 * Edit the post within state.
 		 *
-		 * Non persistant until the post is saved.
+		 * Non-persistent until the post is saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#editPost
 		 */

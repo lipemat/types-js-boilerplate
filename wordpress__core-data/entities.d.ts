@@ -4,9 +4,9 @@ declare module '@wordpress/core-data/entities' {
 		Comment as RESTComment,
 		Context,
 		ContextualField,
-		Media,
+		Media as RESTMedia,
 		Menu,
-		MenuItem,
+		MenuItem as RESTMenuItem,
 		MenuLocation as RESTMenuLocation,
 		Page as RESTPage,
 		Post as RESTPost,
@@ -182,7 +182,18 @@ declare module '@wordpress/core-data/entities' {
 		raw: Record<string, string>;
 	}
 
-	export type Attachment<C extends Context = DefaultContextOf<'root', 'media'>> = Media<C>;
+	/**
+	 * Some raw fields are converted to strings when `getRawEntityRecord` is used.
+	 *
+	 * @notice Gutenberg core-data has incorrect types. PHPStorm shows errors for `getRawEntityRecord` in the Gutenberg project.
+	 *
+	 * @see `isRawAttribute` used by `getRawEntityRecord`.
+	 * @see packages/core-data/src/entities.js
+	 */
+	type RawRecord<T, P extends string> = Omit<T, P> & { [K in P]: string };
+
+	export type Attachment<C extends Context = DefaultContextOf<'root', 'media'>> = RESTMedia<C>;
+	export type RawAttachment = RawRecord<RESTMedia<'edit'>, 'caption' | 'title' | 'description'>;
 
 	export type Comment<C extends Context = DefaultContextOf<'root', 'comment'>> = RESTComment<C>;
 
@@ -192,11 +203,14 @@ declare module '@wordpress/core-data/entities' {
 
 	export type NavMenu<C extends Context = DefaultContextOf<'root', 'menu'>> = Menu<C>;
 
-	export type NavMenuItem<C extends Context = DefaultContextOf<'root', 'menuItem'>> = MenuItem<C>;
+	export type NavMenuItem<C extends Context = DefaultContextOf<'root', 'menuItem'>> = RESTMenuItem<C>;
+	export type RawNavMenuItem = RawRecord<RESTMenuItem<'edit'>, 'title'>;
 
 	export type Page<C extends Context = DefaultContextOf<'postType', 'page'>> = RESTPage<C>;
+	export type RawPage = RawRecord<RESTPage<'edit'>, 'title' | 'excerpt' | 'content'>
 
 	export type Post<C extends Context = DefaultContextOf<'postType', 'post'>> = RESTPost<C>;
+	export type RawPost = RawRecord<RESTPost<'edit'>, 'title' | 'excerpt' | 'content'>
 
 	export type PluginStatus = 'active' | 'inactive';
 	export type Plugin<C extends Context = DefaultContextOf<'root', 'plugin'>> = OmitNever<{
