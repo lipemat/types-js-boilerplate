@@ -419,8 +419,9 @@ declare module '@wordpress/blocks' {
 	/**
 	 * Block registration settings.
 	 *
-	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
 	 * @link https://schemas.wp.org/trunk/block.json
+	 *@link https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md
 	 */
 	export type BlockSettings<Attr, Category = '', Transform = Attr, Context = {}> = {
 		title: string;
@@ -459,6 +460,8 @@ declare module '@wordpress/blocks' {
 		ancestor?: string[];
 		// Allow this block to only be used as a direct child of specified blocks.
 		parent?: string[];
+		// Blocks allowed as direct children when InnerBlocks are used.
+		allowedBlocks?: string[];
 		/**
 		 * Features this block supports.
 		 *
