@@ -431,9 +431,7 @@ declare module '@wordpress/blocks' {
 		keywords?: string[];
 		styles?: Array<StyleVariation>;
 		/**
-		 * Only optional if registered on PHP side via `register_block_type_from_metadata`
-		 *
-		 * @link https://github.com/WordPress/gutenberg/blob/master/docs/designers-developers/developers/block-api/block-metadata.md
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
 		 */
 		attributes?: BlockAttributes<Attr>;
 		example?: BlockExample<Partial<Attr>>;

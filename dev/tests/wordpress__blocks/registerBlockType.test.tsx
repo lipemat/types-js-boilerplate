@@ -21,6 +21,7 @@ registerBlockType( 'my-plugin/my-block', {
 	edit: () => <></>,
 	save: () => <></>,
 	icon: 'book-alt',
+	attributes: {},
 } );
 
 registerBlockType( 'my-plugin/my-block', {
@@ -28,6 +29,7 @@ registerBlockType( 'my-plugin/my-block', {
 	category: 'common',
 	edit: () => <></>,
 	save: () => <></>,
+	attributes: {},
 	icon: {
 		background: '#7e70af',
 		foreground: '#fff',
@@ -36,4 +38,13 @@ registerBlockType( 'my-plugin/my-block', {
 			<path d="M19 13H5v-2h14v2z" />
 		</svg>,
 	}
+} );
+
+
+registerBlockType( 'my-plugin/my-block', {
+	title: 'test block',
+	category: 'common',
+	edit: () => <></>,
+	save: () => <></>,
+	icon: 'book-alt',
 } );
