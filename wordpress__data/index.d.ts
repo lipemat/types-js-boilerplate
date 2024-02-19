@@ -21,8 +21,6 @@ declare module '@wordpress/data' {
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
 	import {BlockEditingMode} from '@wordpress/block-editor';
 	import type {User, UsersQuery} from '@wordpress/api/users';
-	import type {OptionalNonIntersect} from '@lipemat/js-boilerplate/utility';
-	import type {RawPage, RawPost} from '@wordpress/core-data/entities';
 
 
 	export type WPBlockCategory = {
@@ -34,7 +32,10 @@ declare module '@wordpress/data' {
 	/**
 	 * @deprecated In favor of CreateBlock;
 	 */
-	export interface BlockClientId<Attr = { [ key: string ]: any }, I = []> extends CreateBlock {
+	export interface BlockClientId<
+		Attr = { [ key: string ]: any },
+		I = []
+	> extends CreateBlock<Attr, I> {
 	}
 
 	export type StateValue =
@@ -233,14 +234,14 @@ including unsaved edits.
 		/**
 		 * Returns the post type of the post currently being edited.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getCurrentPostType
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getcurrentposttype
 		 */
 		getCurrentPostType: () => string;
 		/**
 		 * Returns a property value from the saved post.
 		 * Does not account for current unsaved edits.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getCurrentPostAttribute
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getcurrentpostattribute
 		 *
 		 * @see getEditedPostAttribute
 		 */
@@ -249,14 +250,14 @@ including unsaved edits.
 		 * Returns the ID of the post currently being edited, or null if the post has
 not yet been saved.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getCurrentPostId
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getcurrentpostid
 		 */
 		getCurrentPostId: () => number;
 		/**
 		 * Returns a property value from post being edited.
 		 * Will return unsaved edits.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#getEditedPostAttribute
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#geteditedpostattribute
 		 */
 		getEditedPostAttribute: <T = PostEditing, K extends keyof T = keyof T>( attribute: K ) => T[K];
 		/**
@@ -275,13 +276,13 @@ not yet been saved.
 		/**
 		 * Is the current post locked.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#isPostLocked
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#ispostlocked
 		 */
 		isPostLocked: () => boolean;
 		/**
 		 * Is saving locked for the current post?
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#isPostSavingLocked
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#ispostsavinglocked
 		 */
 		isPostSavingLocked: () => boolean;
 
@@ -478,14 +479,14 @@ not yet been saved.
 		 * Returns the currently selected block client ID, or null
 		 * if there are no or multiple selected blocks.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getSelectedBlockClientId
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getselectedblockclientId
 		 */
 		getSelectedBlockClientId: () => null | string;
 		/**
 		 * Returns the current selection set of block client IDs
 		 * (multiselection or single selection).
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getSelectedBlockClientIds
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getselectedblockclientids
 		 */
 		getSelectedBlockClientIds: () => string[];
 		/**
@@ -751,7 +752,7 @@ not yet been saved.
 		/**
 		 * Select a block in the editor based on id.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectBlock
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectblock
 		 */
 		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => Promise<{
 			type: 'SELECT_BLOCK';
@@ -761,7 +762,7 @@ not yet been saved.
 		/**
 		 * Unselect all blocks.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#clearSelectedBlock
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#clearselectedblock
 		 */
 		clearSelectedBlock: () => Promise<{
 			type: 'CLEAR_SELECTED_BLOCK';
@@ -1060,13 +1061,13 @@ not yet been saved.
 		 *
 		 * Non-persistent until the post is saved.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#editPost
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#editpost
 		 */
 		editPost: <T = PostEditing>( data: Partial<T> ) => Promise<undefined>;
 		/**
 		 * Lock a post to prevent saving.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#lockPostSaving
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#lockpostsaving
 		 *
 		 * @param {string} lockName - Used later to unlock saving.
 		 * @see unlockPostSaving
@@ -1082,7 +1083,7 @@ not yet been saved.
 		 * `editPost({ status: 'publish' | 'future' | 'draft' | 'pending' | 'private'>}`
 		 * before calling savePost.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#savePost
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#savepost
 		 */
 		savePost: () => Promise<undefined>;
 		/**
@@ -1092,7 +1093,7 @@ not yet been saved.
 		/**
 		 * Unlock a post's saving ability.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#unlockPostSaving
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#unlockpostSaving
 		 *
 		 * @param {string} lockName - Must match name used with `lockPostSaving`.
 		 *
