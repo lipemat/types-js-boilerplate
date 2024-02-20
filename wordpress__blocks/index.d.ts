@@ -512,6 +512,11 @@ declare module '@wordpress/blocks' {
 			html?: boolean;
 			// False hides this block from the inserter.
 			inserter?: boolean;
+			// Support the interactivity API.
+			interactivity?: boolean | {
+				clientNavigation?: boolean;
+				interactive?: boolean;
+			}
 			// False hides the lock options from block options dropdown.
 			lock?: boolean;
 			// False allows the block just once per post
