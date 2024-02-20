@@ -386,6 +386,9 @@ declare module '@wordpress/blocks' {
 			root?: string;
 			minHeight?: string;
 		};
+		filter?: {
+			duotone?: string;
+		}
 		spacing?: string | {
 			root?: string;
 			margin?: string;
@@ -405,6 +408,106 @@ declare module '@wordpress/blocks' {
 		};
 	}
 
+	/**
+	 * Features this block supports.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/
+	 */
+	export type BlockSupports = {
+		// Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block, and a button to copy the direct link.
+		anchor?: boolean;
+		align?: boolean | Array<'left' | 'right' | 'full' | 'wide'>;
+		// Remove the support for wide alignment.
+		alignWide?: boolean;
+		// Allows enabling the definition of an aria-label for the block, without exposing a UI field.
+		ariaLabel?: boolean;
+		// False removes the support for the generated className.
+		className?: boolean;
+		// False removes the support for the custom className.
+		customClassName?: boolean;
+		/**
+		 * Support color selections.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#color
+		 */
+		color?: {
+			background?: boolean; // Enable background color UI control.
+			gradients?: boolean; // Enable gradient color UI control.
+			text?: boolean; // Enable text color UI control.
+			link?: boolean; // Enable link color UI control.
+		};
+		/**
+		 * Enable dimensions UI control.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#dimensions
+		 */
+		dimensions?: {
+			aspectRatio?: boolean; // Enable aspect ratio control.
+			minHeight?: boolean; // Enable min height control.
+		};
+		// Enable block control for filters.
+		filter?: {
+			duotone?: boolean; // Enable duotone filter UI control.
+		}
+		/**
+		 * Enable line height UI control.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#lineheight
+		 */
+		lineHeight?: boolean;
+		// False removes support for an HTML mode.
+		html?: boolean;
+		// False hides this block from the inserter.
+		inserter?: boolean;
+		// Support the interactivity API.
+		interactivity?: boolean | {
+			clientNavigation?: boolean;
+			interactive?: boolean;
+		}
+		// Applies to blocks that are containers for inner blocks. If set to true the layout type will be flow.
+		layout?: boolean | {
+			default?: {
+				type: string;
+			};
+			allowSwitching?: boolean;
+			allowEditing?: boolean;
+			allowInheriting?: boolean;
+			allowSizingOnChildren?: boolean;
+			allowVerticalAlignment?: boolean;
+			allowJustification?: boolean;
+			allowOrientation?: boolean;
+			allowCustomContentAndWideSize?: boolean;
+		}
+		// False allows the block just once per post
+		multiple?: boolean;
+		// False prevents the block to be converted into a reusable block.
+		reusable?: boolean;
+		// False hides the lock options from block options dropdown.
+		lock?: boolean;
+		// Signals that a block supports some of the CSS style properties related to position.
+		position?: {
+			sticky?: boolean; // Enable selecting sticky position.
+		};
+		/**
+		 * Enable CSS spacing UI controls
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#spacing
+		 */
+		spacing?: {
+			blockGap?: boolean | Array<'horizontal' | 'vertical'>;
+			margin?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+			padding?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
+		};
+		/**
+		 * Enable typography controls and attributes.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#typography
+		 */
+		typography?: {
+			fontSize: boolean;
+			lineHeight: boolean;
+		};
+	}
 
 	/**
 	 * Parser utility for converting HTML block JSON to finished block objects.
@@ -462,89 +565,10 @@ declare module '@wordpress/blocks' {
 		parent?: string[];
 		// Blocks allowed as direct children when InnerBlocks are used.
 		allowedBlocks?: string[];
-		/**
-		 * Features this block supports.
-		 *
-		 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/
-		 */
-		supports?: {
-			align?: boolean | Array<'left' | 'right' | 'full' | 'wide'>;
-			// Remove the support for wide alignment.
-			alignWide?: boolean;
-			// Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block, and a button to copy the direct link.
-			anchor?: boolean;
-			// False removes the support for the custom className.
-			customClassName?: boolean;
-			// False removes the support for the generated className.
-			className?: boolean;
-			/**
-			 * Support color selections.
-			 *
-			 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#color
-			 */
-			color?: {
-				background?: boolean; // Enable background color UI control.
-				gradients?: boolean; // Enable gradient color UI control.
-				text?: boolean; // Enable text color UI control.
-				link?: boolean; // Enable link color UI control.
-			};
-			/**
-			 * Enable dimensions UI control.
-			 *
-			 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#dimensions
-			 */
-			dimensions?: {
-				minHeight?: true // Enable min height control.
-			};
-			/**
-			 * Enable font size UI control.
-			 *
-			 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#fontsize
-			 */
-			fontSize?: boolean;
-			/**
-			 * Enable line height UI control.
-			 *
-			 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#lineheight
-			 */
-			lineHeight?: boolean;
-			// False removes support for an HTML mode.
-			html?: boolean;
-			// False hides this block from the inserter.
-			inserter?: boolean;
-			// Support the interactivity API.
-			interactivity?: boolean | {
-				clientNavigation?: boolean;
-				interactive?: boolean;
-			}
-			// False hides the lock options from block options dropdown.
-			lock?: boolean;
-			// False allows the block just once per post
-			multiple?: boolean;
-			// False prevents the block to be converted into a reusable block.
-			reusable?: boolean;
-			// Custom CSS classnames for generated markup.
-			selectors?: BlockSelectors;
-			/**
-			 * Enable CSS spacing UI controls
-			 *
-			 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#spacing
-			 */
-			spacing?: {
-				blockGap?: boolean | Array<'horizontal' | 'vertical'>;
-				margin?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
-				padding?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
-			}
-			/**
-			 * Enable typography controls and attributes.
-			 *
-			 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#typography
-			 */
-			typography?: {
-				fontSize: boolean;
-				lineHeight: boolean;
-			}
-		}
+		// Custom CSS classnames for generated markup.
+		selectors?: BlockSelectors;
+		//Features this block supports.
+		supports?: BlockSupports;
 		/**
 		 * Display content in the editor and make and changes to data.
 		 *
