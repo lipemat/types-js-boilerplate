@@ -71,6 +71,7 @@ declare module '@wordpress/data' {
 		'featured-image' |
 		'page-attributes' |
 		'post-excerpt' |
+		'post-status' |
 		'post-link' |
 		'taxonomy-panel-category' |
 		'taxonomy-panel-post_tag' |
@@ -273,6 +274,36 @@ not yet been saved.
 		 * @related core/block-editor store.
 		 */
 		hasSelectedInnerBlock: ( clientId: string, deep?: boolean ) => boolean;
+		/**
+		 * Is the block inserter open.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#isinserteropened
+		 */
+		isInserterOpened: () => boolean;
+		/**
+		 * Is the block list view open.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#islistviewopened
+		 */
+		isListViewOpened: () => boolean;
+		/**
+		 * Is a specific editor panel enabled.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#iseditorpanelenabled
+		 */
+		isEditorPanelEnabled: ( panel: editorPanels ) => boolean;
+		/**
+		 * Is a specific editor panel opened.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#iseditorpanelopened
+		 */
+		isEditorPanelOpened: ( panel: editorPanels ) => boolean;
+		/**
+		 * Is a specific editor panel removed.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#iseditorpanelremoved
+		 */
+		isEditorPanelRemoved: ( panel: editorPanels ) => boolean;
 		/**
 		 * Is the current post locked.
 		 *
@@ -584,8 +615,17 @@ not yet been saved.
 		getAllMetaBoxes: ( key?: string ) => any;
 		getMetaBoxesPerLocation: ( key?: string ) => any;
 		hasMetaBoxes: ( key?: string ) => any;
+		/**
+		 * @deprecated 6.5 in favor of core/editor
+		 */
 		isEditorPanelEnabled: ( key?: string ) => any;
+		/**
+		 * @deprecated 6.5 in favor of core/editor
+		 */
 		isEditorPanelOpened: ( key?: string ) => any;
+		/**
+		 * @deprecated 6.5 in favor of core/editor
+		 */
 		isEditorPanelRemoved: ( key?: string ) => any;
 		isMetaBoxLocationActive: ( key?: string ) => any;
 		isMetaBoxLocationVisible: ( key?: string ) => any;
@@ -1005,15 +1045,26 @@ not yet been saved.
 		closeGeneralSidebar: () => Promise<{
 			type: 'CLOSE_GENERAL_SIDEBAR'
 		}>;
-		// Remove a panel from UI.
+		/**
+		 * @deprecated 6.5 in favor of core/editor
+		 */
 		removeEditorPanel: ( panelName: editorPanels ) => Promise<{
 			panelName: editorPanels,
 			type: 'REMOVE_PANEL'
 		}>;
-		// Hide/Show a panel in the UI, same as toggling panel in preferences.
+		/**
+		 * @deprecated 6.5 in favor of core/editor
+		 */
 		toggleEditorPanelEnabled: ( key: editorPanels ) => Promise<{
 			panelName: editorPanels,
 			type: 'TOGGLE_PANEL_ENABLED',
+		}>;
+		/**
+		 * @deprecated 6.5 in favor of core/editor
+		 */
+		toggleEditorPanelOpened: ( panel: editorPanels ) => Promise<{
+			panelName: editorPanels,
+			type: 'TOGGLE_PANEL_OPENED',
 		}>;
 		toggleFeature: <K extends keyof editPostPreferences['features']>( feature: K ) => Promise<{
 			feature: K;
@@ -1037,7 +1088,6 @@ not yet been saved.
 		showBlockTypes: ( key?: string ) => any;
 		startResolution: ( key?: string ) => any;
 		switchEditorMode: ( key?: string ) => any;
-		toggleEditorPanelOpened: ( key?: string ) => any;
 		togglePinnedPluginItem: ( key?: string ) => any;
 		togglePublishSidebar: ( key?: string ) => any;
 		updatePreferredStyleVariations: ( key?: string ) => any;
@@ -1077,7 +1127,40 @@ not yet been saved.
 			type: 'LOCK_POST_SAVING';
 		}>;
 		/**
-		 * Save post in editor in it's current state.
+		 * Remove a panel from the editor.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#removeeditorpanel
+		 */
+		removeEditorPanel: ( panelName: editorPanels ) => Promise<{
+			panelName: editorPanels,
+			type: 'REMOVE_PANEL'
+		}>;
+		/**
+		 * Open or close the block inserter.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#setisinserteropened
+		 */
+		setIsInserterOpened: ( open: boolean | {
+			rootClientId: string,
+			insertionIndex: number
+		} ) => Promise<{
+			type: 'SET_IS_INSERTER_OPENED';
+			value: boolean | {
+				rootClientId: string,
+				insertionIndex: number
+			};
+		}>;
+		/**
+		 * Open or close the block list view.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#setislistviewopened
+		 */
+		setIsListViewOpened: ( open: boolean ) => Promise<{
+			type: 'SET_IS_LIST_VIEW_OPENED';
+			value: boolean;
+		}>;
+		/**
+		 * Save post in the editor in its current state.
 		 *
 		 * Will not change a post's status not show success messages unless you call
 		 * `editPost({ status: 'publish' | 'future' | 'draft' | 'pending' | 'private'>}`
@@ -1091,9 +1174,27 @@ not yet been saved.
 		 */
 		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => BlockClientId<A, I>;
 		/**
+		 * Enable or disable a panel in the editor.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#toggleeditorpanelenabled
+		 */
+		toggleEditorPanelEnabled: ( key: editorPanels ) => Promise<{
+			panelName: editorPanels,
+			type: 'TOGGLE_PANEL_ENABLED',
+		}>;
+		/**
+		 * Open or close a panel in the editor.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#toggleeditorpanelopened
+		 */
+		toggleEditorPanelOpened: ( panel: editorPanels ) => Promise<{
+			panelName: editorPanels,
+			type: 'TOGGLE_PANEL_OPENED',
+		}>;
+		/**
 		 * Unlock a post's saving ability.
 		 *
-		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#unlockpostSaving
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#unlockpostsaving
 		 *
 		 * @param {string} lockName - Must match name used with `lockPostSaving`.
 		 *
