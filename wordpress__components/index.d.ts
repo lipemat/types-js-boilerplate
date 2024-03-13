@@ -6,7 +6,7 @@
  */
 declare module '@wordpress/components' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, type DetailedHTMLProps, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, type SVGAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
+	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, type DetailedHTMLProps, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
 	import {Status} from '@wordpress/notices';
 	import DropEvent = JQuery.DropEvent;
 	import ClickEvent = JQuery.ClickEvent;
@@ -1231,7 +1231,7 @@ declare module '@wordpress/components' {
 		label?: ReactNode;
 		labelPosition?: 'top' | 'side' | 'bottom';
 		multiple?: boolean;
-		value: string | number;
+		value: T;
 		onChange: ( currentValue: T ) => void;
 		options: Array<{
 			label: string;
