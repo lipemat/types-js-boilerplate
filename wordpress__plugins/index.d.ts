@@ -74,7 +74,7 @@ declare module '@wordpress/plugins' {
 	 * @param {string}   name     A string identifying the plugin.Must be
 	 *                            unique across all registered plugins.
 	 *                            May only contain lowercase letters
-	 *                            and d
+	 *                            and dashes.
 	 * @param {WPPlugin} settings The settings for this plugin.
 	 *
 	 *
