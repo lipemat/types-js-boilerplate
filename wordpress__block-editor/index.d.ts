@@ -13,6 +13,7 @@ declare module '@wordpress/block-editor' {
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
+	import type {Post} from '@wordpress/api/posts';
 
 	export type BlockEditingMode = 'disabled' | 'contentOnly' | 'default';
 
@@ -62,6 +63,27 @@ declare module '@wordpress/block-editor' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getgradientvaluebyslug
 	 */
 	export function getGradientValueBySlug( gradients: GradientOption[], value: string ): string;
+
+	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/url-input/README.md
+	 */
+	export function UrlInput<T extends Post>( props: {
+		className?: string;
+		disableSuggestions?: boolean;
+		placeholder?: string;
+		label?: string;
+		onKeyDown?: ( event: KeyboardEvent ) => void;
+		value: string;
+		onChange: ( url: string, post?: T ) => void;
+	} ): ReactElement;
+
+	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/url-input/README.md
+	 */
+	export function UrlInputButton<T extends Post>( props: {
+		url: string;
+		onChange: ( url: string, post?: T ) => void;
+	} ): ReactElement;
 
 	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor#useBlockDisplayInformation
@@ -425,6 +447,8 @@ declare module '@wordpress/block-editor' {
 		RichText: ComponentType<RichText>;
 		RichTextToolbarButton: ComponentType<RichTextToolbarButton>;
 		InnerBlocks: InnerBlocks;
+		UrlInput: typeof UrlInput;
+		UrlInputButton: typeof UrlInputButton;
 		useBlockDisplayInformation: useBlockDisplayInformation;
 		useBlockEditingMode: useBlockEditingMode;
 		useBlockProps: useBlockProps;
