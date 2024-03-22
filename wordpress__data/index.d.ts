@@ -317,6 +317,13 @@ not yet been saved.
 		 */
 		isPostSavingLocked: () => boolean;
 
+		/**
+		 * Is the pre-publish panel should be shown or skipped when the user clicks the “publish” button?
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#ispublishsidebarenabled
+		 */
+		isPublishSidebarEnabled: () => boolean;
+
 		// @todo properly type the rest of these as needed.
 		canInsertBlockType: () => any;
 		canUserUseUnfilteredHTML: () => any;
@@ -403,7 +410,6 @@ not yet been saved.
 		isPostAutosavingLocked: () => any;
 		isPostLockTakeover: () => any;
 		isPreviewingPost: () => any;
-		isPublishSidebarEnabled: () => any;
 		isPublishingPost: () => any;
 		isSavingPost: () => any;
 		isSelectionEnabled: () => any;
