@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### mklink E:\SVN\types-js-boilerplate\.git\hooks\pre-commit E:\SVN\types-js-boilerplate\git-hooks\pre-commit
+### mklink E:\SVN\the-boilerplate\.git\modules\packages\types-js-boilerplate\hooks\pre-commit E:\SVN\the-boilerplate\packages\types-js-boilerplate\git-hooks\pre-commit
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
 GREEN="$(tput setaf 2)"
