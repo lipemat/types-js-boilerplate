@@ -755,6 +755,10 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
 	 */
 	export function select<T>( callback: ( selectFunction: typeof select ) => T, deps: DependencyList ): T;
+	/**
+	 * @deprecated without specifying `deps`. Specify dependencies instead.
+	 */
+	export function select<T>( callback: ( selectFunction: typeof select ) => T  ): T;
 
 	export function select<State, Methods extends SelectFunctions<State>>( store: string ): Methods;
 
