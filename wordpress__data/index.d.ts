@@ -514,14 +514,14 @@ not yet been saved.
 		getSelectedBlock: () => null | BlockClientId;
 		/**
 		 * Returns the currently selected block client ID, or null
-		 * if there are no or multiple selected blocks.
+		 * if no or multiple selected blocks.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getselectedblockclientId
 		 */
 		getSelectedBlockClientId: () => null | string;
 		/**
 		 * Returns the current selection set of block client IDs
-		 * (multiselection or single selection).
+		 * (multi-selection or single selection).
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getselectedblockclientids
 		 */
@@ -800,7 +800,7 @@ not yet been saved.
 	 */
 	export type CoreBlockEditorDispatch = {
 		/**
-		 * Select a block in the editor based on id.
+		 * Select a block in the editor based on its id.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#selectblock
 		 */
@@ -1173,7 +1173,7 @@ not yet been saved.
 		 * Save post in the editor in its current state.
 		 *
 		 * Will not change a post's status not show success messages unless you call
-		 * `editPost({ status: 'publish' | 'future' | 'draft' | 'pending' | 'private'>}`
+		 * `editPost({ status: 'publish' | 'future' | 'draft' | 'pending' | 'private'>})`
 		 * before calling savePost.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#savepost
