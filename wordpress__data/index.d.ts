@@ -1180,7 +1180,7 @@ not yet been saved.
 		 */
 		savePost: () => Promise<undefined>;
 		/**
-		 * @deprecated
+		 * @deprecated Use 'core/block-editor' instead.
 		 */
 		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => BlockClientId<A, I>;
 		/**
