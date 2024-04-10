@@ -13,17 +13,17 @@ declare module '@wordpress/element' {
 	import {render as reactRender} from 'react-dom';
 
 	/**
-	 * @deprecated
+	 * @deprecated in favor of using `react` directly.
 	 */
 	export const Fragment: ComponentType<{}>;
 
 	/**
-	 * @deprecated
+	 * @deprecated in favor of using `react` directly.
 	 */
 	export const useEffect: typeof reactUseEffect;
 
 	/**
-	 * @deprecated
+	 * @deprecated in favor of using `react` directly.
 	 */
 	export const useState: typeof reactUseState;
 
@@ -33,7 +33,7 @@ declare module '@wordpress/element' {
 	 *         your `externals` configuration to differentiate between the
 	 *         proper `react-dom` to use.
 	 *
-	 * @deprecated
+	 * @deprecated in favor of using `react` directly.
 	 */
 	export const render: typeof reactRender;
 
