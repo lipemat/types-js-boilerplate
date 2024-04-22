@@ -36,6 +36,7 @@ declare module '@wordpress/components' {
 		showTooltip?: boolean;
 		// Available in WP 6.3+.
 		size?: 'small' | 'compact' | 'default';
+		style?: CSSProperties;
 		text?: string;
 		tooltipPosition?: TooltipPosition;
 		variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
@@ -531,14 +532,14 @@ declare module '@wordpress/components' {
 	}
 
 	// If href is set, we get a link.
-	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children' | 'focus'> {
+	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children' | 'focus' | 'style'> {
 		href: string;
 		target?: string;
 		onClick?: ( ev: MouseEvent<HTMLLinkElement> ) => void;
 	}
 
 	// If href is not set, we get a button.
-	interface ButtonButton extends ButtonParams, Omit<Partial<HTMLButtonElement>, 'className' | 'children' | 'focus'> {
+	interface ButtonButton extends ButtonParams, Omit<Partial<HTMLButtonElement>, 'className' | 'children' | 'focus' | 'style'> {
 		onClick?: ( ev: MouseEvent<HTMLButtonElement> ) => void;
 	}
 
