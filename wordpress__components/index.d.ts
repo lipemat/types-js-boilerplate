@@ -1055,16 +1055,16 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://github.com/WordPress/gutenberg/tree/master/packages/components/src/radio-control
 	 */
-	interface RadioControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
-		selected: string | number;
+	export function RadioControl<T extends string>( props: PropsWithChildren<{
+		selected: T;
 		options: Array<{
 			label: string;
-			value: string | number;
+			value: T;
 		}>;
 		label?: ReactNode;
 		help?: ReactNode;
-		onChange?: ( value: string ) => void;
-	}
+		onChange?: ( value: T ) => void;
+	} & Omit<InputHTMLAttributes<{}>, 'onChange'>> ): ReactElement<any, any> | null;
 
 	/**
 	 * Range slider input control.
@@ -1496,7 +1496,6 @@ declare module '@wordpress/components' {
 	export const Path: ComponentType<Path>;
 	export const Placeholder: ComponentType<Placeholder>;
 	export const Popover: ComponentType<PopoverProps>;
-	export const RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
 	export const RangeControl: ComponentType<RangeControl>;
 	export const ResizableBox: ComponentType<ResizableBox>;
 	export const ResponsiveWrapper: ComponentType<ResponsiveWrapper>;
@@ -1554,7 +1553,7 @@ declare module '@wordpress/components' {
 		Path: ComponentType<Path>;
 		Placeholder: ComponentType<Placeholder>;
 		Popover: ComponentType<PopoverProps>;
-		RadioControl: ComponentType<PropsWithChildren<RadioControl>>;
+		RadioControl: typeof RadioControl;
 		RangeControl: ComponentType<RangeControl>;
 		ResizableBox: ComponentType<ResizableBox>;
 		ResponsiveWrapper: ComponentType<ResponsiveWrapper>;
