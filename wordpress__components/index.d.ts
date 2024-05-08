@@ -6,7 +6,7 @@
  */
 declare module '@wordpress/components' {
 	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, type DetailedHTMLProps, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefObject, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
+	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, type DetailedHTMLProps, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, type Ref, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
 	import {Status} from '@wordpress/notices';
 	import DropEvent = JQuery.DropEvent;
 	import ClickEvent = JQuery.ClickEvent;
@@ -31,7 +31,7 @@ declare module '@wordpress/components' {
 		isSmall?: boolean;
 		isTertiary?: boolean;
 		label?: ReactNode;
-		ref?: RefObject<HTMLButtonElement>;
+		ref?: Ref<HTMLButtonElement>;
 		shortcut?: shortcutText;
 		showTooltip?: boolean;
 		// Available in WP 6.3+.
@@ -890,7 +890,7 @@ declare module '@wordpress/components' {
 	 */
 	interface NavigableMenu extends HTMLAttributes<HTMLDivElement> {
 		orientation?: 'vertical' | 'horizontal' | 'both';
-		ref?: RefObject<HTMLDivElement>;
+		ref?: Ref<HTMLDivElement>;
 		/**
 		 * The component children.
 		 */
@@ -1370,7 +1370,7 @@ declare module '@wordpress/components' {
 		hideLabelFromVision?: boolean
 		label?: ReactNode;
 		onChange: ( value: string ) => void;
-		ref?: RefObject<HTMLInputElement>;
+		ref?: Ref<HTMLInputElement>;
 		type?: 'email' | 'number' | 'password' | 'tel' | 'text' | 'search' | 'url';
 		value: string | number;
 	}
