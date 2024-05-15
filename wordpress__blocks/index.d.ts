@@ -349,12 +349,12 @@ declare module '@wordpress/blocks' {
 	}
 
 	export type BlockCategory<Category> =
-		'text'
-		| 'media'
 		| 'design'
-		| 'widgets'
 		| 'embed'
-		| 'reusable'
+		| 'media'
+		| 'text'
+		| 'theme'
+		| 'widgets'
 		| Category
 
 	/**
