@@ -547,12 +547,14 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/checkbox-control/
 	 */
 	interface CheckboxControl extends Omit<InputHTMLAttributes<{}>, 'onChange'> {
-		heading?: string;
 		label?: ReactNode;
 		help?: ReactNode;
 		checked: boolean;
 		className?: string,
 		onChange: ( currentValue: boolean ) => void;
+		indeterminate?: boolean;
+		// @deprecated since WP 5.8
+		heading?: string;
 	}
 
 	/**
