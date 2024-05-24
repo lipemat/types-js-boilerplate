@@ -332,16 +332,21 @@ declare module '@wordpress/block-editor' {
 
 	/**
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/rich-text/README.md
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/richtext/
 	 */
 	interface RichText {
 		children?: ReactNode[],
 		className?: string;
-		value: string;
+		// Disables inserting line breaks on Enter when it is set to true
+		disableLineBreaks?: boolean;
 		onChange: ( currentValue: string ) => void;
-		tagName?: string; //defaults `div`
 		placeholder?: string;
+		// Preserve white space characters in the value. Normally tab, newline and space characters are collapsed to a single space or trimmed.
+		preserveWhiteSpace?: boolean;
+		tagName?: string; //defaults `div`
+		value: string;
 		keepPlaceholderOnFocus?: boolean
-		//By default, a line break will be inserted on Enter. If the editable field can contain multiple paragraphs, this property can be set to create new paragraphs on Enter.
+		// @deprecated
 		multiline?: boolean;
 		// Called when the content can be split, where value is a piece of content being split off. Here you should create a new block with that content and return it. Note that you also need to provide onReplace in order for this to take any effect.
 		onSplit?: ( value: string, content?: string ) => void;
