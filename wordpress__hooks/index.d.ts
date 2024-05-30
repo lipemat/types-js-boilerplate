@@ -21,15 +21,34 @@ declare module '@wordpress/hooks' {
 		}
 	};
 
-	type Callback<Value, Return, Extra extends []> = ( value: Value, ...extra: Extra ) => Return;
+	type Callback<Value, Return, Extra extends any[]> = ( value: Value, ...extra: Extra ) => Return;
 
-	export function addAction<Value, Extra extends [] = any>( action: string, namespace: string, cb: Callback<Value, void, Extra>, priority?: number ): void;
+	export function addAction<Value, Extra extends [] = any>(
+		action: string,
+		namespace: string,
+		cb: Callback<Value, void, Extra>,
+		priority?: number
+	): void;
 
-	export function addFilter<Value, Return = any, Extra extends [] = any>( filter: string, namespace: string, cb: Callback<Value, Return, Extra>, priority?: number ): void;
+	export function addFilter<Value, Return = any, Extra extends any[] = any[]>(
+		filter: string,
+		namespace: string,
+		cb: Callback<Value, Return, Extra>,
+		priority?: number
+	): void;
 
-	type applyFilters = <T = any>( filter: string, content: any, ...args: any ) => T;
+	export function applyFilters<Return = any, Value = any, Args extends any[] = any[]>(
+		filter: string,
+		content: Value,
+		...args: Args
+	): Return;
+
+	export function doAction<Args extends any[] = any[]>(
+		action: string,
+		...args: Args
+	): void;
+
 	type createHooks = () => void;
-	type doAction = ( action: string, ...args: any ) => void;
 
 	type doingAction = ( action: string ) => void;
 	type doingFilter = ( filter: string ) => void;
@@ -44,9 +63,8 @@ declare module '@wordpress/hooks' {
 	type removeAllFilters = ( filter: string ) => void;
 
 	export const actions: actions;
-	export const applyFilters: applyFilters;
+
 	export const createHooks: createHooks;
-	export const doAction: doAction;
 	export const doingAction: doingAction;
 	export const doingFilter: doingFilter;
 	export const didAction: didAction;
@@ -63,9 +81,9 @@ declare module '@wordpress/hooks' {
 		actions: actions;
 		addFilter: typeof addFilter;
 		addAction: typeof addAction;
-		applyFilters: applyFilters;
+		applyFilters: typeof applyFilters;
 		createHooks: createHooks;
-		doAction: doAction;
+		doAction: typeof doAction;
 		doingAction: doingAction;
 		doingFilter: doingFilter;
 		didAction: didAction;
