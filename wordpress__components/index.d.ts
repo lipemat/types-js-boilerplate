@@ -1282,13 +1282,20 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
 	 */
 	export function Slot<P = {}, N extends string = string>( props: PropsWithChildren<{
-		bubblesVirtually?: boolean;
-		children?: ( fills: ReactNode[] ) => ReactNode;
+		bubblesVirtually: true;
 		className?: string;
 		// Fill props are passed to fills using function children.
 		fillProps?: P
 		name?: N;
+		style?: CSSProperties;
 	}>, context?: any ): ReactElement<any, any> | null;
+	export function Slot<P = {}, N extends string = string>( props: {
+		bubblesVirtually?: false;
+		children?: ( fills: ReactNode[] ) => ReactNode;
+		// Fill props are passed to fills using function children.
+		fillProps?: P,
+		name?: N;
+	}, context?: any ): ReactElement<any, any> | null;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/slot-fill/#props
