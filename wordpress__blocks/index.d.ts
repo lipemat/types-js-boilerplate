@@ -423,8 +423,6 @@ declare module '@wordpress/blocks' {
 		ariaLabel?: boolean;
 		// False removes the support for the generated className.
 		className?: boolean;
-		// False removes the support for the custom className.
-		customClassName?: boolean;
 		/**
 		 * Support color selections.
 		 *
@@ -432,10 +430,15 @@ declare module '@wordpress/blocks' {
 		 */
 		color?: {
 			background?: boolean; // Enable background color UI control.
+			button?: boolean; // Enable button color support.
+			enableContrastChecker?: boolean; // False to disable the contrast checker.
 			gradients?: boolean; // Enable gradient color UI control.
-			text?: boolean; // Enable text color UI control.
+			heading?: boolean; // Enable heading color support.
 			link?: boolean; // Enable link color UI control.
+			text?: boolean; // Enable text color UI control.
 		};
+		// False removes the support for the custom className.
+		customClassName?: boolean;
 		/**
 		 * Enable dimensions UI control.
 		 *
@@ -448,13 +451,7 @@ declare module '@wordpress/blocks' {
 		// Enable block control for filters.
 		filter?: {
 			duotone?: boolean; // Enable duotone filter UI control.
-		}
-		/**
-		 * Enable line height UI control.
-		 *
-		 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/#lineheight
-		 */
-		lineHeight?: boolean;
+		};
 		// False removes support for an HTML mode.
 		html?: boolean;
 		// False hides this block from the inserter.
@@ -480,6 +477,8 @@ declare module '@wordpress/blocks' {
 		}
 		// False allows the block just once per post
 		multiple?: boolean;
+		// False removes the support for Options dropdown block renaming.
+		renaming?: boolean;
 		// False prevents the block to be converted into a reusable block.
 		reusable?: boolean;
 		// False hides the lock options from block options dropdown.
@@ -488,6 +487,7 @@ declare module '@wordpress/blocks' {
 		position?: {
 			sticky?: boolean; // Enable selecting sticky position.
 		};
+		shadow?: boolean;
 		/**
 		 * Enable CSS spacing UI controls
 		 *
@@ -498,6 +498,7 @@ declare module '@wordpress/blocks' {
 			margin?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
 			padding?: boolean | Array<'top' | 'bottom' | 'left' | 'right'>;
 		};
+		splitting?: boolean;
 		/**
 		 * Enable typography controls and attributes.
 		 *
@@ -506,6 +507,7 @@ declare module '@wordpress/blocks' {
 		typography?: {
 			fontSize: boolean;
 			lineHeight: boolean;
+			textAlign?: boolean | Array<'left' | 'right' | 'center'>;
 		};
 	}
 
