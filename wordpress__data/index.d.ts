@@ -16,7 +16,7 @@ declare module '@wordpress/data' {
 	import {Type, TypesQuery} from '@wordpress/api/types';
 	import {Media} from '@wordpress/api/media';
 	import {Action, NoticeOptions, Status} from '@wordpress/notices';
-	import {DependencyList} from 'react';
+	import {DependencyList, type ReactElement} from 'react';
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
 	import {BlockEditingMode} from '@wordpress/block-editor';
@@ -36,6 +36,13 @@ declare module '@wordpress/data' {
 		Attr = { [ key: string ]: any },
 		I = []
 	> extends CreateBlock<Attr, I> {
+	}
+
+	export type RegisteredBlock<Attr = any> = BlockSettings<Attr> & {
+		name: string;
+		icon: {
+			src: ReactElement;
+		}
 	}
 
 	export type StateValue =
@@ -686,12 +693,13 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getblocktype
 		 */
-		getBlockType: <Attr = Object>( name: string ) => BlockSettings<Attr> & { name: string };
+		getBlockType: <Attr = Object>( name: string ) => RegisteredBlock<Attr> | undefined;
 		/**
+		 * Returns all the available block types.
 		 *
 		 * https://developer.wordpress.org/block-editor/reference-guides/data/data-core-blocks/#getblocktypes
 		 */
-		getBlockTypes: () => Array<BlockSettings<any> & { name: string }>;
+		getBlockTypes: () => RegisteredBlock[];
 		/**
 		 * Get a blocks variations.
 		 *
