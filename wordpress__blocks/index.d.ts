@@ -528,7 +528,7 @@ declare module '@wordpress/blocks' {
 	 * @link https://schemas.wp.org/trunk/block.json
 	 *@link https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md
 	 */
-	export type BlockSettings<Attr, Category = '', Transform = Attr, Context = {}> = {
+	export type BlockSettings<Attr = {[key: string]: any}, Category = '', Transform = Attr, Context = {}> = {
 		title: string;
 		description?: string;
 		category: BlockCategory<Category>;
