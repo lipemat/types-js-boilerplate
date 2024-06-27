@@ -8,6 +8,7 @@ declare module '@wordpress/blocks' {
 	import {BlockClientId, CoreBlocks, CoreBlocksDispatch} from '@wordpress/data';
 	import {ReactElement, SVGProps} from 'react';
 	import {iconType} from '@wordpress/components';
+	import type {ConstrainedLayout, FlexLayout, FlowLayout, GridLayout} from '@wordpress/block-editor';
 
 	type dataTypes =
 		'null'
@@ -463,9 +464,7 @@ declare module '@wordpress/blocks' {
 		}
 		// Applies to blocks that are containers for inner blocks. If set to true the layout type will be flow.
 		layout?: boolean | {
-			default?: {
-				type: string;
-			};
+			default?: FlexLayout | GridLayout | FlowLayout | ConstrainedLayout;
 			allowSwitching?: boolean;
 			allowEditing?: boolean;
 			allowInheriting?: boolean;

@@ -22,9 +22,33 @@ declare module '@wordpress/block-editor' {
 		blockAttributes: { [ attr: string ]: any }
 	];
 
+	export type GridLayout = {
+		type: 'grid';
+		columnCount?: number;
+		minimumColumnWidth?: string;
+		rowCount?: number;
+	}
+	export type FlexLayout = {
+		type: 'flex';
+		flexWrap?: 'wrap' | 'nowrap';
+		justifyContent?: 'left' | 'right' | 'center' | 'stretch' | 'space-between';
+		orientation?: 'horizontal' | 'vertical';
+		verticalAlignment?: 'top' | 'center' | 'bottom' | 'stretch' | 'space-between';
+	}
+	export type FlowLayout = {
+		type: 'flow';
+	}
+	export type ConstrainedLayout = {
+		type: 'constrained';
+		contentSize?: number;
+		justifyContent?: 'left' | 'center' | 'right';
+		wideSize?: number;
+	}
+
 	type BlockWrapAttributes = React.JSX.IntrinsicElements['div'] & {
 		ref?: MutableRefObject<any>;
 	};
+
 
 	/**
 	 * Returns a class based on the context a color is being used and its slug.
