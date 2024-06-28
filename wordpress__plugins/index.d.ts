@@ -2,7 +2,7 @@
  * Definitions for the `@wordpress/plugins` package.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-plugins/
- * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__plugins/index.d.ts
+ * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/plugins/src/api/index.ts
  */
 declare module '@wordpress/plugins' {
 	import {ComponentClass, ComponentType, FunctionComponent} from '@lipemat/js-boilerplate/helpers';
