@@ -110,6 +110,19 @@ declare module '@wordpress/compose' {
 
 	type withInstanceId = <P>( WrappedComponent: ComponentType<P> ) => ComponentType<P & withInstanceIdProps> & createHigherOrderComponentProps;
 
+	/**
+	 * Helper hook for input fields that need to debounce the value before using it.
+	 *
+	 * Accepts any kind of input value and returns a debounced version of it.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-compose/#usedebouncedinput
+	 */
+	export function useDebouncedInput<T = string>( defaultValue?: T ): [
+		value: T,
+		setter: ( value: T ) => void,
+		deboucedValue: T
+	];
+
 
 	export const useCopyToClipboard: useCopyToClipboard;
 	export const useDebounce: useDebounce;
@@ -122,6 +135,7 @@ declare module '@wordpress/compose' {
 		ifCondition: typeof ifCondition;
 		useCopyToClipboard: useCopyToClipboard;
 		useDebounce: useDebounce;
+		useDebouncedInput: typeof useDebouncedInput;
 		withInstanceId: withInstanceId;
 	}
 }
