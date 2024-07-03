@@ -531,6 +531,15 @@ declare module '@wordpress/components' {
 		children: ReactNode;
 	}
 
+	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/block-popover/README.md
+	 */
+	interface BlockPopover {
+		clientId: string;
+		bottomClientId?: string;
+		shift?: boolean;
+	}
+
 	// If href is set, we get a link.
 	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children' | 'focus' | 'style'> {
 		href: string;
@@ -1476,6 +1485,7 @@ declare module '@wordpress/components' {
 	}
 
 	export const BaseControl: ComponentType<BaseControl>;
+	export const BlockPopover: ComponentType<BlockPopover>;
 	export const Button: ComponentType<ButtonLink | ButtonButton>;
 	export const CheckboxControl: ComponentType<CheckboxControl>;
 	export const ColorIndicator: ComponentType<ColorIndicator>;
@@ -1529,6 +1539,7 @@ declare module '@wordpress/components' {
 
 	export default interface Components {
 		BaseControl: ComponentType<BaseControl>;
+		BlockPopover: ComponentType<BlockPopover>;
 		Button: ComponentType<ButtonLink | ButtonButton>;
 		CheckboxControl: ComponentType<CheckboxControl>;
 		ColorIndicator: ComponentType<ColorIndicator>;
