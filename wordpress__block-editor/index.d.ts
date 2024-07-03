@@ -372,7 +372,7 @@ declare module '@wordpress/block-editor' {
 		keepPlaceholderOnFocus?: boolean
 		// @deprecated
 		multiline?: boolean;
-		// Called when the content can be split, where value is a piece of content being split off. Here you should create a new block with that content and return it. Note that you also need to provide onReplace in order for this to take any effect.
+		// @deprecated
 		onSplit?: ( value: string, content?: string ) => void;
 		// Called when the RichText instance can be replaced with the given blocks.
 		onReplace?: ( blocks: ReactNode[], index?: number ) => void;
