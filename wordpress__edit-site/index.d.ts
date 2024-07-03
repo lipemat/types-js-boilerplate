@@ -7,10 +7,10 @@
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-site/
  */
 declare module '@wordpress/edit-site' {
-	import {FunctionComponent} from '@lipemat/js-boilerplate/helpers';
-	import {ReactNode} from 'react';
-	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
-	import {Fill, WPBlockTypeIconRender} from '@wordpress/components';
+	import type {ReactNode} from 'react';
+	import type {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
+	import {Fill} from '@wordpress/components';
+	import type {PluginMoreMenuItem as PluginMoreMenuItemSlot, PluginSidebar as PluginSidebarSlot, PluginSidebarMoreMenuItem as PluginSidebarMoreMenuItemSlot} from '@wordpress/editor';
 
 	/**
 	 * Settings used to initialize the editor.
@@ -106,65 +106,9 @@ declare module '@wordpress/edit-site' {
 	export function initializeEditor( id: string, settings: Partial<EditorSettings> ): void;
 
 	/**
-	 * SlotFill for rendering a menu item in `Plugins` group in `More Menu` drop down.
-	 * Can be used to as a button or link depending on the props provided.
-	 *
-	 * Similar to the `PluginMoreMenuItem` slot fill available in the Post Editor.
-	 * @notice Not coming from same package as example.
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-more-menu-item/
-	 *
-	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/edit-site/src/components/header-edit-mode/plugin-more-menu-item/index.js
-	 *
-	 */
-	interface PluginMoreMenuItem {
-		icon?: WPBlockTypeIconRender,
-		onClick?: () => void,
-	}
-
-	/**
-	 * SlotFill for rendering an item in the Sidebar of the Site Editor.
-	 *
-	 * Similar to the `PluginSidebar` slot fill available in the Post Editor.
-	 * @notice Not coming from same package as example.
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-sidebar/
-	 *
-	 * @see PluginSidebarMoreMenuItem
-	 *
-	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/edit-site/src/components/sidebar-edit-mode/plugin-sidebar/index.js
-	 */
-	interface PluginSidebar {
-		className?: string;
-		icon?: WPBlockTypeIconRender;
-		isPinnable?: boolean;
-		name: string;
-		title: string;
-	}
-
-	/**
-	 * SlotFill for a menu item in `Plugins` group in `More Menu` drop down,
-	 * and can be used to activate the corresponding `PluginSidebar` component.
-	 * The text within the component appears as the menu item label.
-	 *
-	 * Similar to the `PluginSidebarMoreMenuItem` slot fill available in the Post Editor.
-	 * @notice Not coming from same package as example.
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-sidebar-more-menu-item/
-	 *
-	 * @see PluginSidebar
-	 *
-	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/edit-site/src/components/header-edit-mode/plugin-sidebar-more-menu-item/index.js
-	 */
-	interface PluginSidebarMoreMenuItem {
-		// A string identifying the target sidebar you wish to be activated by this menu item. Must be the same as the `name` prop you have given to that sidebar.
-		target: string;
-		icon?: WPBlockTypeIconRender;
-	}
-
-	/**
 	 * Slot for rendering in the Site Editor "Template" sidebar.
 	 */
-	type PluginTemplateSettingPanel = typeof Fill & {
-
-	}
+	type PluginTemplateSettingPanel = typeof Fill & {}
 
 	/**
 	 * Reinitialize the editor after the user chooses to reboot the editor after
@@ -186,17 +130,27 @@ declare module '@wordpress/edit-site' {
 	 */
 	export function reinitializeEditor( target: Element, settings: Partial<EditorSettings> ): void;
 
-	export const PluginMoreMenuItem: FunctionComponent<PluginMoreMenuItem>;
 	export const PluginTemplateSettingPanel: PluginTemplateSettingPanel;
-	export const PluginSidebar: FunctionComponent<PluginSidebar>;
-	export const PluginSidebarMoreMenuItem: FunctionComponent<PluginSidebarMoreMenuItem>;
+
+	/**
+	 * @deprecated WP 6.6 Use `PluginMoreMenuItem` from `@wordpress/editor` instead.
+	 */
+	export const PluginMoreMenuItem: PluginMoreMenuItemSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginSidebar` from `@wordpress/editor` instead.
+	 */
+	export const PluginSidebar: PluginSidebarSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginSidebarMoreMenuItem` from `@wordpress/editor` instead.
+	 */
+	export const PluginSidebarMoreMenuItem: PluginSidebarMoreMenuItemSlot;
 
 	export default interface editSite {
 		initializeEditor: typeof initializeEditor;
-		PluginMoreMenuItem: FunctionComponent<PluginMoreMenuItem>;
+		PluginMoreMenuItem: typeof PluginMoreMenuItem;
 		PluginTemplateSettingPanel: PluginTemplateSettingPanel;
-		PluginSidebar: FunctionComponent<PluginSidebar>;
-		PluginSidebarMoreMenuItem: FunctionComponent<PluginSidebarMoreMenuItem>;
+		PluginSidebar: typeof PluginSidebar;
+		PluginSidebarMoreMenuItem: typeof PluginSidebarMoreMenuItem;
 		reinitializeEditor: typeof reinitializeEditor;
 	}
 }

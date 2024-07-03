@@ -5,11 +5,10 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__edit-post/index.d.ts
  */
 declare module '@wordpress/edit-post' {
-	import {FunctionComponent} from '@lipemat/js-boilerplate/helpers';
-	import {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
-	import {WPBlockTypeIconRender} from '@wordpress/components';
-	import {OptionalNonIntersect} from '@lipemat/js-boilerplate/utility';
+	import type {MIME_TYPES} from '@lipemat/js-boilerplate/mime';
+	import type {OptionalNonIntersect} from '@lipemat/js-boilerplate/utility';
 	import type {RawPage, RawPost} from '@wordpress/core-data/entities';
+	import type {PluginBlockSettingsMenuItem as PluginBlockSettingsMenuItemSlot, PluginDocumentSettingPanel as PluginDocumentSettingPanelSlot, PluginMoreMenuItem as PluginMoreMenuItemSlot, PluginPostPublishPanel as PluginPostPublishPanelSlot, PluginPostStatusInfo as PluginPostStatusInfoSlot, PluginPrePublishPanel as PluginPrePublishPanelSlot, PluginSidebar as PluginSidebarSlot, PluginSidebarMoreMenuItem as PluginSidebarMoreMenuItemSlot} from '@wordpress/editor';
 
 	/**
 	 * Convenience interface when working with Post data in the editor.
@@ -98,127 +97,11 @@ declare module '@wordpress/edit-post' {
 	 */
 	export function initializeEditor( id: string, postType: string, postId: number, settings: Partial<EditorSettings>, initialEdits?: object ): void;
 
-	/**
-	 * Renders a new item in the block settings menu.
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-block-settings-menu-item/
-	 */
-	interface PluginBlockSettingsMenuItem {
-		allowedBlocks: string[],
-		icon?: WPBlockTypeIconRender,
-		label: string,
-		onClick: () => void,
-		// The ARIA role for the menu item.
-		role?: string,
-		// Whether to render the label or not.
-		small?: boolean,
-	}
-
-	/**
-	 * Renders items below the Status & Availability panel in the Document Sidebar.
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-document-setting-panel/
-	 *
-	 */
-	interface PluginDocumentSettingPanel {
-		className?: string,
-		icon?: WPBlockTypeIconRender,
-		name: string,
-		title: string,
-	}
-
-	/**
-	 * Renders a menu item in `Plugins` group in `More Menu` drop down, and can be used to as a button or link depending on the props provided.
-	 * The text within the component appears as the menu item label.
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-more-menu-item/
-	 *
-	 */
-	interface PluginMoreMenuItem {
-		icon?: WPBlockTypeIconRender,
-		onClick?: () => void,
-	}
-
-	/**
-	 * Renders provided content to the post-publish panel in the publish flow
-	 * (side panel that opens after a user publishes the post).
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-post-publish-panel/
-	 *
-	 */
-	interface PluginPostPublishPanel {
-		className?: string;
-		title?: string;
-		initialOpen?: boolean;
-		icon?: WPBlockTypeIconRender;
-	}
-
-	/**
-	 * Renders a row in the Status & visibility panel of the Document sidebar.
-	 * It should be noted that this is named and implemented around the function it serves
-	 * and not its location, which may change in future iterations.
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-post-status-info/
-	 */
-	interface PluginPostStatusInfo {
-		className?: string;
-	}
-
-	/**
-	 * Renders provided content to the pre-publish side panel in the publish flow
-	 * (side panel that opens when a user first pushes "Publish" from the main editor).
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-pre-publish-panel/
-	 */
-	interface PluginPrePublishPanel {
-		className?: string;
-		title?: string;
-		initialOpen?: boolean;
-		icon?: WPBlockTypeIconRender;
-	}
-
-	/**
-	 * Renders a sidebar when activated. The contents within the `PluginSidebar`
-	 * will appear as content within the sidebar.
-	 * It also automatically renders a corresponding `PluginSidebarMenuItem` component
-	 * when `isPinnable` flag is set to `true`.
-	 * If you wish to display the sidebar, you can with use the `PluginSidebarMoreMenuItem`
-	 * component or the `wp.data.dispatch` API:
-	 * ```js
-	 * wp.data.dispatch( 'core/edit-post' ).openGeneralSidebar( 'plugin-name/sidebar-name' );
-	 * ```
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-sidebar/
-	 *
-	 * @see PluginSidebarMoreMenuItem
-	 *
-	 */
-	interface PluginSidebar {
-		className?: string;
-		icon?: WPBlockTypeIconRender;
-		// Whether to allow to pin sidebar to the toolbar. When set to `true` it also automatically renders a corresponding menu item.
-		isPinnable?: boolean;
-		name: string;
-		title: string;
-	}
-
-	/**
-	 * Renders a menu item in `Plugins` group in `More Menu` drop down,
-	 * and can be used to activate the corresponding `PluginSidebar` component.
-	 * The text within the component appears as the menu item label.
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/slotfills/plugin-sidebar-more-menu-item/
-	 */
-	interface PluginSidebarMoreMenuItem {
-		// A string identifying the target sidebar you wish to be activated by this menu item. Must be the same as the `name` prop you have given to that sidebar.
-		target: string;
-		icon?: WPBlockTypeIconRender;
-	}
 
 	/**
 	 * Reinitialize the editor after the user chooses to reboot the editor after
 	 * an unhandled error occurs, replacing previously mounted editor element using
-	 * an initial state from prior to the crash.
+	 * an initial state from before the crash.
 	 *
 	 * @notice If a crash did not occur, using this method will clear out
 	 *         the content and replace it with nothing.
@@ -238,25 +121,50 @@ declare module '@wordpress/edit-post' {
 	 */
 	export function reinitializeEditor( postType: string, postId: number, target: Element, settings: Partial<EditorSettings>, initialEdits?: object ): void;
 
-	export const PluginBlockSettingsMenuItem: FunctionComponent<PluginBlockSettingsMenuItem>;
-	export const PluginDocumentSettingPanel: FunctionComponent<PluginDocumentSettingPanel>;
-	export const PluginMoreMenuItem: FunctionComponent<PluginMoreMenuItem>;
-	export const PluginPostPublishPanel: FunctionComponent<PluginPostPublishPanel>;
-	export const PluginPostStatusInfo: FunctionComponent<PluginPostStatusInfo>;
-	export const PluginPrePublishPanel: FunctionComponent<PluginPrePublishPanel>;
-	export const PluginSidebar: FunctionComponent<PluginSidebar>;
-	export const PluginSidebarMoreMenuItem: FunctionComponent<PluginSidebarMoreMenuItem>;
+
+	/**
+	 * @deprecated WP 6.6 Use `PluginBlockSettingsMenuItem` from `@wordpress/editor` instead.
+	 */
+	export const PluginBlockSettingsMenuItem: PluginBlockSettingsMenuItemSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginDocumentSettingPanel` from `@wordpress/editor` instead.
+	 */
+	export const PluginDocumentSettingPanel: PluginDocumentSettingPanelSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginMoreMenuItem` from `@wordpress/editor` instead.
+	 */
+	export const PluginMoreMenuItem: PluginMoreMenuItemSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginPostPublishPanel` from `@wordpress/editor` instead.
+	 */
+	export const PluginPostPublishPanel: PluginPostPublishPanelSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginPostStatusInfo` from `@wordpress/editor` instead.
+	 */
+	export const PluginPostStatusInfo: PluginPostStatusInfoSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginPrePublishPanel` from `@wordpress/editor` instead.
+	 */
+	export const PluginPrePublishPanel: PluginPrePublishPanelSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginSidebar` from `@wordpress/editor` instead.
+	 */
+	export const PluginSidebar: PluginSidebarSlot;
+	/**
+	 * @deprecated WP 6.6 Use `PluginSidebarMoreMenuItem` from `@wordpress/editor` instead.
+	 */
+	export const PluginSidebarMoreMenuItem: PluginSidebarMoreMenuItemSlot;
 
 	export default interface EditPost {
 		initializeEditor: typeof initializeEditor;
-		PluginBlockSettingsMenuItem: FunctionComponent<PluginBlockSettingsMenuItem>;
-		PluginDocumentSettingPanel: FunctionComponent<PluginDocumentSettingPanel>;
-		PluginMoreMenuItem: FunctionComponent<PluginMoreMenuItem>;
-		PluginPostPublishPanel: FunctionComponent<PluginPostPublishPanel>;
-		PluginPostStatusInfo: FunctionComponent<PluginPostStatusInfo>;
-		PluginPrePublishPanel: FunctionComponent<PluginPrePublishPanel>;
-		PluginSidebar: FunctionComponent<PluginSidebar>;
-		PluginSidebarMoreMenuItem: FunctionComponent<PluginSidebarMoreMenuItem>;
+		PluginBlockSettingsMenuItem: typeof PluginBlockSettingsMenuItem;
+		PluginDocumentSettingPanel: typeof PluginDocumentSettingPanel;
+		PluginMoreMenuItem: typeof PluginMoreMenuItem;
+		PluginPostPublishPanel: typeof PluginPostPublishPanel;
+		PluginPostStatusInfo: typeof PluginPostStatusInfo;
+		PluginPrePublishPanel: typeof PluginPrePublishPanel;
+		PluginSidebar: typeof PluginSidebar;
+		PluginSidebarMoreMenuItem: typeof PluginSidebarMoreMenuItem;
 		reinitializeEditor: typeof reinitializeEditor;
 	}
 }
