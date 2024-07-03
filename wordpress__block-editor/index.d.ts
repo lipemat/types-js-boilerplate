@@ -91,7 +91,7 @@ declare module '@wordpress/block-editor' {
 	/**
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/url-input/README.md
 	 */
-	export function UrlInput<T extends Post>( props: {
+	export function URLInput<T extends Post>( props: {
 		className?: string;
 		disableSuggestions?: boolean;
 		placeholder?: string;
@@ -104,7 +104,7 @@ declare module '@wordpress/block-editor' {
 	/**
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/url-input/README.md
 	 */
-	export function UrlInputButton<T extends Post>( props: {
+	export function URLInputButton<T extends Post>( props: {
 		url: string;
 		onChange: ( url: string, post?: T ) => void;
 	} ): ReactElement;
@@ -476,8 +476,8 @@ declare module '@wordpress/block-editor' {
 		RichText: ComponentType<RichText>;
 		RichTextToolbarButton: ComponentType<RichTextToolbarButton>;
 		InnerBlocks: InnerBlocks;
-		UrlInput: typeof UrlInput;
-		UrlInputButton: typeof UrlInputButton;
+		UrlInput: typeof URLInput;
+		UrlInputButton: typeof URLInputButton;
 		useBlockDisplayInformation: useBlockDisplayInformation;
 		useBlockEditingMode: useBlockEditingMode;
 		useBlockProps: useBlockProps;
