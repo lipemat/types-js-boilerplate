@@ -14,7 +14,6 @@ import DomReady from '@wordpress/dom-ready';
 import EditPost from '@wordpress/edit-post';
 import EditSite from '@wordpress/edit-site';
 import Editor from '@wordpress/editor';
-import Element from '@wordpress/element';
 import EscapeHtml from '@wordpress/escape-html';
 import Hooks from '@wordpress/hooks';
 import HtmlEntities from '@wordpress/html-entities';
@@ -56,7 +55,6 @@ declare global {
 			editPost?: EditPost,
 			editSite?: EditSite,
 			editor?: Editor;
-			element?: Element;
 			escapeHtml?: EscapeHtml;
 			domReady?: typeof DomReady;
 			hooks?: Hooks;

@@ -29,15 +29,6 @@ declare module '@wordpress/data' {
 		title: string;
 	}
 
-	/**
-	 * @deprecated In favor of CreateBlock;
-	 */
-	export interface BlockClientId<
-		Attr = { [ key: string ]: any },
-		I = []
-	> extends CreateBlock<Attr, I> {
-	}
-
 	export type RegisteredBlock<Attr = any> = BlockSettings<Attr> & {
 		name: string;
 		icon: {
@@ -221,9 +212,6 @@ declare module '@wordpress/data' {
 		getUserQueryResults: () => any;
 		getWidgetArea: ( slug: string ) => any;
 		getWidgetAreas: () => any;
-
-		//@deprecated
-		getAuthors: () => any;
 	};
 
 	export function select( store: 'core' ): Core & SelectShared<Core>;
@@ -268,14 +256,6 @@ not yet been saved.
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#geteditedpostattribute
 		 */
 		getEditedPostAttribute: <T = PostEditing, K extends keyof T = keyof T>( attribute: K ) => T[K];
-		/**
-		 * @deprecated
-		 */
-		getBlocks: <T = Array<BlockClientId>>( state?: object, rootClientId?: string ) => T;
-		/**
-		 * @deprecated
-		 */
-		getSelectedBlockClientId: () => null | string;
 		/**
 		 * Prefer using the `block-editor` store.
 		 * @related core/block-editor store.
@@ -342,8 +322,6 @@ not yet been saved.
 		getBlockAttributes: () => any;
 		getBlockCount: () => any;
 		getBlockHierarchyRootClientId: () => any;
-		/** @deprecated **/
-		getBlockIndex: () => any;
 		getBlockInsertionPoint: () => any;
 		getBlockListSettings: () => any;
 		getBlockMode: () => any;
@@ -511,14 +489,14 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getmultiselectedblocks
 		 */
-		getMultiSelectedBlocks: () => null | Array<BlockClientId>;
+		getMultiSelectedBlocks: () => null | CreateBlock[];
 		/**
 		 * Returns the currently selected block or null if no or
 		 * multiple blocks are selected.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getselectedblock
 		 */
-		getSelectedBlock: () => null | BlockClientId;
+		getSelectedBlock: () => null | CreateBlock;
 		/**
 		 * Returns the currently selected block client ID, or null
 		 * if no or multiple selected blocks.
@@ -628,18 +606,6 @@ not yet been saved.
 		getAllMetaBoxes: ( key?: string ) => any;
 		getMetaBoxesPerLocation: ( key?: string ) => any;
 		hasMetaBoxes: ( key?: string ) => any;
-		/**
-		 * @deprecated 6.5 in favor of core/editor
-		 */
-		isEditorPanelEnabled: ( key?: string ) => any;
-		/**
-		 * @deprecated 6.5 in favor of core/editor
-		 */
-		isEditorPanelOpened: ( key?: string ) => any;
-		/**
-		 * @deprecated 6.5 in favor of core/editor
-		 */
-		isEditorPanelRemoved: ( key?: string ) => any;
 		isMetaBoxLocationActive: ( key?: string ) => any;
 		isMetaBoxLocationVisible: ( key?: string ) => any;
 		isModalActive: ( key?: string ) => any;
@@ -670,16 +636,6 @@ not yet been saved.
 		isFeatureActive: () => any;
 		isInserterOpened: () => any;
 		isListViewOpened: () => any;
-		/** @deprecated **/
-		getCurrentTemplateNavigationPanelSubMenu: () => any;
-		/** @deprecated **/
-		getHomeTemplateId: () => any;
-		/** @deprecated **/
-		getPage: () => any;
-		/** @deprecated **/
-		getNavigationPanelActiveMenu: () => any;
-		/** @deprecated **/
-		isNavigationOpened: () => any;
 	}
 
 	export function select( store: 'core/edit-site' ): CoreEditSite & SelectShared<CoreEditSite>;
@@ -763,10 +719,6 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
 	 */
 	export function select<T>( callback: ( selectFunction: typeof select ) => T, deps: DependencyList ): T;
-	/**
-	 * @deprecated without specifying `deps`. Specify dependencies instead.
-	 */
-	export function select<T>( callback: ( selectFunction: typeof select ) => T  ): T;
 
 	export function select<State, Methods extends SelectFunctions<State>>( store: string ): Methods;
 
@@ -936,7 +888,7 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#updateblock
 		 */
-		updateBlock: ( clientId: string, updates: Partial<BlockClientId> ) => Promise<{
+		updateBlock: ( clientId: string, updates: Partial<CreateBlock> ) => Promise<{
 			clientId: string;
 			type: 'UPDATE_BLOCK';
 			updates: typeof updates;
@@ -1063,27 +1015,6 @@ not yet been saved.
 		closeGeneralSidebar: () => Promise<{
 			type: 'CLOSE_GENERAL_SIDEBAR'
 		}>;
-		/**
-		 * @deprecated 6.5 in favor of core/editor
-		 */
-		removeEditorPanel: ( panelName: editorPanels ) => Promise<{
-			panelName: editorPanels,
-			type: 'REMOVE_PANEL'
-		}>;
-		/**
-		 * @deprecated 6.5 in favor of core/editor
-		 */
-		toggleEditorPanelEnabled: ( key: editorPanels ) => Promise<{
-			panelName: editorPanels,
-			type: 'TOGGLE_PANEL_ENABLED',
-		}>;
-		/**
-		 * @deprecated 6.5 in favor of core/editor
-		 */
-		toggleEditorPanelOpened: ( panel: editorPanels ) => Promise<{
-			panelName: editorPanels,
-			type: 'TOGGLE_PANEL_OPENED',
-		}>;
 		toggleFeature: <K extends keyof editPostPreferences['features']>( feature: K ) => Promise<{
 			feature: K;
 			type: 'TOGGLE_FEATURE';
@@ -1118,12 +1049,6 @@ not yet been saved.
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#actions
 	 */
 	export function dispatch( store: 'core/editor' ): {
-		/**
-		 * @deprecated
-		 */
-		clearSelectedBlock: () => Promise<{
-			type: 'CLEAR_SELECTED_BLOCK';
-		}>;
 		/**
 		 * Edit the post within state.
 		 *
@@ -1187,10 +1112,6 @@ not yet been saved.
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-editor/#savepost
 		 */
 		savePost: () => Promise<undefined>;
-		/**
-		 * @deprecated Use 'core/block-editor' instead.
-		 */
-		selectBlock: <A = {}, I = []>( clientId: string, initialPosition?: number ) => BlockClientId<A, I>;
 		/**
 		 * Enable or disable a panel in the editor.
 		 *

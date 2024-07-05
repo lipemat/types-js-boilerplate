@@ -57,9 +57,6 @@ declare module '@wordpress/components' {
 		slug?: string;
 	}
 
-	/** @deprecated in favor of ColorOption[] **/
-	export type colorOptions = Array<ColorOption>;
-
 	export type DragDirection = 'n' | 's' | 'e' | 'w';
 
 	export type GradientOption = {
@@ -562,8 +559,6 @@ declare module '@wordpress/components' {
 		className?: string,
 		onChange: ( currentValue: boolean ) => void;
 		indeterminate?: boolean;
-		// @deprecated since WP 5.8
-		heading?: string;
 	}
 
 	/**
@@ -599,8 +594,6 @@ declare module '@wordpress/components' {
 		className?: string;
 		color?: string;
 		copyFormat?: 'hex' | 'hsl' | 'rgb';
-		/** @deprecated **/
-		defaultValue?: string | undefined;
 		enableAlpha?: boolean;
 		onChange?: ( hex8Color: string ) => void;
 	}
@@ -1055,13 +1048,6 @@ declare module '@wordpress/components' {
 		resize?: boolean;
 		shift?: boolean;
 		variant?: 'unstyled' | 'toolbar';
-
-		/** @deprecated use `anchor` */
-		anchorRef?: MutableRefObject<any>;
-		/** @deprecated use `anchor` */
-		getAnchorRect?: ( ref: MutableRefObject<any> ) => MutableRefObject<any>;
-		/** @deprecated use `variant` */
-		isAlternate?: boolean;
 	}
 
 	/**
@@ -1270,17 +1256,6 @@ declare module '@wordpress/components' {
 		onKeyDown?: ( event: KeyboardEvent<HTMLInputElement> ) => void;
 		placeholder?: string;
 		value: string;
-	}
-
-	/**
-	 * @deprecated in favor of @wordpress/server-side-render
-	 */
-	export interface ServerSideRender<A = object, U = object> {
-		block: string;
-		attributes?: A;
-		className?: string;
-		httpMethod?: 'GET' | 'POST';
-		urlQueryArgs?: U;
 	}
 
 	interface Shortcut extends HTMLSpanElement {
@@ -1520,7 +1495,6 @@ declare module '@wordpress/components' {
 	export const ResizableBox: ComponentType<ResizableBox>;
 	export const ResponsiveWrapper: ComponentType<ResponsiveWrapper>;
 	export const SearchControl: ComponentType<SearchControl>;
-	export const ServerSideRender: ComponentType<ServerSideRender>;
 	export const Shortcut: ComponentType<Shortcut>;
 	export const SlotFillProvider: ComponentType<SlotFillProvider>;
 	export const Spinner: ComponentType<Spinner>;
@@ -1580,7 +1554,6 @@ declare module '@wordpress/components' {
 		ResponsiveWrapper: ComponentType<ResponsiveWrapper>;
 		SelectControl: typeof SelectControl;
 		SearchControl: ComponentType<SearchControl>;
-		ServerSideRender: ComponentType<ServerSideRender>;
 		Shortcut: ComponentType<Shortcut>;
 		Slot: typeof Slot;
 		SlotFillProvider: ComponentType<SlotFillProvider>;

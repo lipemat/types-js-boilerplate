@@ -370,10 +370,6 @@ declare module '@wordpress/block-editor' {
 		tagName?: string; //defaults `div`
 		value: string;
 		keepPlaceholderOnFocus?: boolean
-		// @deprecated
-		multiline?: boolean;
-		// @deprecated
-		onSplit?: ( value: string, content?: string ) => void;
 		// Called when the RichText instance can be replaced with the given blocks.
 		onReplace?: ( blocks: ReactNode[], index?: number ) => void;
 		// Called when blocks can be merged. forward is true when merging with the next block, false when merging with the previous block.

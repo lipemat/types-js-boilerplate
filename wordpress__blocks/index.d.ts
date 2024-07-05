@@ -5,7 +5,7 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__blocks/index.d.ts
  */
 declare module '@wordpress/blocks' {
-	import {BlockClientId, CoreBlocks, CoreBlocksDispatch} from '@wordpress/data';
+	import {CoreBlocks, CoreBlocksDispatch} from '@wordpress/data';
 	import {ReactElement, SVGProps} from 'react';
 	import {iconType} from '@wordpress/components';
 	import type {ConstrainedLayout, FlexLayout, FlowLayout, GridLayout} from '@wordpress/block-editor';
@@ -681,7 +681,7 @@ declare module '@wordpress/blocks' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#serialize
 	 */
-	export function serialize( blocks: Array<BlockClientId>, options?: WPBlockSerializationOptions ): string;
+	export function serialize( blocks: CreateBlock[], options?: WPBlockSerializationOptions ): string;
 
 	/**
 	 * Unregisters a block variation defined for an existing block type.
