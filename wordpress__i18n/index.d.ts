@@ -20,14 +20,8 @@ declare module '@wordpress/i18n' {
 
 	type sprintf = ( format: string, ...args: Array<string | number> ) => string;
 
-	/**
-	 * Known issue with poedit and xgettext-tools.
-	 */
-	type _x = never;
-	/**
-	 * Known issue with poedit and xgettext-tools.
-	 */
-	type _nx = never;
+	type _x = ( text: string, context: string, domain: string ) => string;
+	type _nx = ( single: string, plural: string, number: number, context: string, domain: string ) => string;
 
 
 	export const setLocaleData: setLocaleData;
