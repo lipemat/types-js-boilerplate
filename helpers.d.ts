@@ -37,4 +37,9 @@ declare module '@lipemat/js-boilerplate/helpers' {
 	 * @internal
 	 */
 	export type ComponentType<P = {}> = CT<PropsWithChildren<P>>;
+
+	/**
+	 * A boolean formatted by `wp_localize_script` because the value is cast to (string).
+	 */
+	export type JsonBoolean = '1' | '';
 }
