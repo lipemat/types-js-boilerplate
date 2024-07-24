@@ -19,6 +19,7 @@ import './wordpress__api/Posts';
 import './wordpress__api/Search';
 import './wordpress__api/Settings';
 import './wordpress__api/Taxonomies';
+import './wordpress__api/Templates';
 import './wordpress__api/Types';
 import './wordpress__api/Users';
 import './wordpress__api/index';
