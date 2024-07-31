@@ -1,6 +1,6 @@
 {
   "name": "@types/lipemat__js-boilerplate",
-  "version": "2.14.0",
+  "version": "2.14.1",
   "description": "External TypeScript definitions for WordPress Gutenberg, @lipemat/js-boilerplate and plugins",
   "types": "index.d.ts",
   "author": "Mat Lipe",
