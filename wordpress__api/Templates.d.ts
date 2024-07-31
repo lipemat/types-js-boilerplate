@@ -8,13 +8,14 @@
 declare module '@wordpress/api/templates' {
 	import {Context, ContextualField, Editing, RenderedText, Global} from '@wordpress/api';
 	import type {PostStatus} from '@wordpress/api/posts';
+	import {OmitNever} from '@lipemat/js-boilerplate/utility';
 
 	/**
 	 * Template Schema.
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/wp_templates/#schema
 	 */
-	export interface Template<C extends Context = 'view'> {
+	export type Template<C extends Context = 'view'> = OmitNever<{
 		author: number;
 		content: {
 			block_version: ContextualField<number, 'edit', C>;
@@ -33,7 +34,7 @@ declare module '@wordpress/api/templates' {
 		title: RenderedText<'edit'>;
 		type: string;
 		wp_id: number;
-	}
+	}>;
 
 	/**
 	 * Create Template.
