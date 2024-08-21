@@ -1355,6 +1355,7 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/tooltip/
 	 */
 	interface Tooltip {
+		className?: string;
 		delay?: number;
 		text?: string;
 		position?: TooltipPosition;
