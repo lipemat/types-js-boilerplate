@@ -1324,9 +1324,11 @@ declare module '@wordpress/components' {
 	interface ToolbarButton extends ButtonButton {
 		// Only used if not in toolbar context, otherwise use preferred `className`.
 		containerClassName?: string;
-		title?: string;
+		disabled?: boolean;
 		isActive?: boolean;
+		/** @deprecated */
 		isDisabled?: boolean;
+		title?: string;
 	}
 
 	/**
