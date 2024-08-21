@@ -1230,19 +1230,19 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/select-control/
 	 */
 	export function SelectControl<T extends string>( props: PropsWithChildren<{
+		className?: string;
 		help?: ReactNode;
+		hideLabelFromVision?: boolean;
 		label?: ReactNode;
 		labelPosition?: 'top' | 'side' | 'bottom';
 		multiple?: boolean;
-		value: T;
 		onChange: ( currentValue: T ) => void;
 		options: Array<{
 			label: string;
 			value: T;
 			disabled?: boolean;
 		}>;
-		className?: string;
-		hideLabelFromVision?: boolean;
+		value: T;
 		variant?: 'default' | 'minimal';
 	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
 
