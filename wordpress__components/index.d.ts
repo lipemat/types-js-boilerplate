@@ -67,6 +67,11 @@ declare module '@wordpress/components' {
 
 	export type LabelPosition = 'top' | 'bottom' | 'side' | 'edge';
 
+	export type TimeInputValue = {
+		hours: number;
+		minutes: number;
+	};
+
 	export type VirtualElement = Pick<Element, 'getBoundingClientRect'> & {
 		ownerDocument?: Document;
 	};
@@ -1383,6 +1388,17 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/date-time/types.ts
+	 */
+	interface TimeInput {
+		is12Hour?: boolean;
+		value?: TimeInputValue;
+		defaultValue?: TimeInputValue;
+		minutesProps?: NumberControl;
+		onChange?: ( time: TimeInputValue ) => void;
+	}
+
+	/**
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/date-time/time/index.tsx
 	 */
 	interface TimePicker {
@@ -1503,6 +1519,7 @@ declare module '@wordpress/components' {
 	export const TextControl: ComponentType<TextControl>;
 	export const TextareaControl: ComponentType<TextareaControl>;
 	export const TextHighlight: ComponentType<TextHighlight>;
+	export const TimeInput: ComponentType<TimeInput>;
 	export const TimePicker: ComponentType<TimePicker>;
 	export const ToggleControl: ComponentType<ToggleControl>;
 	export const ToolbarButton: ComponentType<ToolbarButton>;
@@ -1564,6 +1581,7 @@ declare module '@wordpress/components' {
 		TextControl: ComponentType<TextControl>;
 		TextareaControl: ComponentType<TextareaControl>;
 		TextHighlight: ComponentType<TextHighlight>;
+		TimeInput: ComponentType<TimeInput>;
 		TimePicker: ComponentType<TimePicker>;
 		ToggleControl: ComponentType<ToggleControl>;
 		ToolbarButton: ComponentType<ToolbarButton>;
