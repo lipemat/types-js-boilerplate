@@ -1239,10 +1239,11 @@ declare module '@wordpress/components' {
 		options: Array<{
 			label: string;
 			value: T;
-			disabled?: boolean
+			disabled?: boolean;
 		}>;
-		className?: string,
-		hideLabelFromVision?: boolean
+		className?: string;
+		hideLabelFromVision?: boolean;
+		variant?: 'default' | 'minimal';
 	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
 
 
