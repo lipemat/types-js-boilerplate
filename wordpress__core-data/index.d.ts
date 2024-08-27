@@ -45,6 +45,14 @@ declare module '@wordpress/core-data' {
 		hasResolved: boolean;
 		/** Resolution status */
 		status: Status;
+		/**
+		 * The total number of available items (if not paginated).
+		 */
+		totalItems: number | null;
+		/**
+		 * The total number of pages.
+		 */
+		totalPages: number | null;
 	}
 
 	interface EntityRecordsResolution<RecordType> extends Omit<EntityRecordResolution<RecordType>, 'record'> {
