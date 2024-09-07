@@ -336,6 +336,7 @@ declare module '@wordpress/block-editor' {
 		onToggleFeaturedImage?: ( ev: MouseEvent<HTMLButtonElement> ) => void
 		placeholder?: ReactNode;
 		style?: CSSStyleDeclaration,
+		value?: SelectedMedia | SelectedMedia[];
 	}
 
 	/**
