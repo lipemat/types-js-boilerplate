@@ -18,6 +18,7 @@ import './wordpress__api/Pages';
 import './wordpress__api/Posts';
 import './wordpress__api/Search';
 import './wordpress__api/Settings';
+import './wordpress__api/Statuses';
 import './wordpress__api/Taxonomies';
 import './wordpress__api/Templates';
 import './wordpress__api/Types';

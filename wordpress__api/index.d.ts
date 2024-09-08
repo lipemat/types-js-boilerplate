@@ -21,6 +21,7 @@ declare module '@wordpress/api' {
 	export * from '@wordpress/api/posts';
 	export * from '@wordpress/api/search';
 	export * from '@wordpress/api/settings';
+	export * from '@wordpress/api/statuses';
 	export * from '@wordpress/api/templates';
 	export * from '@wordpress/api/taxonomies';
 	export * from '@wordpress/api/types';
