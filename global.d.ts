@@ -37,6 +37,7 @@ import URL from '@wordpress/url';
  */
 declare global {
 	interface Window {
+		ajaxurl?: string;
 		wp: {
 			apiFetch?: typeof ApiFetch,
 			autop?: Autop;
@@ -72,12 +73,14 @@ declare global {
 			primitives?: Primitives;
 			richText?: RichText;
 			url?: URL;
-			// wp_enqueue_scripts( 'wp-api-fetch' );
-			wpApiSettings?: {
-				root: string;
-				nonce: string;
-				versionString: string;
-			};
-		}
+		},
+		/**
+		 * @see \wp_default_scripts()
+		 */
+		wpApiSettings?: {
+			root: string;
+			nonce: string;
+			versionString: string;
+		};
 	}
 }
