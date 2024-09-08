@@ -181,6 +181,16 @@ declare module '@wordpress/url' {
 	export function getQueryArg<T extends QueryArgParsed>( url: string, arg: string ): T | undefined;
 
 	/**
+	 * Returns an object of query arguments of the given URL.
+	 * If the given URL is invalid or has no querystring, an empty object is returned.
+	 *
+	 * @param {string} url URL.
+	 *
+	 * @return {QueryArgObject} Query args.
+	 */
+	export function getQueryArgs<T extends QueryArgObject>( url: string ): T;
+
+	/**
 	 * Determines whether the URL contains a given query arg.
 	 *
 	 * @param {string} url URL.
@@ -294,6 +304,7 @@ declare module '@wordpress/url' {
 		isValidFragment: typeof isValidFragment;
 		addQueryArgs: typeof addQueryArgs;
 		getQueryArg: typeof getQueryArg;
+		getQueryArgs: typeof getQueryArgs;
 		hasQueryArg: typeof hasQueryArg;
 		removeQueryArgs: typeof removeQueryArgs;
 		prependHTTP: typeof prependHTTP;
