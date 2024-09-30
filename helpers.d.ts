@@ -39,6 +39,15 @@ declare module '@lipemat/js-boilerplate/helpers' {
 	export type ComponentType<P = {}> = CT<PropsWithChildren<P>>;
 
 	/**
+	 * A string which must be a number.
+	 *
+	 * Commonly used for `wp_localize_script` data which converts `int` to `string`.
+	 *
+	 * @example `const foo: NumericString = '123';`
+	 */
+	export type NumericString = `${number}`;
+
+	/**
 	 * A boolean formatted by `wp_localize_script` because the value is cast to (string).
 	 */
 	export type JsonBoolean = '1' | '';
