@@ -613,7 +613,7 @@ declare module '@wordpress/blocks' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-registration/
 	 */
-	export function registerBlockType<Attr, C = ''>( id: string, settings: BlockSettings<Attr, C> ): void;
+	export function registerBlockType<Attr, C = '', Transform = Attr>( id: string, settings: BlockSettings<Attr, C, Transform> ): void;
 
 	/**
 	 * Register a collection to allow organizing blocks into a section based on a plugin/theme/whatever.
