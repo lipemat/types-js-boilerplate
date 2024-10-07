@@ -123,6 +123,12 @@ declare module '@wordpress/edit-post' {
 
 
 	/**
+	 * Falling back for these slots for cross version.
+	 *
+	 * @link https://make.wordpress.org/core/2024/06/18/editor-unified-extensibility-apis-in-6-6/
+	 */
+
+	/**
 	 * @deprecated WP 6.6 Use `PluginBlockSettingsMenuItem` from `@wordpress/editor` instead.
 	 */
 	export const PluginBlockSettingsMenuItem: PluginBlockSettingsMenuItemSlot;
