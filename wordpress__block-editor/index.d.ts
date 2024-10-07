@@ -7,9 +7,9 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/tree/trunk/types/wordpress__block-editor
  */
 declare module '@wordpress/block-editor' {
-	import {ComponentClass, ComponentType} from '@lipemat/js-boilerplate/helpers';
+	import {ComponentClass, ComponentType, FunctionComponent} from '@lipemat/js-boilerplate/helpers';
 	import React, {MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefCallback} from 'react';
-	import {ColorOption, ColorPalette as PaletteComponent, Control, Fill, GradientOption, PanelBody, PopoverProps, ToolbarButton, WPBlockTypeIconRender} from '@wordpress/components';
+	import {ColorOption, ColorPalette as PaletteComponent, Control, GradientOption, PanelBody, PopoverProps, ToolbarButton, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
@@ -238,23 +238,24 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * Used commonly with `@wordpress/components.PanelBody`.
 	 *
-	 * @see module:@wordpress/components.PanelBody
-	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/inspector-controls/README.md
 	 */
-	type InspectorControls = typeof Fill & {
+	type InspectorControls = {
 		group?:
 			'advanced' |
+			'background' |
+			'bindings' |
 			'border' |
 			'color' |
 			'default' |
 			'dimensions' |
+			'filter' |
 			'list' |
 			'position' |
 			'settings' |
 			'styles' |
 			'typography';
-	}
+	};
 
 	export type AlignOptions = 'left' | 'center' | 'right' | 'space-between';
 
@@ -438,7 +439,7 @@ declare module '@wordpress/block-editor' {
 	export const ColorPalette: ComponentType<ColorPalette>;
 	export const ColorPaletteControl: ComponentType<ColorPaletteControl>;
 	export const CopyHandler: ComponentType<CopyHandler>;
-	export const InspectorControls: InspectorControls;
+	export const InspectorControls: FunctionComponent<InspectorControls>;
 	export const JustifyToolbar: ComponentType<JustifyToolbar>;
 	export const MediaPlaceholder: ComponentType<MediaPlaceholder>;
 	export const MediaUpload: ComponentClass<MediaUpload>;
@@ -465,7 +466,7 @@ declare module '@wordpress/block-editor' {
 		getColorObjectByColorValue: typeof getColorObjectByColorValue;
 		getGradientSlugByValue: typeof getGradientSlugByValue;
 		getGradientValueBySlug: typeof getGradientValueBySlug;
-		InspectorControls: InspectorControls;
+		InspectorControls: FunctionComponent<InspectorControls>;
 		JustifyToolbar: ComponentType<JustifyToolbar>;
 		MediaPlaceholder: ComponentType<MediaPlaceholder>;
 		MediaUpload: ComponentType<MediaUpload>;
