@@ -985,19 +985,21 @@ declare module '@wordpress/components' {
 	 *
 	 * @see @wordpress/block-editor.InspectorControls
 	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelbody
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#sub-components
 	 */
 	interface PanelBody {
 		buttonProps?: ButtonHTMLAttributes<{}>;
 		children?: ReactNode[] | ReactNode;
 		className?: string;
-		icon?: string;
+		icon?: iconType | ReactElement;
 		initialOpen?: boolean;
+		opened?: boolean;
+		scrollAfterOpen?: boolean;
 		title?: ReactNode;
 	}
 
 	/**
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#panelrow
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/panel/#sub-components
 	 */
 	interface PanelRow {
 		className?: string;
