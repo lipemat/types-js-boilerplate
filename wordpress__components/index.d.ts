@@ -626,6 +626,7 @@ declare module '@wordpress/components' {
 			disabled?: boolean
 		}>;
 		value?: T | null;
+		placeholder?: string;
 	}): ReactElement<any, any> | null;
 	
 
