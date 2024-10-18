@@ -351,7 +351,7 @@ declare module '@wordpress/block-editor' {
 	 *
 	 */
 	interface PanelColorSettings extends PanelBody, withColorContext {
-		colorSettings: Array<Partial<ColorPaletteControl> & {
+		colorSettings: Array<ColorPaletteControl & {
 			colors?: ColorOption[];
 		}>;
 	}
