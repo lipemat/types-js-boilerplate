@@ -577,6 +577,7 @@ declare module '@wordpress/components' {
 		help?: string | ReactNode;
 		className?: string;
 		children: ReactNode;
+		__nextHasNoMarginBottom?: boolean;
 	}
 
 	/**
@@ -629,6 +630,7 @@ declare module '@wordpress/components' {
 		className?: string,
 		onChange: ( currentValue: boolean ) => void;
 		indeterminate?: boolean;
+		__nextHasNoMarginBottom?: boolean;
 	}
 
 	/**
@@ -692,6 +694,7 @@ declare module '@wordpress/components' {
 		}>;
 		value?: T | null;
 		placeholder?: string;
+		__nextHasNoMarginBottom?: boolean;
 	}): ReactElement<any, any> | null;
 	
 
@@ -1171,6 +1174,8 @@ declare module '@wordpress/components' {
 		type?: 'slider' | 'stepper';
 		value: number;
 		withInputField?: boolean;
+		__nextHasNoMarginBottom?: boolean;
+
 	}
 
 	/**
@@ -1312,6 +1317,7 @@ declare module '@wordpress/components' {
 		}>;
 		value: T;
 		variant?: 'default' | 'minimal';
+		__nextHasNoMarginBottom?: boolean;
 	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
 
 
@@ -1330,6 +1336,7 @@ declare module '@wordpress/components' {
 		onKeyDown?: ( event: KeyboardEvent<HTMLInputElement> ) => void;
 		placeholder?: string;
 		value: string;
+		__nextHasNoMarginBottom?: boolean;
 	}
 
 	interface Shortcut extends HTMLSpanElement {
@@ -1383,6 +1390,7 @@ declare module '@wordpress/components' {
 		help?: ReactNode;
 		label?: ReactNode;
 		onChange: ( currentValue: boolean ) => void;
+		__nextHasNoMarginBottom?: boolean;
 	}
 
 	/**
@@ -1443,6 +1451,7 @@ declare module '@wordpress/components' {
 		ref?: Ref<HTMLInputElement>;
 		type?: 'email' | 'number' | 'password' | 'tel' | 'text' | 'search' | 'url';
 		value: string | number;
+		__nextHasNoMarginBottom?: boolean;
 	}
 
 	/**
@@ -1514,6 +1523,7 @@ declare module '@wordpress/components' {
 		onChange: ( currentValue: string ) => void;
 		rows?: number;
 		value: string | number;
+		__nextHasNoMarginBottom?: boolean;
 	}
 
 
