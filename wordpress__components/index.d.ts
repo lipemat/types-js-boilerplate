@@ -6,7 +6,7 @@
  */
 declare module '@wordpress/components' {
 	import type {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import type {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, DetailedHTMLProps, FocusEventHandler, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, Ref, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
+	import type {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, DetailedHTMLProps, FC, FocusEventHandler, FunctionComponent, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, Ref, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
 	import {Status} from '@wordpress/notices';
 	import DropEvent = JQuery.DropEvent;
 	import ClickEvent = JQuery.ClickEvent;
@@ -506,6 +506,19 @@ declare module '@wordpress/components' {
 		ariaLabel: string;
 	};
 
+
+	type AlignmentMatrixControlValue =
+		| 'top left'
+		| 'top center'
+		| 'top right'
+		| 'center left'
+		| 'center'
+		| 'center center'
+		| 'center right'
+		| 'bottom left'
+		| 'bottom center'
+		| 'bottom right';
+
 	type TooltipPosition =
 		'top'
 		| 'bottom'
@@ -536,6 +549,23 @@ declare module '@wordpress/components' {
 	type PositionYAxis = 'top' | 'middle' | 'bottom';
 	type PositionXAxis = 'left' | 'center' | 'right';
 	type PositionCorner = 'top' | 'right' | 'bottom' | 'left';
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/alignment-matrix-control/
+	 */
+	type AlignmentMatrixControl = FC<{
+		label?: string;
+		defaultValue?: AlignmentMatrixControlValue;
+		value?: AlignmentMatrixControlValue;
+		onChange?: ( newValue: AlignmentMatrixControlValue ) => void;
+		width?: number;
+	}> & {
+		Icon: FunctionComponent<{
+			disablePointerEvents?: boolean;
+			value: AlignmentMatrixControlValue;
+		}>;
+	};
+
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/base-control/
@@ -1544,6 +1574,7 @@ declare module '@wordpress/components' {
 		debouncedSpeak?: ( message: string, ariaLive?: 'polite' | 'assertive' ) => void;
 	}
 
+	export const AlignmentMatrixControl: AlignmentMatrixControl;
 	export const BaseControl: ComponentType<BaseControl>;
 	export const BlockPopover: ComponentType<BlockPopover>;
 	export const BoxControl: ComponentType<BoxControl>;
@@ -1599,6 +1630,7 @@ declare module '@wordpress/components' {
 	export const Truncate: ComponentType<Truncate>;
 
 	export default interface Components {
+		AlignmentMatrixControl: AlignmentMatrixControl;
 		BaseControl: ComponentType<BaseControl>;
 		BlockPopover: ComponentType<BlockPopover>;
 		BoxControl: ComponentType<BoxControl>;
