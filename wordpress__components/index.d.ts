@@ -5,16 +5,24 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__components/index.d.ts
  */
 declare module '@wordpress/components' {
-	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, type DetailedHTMLProps, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, type Ref, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
+	import type {ComponentType} from '@lipemat/js-boilerplate/helpers';
+	import type {AriaRole, ButtonHTMLAttributes, ChangeEvent, Context, CSSProperties, DetailedHTMLProps, FocusEventHandler, HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, Ref, SelectHTMLAttributes, SVGProps, SyntheticEvent, TextareaHTMLAttributes, TouchEvent} from 'react';
 	import {Status} from '@wordpress/notices';
 	import DropEvent = JQuery.DropEvent;
 	import ClickEvent = JQuery.ClickEvent;
+
+	export type BoxControlValue = {
+		top?: string;
+		right?: string;
+		bottom?: string;
+		left?: string;
+	}
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/components/button/
 	 */
 	type ButtonParams = {
+		accessibleWhenDisabled?: boolean;
 		children?: ReactNode;
 		className?: string;
 		disabled?: boolean;
@@ -74,6 +82,14 @@ declare module '@wordpress/components' {
 
 	export type VirtualElement = Pick<Element, 'getBoundingClientRect'> & {
 		ownerDocument?: Document;
+	};
+
+	export type WPUnitControlUnit = {
+		value: string;
+		label: string;
+		default?: number;
+		a11yLabel?: string;
+		step?: number;
 	};
 
 	/**
@@ -541,6 +557,25 @@ declare module '@wordpress/components' {
 		bottomClientId?: string;
 		shift?: boolean;
 	}
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/box-control/
+	 */
+	interface BoxControl {
+		allowReset?: boolean;
+		id?: string;
+		inputProps?: Omit<UnitControl, 'label' | 'onChange' | 'onFocus' | 'onMouseOver' | 'onMouseOut' | 'units'>;
+		label?: string;
+		onChange: ( value: BoxControlValue ) => void;
+		onMouseOut?: UnitControl[ 'onMouseOut' ];
+		onMouseOver?: UnitControl[ 'onMouseOver' ];
+		resetValues?: BoxControlValue;
+		sides?: ( keyof BoxControlValue | 'horizontal' | 'vertical' )[];
+		splitOnAxis?: boolean;
+		units?: UnitControl[ 'units' ];
+		values?: BoxControlValue;
+	}
+
 
 	// If href is set, we get a link.
 	interface ButtonLink extends ButtonParams, Omit<Partial<HTMLLinkElement>, 'className' | 'children' | 'focus' | 'style'> {
@@ -1470,6 +1505,33 @@ declare module '@wordpress/components' {
 	}
 
 	/**
+	 * @experimental Still experimental and not ready for use.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/unit-control/
+	 */
+	type UnitControl = Omit<NumberControl, 'spinControls' | 'suffix' | 'type'>
+		& {
+		disableUnits?: boolean;
+		isPressEnterToChange?: boolean;
+		isResetValueOnUnitChange?: boolean;
+		isUnitSelectTabbable?: boolean;
+		onBlur?: FocusEventHandler<HTMLInputElement | HTMLSelectElement>;
+		onChange?: ( nextValue: string | undefined, extra: {
+			event: SyntheticEvent,
+			data?: WPUnitControlUnit
+		} ) => void;
+		onFocus?: FocusEventHandler<HTMLInputElement | HTMLSelectElement>;
+		onUnitChange?: ( nextValue: string | undefined, extra: {
+			event: SyntheticEvent,
+			data?: WPUnitControlUnit
+		} ) => void;
+		size?: 'default' | 'small';
+		units?: WPUnitControlUnit[];
+		value?: string | number;
+	}
+
+
+	/**
 	 * Allows replacement or extending of a component using a filter.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/with-filters/
@@ -1484,6 +1546,7 @@ declare module '@wordpress/components' {
 
 	export const BaseControl: ComponentType<BaseControl>;
 	export const BlockPopover: ComponentType<BlockPopover>;
+	export const BoxControl: ComponentType<BoxControl>;
 	export const Button: ComponentType<ButtonLink | ButtonButton>;
 	export const CheckboxControl: ComponentType<CheckboxControl>;
 	export const ColorIndicator: ComponentType<ColorIndicator>;
@@ -1538,6 +1601,7 @@ declare module '@wordpress/components' {
 	export default interface Components {
 		BaseControl: ComponentType<BaseControl>;
 		BlockPopover: ComponentType<BlockPopover>;
+		BoxControl: ComponentType<BoxControl>;
 		Button: ComponentType<ButtonLink | ButtonButton>;
 		CheckboxControl: ComponentType<CheckboxControl>;
 		ColorIndicator: ComponentType<ColorIndicator>;
