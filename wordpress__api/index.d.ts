@@ -114,11 +114,11 @@ declare module '@wordpress/api' {
 			href: string;
 		} ];
 		'wp:post_type'?: Collection[];
-		'wp:term'?: [ {
+		'wp:term'?: Array<{
 			taxonomy: string;
 			embeddable: boolean;
 			href: string;
-		} ]
+		}>;
 	}
 
 	export interface Global<T> {
