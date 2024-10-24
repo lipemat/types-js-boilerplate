@@ -51,6 +51,7 @@ declare module '@wordpress/api/posts' {
 	export type Post<C extends Context = 'view'> = OmitNever<{
 		author: number;
 		categories: ContextualField<number[], 'view' | 'edit', C>;
+		class_list: string[];
 		comment_status: ContextualField<CommentingStatus, 'view' | 'edit', C>;
 		content: ContextualField<RenderedText<C> & {
 			block_version: ContextualField<string, 'edit', C>;
