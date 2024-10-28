@@ -23,6 +23,7 @@ declare module '@wordpress/api' {
 	export * from '@wordpress/api/settings';
 	export * from '@wordpress/api/statuses';
 	export * from '@wordpress/api/templates';
+	export * from '@wordpress/api/tags';
 	export * from '@wordpress/api/taxonomies';
 	export * from '@wordpress/api/types';
 	export * from '@wordpress/api/users';
