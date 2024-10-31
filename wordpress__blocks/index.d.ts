@@ -105,7 +105,7 @@ declare module '@wordpress/blocks' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/
 	 */
 	export type BlockEditProps<Attr, Context = {}> = {
-		attributes: Attr
+		attributes: Attr & BlockMetadata;
 		className: string;
 		clientId: string;
 		context: {
@@ -126,7 +126,26 @@ declare module '@wordpress/blocks' {
 		setAttributes: ( newValue: {
 			[attribute in keyof Attr]?: Attr[attribute]
 		} ) => void;
+	}
 
+	/**
+	 * Added to block attributes by thing like block bindings and
+	 * naming of a block within the editor context.
+	 *
+	 * Not documented and mostly tracked down via source code.
+	 */
+	export type BlockMetadata = {
+		metadata?: {
+			name?: string;
+			bindings?: {
+				[ key: string ]: {
+					source: string;
+					args: {
+						key: string;
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -516,6 +535,8 @@ declare module '@wordpress/blocks' {
 	 * Pass post content with serialized blocks and receive block objects back.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#parse
+	 *
+	 * @deprecated in favor of `parse` from `@wordpress/block-serialization-default-parser`
 	 *
 	 */
 	export function parse( content: string ): CreateBlock[];

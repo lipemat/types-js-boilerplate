@@ -1,3 +1,4 @@
+
 /**
  * Parser utility for converting HTML block JSON to block objects
  *
@@ -8,13 +9,15 @@
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__block-serialization-spec-parser/index.d.ts
  */
 declare module '@wordpress/block-serialization-default-parser' {
+	import type {BlockMetadata} from '@wordpress/blocks';
 
 	export interface ParsedBlock<A = { [ key: string ]: any }, I = []> {
-		attrs: A,
+		attrs: A & BlockMetadata;
 		blockName: string;
 		innerBlocks: I | Array<ParsedBlock>;
 		innerContent: string[];
 		innerHTML: string;
+
 	}
 
 	/**
