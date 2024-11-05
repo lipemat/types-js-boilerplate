@@ -58,7 +58,7 @@ declare module '@wordpress/rich-text' {
 	 * @link https://developer.wordpress.org/block-editor/how-to-guides/format-api/
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-rich-text/#registerformattype
 	 */
-	export function registerFormatType( name: string, settings ): WPFormat | undefined;
+	export function registerFormatType( name: string, settings: WPFormat ): WPFormat | undefined;
 
 	/**
 	 * Toggles a format object to a Rich Text value at the current selection.

@@ -4,7 +4,7 @@ declare module '@wordpress/api-fetch' {
 	export type Middleware<D> = ( options: FetchOptions<D>, next: Middleware<D> ) => D;
 
 	export interface NonceMiddleware {
-		( options, next ): Middleware<{ headers: object }>;
+		( options: object, next: any ): Middleware<{ headers: object }>;
 		nonce: string;
 	}
 
