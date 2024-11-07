@@ -49,6 +49,7 @@ declare module '@wordpress/blocks' {
 	 */
 	type AttributeShape = {
 		type: dataTypes | dataTypes[];
+		role?: 'content' | 'local';
 		source?: 'text' | 'html' | 'query' | 'attribute';
 		/**
 		 * Default values won't be sent during render, so they must be either
