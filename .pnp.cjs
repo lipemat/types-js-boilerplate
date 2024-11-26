@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@types/backbone", "npm:1.4.22"],\
             ["@types/codemirror", "npm:5.60.12"],\
             ["@types/jquery", "npm:3.5.25"],\
             ["@types/lodash", "npm:4.14.202"],\
@@ -38,6 +39,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["@types/backbone", [\
+        ["npm:1.4.22", {\
+          "packageLocation": "./.yarn/cache/@types-backbone-npm-1.4.22-fe1e79c313-095959d89a.zip/node_modules/@types/backbone/",\
+          "packageDependencies": [\
+            ["@types/backbone", "npm:1.4.22"],\
+            ["@types/jquery", "npm:3.5.25"],\
+            ["@types/underscore", "npm:1.13.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@types/codemirror", [\
@@ -74,6 +86,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@types/lipemat__js-boilerplate", "workspace:."],\
+            ["@types/backbone", "npm:1.4.22"],\
             ["@types/codemirror", "npm:5.60.12"],\
             ["@types/jquery", "npm:3.5.25"],\
             ["@types/lodash", "npm:4.14.202"],\
@@ -160,6 +173,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@types/tinymce", "npm:4.6.7"],\
             ["@types/jquery", "npm:3.5.25"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/underscore", [\
+        ["npm:1.13.0", {\
+          "packageLocation": "./.yarn/cache/@types-underscore-npm-1.13.0-1a86557ba1-1411cbeb1b.zip/node_modules/@types/underscore/",\
+          "packageDependencies": [\
+            ["@types/underscore", "npm:1.13.0"]\
           ],\
           "linkType": "HARD"\
         }]\
