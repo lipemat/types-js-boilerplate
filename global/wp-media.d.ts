@@ -13,7 +13,8 @@
  * @link https://codex.wordpress.org/Javascript_Reference/wp.media
  */
 declare module '@lipemat/js-boilerplate/global/wp-media' {
-	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
+	import type {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
+	import type {Collection, Model} from 'backbone';
 
 	export type WpMedia = {
 		<T = ''>( attributes: {
@@ -59,7 +60,7 @@ declare module '@lipemat/js-boilerplate/global/wp-media' {
 		open: () => void;
 		close: () => void;
 		state: () => {
-			get: ( key: 'selection' ) => Iterable<SelectedMedia>;
+			get: ( key: 'selection' ) => Collection<Model<SelectedMedia>>;
 		}
 	}
 

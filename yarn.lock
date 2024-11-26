@@ -5,6 +5,16 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@types/backbone@npm:^1.4.22":
+  version: 1.4.22
+  resolution: "@types/backbone@npm:1.4.22"
+  dependencies:
+    "@types/jquery": "*"
+    "@types/underscore": "*"
+  checksum: 095959d89abfdbf01071c8389f8638cf941e235c7ba7b03d2500cea34c8c313830605c3c87b2bb8630760bb9ed8ca54114344c1721947ce6992016482b295c6c
+  languageName: node
+  linkType: hard
+
 "@types/codemirror@npm:^5.60.5":
   version: 5.60.12
   resolution: "@types/codemirror@npm:5.60.12"
@@ -34,6 +44,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@types/lipemat__js-boilerplate@workspace:."
   dependencies:
+    "@types/backbone": ^1.4.22
     "@types/codemirror": ^5.60.5
     "@types/jquery": ^3.5.5
     "@types/lodash": ^4.14.202
@@ -108,6 +119,13 @@ __metadata:
   dependencies:
     "@types/jquery": "*"
   checksum: 94febf4cee8e4f2c616244d1bc6019c9f1dff504c972777ed1e946f65b792fd2e991f34fb69ba20f6661c6dc7cf40e5a04667b4009b523e7607670618f42822b
+  languageName: node
+  linkType: hard
+
+"@types/underscore@npm:*":
+  version: 1.13.0
+  resolution: "@types/underscore@npm:1.13.0"
+  checksum: 1411cbeb1b743629d504fcb2037b393d11eb207459b9d560f71304183115e30ba145f83b819ffcc8a0d5d4eccfb76bebb0ef7aab8f96a04d88d99ff9dfe503c6
   languageName: node
   linkType: hard
 
