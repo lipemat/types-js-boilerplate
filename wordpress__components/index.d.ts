@@ -334,7 +334,6 @@ declare module '@wordpress/components' {
 		| 'insert-before'
 		| 'insert'
 		| 'instagram'
-		| 'keyboard-hide'
 		| 'laptop'
 		| 'layout'
 		| 'leftright'
@@ -468,7 +467,6 @@ declare module '@wordpress/components' {
 		| 'yes-alt'
 		| 'yes'
 		| 'youtube';
-
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/icon/
