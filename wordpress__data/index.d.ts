@@ -521,7 +521,7 @@ not yet been saved.
 		// @todo properly type the rest of these as needed.
 		areInnerBlocksControlled: () => any;
 		canInsertBlockType: () => any;
-		canInsertBlocks: () => any; N
+		canInsertBlocks: () => any;
 		didAutomaticChange: () => any;
 		getAdjacentBlockClientId: () => any;
 		getBlockHierarchyRootClientId: () => any;
