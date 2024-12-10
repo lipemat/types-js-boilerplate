@@ -43,10 +43,21 @@ declare module '@wordpress/hooks' {
 		...args: Args
 	): Return;
 
+	export function applyFiltersAsync<Return = any, Value = any, Args extends any[] = any[]>(
+		filter: string,
+		content: Value,
+		...args: Args
+	): Promise<Return>;
+
 	export function doAction<Args extends any[] = any[]>(
 		action: string,
 		...args: Args
 	): void;
+
+	export function doActionAsync<Args extends any[] = any[]>(
+		action: string,
+		...args: Args
+	): Promise<void>;
 
 	type createHooks = () => void;
 
@@ -82,8 +93,10 @@ declare module '@wordpress/hooks' {
 		addFilter: typeof addFilter;
 		addAction: typeof addAction;
 		applyFilters: typeof applyFilters;
+		applyFiltersAsync: typeof applyFiltersAsync;
 		createHooks: createHooks;
 		doAction: typeof doAction;
+		doActionAsync: typeof doActionAsync;
 		doingAction: doingAction;
 		doingFilter: doingFilter;
 		didAction: didAction;
