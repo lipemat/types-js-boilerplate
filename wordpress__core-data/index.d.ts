@@ -22,7 +22,7 @@ declare module '@wordpress/core-data' {
 
 	interface EntityRecordResolution<RecordType> {
 		/** The requested entity record */
-		record: RecordType | null;
+		record: RecordType | undefined;
 		/** The edited entity record */
 		editedRecord: Partial<RecordType>;
 		/** Apply local (in-browser) edits to the edited entity record */
