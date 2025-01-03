@@ -984,6 +984,9 @@ declare module '@wordpress/components' {
 		className?: string;
 		icon?: string;
 		initialOpen?: boolean;
+		onToggle?: ( isOpen: boolean ) => void;
+		opened?: boolean;
+		scrollAfterOpen?: boolean;
 		title?: ReactNode;
 	}
 
