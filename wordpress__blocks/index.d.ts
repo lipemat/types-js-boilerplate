@@ -369,6 +369,10 @@ declare module '@wordpress/blocks' {
 		src: iconType | SVGProps<SVGSVGElement>;
 	}
 
+	/**
+	 * Custom categories may be registered using the 'block_categories_all' filter.
+	 * @link https://developer.wordpress.org/reference/hooks/block_categories_all/
+	 */
 	export type BlockCategory<Category> =
 		| 'design'
 		| 'embed'
