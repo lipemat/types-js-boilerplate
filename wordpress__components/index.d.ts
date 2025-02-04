@@ -53,7 +53,7 @@ declare module '@wordpress/components' {
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/color-indicator/
 	 */
-	interface ColorIndicator {
+	interface ColorIndicator extends Partial<HTMLSpanElement> {
 		className?: string;
 		colorValue: CSSProperties[ 'background' ];
 	}
