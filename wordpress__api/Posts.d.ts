@@ -120,6 +120,7 @@ declare module '@wordpress/api/posts' {
 		categories?: number[] | TaxQuery;
 		categories_exclude?: number[];
 		exclude?: number[];
+		ignore_sticky?: boolean;
 		include?: number[];
 		modified_after?: string;
 		modified_before?: string;
