@@ -24,6 +24,7 @@ import Plugins from '@wordpress/plugins';
 import Primitives from '@wordpress/primitives';
 import RichText from '@wordpress/rich-text';
 import URL from '@wordpress/url';
+import type Compose from '@wordpress/compose';
 
 /**
  * Adds the global `wp` variable to `window` typescript definitions.
@@ -48,6 +49,7 @@ declare global {
 			codeEditor?: WpCodeEditor;
 			commands?: Commands;
 			components?: Components;
+			compose?: Compose;
 			coreData?: CoreData;
 			customize?: {
 				bind: ( event: string | 'ready', callback: () => void ) => void;
