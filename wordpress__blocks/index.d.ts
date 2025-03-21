@@ -50,7 +50,7 @@ declare module '@wordpress/blocks' {
 	type AttributeShape = {
 		type: dataTypes | dataTypes[];
 		role?: 'content' | 'local';
-		source?: 'text' | 'html' | 'query' | 'attribute';
+		source?: 'text' | 'html' | 'query' | 'attribute' | 'meta';
 		/**
 		 * Default values won't be sent during render, so they must be either
 		 * registered via `register_block_type` with PHP or the template must
@@ -67,8 +67,8 @@ declare module '@wordpress/blocks' {
 		// Extract array of values from the markup using "selector" and attributes of HTML tags.
 		query?: {
 			[ key: string ]: {
-				type: 'null' | 'boolean' | 'object' | 'array' | 'number' | 'string' | 'integer';
-				source: 'text' | 'html' | 'query' | 'attribute' | 'meta';
+				type: dataTypes;
+				source: AttributeShape['source'];
 				attribute: string;
 			}
 		}
