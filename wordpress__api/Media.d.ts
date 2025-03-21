@@ -61,7 +61,7 @@ declare module '@wordpress/api/media' {
 				title?: string;
 			}
 		}
-		media_type: 'application' | 'audio' | 'image' | 'video';
+		media_type: 'application' | 'audio' | 'image' | 'video' | 'file';
 		meta: ContextualField<PostMeta, 'view' | 'edit', C>;
 		mime_type: string;
 		missing_image_sizes: ContextualField<string[], 'edit', C>;
