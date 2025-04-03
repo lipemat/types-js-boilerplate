@@ -575,7 +575,7 @@ declare module '@wordpress/components' {
 		help?: string | ReactNode;
 		className?: string;
 		children: ReactNode;
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
 	}
 
 	/**
@@ -603,6 +603,7 @@ declare module '@wordpress/components' {
 		splitOnAxis?: boolean;
 		units?: UnitControl[ 'units' ];
 		values?: BoxControlValue;
+		__next40pxDefaultSize: true;
 	}
 
 
@@ -628,7 +629,7 @@ declare module '@wordpress/components' {
 		className?: string,
 		onChange: ( currentValue: boolean ) => void;
 		indeterminate?: boolean;
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
 	}
 
 	/**
@@ -692,7 +693,7 @@ declare module '@wordpress/components' {
 		}>;
 		value?: T | null;
 		placeholder?: string;
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
 	}): ReactElement<any, any> | null;
 	
 
@@ -806,6 +807,7 @@ declare module '@wordpress/components' {
 		onChange?: ( ev: ChangeEvent<HTMLInputElement> ) => void;
 		onClick?: ( ev: ClickEvent<HTMLInputElement> ) => void;
 		render?: ( args: { openFileDialog: () => void } ) => ReactNode;
+		__next40pxDefaultSize: true;
 	}
 
 	interface Grid {
@@ -1033,6 +1035,7 @@ declare module '@wordpress/components' {
 		step?: number;
 		type?: HTMLInputTypeAttribute;
 		value?: number | string;
+		__next40pxDefaultSize: true;
 	}
 
 	/**
@@ -1173,7 +1176,8 @@ declare module '@wordpress/components' {
 		type?: 'slider' | 'stepper';
 		value: number;
 		withInputField?: boolean;
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
+		__next40pxDefaultSize: true;
 
 	}
 
@@ -1316,7 +1320,7 @@ declare module '@wordpress/components' {
 		}>;
 		value: T;
 		variant?: 'default' | 'minimal';
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
 	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
 
 
@@ -1336,7 +1340,8 @@ declare module '@wordpress/components' {
 		onKeyDown?: ( event: KeyboardEvent<HTMLInputElement> ) => void;
 		placeholder?: string;
 		value: string;
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
+		__next40pxDefaultSize: true;
 	}
 
 	interface Shortcut extends HTMLSpanElement {
@@ -1390,7 +1395,8 @@ declare module '@wordpress/components' {
 		help?: ReactNode;
 		label?: ReactNode;
 		onChange: ( currentValue: boolean ) => void;
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
+		__next40pxDefaultSize: true;
 	}
 
 	/**
@@ -1451,7 +1457,8 @@ declare module '@wordpress/components' {
 		ref?: Ref<HTMLInputElement>;
 		type?: 'email' | 'number' | 'password' | 'tel' | 'text' | 'search' | 'url';
 		value: string | number;
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
+		__next40pxDefaultSize: true;
 	}
 
 	/**
@@ -1523,7 +1530,7 @@ declare module '@wordpress/components' {
 		onChange: ( currentValue: string ) => void;
 		rows?: number;
 		value: string | number;
-		__nextHasNoMarginBottom?: boolean;
+		__nextHasNoMarginBottom: true;
 	}
 
 
@@ -1568,6 +1575,7 @@ declare module '@wordpress/components' {
 		size?: 'default' | 'small';
 		units?: WPUnitControlUnit[];
 		value?: string | number;
+		__next40pxDefaultSize: true;
 	}
 
 
