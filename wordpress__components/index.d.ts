@@ -1331,6 +1331,7 @@ declare module '@wordpress/components' {
 		hideLabelFromVision?: boolean;
 		label: string;
 		onChange?: ( value: string ) => void;
+		// @deprecated
 		onClose?: () => void;
 		onKeyDown?: ( event: KeyboardEvent<HTMLInputElement> ) => void;
 		placeholder?: string;
