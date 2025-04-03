@@ -272,6 +272,40 @@ declare module '@wordpress/block-editor' {
 		value?: AlignOptions | undefined;
 	}
 
+	/**
+	 * Controlled input which maintains a value associated with a link (HTML anchor element) and relevant settings for how that link is expected to behave.
+	 *
+	 * @since WP 6.8
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#linkcontrol
+	 */
+	interface LinkControl {
+		settings?: {
+			id: string;
+			title: string;
+		};
+		forceIsEditingLink?: boolean;
+		value?: {
+			opensInNewTab?: boolean;
+			title?: string;
+			url: string;
+		};
+		onChange?: ( nextValue: {
+			opensInNewTab?: boolean;
+			title?: string;
+			url: string;
+		} ) => void;
+		noDirectEntry?: boolean;
+		showSuggestions?: boolean;
+		showInitialSuggestions?: boolean;
+		withCreateSuggestion?: boolean;
+		suggestionsQuery?: Record<string, any>;
+		noURLSuggestion?: boolean;
+		hasTextControl?: boolean;
+		createSuggestionButtonText?: string | Function;
+		renderControlBottom?: () => void;
+	}
+
 	interface MediaUploadBase {
 		addToGallery?: boolean;
 		allowedTypes?: Array<ALL_TYPES> | ALL_TYPES;
@@ -441,6 +475,7 @@ declare module '@wordpress/block-editor' {
 	export const CopyHandler: ComponentType<CopyHandler>;
 	export const InspectorControls: FunctionComponent<InspectorControls>;
 	export const JustifyToolbar: ComponentType<JustifyToolbar>;
+	export const LinkControl: ComponentType<LinkControl>;
 	export const MediaPlaceholder: ComponentType<MediaPlaceholder>;
 	export const MediaUpload: ComponentClass<MediaUpload>;
 	export const PanelColorSettings: ComponentType<PanelColorSettings>;
@@ -468,6 +503,7 @@ declare module '@wordpress/block-editor' {
 		getGradientValueBySlug: typeof getGradientValueBySlug;
 		InspectorControls: FunctionComponent<InspectorControls>;
 		JustifyToolbar: ComponentType<JustifyToolbar>;
+		LinkControl: ComponentType<LinkControl>;
 		MediaPlaceholder: ComponentType<MediaPlaceholder>;
 		MediaUpload: ComponentType<MediaUpload>;
 		PanelColorSettings: ComponentType<PanelColorSettings>;
