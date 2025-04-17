@@ -124,9 +124,11 @@ declare module '@wordpress/blocks' {
 			initialPosition: 0 | -1 | null,
 		) => void;
 		toggleSelection: ( enabled: boolean ) => void;
-		setAttributes: ( newValue: {
-			[attribute in keyof Attr]?: Attr[attribute]
-		} ) => void;
+		// @notice: Callback will be available in WP 6.9 until then, must pass an object.
+		setAttributes: ( newValue:
+			( { [attribute in keyof Attr]?: Attr[attribute] } ) |
+			( ( previousValues: Attr ) => { [attribute in keyof Attr]?: Attr[ attribute ] } )
+		) => void;
 	}
 
 	/**

@@ -41,10 +41,30 @@ registerBlockType( 'my-plugin/my-block', {
 } );
 
 
-registerBlockType( 'my-plugin/my-block', {
+registerBlockType<{ foo: string, other: boolean }>( 'my-plugin/my-block', {
 	title: 'test block',
-	category: 'common',
-	edit: () => <></>,
+	category: 'theme',
+	edit: ( {setAttributes} ) => {
+		setAttributes( ( values ) => ( {
+			foo: 'bar',
+			other: ! values.other
+		} ) );
+
+		setAttributes( ( values ) => ( {
+			foo: 'bar',
+		} ) );
+
+		setAttributes( {
+			foo: 'bar',
+		} );
+
+		// @ts-expect-error
+		setAttributes( ( values ) => ( {
+			fooxxx: 'bar',
+		} ) );
+
+		return <></>;
+	},
 	save: () => <></>,
 	icon: 'book-alt',
 } );
