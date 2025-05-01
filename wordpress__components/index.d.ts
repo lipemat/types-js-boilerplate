@@ -1321,6 +1321,7 @@ declare module '@wordpress/components' {
 		value: T;
 		variant?: 'default' | 'minimal';
 		__nextHasNoMarginBottom?: true;
+		__next40pxDefaultSize?: true;
 	} & Omit<SelectHTMLAttributes<{}>, 'onChange'>>, context?: any ): ReactElement<any, any> | null;
 
 
