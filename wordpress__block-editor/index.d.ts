@@ -344,7 +344,7 @@ declare module '@wordpress/block-editor' {
 	 * @notice Will only work in the Gutenberg interface.
 	 *
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/media-placeholder/README.md
-	 * @see https://github.dev/WordPress/gutenberg/blob/433bd236a9bb207b71abc2edd58390c17cb83eb3/packages/block-library/src/gallery/edit.js#L433
+	 * @see https://github.dev/WordPress/gutenberg/blob/trunk/packages/block-library/src/gallery/edit.js#L516
 	 */
 	export type MediaPlaceholder = MediaUpload & {
 		accept?: string;
@@ -363,7 +363,7 @@ declare module '@wordpress/block-editor' {
 		notices?: ReactNode;
 		onCancel?: () => void,
 		onDoubleClick?: () => void,
-		onError?: ( error: Error ) => void;
+		onError?: ( error: Error | string ) => void;
 		onFilesPreUpload?: ( files: File[] ) => void;
 		onHTMLDrop?: ( html: string ) => void;
 		onSelectURL?: ( src: string ) => void;
