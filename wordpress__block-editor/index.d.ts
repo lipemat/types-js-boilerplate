@@ -8,7 +8,7 @@
  */
 declare module '@wordpress/block-editor' {
 	import {ComponentClass, ComponentType, FunctionComponent} from '@lipemat/js-boilerplate/helpers';
-	import React, {MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefCallback} from 'react';
+	import React, {type ButtonHTMLAttributes, type InputHTMLAttributes, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefCallback} from 'react';
 	import {ColorOption, ColorPalette as PaletteComponent, Control, GradientOption, PanelBody, PopoverProps, ToolbarButton, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
@@ -306,15 +306,20 @@ declare module '@wordpress/block-editor' {
 		renderControlBottom?: () => void;
 	}
 
-	interface MediaUploadBase {
-		addToGallery?: boolean;
-		allowedTypes?: Array<ALL_TYPES> | ALL_TYPES;
-		gallery?: boolean;
-		modalClass?: string;
-		onClose?: () => void;
-		render: ( args: { open: () => void } ) => ReactNode;
-		title?: string;
-		value?: number | number[];
+	type MultipleMediaUpload = {
+		multiple: false,
+		onSelect?: ( attachment: SelectedMedia ) => void;
+	} | {
+		multiple: true,
+		onSelect?: ( attachments: Array<SelectedMedia> ) => void;
+	} | {
+		multiple: true,
+		handleUpload: false;
+		onSelect?: ( files: File[] ) => void;
+	} | {
+		multiple: false,
+		handleUpload: false;
+		onSelect?: ( files: File ) => void;
 	}
 
 	/**
@@ -322,20 +327,15 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/media-upload
 	 */
-	export type MediaUpload = MediaUploadBase & {
-		multiple: false,
-		onSelect?: ( attachment: SelectedMedia ) => void;
-	} | MediaUploadBase & {
-		multiple: true,
-		onSelect?: ( attachments: Array<SelectedMedia> ) => void;
-	} | MediaUploadBase & {
-		multiple: true,
-		handleUpload: false;
-		onSelect?: ( files: File[] ) => void;
-	} | MediaUploadBase & {
-		multiple: false,
-		handleUpload: false;
-		onSelect?: ( files: File ) => void;
+	export type MediaUpload = MultipleMediaUpload & {
+		addToGallery?: boolean;
+		allowedTypes?: Array<ALL_TYPES> | ALL_TYPES;
+		gallery?: boolean;
+		modalClass?: string;
+		onClose?: () => void;
+		title?: string;
+		value?: number | number[];
+		render: ( args: { open: () => void } ) => ReactNode;
 	}
 
 	/**
@@ -346,8 +346,9 @@ declare module '@wordpress/block-editor' {
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/media-placeholder/README.md
 	 * @see https://github.dev/WordPress/gutenberg/blob/trunk/packages/block-library/src/gallery/edit.js#L516
 	 */
-	export type MediaPlaceholder = Omit<MediaUpload, 'render'> & {
-		accept?: string;
+	export type MediaPlaceholder = MultipleMediaUpload & {
+		accept?: InputHTMLAttributes<HTMLInputElement>[ 'accept' ];
+		allowedTypes?: Array<ALL_TYPES> | ALL_TYPES;
 		className?: string;
 		disableDropZone?: boolean;
 		disableMediaButtons?: boolean;
@@ -372,6 +373,40 @@ declare module '@wordpress/block-editor' {
 		placeholder?: ReactNode;
 		style?: CSSStyleDeclaration,
 		value?: SelectedMedia | SelectedMedia[];
+	}
+
+	/**
+	 * Support "replace" functionality for via the block
+	 * toolbar for a block which supports media.
+	 *
+	 * @example
+	 * ```jsx
+	 * <BlockControls group="other">
+	 * 	 <MediaReplaceFlow
+	 * 		mediaId={ id }
+	 * 		mediaURL={ href }
+	 * 		accept="*"
+	 * 		onSelect={ onSelectFile }
+	 * 		onError={ onUploadError }
+	 * 		onReset={ () => onSelectFile( undefined ) }
+	 * 				/>
+	 * 	</BlockControls>
+	 * ```
+	 *
+	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/media-replace-flow/README.md
+	 */
+	type MediaReplaceFlow = MultipleMediaUpload & {
+		accept: InputHTMLAttributes<HTMLInputElement>[ 'accept' ];
+		allowedTypes?: Array<ALL_TYPES>;
+		mediaId?: number;
+		mediaURL: string;
+		name?: string;
+		onError?: MediaPlaceholder[ 'onError' ];
+		onFilesUpload?: ( files: File[] ) => void;
+		onReset?: () => void;
+		onSelect?: MediaPlaceholder[ 'onSelect' ];
+		onSelectURL?: MediaPlaceholder[ 'onSelectURL' ];
+		renderToggle?: ( attributes: ButtonHTMLAttributes<HTMLButtonElement> ) => ReactNode;
 	}
 
 	/**
@@ -477,6 +512,7 @@ declare module '@wordpress/block-editor' {
 	export const JustifyToolbar: ComponentType<JustifyToolbar>;
 	export const LinkControl: ComponentType<LinkControl>;
 	export const MediaPlaceholder: ComponentType<MediaPlaceholder>;
+	export const MediaReplaceFlow: ComponentType<MediaReplaceFlow>;
 	export const MediaUpload: ComponentClass<MediaUpload>;
 	export const PanelColorSettings: ComponentType<PanelColorSettings>;
 	export const RichText: ComponentType<RichText>;
@@ -505,6 +541,7 @@ declare module '@wordpress/block-editor' {
 		JustifyToolbar: ComponentType<JustifyToolbar>;
 		LinkControl: ComponentType<LinkControl>;
 		MediaPlaceholder: ComponentType<MediaPlaceholder>;
+		MediaReplaceFlow: ComponentType<MediaReplaceFlow>;
 		MediaUpload: ComponentType<MediaUpload>;
 		PanelColorSettings: ComponentType<PanelColorSettings>;
 		RichText: ComponentType<RichText>;
