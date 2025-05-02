@@ -346,7 +346,7 @@ declare module '@wordpress/block-editor' {
 	 * @link https://github.com/WordPress/gutenberg/blob/HEAD/packages/block-editor/src/components/media-placeholder/README.md
 	 * @see https://github.dev/WordPress/gutenberg/blob/trunk/packages/block-library/src/gallery/edit.js#L516
 	 */
-	export type MediaPlaceholder = MediaUpload & {
+	export type MediaPlaceholder = Omit<MediaUpload, 'render'> & {
 		accept?: string;
 		className?: string;
 		disableDropZone?: boolean;
