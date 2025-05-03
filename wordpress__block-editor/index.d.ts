@@ -14,6 +14,7 @@ declare module '@wordpress/block-editor' {
 	import {ALL_TYPES} from '@lipemat/js-boilerplate/mime';
 	import {SelectedMedia} from '@lipemat/js-boilerplate/global/wp-media';
 	import type {Post} from '@wordpress/api/posts';
+	import type {Upload} from '@wordpress/media-utils';
 
 	export type BlockEditingMode = 'disabled' | 'contentOnly' | 'default';
 
@@ -308,10 +309,10 @@ declare module '@wordpress/block-editor' {
 
 	type MultipleMediaUpload = {
 		multiple: false,
-		onSelect?: ( attachment: SelectedMedia ) => void;
+		onSelect?: ( attachment: SelectedMedia | Upload ) => void;
 	} | {
 		multiple: true,
-		onSelect?: ( attachments: Array<SelectedMedia> ) => void;
+		onSelect?: ( attachments: Array<SelectedMedia | Upload> ) => void;
 	} | {
 		multiple: true,
 		handleUpload: false;
