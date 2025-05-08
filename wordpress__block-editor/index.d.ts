@@ -100,6 +100,7 @@ declare module '@wordpress/block-editor' {
 		onKeyDown?: ( event: KeyboardEvent ) => void;
 		value: string;
 		onChange: ( url: string, post?: T ) => void;
+		__nextHasNoMarginBottom: boolean;
 	} ): ReactElement;
 
 	/**
