@@ -18,6 +18,12 @@ declare module '@wordpress/components' {
 		left?: string;
 	}
 
+	export type SelectOption<T> = {
+		label: string;
+		value: T;
+		disabled?: boolean;
+	}
+
 	/**
 	 * @link https://developer.wordpress.org/block-editor/components/button/
 	 */
@@ -686,11 +692,7 @@ declare module '@wordpress/components' {
 		};
 		onChange: ( currentValue: T | null ) => void;
 		onFilterValueChange?: ( value: string ) => void;
-		options: Array<{
-			label: string;
-			value: T;
-			disabled?: boolean
-		}>;
+		options: SelectOption<T>[];
 		value?: T | null;
 		placeholder?: string;
 		__nextHasNoMarginBottom?: true;
@@ -1313,11 +1315,7 @@ declare module '@wordpress/components' {
 		labelPosition?: 'top' | 'side' | 'bottom';
 		multiple?: boolean;
 		onChange: ( currentValue: T ) => void;
-		options: Array<{
-			label: string;
-			value: T;
-			disabled?: boolean;
-		}>;
+		options: SelectOption<T>[];
 		value: T;
 		variant?: 'default' | 'minimal';
 		__nextHasNoMarginBottom?: true;
