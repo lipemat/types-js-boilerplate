@@ -5,7 +5,7 @@
  */
 declare module '@wordpress/server-side-render' {
 	import type {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import type {PropsWithChildren, ReactElement, ReactNode} from 'react';
+	import type {PropsWithChildren, ReactElement} from 'react';
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-server-side-render/#props
@@ -20,10 +20,9 @@ declare module '@wordpress/server-side-render' {
 		ErrorResponsePlaceholder?: ComponentType<ServerSideRenderProps<A, U> & {
 			response: object;
 		}>;
-		LoadingResponsePlaceholder?: ComponentType<ServerSideRenderProps<A, U> & {
-			showLoader: boolean;
-			children: ReactNode | ReactNode[];
-		}>;
+		LoadingResponsePlaceholder?: ComponentType<ServerSideRenderProps<A, U>> & {
+			isLoading: boolean;
+		};
 		skipBlockSupportAttributes?: boolean;
 	}
 
