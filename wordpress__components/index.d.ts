@@ -1404,13 +1404,23 @@ declare module '@wordpress/components' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toolbar-button/
 	 */
 	interface ToolbarButton extends ButtonButton {
-		// Only used if not in toolbar context, otherwise use preferred `className`.
+		// Only used if not in the toolbar context, otherwise use preferred `className`.
 		containerClassName?: string;
 		disabled?: boolean;
 		isActive?: boolean;
 		/** @deprecated */
 		isDisabled?: boolean;
 		title?: string;
+	}
+
+	/**
+	 * DropDown menu from within the `BlockControls` toolbars.
+	 *
+	 * Same as `DropdownMenu`, but with support for toolbar keyboard navigation.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/components/toolbar-dropdown-menu/
+	 */
+	interface ToolbarDropdownMenu extends DropdownMenu {
 	}
 
 	/**
@@ -1641,6 +1651,7 @@ declare module '@wordpress/components' {
 	export const TimePicker: ComponentType<TimePicker>;
 	export const ToggleControl: ComponentType<ToggleControl>;
 	export const ToolbarButton: ComponentType<ToolbarButton>;
+	export const ToolbarDropdownMenu: ComponentType<ToolbarDropdownMenu>;
 	export const ToolbarGroup: ComponentType<ToolbarGroup>;
 	export const ToolbarItem: ComponentType<ToolbarItem>;
 	export const Tooltip: ComponentType<Tooltip>;
@@ -1705,6 +1716,7 @@ declare module '@wordpress/components' {
 		TimePicker: ComponentType<TimePicker>;
 		ToggleControl: ComponentType<ToggleControl>;
 		ToolbarButton: ComponentType<ToolbarButton>;
+		ToolbarDropdownMenu: ComponentType<ToolbarDropdownMenu>;
 		ToolbarGroup: ComponentType<ToolbarGroup>;
 		ToolbarItem: ComponentType<ToolbarItem>;
 		Tooltip: ComponentType<Tooltip>;
