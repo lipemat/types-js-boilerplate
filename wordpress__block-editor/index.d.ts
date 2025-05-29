@@ -298,7 +298,7 @@ declare module '@wordpress/block-editor' {
 			title?: string;
 			url: string;
 		} ) => void;
-		createSuggestion: ( () => LinkSuggestion<ST> ) | ( () => Promise<LinkSuggestion<ST>> );
+		createSuggestion?: ( () => LinkSuggestion<ST> ) | ( () => Promise<LinkSuggestion<ST>> );
 		createSuggestionButtonText?: string | Function;
 		forceIsEditingLink?: boolean;
 		hasTextControl?: boolean;
