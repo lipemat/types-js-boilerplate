@@ -1,8 +1,6 @@
 /**
  * Universal utility types for TypeScript.
  *
- * Use to be part of starting-point.
- *
  * @since 1.17.0
  *
  */
@@ -43,7 +41,7 @@ declare module '@lipemat/js-boilerplate/utility' {
 			// If the type of this property is an object, send it through again.
 			T[ K ] extends Record<string, unknown> ? OmitNever<T[ K ]> : T[ K ];
 	}> = Pick<Converted, {
-		// List all properties, which were not set to never above.
+		// List all properties which were not set to never above.
 		[K in keyof Converted]: Converted[ K ] extends never ? never : K;
 	}[ keyof Converted ]>;
 
@@ -72,7 +70,7 @@ declare module '@lipemat/js-boilerplate/utility' {
 	export type Subtract<T extends K, K> = Omit<T, keyof K>;
 
 	/**
-	 * Exclude all top level properties in an object which are of a type.
+	 * Exclude all top-level properties in an object that are of a type.
 	 *
 	 * @example ExcludeOfType<{y:'false':x:false}, boolean> = {y:'false'}
 	 */
