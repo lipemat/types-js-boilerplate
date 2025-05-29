@@ -1,13 +1,15 @@
+
 /**
  * Block editor elements and utilities.
  *
- * Supports stand-alone block editors, or work with WP core ones.
+ * Supports stand-alone block editors or work with WP core ones.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/
  * @link https://github.com/DefinitelyTyped/DefinitelyTyped/tree/trunk/types/wordpress__block-editor
  */
 declare module '@wordpress/block-editor' {
 	import {ComponentClass, ComponentType, FunctionComponent} from '@lipemat/js-boilerplate/helpers';
+	import type {SearchQuery, SubType} from '@wordpress/api/search';
 	import React, {type ButtonHTMLAttributes, type InputHTMLAttributes, MouseEvent, MutableRefObject, PropsWithChildren, ReactElement, ReactNode, RefCallback} from 'react';
 	import {ColorOption, ColorPalette as PaletteComponent, Control, GradientOption, PanelBody, PopoverProps, ToolbarButton, WPBlockTypeIconRender} from '@wordpress/components';
 	import {BlockIcon as Icon, ChildBlocks, CreateBlock} from '@wordpress/blocks';
@@ -274,39 +276,50 @@ declare module '@wordpress/block-editor' {
 		value?: AlignOptions | undefined;
 	}
 
+
+	export type LinkSuggestion<ST extends string = SubType> = {
+		id: string;
+		type: ST;
+		title: string;
+		url: string;
+	}
+
 	/**
 	 * Controlled input which maintains a value associated with a link (HTML anchor element) and relevant settings for how that link is expected to behave.
 	 *
 	 * @since WP 6.8
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#linkcontrol
+	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/link-control/README.md
 	 */
-	interface LinkControl {
-		settings?: {
-			id: string;
-			title: string;
-		};
-		forceIsEditingLink?: boolean;
-		value?: {
-			opensInNewTab?: boolean;
-			title?: string;
-			url: string;
-		};
+	export function LinkControl<ST extends string = SubType>( props: {
 		onChange?: ( nextValue: {
 			opensInNewTab?: boolean;
 			title?: string;
 			url: string;
 		} ) => void;
-		noDirectEntry?: boolean;
-		showSuggestions?: boolean;
-		showInitialSuggestions?: boolean;
-		withCreateSuggestion?: boolean;
-		suggestionsQuery?: Record<string, any>;
-		noURLSuggestion?: boolean;
-		hasTextControl?: boolean;
+		createSuggestion: ( () => LinkSuggestion<ST> ) | ( () => Promise<LinkSuggestion<ST>> );
 		createSuggestionButtonText?: string | Function;
+		forceIsEditingLink?: boolean;
+		hasTextControl?: boolean;
+		onRemove?: () => void;
+		noDirectEntry?: boolean;
+		noURLSuggestion?: boolean;
 		renderControlBottom?: () => void;
-	}
+		settings?: Array<{
+			id: string;
+			title: string;
+		}>;
+		showInitialSuggestions?: boolean;
+		showSuggestions?: boolean;
+		suggestionsQuery?: SearchQuery<ST>;
+		value?: {
+			opensInNewTab?: boolean;
+			title?: string;
+			url: string;
+		};
+		withCreateSuggestion?: boolean;
+	} ): ReactElement;
 
 	type MultipleMediaUpload = {
 		multiple: false,
@@ -512,7 +525,6 @@ declare module '@wordpress/block-editor' {
 	export const CopyHandler: ComponentType<CopyHandler>;
 	export const InspectorControls: FunctionComponent<InspectorControls>;
 	export const JustifyToolbar: ComponentType<JustifyToolbar>;
-	export const LinkControl: ComponentType<LinkControl>;
 	export const MediaPlaceholder: ComponentType<MediaPlaceholder>;
 	export const MediaReplaceFlow: ComponentType<MediaReplaceFlow>;
 	export const MediaUpload: ComponentClass<MediaUpload>;
@@ -541,7 +553,7 @@ declare module '@wordpress/block-editor' {
 		getGradientValueBySlug: typeof getGradientValueBySlug;
 		InspectorControls: FunctionComponent<InspectorControls>;
 		JustifyToolbar: ComponentType<JustifyToolbar>;
-		LinkControl: ComponentType<LinkControl>;
+		LinkControl: typeof LinkControl;
 		MediaPlaceholder: ComponentType<MediaPlaceholder>;
 		MediaReplaceFlow: ComponentType<MediaReplaceFlow>;
 		MediaUpload: ComponentType<MediaUpload>;
