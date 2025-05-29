@@ -1,4 +1,3 @@
-
 /**
  * Block editor elements and utilities.
  *
@@ -66,7 +65,9 @@ declare module '@wordpress/block-editor' {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#getcolorobjectbyattributevalues
 	 */
-	export function getColorObjectByAttributeValues( colors: ColorOption[], colorSlug?: string, colorValue?: string ): ColorOption | { color: string };
+	export function getColorObjectByAttributeValues( colors: ColorOption[], colorSlug?: string, colorValue?: string ): ColorOption | {
+		color: string
+	};
 
 	/**
 	 * Provided an array of color objects as set by the theme or by the editor defaults,
@@ -278,26 +279,37 @@ declare module '@wordpress/block-editor' {
 
 
 	export type LinkSuggestion<ST extends string = SubType> = {
-		id: string;
+		id: number;
 		type: ST;
 		title: string;
 		url: string;
 	}
+
+	export type LinkOnChange<Settings extends readonly string[], ST extends string = SubType> =
+		LinkSuggestion<ST> &
+		{
+			opensInNewTab?: boolean;
+			kind?: string;
+		} &
+		{ [setting in Settings[number]]: boolean };
 
 	/**
 	 * Controlled input which maintains a value associated with a link (HTML anchor element) and relevant settings for how that link is expected to behave.
 	 *
 	 * @since WP 6.8
 	 *
+	 * @notice Must be wrapped in a `Popover` or similar if using within
+	 *         a block editor.
+	 *         https://github.com/WordPress/gutenberg/issues/65874
+	 *
+	 *
+	 * @example https://github.com/lipemat/aspiring-higher-dashboard/blob/87bce88d1a26b49cea2da56edf733fb149f2062e/wp-content/themes/core/js/src/gutenberg/blocks/link/Edit.tsx
+	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#linkcontrol
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/link-control/README.md
 	 */
-	export function LinkControl<ST extends string = SubType>( props: {
-		onChange?: ( nextValue: {
-			opensInNewTab?: boolean;
-			title?: string;
-			url: string;
-		} ) => void;
+	export function LinkControl<Settings extends readonly string[], ST extends string = SubType>( props: {
+		onChange?: ( value: LinkOnChange<Settings, ST> ) => void;
 		createSuggestion?: ( () => LinkSuggestion<ST> ) | ( () => Promise<LinkSuggestion<ST>> );
 		createSuggestionButtonText?: string | Function;
 		forceIsEditingLink?: boolean;
@@ -307,19 +319,21 @@ declare module '@wordpress/block-editor' {
 		noURLSuggestion?: boolean;
 		renderControlBottom?: () => void;
 		settings?: Array<{
-			id: string;
+			id: Settings[number];
 			title: string;
-		}>;
-		showInitialSuggestions?: boolean;
+		}> & { length: Settings['length'] }
 		showSuggestions?: boolean;
 		suggestionsQuery?: SearchQuery<ST>;
 		value?: {
 			opensInNewTab?: boolean;
 			title?: string;
 			url: string;
+		} & {
+			[key in Settings[number]]: boolean;
 		};
 		withCreateSuggestion?: boolean;
 	} ): ReactElement;
+
 
 	type MultipleMediaUpload = {
 		multiple: false,
