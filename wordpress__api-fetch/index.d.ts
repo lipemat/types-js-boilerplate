@@ -1,7 +1,10 @@
 declare module '@wordpress/api-fetch' {
 	import {Method} from '@wordpress/api';
 
-	export type Middleware<D> = ( options: FetchOptions<D>, next: Middleware<D> ) => D;
+	export type Middleware<D, R = any> = (
+		options: FetchOptions<D>,
+		next: ( nextOptions: FetchOptions<D> ) => Promise<Response>
+	) => Promise<R>;
 
 	export interface NonceMiddleware {
 		( options, next ): Middleware<{ headers: object }>;
@@ -44,7 +47,7 @@ declare module '@wordpress/api-fetch' {
 		nonceEndpoint?: string;
 		nonceMiddleware?: NonceMiddleware;
 		setFetchHandler: <T, D= {}>( handler: ( options: D ) => Promise<T> ) => void;
-		use: <D>( middleware: Middleware<D> ) => void;
+		use: <D, R = Response>( middleware: Middleware<D, R> ) => void;
 	}
 
 
