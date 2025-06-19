@@ -3,6 +3,8 @@
  *
  * @since 1.17.0
  *
+ * @see https://github.com/sindresorhus/type-fest?tab=readme-ov-file#utilities for more utilities.
+ *
  */
 declare module '@lipemat/js-boilerplate/utility' {
 	/**
