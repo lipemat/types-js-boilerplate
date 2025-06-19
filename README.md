@@ -12,7 +12,7 @@ may not be inferred directly from `@lipemat/js-boilerplate` with PNP.
 ```json
 {
   "dependencies": {
-    "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^1"
+    "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^3"
   }
 }
 
