@@ -285,7 +285,7 @@ declare module '@wordpress/block-editor' {
 		url: string;
 	}
 
-	export type LinkOnChange<Settings extends readonly string[], ST extends string = SubType> =
+	export type LinkOnChange<Settings extends readonly string[] = [], ST extends string = SubType> =
 		LinkSuggestion<ST> &
 		{
 			opensInNewTab?: boolean;
@@ -308,7 +308,7 @@ declare module '@wordpress/block-editor' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#linkcontrol
 	 * @link https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/link-control/README.md
 	 */
-	export function LinkControl<Settings extends readonly string[], ST extends string = SubType>( props: {
+	export function LinkControl<Settings extends readonly string[] = [], ST extends string = SubType>( props: {
 		onChange?: ( value: LinkOnChange<Settings, ST> ) => void;
 		createSuggestion?: ( () => LinkSuggestion<ST> ) | ( () => Promise<LinkSuggestion<ST>> );
 		createSuggestionButtonText?: string | Function;
