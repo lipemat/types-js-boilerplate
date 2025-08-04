@@ -63,7 +63,7 @@ declare module '@wordpress/api/users' {
 	 * @link https://developer.wordpress.org/rest-api/reference/users/#update-a-user-2
 	 */
 	export interface UserUpdate extends UserCreate {
-		id?: number;
+		id: number;
 	}
 
 
