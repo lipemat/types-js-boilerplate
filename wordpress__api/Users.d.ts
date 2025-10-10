@@ -2,8 +2,9 @@
  * Users API
  */
 declare module '@wordpress/api/users' {
-	import {Context, ContextualField, Links, Order} from '@wordpress/api';
-	import {PostMeta} from '@wordpress/api/posts';
+	import type {Context, ContextualField, Links, Order} from '@wordpress/api';
+	import type {PostMeta} from '@wordpress/api/posts';
+	import type {OmitNever} from '@lipemat/js-boilerplate/utility';
 
 	export interface AvatarUrls {
 		'24': string;
@@ -24,7 +25,7 @@ declare module '@wordpress/api/users' {
 	 *
 	 * @link https://developer.wordpress.org/rest-api/reference/users/
 	 */
-	export interface User<C extends Context = 'view'> {
+	export type User<C extends Context = 'view'> = OmitNever<{
 		id: number;
 		username: ContextualField<string, 'edit', C>;
 		name: string;
@@ -44,7 +45,7 @@ declare module '@wordpress/api/users' {
 		avatar_urls: AvatarUrls;
 		meta: ContextualField<PostMeta, 'view' | 'edit', C>;
 		_links: Pick<Links, 'self' | 'collection'>;
-	}
+	}>
 
 
 	/**

@@ -23,5 +23,4 @@ declare module '@wordpress/api/application-passwords' {
 		app_id?: string;
 		name?: string;
 	}
-
 }

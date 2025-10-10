@@ -8,13 +8,14 @@
  * @see https://make.wordpress.org/core/2025/03/27/new-rest-api-filter-for-exposing-menus-publicly-in-wordpress-6-8/
  */
 declare module '@wordpress/api/menus' {
-	import {Context, ContextualField, Links, Meta} from '@wordpress/api';
-	import {CategoriesQuery, CategoryCreate} from '@wordpress/api/categories';
+	import type {OmitNever} from '@lipemat/js-boilerplate/utility';
+	import type {Context, ContextualField, Links, Meta} from '@wordpress/api';
+	import type {CategoriesQuery, CategoryCreate} from '@wordpress/api/categories';
 
 	/**
 	 * @link https://developer.wordpress.org/rest-api/reference/nav_menus/#schema
 	 */
-	export interface Menu<C extends Context = 'view'> {
+	export type Menu<C extends Context = 'view'> = OmitNever<{
 		auto_add: ContextualField<boolean, 'view' | 'edit', C>;
 		description: ContextualField<string, 'view' | 'edit', C>;
 		id: number;
@@ -23,7 +24,7 @@ declare module '@wordpress/api/menus' {
 		name: string;
 		slug: string;
 		_links: Links;
-	}
+	}>
 
 	/**
 	 * @link https://developer.wordpress.org/rest-api/reference/nav_menus/#create-a-nav_menu
