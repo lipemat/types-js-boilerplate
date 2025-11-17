@@ -428,7 +428,11 @@ not yet been saved.
 		 *
 		 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core-block-editor/#getblockattributes
 		 */
-		getBlockAttributes: <Att>( clientId: string ) => null | Att;
+		getBlockAttributes: <Att>( clientId: string ) => null | Att & {
+			metadata?: {
+				noteId?: number;
+			}
+		};
 		/**
 		 * Get number of blocks in post or inner blocks within a block
 		 *
