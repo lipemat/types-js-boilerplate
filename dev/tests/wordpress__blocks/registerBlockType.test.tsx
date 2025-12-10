@@ -5,6 +5,9 @@ registerBlockType( 'my-plugin/my-block', {
 	category: 'common',
 	edit: () => <></>,
 	save: () => <></>,
+	supports: {
+		visibility: false
+	},
 	icon: <svg
 		viewBox="0 0 24 24"
 		xmlns="http://www.w3.org/2000/svg">

@@ -534,6 +534,14 @@ declare module '@wordpress/blocks' {
 			lineHeight: boolean;
 			textAlign?: boolean | Array<'left' | 'right' | 'center'>;
 		};
+		/**
+		 * Can this block be hidden?
+		 *
+		 * Default: true
+		 *
+		 * @link https://make.wordpress.org/core/2025/12/01/ability-to-hide-blocks/
+		 */
+		visibility?: boolean;
 	}
 
 	/**
