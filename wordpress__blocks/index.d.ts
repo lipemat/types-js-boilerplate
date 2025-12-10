@@ -534,6 +534,14 @@ declare module '@wordpress/blocks' {
 			lineHeight: boolean;
 			textAlign?: boolean | Array<'left' | 'right' | 'center'>;
 		};
+		/**
+		 * Can this block be hidden?
+		 *
+		 * Default: true
+		 *
+		 * @link https://make.wordpress.org/core/2025/12/01/ability-to-hide-blocks/
+		 */
+		visibility?: boolean;
 	}
 
 	/**
@@ -614,9 +622,7 @@ declare module '@wordpress/blocks' {
 			attributes: Attr,
 			innerBlocks: C
 		} ) => ReactElement | null;
-		// Version 2 https://make.wordpress.org/core/2020/11/18/block-api-version-2/
-		// Version 3 https://github.com/WordPress/gutenberg/pull/48286
-		apiVersion?: 1 | 2 | 3;
+		apiVersion: 3;
 	};
 
 

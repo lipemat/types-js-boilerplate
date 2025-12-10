@@ -5,6 +5,9 @@ registerBlockType( 'my-plugin/my-block', {
 	category: 'common',
 	edit: () => <></>,
 	save: () => <></>,
+	supports: {
+		visibility: false
+	},
 	icon: <svg
 		viewBox="0 0 24 24"
 		xmlns="http://www.w3.org/2000/svg">
@@ -13,6 +16,7 @@ registerBlockType( 'my-plugin/my-block', {
 			d="M0 0h24v24H0V0z" />
 		<path d="M19 13H5v-2h14v2z" />
 	</svg>,
+	apiVersion: 3
 } );
 
 registerBlockType( 'my-plugin/my-block', {
@@ -22,6 +26,7 @@ registerBlockType( 'my-plugin/my-block', {
 	save: () => <></>,
 	icon: 'book-alt',
 	attributes: {},
+	apiVersion: 3
 } );
 
 registerBlockType( 'my-plugin/my-block', {
@@ -37,7 +42,8 @@ registerBlockType( 'my-plugin/my-block', {
 			<path fill="none" d="M0 0h24v24H0V0z" />
 			<path d="M19 13H5v-2h14v2z" />
 		</svg>,
-	}
+	},
+	apiVersion: 3,
 } );
 
 
@@ -67,4 +73,5 @@ registerBlockType<{ foo: string, other: boolean }>( 'my-plugin/my-block', {
 	},
 	save: () => <></>,
 	icon: 'book-alt',
+	apiVersion: 3
 } );
