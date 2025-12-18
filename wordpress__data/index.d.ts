@@ -1270,8 +1270,14 @@ not yet been saved.
 	export const useDispatch: typeof dispatch;
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#useselect
+	 * @link https://developer.wordpress.org/news/2024/03/how-to-work-effectively-with-the-useselect-hook/
 	 */
 	export const useSelect: typeof select;
+
+	/**
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#usesuspenseselect
+	 */
+	export const useSuspenseSelect: typeof select;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/#withdispatch
