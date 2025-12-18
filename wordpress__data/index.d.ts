@@ -360,7 +360,9 @@ not yet been saved.
 		getSelectedBlockCount: () => any;
 		getSelectedBlocksInitialCaretPosition: () => any;
 		getSuggestedPostFormat: () => any;
+		/** @deprecated Use 'core/block-editor' instead.*/
 		getTemplate: () => any;
+		/** @deprecated Use 'core/block-editor' instead.*/
 		getTemplateLock: () => any;
 		hasChangedContent: () => any;
 		hasEditorRedo: () => any;
