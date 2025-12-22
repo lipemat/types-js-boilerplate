@@ -404,7 +404,7 @@ not yet been saved.
 		isValidTemplate: () => any;
 	}
 
-	export function select( store: 'core/editor' ): CoreEditor & SelectShared<CoreEditor>;
+	export function select( store: 'core/editor' ): undefined | CoreEditor & SelectShared<CoreEditor>;
 
 	/**
 	 * The Block Editor’s Data
