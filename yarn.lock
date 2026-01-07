@@ -2,16 +2,16 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 6
-  cacheKey: 8
+  version: 8
+  cacheKey: 10
 
 "@types/backbone@npm:^1.4.22":
   version: 1.4.22
   resolution: "@types/backbone@npm:1.4.22"
   dependencies:
-    "@types/jquery": "*"
-    "@types/underscore": "*"
-  checksum: 095959d89abfdbf01071c8389f8638cf941e235c7ba7b03d2500cea34c8c313830605c3c87b2bb8630760bb9ed8ca54114344c1721947ce6992016482b295c6c
+    "@types/jquery": "npm:*"
+    "@types/underscore": "npm:*"
+  checksum: 10/9fb13d0aa4d318ea4b48233e11c7f038658fe16b552fce88099963834d0e0b447d289018b9daced6113cb815889dac639cc3e1531dd86ebd4f0ec0e1829834f3
   languageName: node
   linkType: hard
 
@@ -19,15 +19,15 @@ __metadata:
   version: 5.60.12
   resolution: "@types/codemirror@npm:5.60.12"
   dependencies:
-    "@types/tern": "*"
-  checksum: dff22f32ea42ccd3f9bfcf408631f94a11ffb4614ff4fa8cc55adf7da6e7ba96650533b8dd27d037242747bdaa85141e93520f84409db7bc394862a174a10e1e
+    "@types/tern": "npm:*"
+  checksum: 10/362d65585d543cded6e183d25861839df84d9c1ed257fc01efede393cef80a880f2c9443d8472ce82f77423f88418f6e8516a4c2aa410514962d7f1a7570679c
   languageName: node
   linkType: hard
 
 "@types/estree@npm:*":
   version: 1.0.3
   resolution: "@types/estree@npm:1.0.3"
-  checksum: f21a5448995f8aa61ab2248d10590d275666b11d26c27fe75b3c23420b07b469d5ce820deefcf7399671faa09d56eb7ce012322948e484d94686fda154be5221
+  checksum: 10/c51984ec3003a93b619f25995ceba74428f390747d246833928d0121bb2df3b8bca67deb27fc634da47c5b341837d2ae17d0c5b8d16be5110477a73531ac3528
   languageName: node
   linkType: hard
 
@@ -35,8 +35,8 @@ __metadata:
   version: 3.5.25
   resolution: "@types/jquery@npm:3.5.25"
   dependencies:
-    "@types/sizzle": "*"
-  checksum: 912ce4212447a7c640147345c6b46bde5b12bafc2c97e1abc76939174c3109e3dbb361a534af717be2da4e907bc257558a6bc631971fcc47f7e5f044d315183e
+    "@types/sizzle": "npm:*"
+  checksum: 10/e8a50a33cf31eb03f0c5cf3c4fb11a0d266821fffd56674dff1cece1eb1a839f2d0580b82a9735f494902567cb21acefd3e81593c9011f20ae212a7296366044
   languageName: node
   linkType: hard
 
@@ -44,29 +44,29 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@types/lipemat__js-boilerplate@workspace:."
   dependencies:
-    "@types/backbone": ^1.4.22
-    "@types/codemirror": ^5.60.5
-    "@types/jquery": ^3.5.5
-    "@types/lodash": ^4.14.202
-    "@types/react": ^16 || ^17 || ^18
-    "@types/react-dom": ^16 || ^17 || ^18
-    "@types/tinymce": ^4.5.23
-    "@types/webpack-env": ^1.18.0
-    typescript: 5.2.2
+    "@types/backbone": "npm:^1.4.22"
+    "@types/codemirror": "npm:^5.60.5"
+    "@types/jquery": "npm:^3.5.5"
+    "@types/lodash": "npm:^4.14.202"
+    "@types/react": "npm:^16 || ^17 || ^18"
+    "@types/react-dom": "npm:^16 || ^17 || ^18"
+    "@types/tinymce": "npm:^4.5.23"
+    "@types/webpack-env": "npm:^1.18.0"
+    typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
 "@types/lodash@npm:^4.14.202":
   version: 4.14.202
   resolution: "@types/lodash@npm:4.14.202"
-  checksum: a91acf3564a568c6f199912f3eb2c76c99c5a0d7e219394294213b3f2d54f672619f0fde4da22b29dc5d4c31457cd799acc2e5cb6bd90f9af04a1578483b6ff7
+  checksum: 10/1bb9760a5b1dda120132c4b987330d67979c95dbc22612678682cd61b00302e190f4207228f3728580059cdab5582362262e3819aea59960c1017bd2b9fb26f6
   languageName: node
   linkType: hard
 
 "@types/prop-types@npm:*":
   version: 15.7.9
   resolution: "@types/prop-types@npm:15.7.9"
-  checksum: c7591d3ff7593e243908a07e1d3e2bb6e8879008af5800d8378115a90d0fdf669a1cae72a6d7f69e59c4fa7bb4c8ed61f6ebc1c520fe110c6f2b03ac02414072
+  checksum: 10/c7591d3ff7593e243908a07e1d3e2bb6e8879008af5800d8378115a90d0fdf669a1cae72a6d7f69e59c4fa7bb4c8ed61f6ebc1c520fe110c6f2b03ac02414072
   languageName: node
   linkType: hard
 
@@ -74,8 +74,8 @@ __metadata:
   version: 18.2.14
   resolution: "@types/react-dom@npm:18.2.14"
   dependencies:
-    "@types/react": "*"
-  checksum: 890289c70d1966c168037637c09cacefe6205bdd27a33252144a6b432595a2943775ac1a1accac0beddaeb67f8fdf721e076acb1adc990b08e51c3d9fd4e780c
+    "@types/react": "npm:*"
+  checksum: 10/c7feb6542dbeb3de18c9c03260229377e0a0d47a3d2c0bb91861996e2353375a45c57de7216edb8b88448584e363677244bd4355ddec45c243e70e777c2a150b
   languageName: node
   linkType: hard
 
@@ -83,24 +83,24 @@ __metadata:
   version: 18.2.31
   resolution: "@types/react@npm:18.2.31"
   dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: b11be8e39174d3303e308461400889e353e422d22b01d09795b2c35b7b99d5351716503d9ec5c58e4c2c871249603fa52840d45a34fb5901dd7a26e06129c716
+    "@types/prop-types": "npm:*"
+    "@types/scheduler": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10/ac9f42f1cd6ee34329ea7a81894877dc333a2dc86141545e23121b07dcd7cea902bedc6b645ce017c92610bd8cd2c6e25dbba581379889a705314f3c759371bf
   languageName: node
   linkType: hard
 
 "@types/scheduler@npm:*":
   version: 0.16.5
   resolution: "@types/scheduler@npm:0.16.5"
-  checksum: 5aae67331bb7877edc65f77f205fb03c3808d9e51c186afe26945ce69f4072886629580a751e9ce8573e4a7538d0dfa1e4ce388c7c451fa689a4c592fdf1ea45
+  checksum: 10/5aae67331bb7877edc65f77f205fb03c3808d9e51c186afe26945ce69f4072886629580a751e9ce8573e4a7538d0dfa1e4ce388c7c451fa689a4c592fdf1ea45
   languageName: node
   linkType: hard
 
 "@types/sizzle@npm:*":
   version: 2.3.5
   resolution: "@types/sizzle@npm:2.3.5"
-  checksum: 1c2609a9bed3a30d8142ac7a2a63aa6dfe7bec28542f5bfe51407a2a3684b103cc3f5ef1eda781037c76e508501734d16fd6a8c1142dda66acb2d5457fb83757
+  checksum: 10/1c2609a9bed3a30d8142ac7a2a63aa6dfe7bec28542f5bfe51407a2a3684b103cc3f5ef1eda781037c76e508501734d16fd6a8c1142dda66acb2d5457fb83757
   languageName: node
   linkType: hard
 
@@ -108,8 +108,8 @@ __metadata:
   version: 0.23.6
   resolution: "@types/tern@npm:0.23.6"
   dependencies:
-    "@types/estree": "*"
-  checksum: 8af409516bffa8221096aa77833838926b6f94030e2476b6f651bcc3bc9d7beac1c1ab762c09b2e8664d70816e921588fe3e63bf9ddeddd427a4a6a1c25dceff
+    "@types/estree": "npm:*"
+  checksum: 10/72ce4dc42759588a4fae49b3d3776fd180a8aab6a290a95685262887b0003b53e7969a65a76ac415904c6af727d3c4d9fd70637cd05128c5affddc9402ea2b10
   languageName: node
   linkType: hard
 
@@ -117,48 +117,48 @@ __metadata:
   version: 4.6.7
   resolution: "@types/tinymce@npm:4.6.7"
   dependencies:
-    "@types/jquery": "*"
-  checksum: 94febf4cee8e4f2c616244d1bc6019c9f1dff504c972777ed1e946f65b792fd2e991f34fb69ba20f6661c6dc7cf40e5a04667b4009b523e7607670618f42822b
+    "@types/jquery": "npm:*"
+  checksum: 10/81e742436ee31e7824030c4e03ca92be126d76b05d895253cd011f5fc8cc0d8f126976f5ba0060b2e463d042140c00b602aadc32c60d712a1e45fed5fe5bdd74
   languageName: node
   linkType: hard
 
 "@types/underscore@npm:*":
   version: 1.13.0
   resolution: "@types/underscore@npm:1.13.0"
-  checksum: 1411cbeb1b743629d504fcb2037b393d11eb207459b9d560f71304183115e30ba145f83b819ffcc8a0d5d4eccfb76bebb0ef7aab8f96a04d88d99ff9dfe503c6
+  checksum: 10/938a6a0a878ce108046601a7cceeec9870428cc565a0c6d7891b7ad39e7570f1f75a1c02bf81baf23c7c7948ef0693d00ccd1a8e05894a52fed4c584a4b7172e
   languageName: node
   linkType: hard
 
 "@types/webpack-env@npm:^1.18.0":
   version: 1.18.3
   resolution: "@types/webpack-env@npm:1.18.3"
-  checksum: f24e82485d8e325b1875608766ba6dad2b2f53a0fb182bc96173b4590110c6b791163402cdf19b50c04e8c05292f227a08aafe9230b2bba52c40c5f7ceccc101
+  checksum: 10/3aa810ee8f1fac2efff57eb0d86d64387f82b2da0ce066e119d56296504f1f71fa104e0d111b902d132df137d5402c464cbe319bca27e220da123412042192fe
   languageName: node
   linkType: hard
 
 "csstype@npm:^3.0.2":
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
-  checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
+  checksum: 10/1f39c541e9acd9562996d88bc9fb62d1cb234786ef11ed275567d4b2bd82e1ceacde25debc8de3d3b4871ae02c2933fa02614004c97190711caebad6347debc2
   languageName: node
   linkType: hard
 
-"typescript@npm:5.2.2":
-  version: 5.2.2
-  resolution: "typescript@npm:5.2.2"
+"typescript@npm:^5.9.3":
+  version: 5.9.3
+  resolution: "typescript@npm:5.9.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 7912821dac4d962d315c36800fe387cdc0a6298dba7ec171b350b4a6e988b51d7b8f051317786db1094bd7431d526b648aba7da8236607febb26cf5b871d2d3c
+  checksum: 10/c089d9d3da2729fd4ac517f9b0e0485914c4b3c26f80dc0cffcb5de1719a17951e92425d55db59515c1a7ddab65808466debb864d0d56dcf43f27007d0709594
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@5.2.2#~builtin<compat/typescript>":
-  version: 5.2.2
-  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"
+"typescript@patch:typescript@npm%3A^5.9.3#optional!builtin<compat/typescript>":
+  version: 5.9.3
+  resolution: "typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 0f4da2f15e6f1245e49db15801dbee52f2bbfb267e1c39225afdab5afee1a72839cd86000e65ee9d7e4dfaff12239d28beaf5ee431357fcced15fb08583d72ca
+  checksum: 10/696e1b017bc2635f4e0c94eb4435357701008e2f272f553d06e35b494b8ddc60aa221145e286c28ace0c89ee32827a28c2040e3a69bdc108b1a5dc8fb40b72e3
   languageName: node
   linkType: hard
