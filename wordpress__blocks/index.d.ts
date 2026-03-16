@@ -147,6 +147,16 @@ declare module '@wordpress/blocks' {
 						key: string;
 					}
 				}
+			},
+			/**
+			 * @link https://make.wordpress.org/core/2026/03/15/block-visibility-in-wordpress-7-0/
+			 */
+			blockVisibility?: boolean | {
+				viewport: {
+					mobile: false,
+					tablet: true,
+					desktop: true
+				}
 			}
 		}
 	}
