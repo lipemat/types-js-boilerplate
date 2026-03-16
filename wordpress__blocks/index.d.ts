@@ -450,6 +450,8 @@ declare module '@wordpress/blocks' {
 		ariaLabel?: boolean;
 		// False removes the support for the generated className.
 		className?: boolean;
+		// True allows editing when in content-only mode like unsynced patterns
+		contentRole?: boolean;
 		/**
 		 * Support color selections.
 		 *
