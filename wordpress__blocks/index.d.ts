@@ -478,6 +478,8 @@ declare module '@wordpress/blocks' {
 		};
 		// False removes the support for the custom className.
 		customClassName?: boolean;
+		// False removes the support for the custom CSS.
+		customCSS?: boolean;
 		/**
 		 * Enable dimensions UI control.
 		 *
