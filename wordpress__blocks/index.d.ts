@@ -502,6 +502,12 @@ declare module '@wordpress/blocks' {
 			allowOrientation?: boolean;
 			allowCustomContentAndWideSize?: boolean;
 		}
+		/**
+		 * Enables a List View panel in the block inspector for the block’s inner blocks.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/#listview
+		 */
+		listView?: boolean;
 		// False allows the block just once per post
 		multiple?: boolean;
 		// False removes the support for Options dropdown block renaming.
