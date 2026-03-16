@@ -555,6 +555,7 @@ declare module '@wordpress/blocks' {
 			fontSize: boolean;
 			lineHeight: boolean;
 			textAlign?: boolean | Array<'left' | 'right' | 'center'>;
+			textIndent?: boolean;
 		};
 		/**
 		 * Can this block be hidden?
