@@ -8,20 +8,20 @@
  * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/data
  */
 declare module '@wordpress/data' {
-	import {BlockIcon, BlockSettings, BlockVariation, CreateBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
-	import {ComponentType} from '@lipemat/js-boilerplate/helpers';
-	import {PostEditing} from '@wordpress/edit-post';
-	import {Taxonomy} from '@wordpress/api/taxonomies';
-	import {Settings} from '@wordpress/api/settings';
-	import {Type, TypesQuery} from '@wordpress/api/types';
-	import {Media} from '@wordpress/api/media';
-	import {Action, NoticeOptions, Status} from '@wordpress/notices';
-	import {DependencyList, type ReactElement} from 'react';
+	import type {BlockIcon, BlockSettings, BlockVariation, CreateBlock, IconObject, WPBlockVariationScope} from '@wordpress/blocks';
+	import type {ComponentType} from '@lipemat/js-boilerplate/helpers';
+	import type {PostEditing} from '@wordpress/edit-post';
+	import type {Taxonomy} from '@wordpress/api/taxonomies';
+	import type {Settings} from '@wordpress/api/settings';
+	import type {Type, TypesQuery} from '@wordpress/api/types';
+	import type {Media} from '@wordpress/api/media';
+	import type {Action, NoticeOptions, Status} from '@wordpress/notices';
+	import type {DependencyList, ReactElement} from 'react';
 	import type {getEntityRecord, getEntityRecords} from '@wordpress/core-data';
-	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
-	import {BlockEditingMode} from '@wordpress/block-editor';
+	import type {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
+	import type {BlockEditingMode} from '@wordpress/block-editor';
 	import type {User, UsersQuery} from '@wordpress/api/users';
-	import type {getAbilities, getAbility, getAbilityCategories, getAbilityCategory} from '@wordpress/abilities';
+	import {getAbilities, getAbility, getAbilityCategories, getAbilityCategory} from '@wordpress/abilities';
 
 
 	export type WPBlockCategory = {
@@ -58,7 +58,7 @@ declare module '@wordpress/data' {
 	}
 
 	/**
-	 * Available editor panels (non exhaustive).
+	 * Available editor panels (non-exhaustive).
 	 *
 	 * @notice Meta boxes have a `meta-box-` prefix before
 	 *         their id. (e.g. meta-box-lipe_project_box)
