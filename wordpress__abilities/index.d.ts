@@ -18,25 +18,15 @@ declare module '@wordpress/abilities' {
 	export type AbilityOutput = any;
 
 	/**
-	 * Validation error - just a message string.
-	 * The Abilities API wraps this with the appropriate error code.
-	 */
-	export type ValidationError = string;
-
-	/**
 	 * Callback function for client-side abilities.
 	 */
-	export type AbilityCallback = (
-		input: AbilityInput
-	) => AbilityOutput | Promise<AbilityOutput>;
+	export type AbilityCallback = ( input: AbilityInput ) => AbilityOutput | Promise<AbilityOutput>;
 
 	/**
 	 * Permission callback function for client-side abilities.
 	 * Returns true if the ability can be executed, false otherwise.
 	 */
-	export type PermissionCallback = (
-		input?: AbilityInput
-	) => boolean | Promise<boolean>;
+	export type PermissionCallback = ( input?: AbilityInput ) => boolean | Promise<boolean>;
 
 	/**
 	 * Represents an ability in the WordPress Abilities API.
@@ -185,6 +175,8 @@ declare module '@wordpress/abilities' {
 	/**
 	 * Get all available abilities with optional filtering.
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#getabilities-args-abilitiesqueryargs-ability
+	 *
 	 * @param args Optional query arguments for filtering abilities.
 	 * @return Array of matching abilities.
 	 */
@@ -192,6 +184,8 @@ declare module '@wordpress/abilities' {
 
 	/**
 	 * Get a specific ability by name.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#getability-name-string-ability-undefined
 	 *
 	 * @param name The ability name.
 	 * @return The ability or undefined if not found.
@@ -201,12 +195,16 @@ declare module '@wordpress/abilities' {
 	/**
 	 * Get all available ability categories.
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#getabilitycategories-abilitycategory
+	 *
 	 * @return Array of categories.
 	 */
 	export function getAbilityCategories(): AbilityCategory[];
 
 	/**
 	 * Get a specific ability category by slug.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#getabilitycategory-slug-string-abilitycategory-undefined
 	 *
 	 * @param slug The category slug.
 	 * @return The category or undefined if not found.
@@ -219,34 +217,17 @@ declare module '@wordpress/abilities' {
 	 * Client-side abilities are executed locally in the browser and must include
 	 * a callback function. The ability's category must already be registered.
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#registerability-ability-ability-void
+	 *
 	 * @param  ability The ability definition including callback.
 	 * @throws {Error} If the ability fails validation.
-	 *
-	 * @example
-	 * ```js
-	 * registerAbility({
-	 *   name: 'my-plugin/navigate',
-	 *   label: 'Navigate to URL',
-	 *   description: 'Navigates to a URL within WordPress admin',
-	 *   category: 'navigation',
-	 *   input_schema: {
-	 *     type: 'object',
-	 *     properties: {
-	 *       url: { type: 'string' }
-	 *     },
-	 *     required: ['url']
-	 *   },
-	 *   callback: async ({ url }) => {
-	 *     window.location.href = url;
-	 *     return { success: true };
-	 *   }
-	 * });
-	 * ```
 	 */
 	export function registerAbility( ability: Ability ): void;
 
 	/**
 	 * Unregister a client-side ability from the store.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#unregisterability-name-string-void
 	 *
 	 * @param  name The ability name to unregister.
 	 * @throws {Error} If the ability is server-side and cannot be unregistered.
@@ -260,45 +241,22 @@ declare module '@wordpress/abilities' {
 	 * not already defined by the server. Client-side categories are stored
 	 * alongside server-side categories in the same store.
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#registerabilitycategory-slug-string-args-abilitycategoryargs-void
+	 *
 	 * @param  slug Category slug (lowercase alphanumeric with dashes only).
 	 * @param  args Category arguments (label, description, optional meta).
 	 * @throws {Error} If the category fails validation.
 	 *
-	 * @example
-	 * ```js
-	 * // Register a new category for block editor abilities
-	 * registerAbilityCategory('block-editor', {
-	 *   label: 'Block Editor',
-	 *   description: 'Abilities for interacting with the WordPress block editor'
-	 * });
-	 *
-	 * // Then register abilities using this category
-	 * registerAbility({
-	 *   name: 'my-plugin/insert-block',
-	 *   label: 'Insert Block',
-	 *   description: 'Inserts a block into the editor',
-	 *   category: 'block-editor',
-	 *   callback: async ({ blockType }) => {
-	 *     // Implementation
-	 *     return { success: true };
-	 *   }
-	 * });
-	 * ```
 	 */
-	export function registerAbilityCategory(
-		slug: string,
-		args: AbilityCategoryArgs
-	): void;
+	export function registerAbilityCategory( slug: string, args: AbilityCategoryArgs ): void;
 
 	/**
 	 * Unregister an ability category.
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#unregisterabilitycategory-slug-string-void
+	 *
 	 * @param slug The category slug to unregister.
 	 *
-	 * @example
-	 * ```js
-	 * unregisterAbilityCategory('block-editor');
-	 * ```
 	 */
 	export function unregisterAbilityCategory( slug: string ): void;
 
@@ -307,19 +265,19 @@ declare module '@wordpress/abilities' {
 	 *
 	 * Validates input and output against their schemas when defined. For
 	 * server-side abilities, input is validated on the client first to avoid
-	 * unnecessary network roundtrips, then both input and output are validated on
+	 * unnecessary network round trips, then both input and output are validated on
 	 * the server. The client also re-validates the output to ensure data
 	 * compatibility between server and client.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/#executeability-name-string-input-recordstring-any-promiseany
 	 *
 	 * @param  name  The ability name.
 	 * @param  input Optional input parameters for the ability.
 	 * @return Promise resolving to the ability execution result.
 	 * @throws {Error} If the ability is not found, permission is denied, input or output validation fails, or execution throws.
 	 */
-	export function executeAbility(
-		name: string,
-		input?: AbilityInput
-	): Promise<AbilityOutput>;
+	export function executeAbility( name: string, input?: AbilityInput ): Promise<AbilityOutput>;
+
 
 	export default interface Abilities {
 		getAbilities: typeof getAbilities;
