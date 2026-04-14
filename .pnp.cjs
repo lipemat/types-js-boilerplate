@@ -33,8 +33,8 @@ const RAW_RUNTIME_STATE =
           ["@types/jquery", "npm:3.5.25"],\
           ["@types/lipemat__js-boilerplate", "workspace:."],\
           ["@types/lodash", "npm:4.14.202"],\
-          ["@types/react", "npm:18.2.31"],\
-          ["@types/react-dom", "npm:18.2.14"],\
+          ["@types/react", "npm:18.3.28"],\
+          ["@types/react-dom", "virtual:b90d11c382066a64214f1b174b37617f2a0988d2d637b75d1b25e5eae1799c2f9c287798026e9e1f7c9a2ce95651ad0b9bb1f9a230f062da7ec5ba07dce70cfa#npm:18.3.7"],\
           ["@types/tinymce", "npm:4.6.7"],\
           ["@types/webpack-env", "npm:1.18.3"],\
           ["typescript", "patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"]\
@@ -91,8 +91,8 @@ const RAW_RUNTIME_STATE =
           ["@types/jquery", "npm:3.5.25"],\
           ["@types/lipemat__js-boilerplate", "workspace:."],\
           ["@types/lodash", "npm:4.14.202"],\
-          ["@types/react", "npm:18.2.31"],\
-          ["@types/react-dom", "npm:18.2.14"],\
+          ["@types/react", "npm:18.3.28"],\
+          ["@types/react-dom", "virtual:b90d11c382066a64214f1b174b37617f2a0988d2d637b75d1b25e5eae1799c2f9c287798026e9e1f7c9a2ce95651ad0b9bb1f9a230f062da7ec5ba07dce70cfa#npm:18.3.7"],\
           ["@types/tinymce", "npm:4.6.7"],\
           ["@types/webpack-env", "npm:1.18.3"],\
           ["typescript", "patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"]\
@@ -119,32 +119,32 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/react", [\
-      ["npm:18.2.31", {\
-        "packageLocation": "./.yarn/cache/@types-react-npm-18.2.31-6e2d07ce27-ac9f42f1cd.zip/node_modules/@types/react/",\
+      ["npm:18.3.28", {\
+        "packageLocation": "./.yarn/cache/@types-react-npm-18.3.28-7235948954-6db7bb7f19.zip/node_modules/@types/react/",\
         "packageDependencies": [\
           ["@types/prop-types", "npm:15.7.9"],\
-          ["@types/react", "npm:18.2.31"],\
-          ["@types/scheduler", "npm:0.16.5"],\
-          ["csstype", "npm:3.1.2"]\
+          ["@types/react", "npm:18.3.28"],\
+          ["csstype", "npm:3.2.3"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@types/react-dom", [\
-      ["npm:18.2.14", {\
-        "packageLocation": "./.yarn/cache/@types-react-dom-npm-18.2.14-cdfaaeda19-c7feb6542d.zip/node_modules/@types/react-dom/",\
+      ["npm:18.3.7", {\
+        "packageLocation": "./.yarn/cache/@types-react-dom-npm-18.3.7-c71f2ee61f-3175692193.zip/node_modules/@types/react-dom/",\
         "packageDependencies": [\
-          ["@types/react", "npm:18.2.31"],\
-          ["@types/react-dom", "npm:18.2.14"]\
+          ["@types/react-dom", "npm:18.3.7"]\
         ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/scheduler", [\
-      ["npm:0.16.5", {\
-        "packageLocation": "./.yarn/cache/@types-scheduler-npm-0.16.5-59f95de675-5aae67331b.zip/node_modules/@types/scheduler/",\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:b90d11c382066a64214f1b174b37617f2a0988d2d637b75d1b25e5eae1799c2f9c287798026e9e1f7c9a2ce95651ad0b9bb1f9a230f062da7ec5ba07dce70cfa#npm:18.3.7", {\
+        "packageLocation": "./.yarn/__virtual__/@types-react-dom-virtual-4b21ee60f0/0/cache/@types-react-dom-npm-18.3.7-c71f2ee61f-3175692193.zip/node_modules/@types/react-dom/",\
         "packageDependencies": [\
-          ["@types/scheduler", "npm:0.16.5"]\
+          ["@types/react", "npm:18.3.28"],\
+          ["@types/react-dom", "virtual:b90d11c382066a64214f1b174b37617f2a0988d2d637b75d1b25e5eae1799c2f9c287798026e9e1f7c9a2ce95651ad0b9bb1f9a230f062da7ec5ba07dce70cfa#npm:18.3.7"]\
+        ],\
+        "packagePeers": [\
+          "@types/react"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -197,10 +197,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["csstype", [\
-      ["npm:3.1.2", {\
-        "packageLocation": "./.yarn/cache/csstype-npm-3.1.2-cead7d99b2-1f39c541e9.zip/node_modules/csstype/",\
+      ["npm:3.2.3", {\
+        "packageLocation": "./.yarn/cache/csstype-npm-3.2.3-741053244e-ad41baf7e2.zip/node_modules/csstype/",\
         "packageDependencies": [\
-          ["csstype", "npm:3.1.2"]\
+          ["csstype", "npm:3.2.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -422,16 +422,16 @@ function convertToBigIntStats(stats) {
     if (Object.hasOwn(stats, key)) {
       const element = stats[key];
       if (typeof element === `number`) {
-        bigintStats[key] = BigInt(element);
+        bigintStats[key] = BigInt(Math.floor(element));
       } else if (nodeUtils__namespace.types.isDate(element)) {
         bigintStats[key] = new Date(element);
       }
     }
   }
-  bigintStats.atimeNs = bigintStats.atimeMs * BigInt(1e6);
-  bigintStats.mtimeNs = bigintStats.mtimeMs * BigInt(1e6);
-  bigintStats.ctimeNs = bigintStats.ctimeMs * BigInt(1e6);
-  bigintStats.birthtimeNs = bigintStats.birthtimeMs * BigInt(1e6);
+  bigintStats.atimeNs = bigintStats.atimeMs * BigInt(1e6) + BigInt(Math.floor(stats.atimeMs % 1 * 1e3)) * BigInt(1e3);
+  bigintStats.mtimeNs = bigintStats.mtimeMs * BigInt(1e6) + BigInt(Math.floor(stats.mtimeMs % 1 * 1e3)) * BigInt(1e3);
+  bigintStats.ctimeNs = bigintStats.ctimeMs * BigInt(1e6) + BigInt(Math.floor(stats.ctimeMs % 1 * 1e3)) * BigInt(1e3);
+  bigintStats.birthtimeNs = bigintStats.birthtimeMs * BigInt(1e6) + BigInt(Math.floor(stats.birthtimeMs % 1 * 1e3)) * BigInt(1e3);
   return bigintStats;
 }
 function areStatsEqual(a, b) {
