@@ -2,7 +2,7 @@
  * Definitions for the `@wordpress/data` package.
  *
  * Some are included in global types for individual packages,
- * however the definitions are not always right or complete, so we
+ * however, the definitions are not always right or complete, so we
  * have to keep our overrides indefinitely.
  *
  * @link https://github.com/WordPress/gutenberg/tree/trunk/packages/data
@@ -21,6 +21,7 @@ declare module '@wordpress/data' {
 	import {WPCommandConfig, WPCommandLoaderConfig} from '@wordpress/commands';
 	import {BlockEditingMode} from '@wordpress/block-editor';
 	import type {User, UsersQuery} from '@wordpress/api/users';
+	import type {getAbilities, getAbility, getAbilityCategories, getAbilityCategory} from '@wordpress/abilities';
 
 
 	export type WPBlockCategory = {
@@ -172,6 +173,19 @@ declare module '@wordpress/data' {
 		isResolving: ( selector: keyof T, args?: Array<any> ) => any;
 	}
 
+	/**
+	 * Abilities API
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-abilities/
+	 */
+	type CoreAbilities = {
+		getAbilities: typeof getAbilities;
+		getAbility: typeof getAbility;
+		getAbilityCategories: typeof getAbilityCategories;
+		getAbilityCategory: typeof getAbilityCategory;
+	}
+
+	export function select( store: 'core/abilities' ): CoreAbilities & SelectShared<CoreAbilities>;
 
 	/**
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/data/data-core/

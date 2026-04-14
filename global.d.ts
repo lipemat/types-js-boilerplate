@@ -25,14 +25,15 @@ import Primitives from '@wordpress/primitives';
 import RichText from '@wordpress/rich-text';
 import URL from '@wordpress/url';
 import type Compose from '@wordpress/compose';
+import type Abilities from '@wordpress/abilities';
 
 /**
- * Adds the global `wp` variable to `window` typescript definitions.
+ * Adds the global `wp` variable to `window` TypeScript definitions.
  *
- * May be accessed via `window.wp` and typescript will
+ * May be accessed via `window.wp` and TypeScript will
  * understand the shape.
  *
- * If additional declarations on the `wp` variable are needed
+ * If additional declarations on the `wp` variable are needed,
  * simply copy/paste this block into your project and define
  * additional properties.
  */
@@ -40,6 +41,7 @@ declare global {
 	interface Window {
 		ajaxurl?: string;
 		wp: {
+			abilities?: Abilities;
 			apiFetch?: typeof ApiFetch,
 			autop?: Autop;
 			blockEditor?: BlockEditor;

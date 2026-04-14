@@ -27,6 +27,7 @@ import './wordpress__api/Users';
 import './wordpress__api/index';
 
 // Gutenberg
+import './wordpress__abilities/index';
 import './wordpress__api-fetch/index';
 import './wordpress__autop/index';
 import './wordpress__block-editor/index';
