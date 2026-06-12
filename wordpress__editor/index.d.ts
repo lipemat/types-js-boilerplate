@@ -2,7 +2,6 @@
  * Definitions for the `@wordpress/editor` package.
  *
  * @link https://developer.wordpress.org/block-editor/reference-guides/packages/packages-editor/
- * @link https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/wordpress__editor/index.d.ts
  */
 declare module '@wordpress/editor' {
 	import type {ComponentType, FunctionComponent} from '@lipemat/js-boilerplate/helpers';
