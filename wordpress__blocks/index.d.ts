@@ -495,6 +495,7 @@ declare module '@wordpress/blocks' {
 			aspectRatio?: boolean; // Enable aspect ratio control.
 			height?: boolean; // Enable height control.
 			minHeight?: boolean; // Enable min height control.
+			minWidth?: boolean; // Enable min width control.
 			width?: boolean; // Enable width control.
 		};
 		// Enable block control for filters.
