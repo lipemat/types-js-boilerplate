@@ -451,13 +451,19 @@ declare module '@wordpress/blocks' {
 	 * @link https://developer.wordpress.org/block-editor/developers/block-api/block-supports/
 	 */
 	export type BlockSupports = {
-		// Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block, and a button to copy the direct link.
+		// Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link.
 		anchor?: boolean;
 		align?: boolean | Array<'left' | 'right' | 'full' | 'wide'>;
 		// Remove the support for wide alignment.
 		alignWide?: boolean;
-		// Allows enabling the definition of an aria-label for the block, without exposing a UI field.
+		// Allows enabling the definition of an aria-label for the block without exposing a UI field.
 		ariaLabel?: boolean;
+		// Support background styles.
+		background?: {
+			backgroundImage?: boolean;
+			backgroundSize?: boolean;
+			gradient?: boolean;
+		};
 		// False removes the support for the generated className.
 		className?: boolean;
 		// True allows editing when in content-only mode like unsynced patterns
