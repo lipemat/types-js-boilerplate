@@ -11,3 +11,13 @@ declare module '*.pcss' {
 	const content: Record<string, string>;
 	export default content;
 }
+
+/**
+ * Allow vendor stylesheet imports with TypeScript enabled without
+ * getting "TS2882: Cannot find module or type declarations for
+ * side effect import".
+ */
+declare module '*.css' {
+	const content: Record<string, string>;
+	export default content;
+}
