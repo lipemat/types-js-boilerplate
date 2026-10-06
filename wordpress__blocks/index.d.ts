@@ -167,18 +167,18 @@ declare module '@wordpress/blocks' {
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/
 	 */
 	export type BlockVariation<Attr = object, V extends string = string> = {
-		name: V;
-		title: string;
-		description?: string;
-		category?: string;
-		icon?: BlockIcon;
-		isDefault?: boolean;
 		attributes?: BlockAttributes<Attr>;
-		innerBlocks?: ChildBlocks;
+		category?: string;
+		description?: string;
 		example?: BlockExample<Partial<Attr>>;
-		scope?: Array<WPBlockVariationScope>;
-		keywords?: string[];
+		icon?: BlockIcon;
+		innerBlocks?: ChildBlocks;
 		isActive?: ( ( attr: BlockAttributes<Attr>, variation: BlockAttributes<Attr> ) => boolean ) | Array<keyof Attr>;
+		isDefault?: boolean;
+		keywords?: string[];
+		name: V;
+		scope?: Array<WPBlockVariationScope>;
+		title: string;
 	}
 
 	/**
