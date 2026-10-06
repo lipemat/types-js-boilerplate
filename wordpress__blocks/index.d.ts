@@ -650,6 +650,10 @@ declare module '@wordpress/blocks' {
 		selectors?: BlockSelectors;
 		//Features this block supports.
 		supports?: BlockSupports;
+		// Template for InnerBlocks when used.
+		template?: ChildBlocks;
+		// Whether to select the first inner block when the template is applied.
+		templateInsertUpdatesSelection?: boolean;
 		/**
 		 * Display content in the editor and make and changes to data.
 		 *
