@@ -161,6 +161,12 @@ declare module '@wordpress/blocks' {
 		}
 	}
 
+
+	export type BlockShortcutKeyCombination = {
+		character: string;
+		modifier?: 'access' | 'primary';
+	}
+
 	/**
 	 * Block Variation shape.
 	 *
@@ -178,6 +184,12 @@ declare module '@wordpress/blocks' {
 		keywords?: string[];
 		name: V;
 		scope?: Array<WPBlockVariationScope>;
+		shortcut?: {
+			aliases?: BlockShortcutKeyCombination[];
+			description: string;
+			keyCombination: BlockShortcutKeyCombination;
+			name: string;
+		}
 		title: string;
 	}
 
@@ -248,6 +260,7 @@ declare module '@wordpress/blocks' {
 	export type TransformsTo<T, Attr> = {
 		type: 'block';
 		blocks: Array<string | '*'>;
+		shortcut?: BlockShortcutKeyCombination;
 		transform: ( attributes: Attr, innerBlocks: Array<CreateBlock> ) => CreateBlock<T>;
 		isMatch?: ( attributes: Attr, block: CreateBlock<Attr> ) => boolean;
 		isMultiBlock?: false;
@@ -255,6 +268,7 @@ declare module '@wordpress/blocks' {
 	} | {
 		type: 'block';
 		blocks: Array<string | '*'>;
+		shortcut?: BlockShortcutKeyCombination;
 		transform: ( attributes: Attr, innerBlocks: Array<CreateBlock>[] ) => Array<CreateBlock<T>>;
 		isMatch?: ( attributes: Attr, blocks: Array<CreateBlock<Attr>> ) => boolean;
 		isMultiBlock: true;
